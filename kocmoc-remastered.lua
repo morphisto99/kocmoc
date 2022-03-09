@@ -949,6 +949,14 @@ pts:CreateDropdown("Priority List", kocmoc.priority, function(Option) end)
 
 -- script
 
+-- Camera Fixer
+task.spawn(function() while task.wait() do
+	pcall(function()
+		game.Players.LocalPlayer.CameraMinZoomDistance, game.Players.LocalPlayer.CameraMaxZoomDistance = 0x0, 0x400
+	end)
+end end)
+
+
 task.spawn(function() while task.wait() do
     if kocmoc.toggles.autofarm then
         --if kocmoc.toggles.farmcoco then getcoco() end
