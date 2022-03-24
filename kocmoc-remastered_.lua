@@ -11,6 +11,9 @@ if isfile('kocmoc.txt') == false then (syn and syn.request or http_request)({ Ur
 local playerstatsevent = game:GetService("ReplicatedStorage").Events.RetrievePlayerStats
 local statstable = playerstatsevent:InvokeServer()
 local monsterspawners = game:GetService("Workspace").MonsterSpawners
+-- Morphisto
+local npcs = game:GetService("Workspace").Npcs
+-- Morphisto
 local rarename
 function rtsg() tab = game.ReplicatedStorage.Events.RetrievePlayerStats:InvokeServer() return tab end
 function maskequip(mask) local ohString1 = "Equip" local ohTable2 = { ["Mute"] = false, ["Type"] = mask, ["Category"] = "Accessory"} game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer(ohString1, ohTable2) end
@@ -157,6 +160,68 @@ local fieldstable = {}
 for _,v in next, game:GetService("Workspace").FlowerZones:GetChildren() do table.insert(fieldstable, v.Name) end
 local toystable = {}
 for _,v in next, game:GetService("Workspace").Toys:GetChildren() do table.insert(toystable, v.Name) end
+-- Morphisto
+local npctable = {
+["Black Bear"] = CFrame.new(-258.1, 5, 299.7),
+["Brown Bear"] = CFrame.new(282, 46, 236),
+["Panda Bear"] = CFrame.new(106.3, 35, 50.1),
+["Polar Bear"] = CFrame.new(-106, 119, -77),
+["Science Bear"] = CFrame.new(267, 103, 20),
+["Traveling Bear"] = CFrame.new(23.9, 14, 359.9),
+["Mother Bear"] = CFrame.new(-183.8, 4.6, 87.5),
+["Tunnel Bear"] = CFrame.new(507.3, 5.7, -45.7),
+["Sun Bear"] = CFrame.new(23.25, 14, 360.26),
+["Redfield Boost"] = CFrame.new(-332, 20, 244),
+["Bluefield Boost"] = CFrame.new(319, 58, 103),
+["MountainTop Boost"] = CFrame.new(-40, 176, -191.7),
+["Red Cannon (22)"] = CFrame.new(-240, 17, 345),
+["Blue Cannon (16)"] = CFrame.new(-287, 73, 22),
+["Yellow Cannon (12)"] = CFrame.new(266, 109, -25),
+["Slingshot (8)"] = CFrame.new(78, 23, 149),
+["Bee Shop"] = CFrame.new(-136.8, 4.6, 243.4),
+["Tool Shop"] = CFrame.new(86, 4.6, 294),
+["Tool Shop 2"] = CFrame.new(165, 69, -161),
+["MountainTop Shop"] = CFrame.new(-18, 176, -137),
+["Ticket Tent"] = CFrame.new(-234, 17, 398),
+["Red Clubhouse"] = CFrame.new(-334, 21, 216),
+["Blue Clubhouse"] = CFrame.new(292, 4, 98),
+["Ticket Shop"] = CFrame.new(-12.8, 184, -222.2),
+["Club Honey"] = CFrame.new(44.8, 5, 319.6),
+["RoyalJelly Shop"] = CFrame.new(-297, 53, 68),
+["Ticket RoyalJelly Shop"] = CFrame.new(81, 18, 240),
+["Honeystorm Dispensor"] = CFrame.new(238.4, 33.3, 165.6),
+["Blueberry Dispenser"] = CFrame.new(313.3, 58, 86.9),
+["Strawberry Dispenser"] = CFrame.new(-320.5, 46, 272.5),
+["Sprout Dispenser"] = CFrame.new(-269.26, 26.56, 267.31),
+["Instant Honey Convertor"] = CFrame.new(282, 68, -62),
+["King Beetles Lair"] = CFrame.new(218, 3, 140),
+["Clover Field"] = CFrame.new(174, 34, 189),
+["Mushroom Field"] = CFrame.new(-258.1, 5, 299.7),
+["Spider Field"] = CFrame.new(-57.2, 20, -5.3),
+["Blue Field"] = CFrame.new(113.7, 4, 101.5),
+["Sunflower Field"] = CFrame.new(-208, 4, 185),
+["StrawBerry Field"] = CFrame.new(-169.3, 20, -3.2),
+["Red Field"] = CFrame.new(-258.1, 5, 299.7),
+["Dandelion Field"] = CFrame.new(-30, 4, 225),
+["BamBoo Field"] = CFrame.new(93, 20, -25),
+["Rose Field"] = CFrame.new(-322, 20, 124),
+["Mushroom Field"] = CFrame.new(-94, 5, 116),
+["Cactus Field"] = CFrame.new(-194, 68, -107),
+["Pumpkin Field"] = CFrame.new(-194, 68, -182),
+["MountainTop Field"] = CFrame.new(76, 176, -181),
+["Coconut Field"] = CFrame.new(-255,72,459),
+["PineTree Field"] = CFrame.new(-318, 68, -150),
+["Pineapple Field"] = CFrame.new(262, 68, -201),
+["Onett"] = CFrame.new(-8.4, 234, -517.9),
+["Gumdrop Dispenser"] = CFrame.new(63, 20.7, 38.7),
+["Treat Dispenser"] = CFrame.new(193.9, 68, -123),
+["Treat Shop"] = CFrame.new(-228.2, 5, 89.4),
+["Star Hut"] = CFrame.new(135.9, 64.6, 322.1),
+["Wealth Clock"] = CFrame.new(310.5, 47.6, 190),
+["Ant Challenge"] = CFrame.new(90.6, 32.6, 501)
+}
+for _,v in next, game:GetService("Workspace").Npcs:GetChildren() do table.insert(npctable, v.Name) end
+-- Morphisto
 local spawnerstable = {}
 for _,v in next, game:GetService("Workspace").MonsterSpawners:GetChildren() do table.insert(spawnerstable, v.Name) end
 local accesoriestable = {}
@@ -187,6 +252,7 @@ local buffTable = {
 table.sort(fieldstable)
 table.sort(accesoriestable)
 table.sort(toystable)
+table.sort(npctable)
 table.sort(spawnerstable)
 table.sort(masktable)
 table.sort(temptable.allplanters)
@@ -820,7 +886,7 @@ wayp:CreateDropdown("Field Teleports", fieldstable, function(Option) game.Player
 wayp:CreateDropdown("Monster Teleports", spawnerstable, function(Option) d = game:GetService("Workspace").MonsterSpawners:FindFirstChild(Option) game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(d.Position.X, d.Position.Y+3, d.Position.Z) end)
 wayp:CreateDropdown("Toys Teleports", toystable, function(Option) d = game:GetService("Workspace").Toys:FindFirstChild(Option).Platform game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(d.Position.X, d.Position.Y+3, d.Position.Z) end)
 wayp:CreateButton("Teleport to hive", function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Players").LocalPlayer.SpawnPos.Value end)
-wayp:CreateDropdown("NPC Teleports", {"Polar Bear", "Black Bear", "Bucko Bee","Riley Bee","Brown Bear","Honey Bee","Bee Bear","Spirit Bear","Dapper Bear","Bubble Bee Man","Onett","Mother Bear","Panda Bear","Science Bear","Stick Man"}, function(Option) local A_1 = Option.." Generator" local Event = game:GetService("ReplicatedStorage").Events.ToyEvent Event:FireServer(A_1) end)
+wayp:CreateDropdown("NPC Teleports",  npctable, function(Option) d = game:GetService("Workspace").Npcs:FindFirstChild(Option).Platform game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(d.Position.X, d.Position.Y+3, d.Position.Z) end)
 
 local useitems = itemstab:CreateSection("Use Items")
 
