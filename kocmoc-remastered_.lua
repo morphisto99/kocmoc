@@ -184,14 +184,18 @@ local buffTable = {
     "Tropical Drink";
 }
 
-local npctable = {
+npctable = {
 ["Black Bear"] = "test1",
 ["Brown Bear"] = "test2",
 ["Panda Bear"] = "test3",
 ["Polar Bear"] = "test4",
 ["Science Bear"] = "test5"
 }
+print(npctable["Panda Bear"])
 
+for k,v in ipairs(npctable) do
+   print(k,v)
+end
 
 table.sort(fieldstable)
 table.sort(accesoriestable)
