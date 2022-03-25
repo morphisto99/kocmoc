@@ -217,6 +217,7 @@ local npctable = {
 ["Wealth Clock"] = CFrame.new(310.5, 47.6, 190),
 ["Ant Challenge"] = CFrame.new(90.6, 32.6, 501)
 }
+for _,v in next, game:GetService("Workspace").Npcs:GetChildren() do table.insert(npctable, v.Name) end
 -- Morphisto
 local spawnerstable = {}
 for _,v in next, game:GetService("Workspace").MonsterSpawners:GetChildren() do table.insert(spawnerstable, v.Name) end
@@ -882,7 +883,7 @@ wayp:CreateDropdown("Field Teleports", fieldstable, function(Option) game.Player
 wayp:CreateDropdown("Monster Teleports", spawnerstable, function(Option) d = game:GetService("Workspace").MonsterSpawners:FindFirstChild(Option) game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(d.Position.X, d.Position.Y+3, d.Position.Z) end)
 wayp:CreateDropdown("Toys Teleports", toystable, function(Option) d = game:GetService("Workspace").Toys:FindFirstChild(Option).Platform game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(d.Position.X, d.Position.Y+3, d.Position.Z) end)
 wayp:CreateButton("Teleport to hive", function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Players").LocalPlayer.SpawnPos.Value end)
-wayp:CreateDropdown("NPC Teleports",  npctable, function(Option) d = game:GetService("Workspace").Npcs:FindFirstChild(Option).Platform game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(d.Position.X, d.Position.Y+3, d.Position.Z) end)
+wayp:CreateDropdown("NPC Teleports1",  npctable, function(Option) game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(d.Position.X, d.Position.Y+3, d.Position.Z) end)
 
 local useitems = itemstab:CreateSection("Use Items")
 
