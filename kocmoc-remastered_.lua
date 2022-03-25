@@ -839,6 +839,18 @@ amks:CreateTextBox('Kill Mobs After x Convertions', 'default = 3', true, functio
 
 
 local wayp = wayptab:CreateSection("Waypoints")
+
+local function getlocation()
+	local player = game:GetService("Players").LocalPlayer
+	local character = player.Character or player.CharacterAdded:wait()
+	local head = character:WaitForChild'Head'
+	local hum = player.Character.HumanoidRootPart
+	LocationX = round(hum.Position.x, 1)
+	LocationY = round(hum.Position.y, 1)
+	LocationZ = round(hum.Position.z, 1)
+	ShowLocation.Text = "Coords: "..LocationX..", "..LocationY..", "..LocationZ	
+end
+
 wayp:CreateDropdown("Field Teleports", fieldstable, function(Option) game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").FlowerZones:FindFirstChild(Option).CFrame end)
 wayp:CreateDropdown("Monster Teleports", spawnerstable, function(Option) d = game:GetService("Workspace").MonsterSpawners:FindFirstChild(Option) game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(d.Position.X, d.Position.Y+3, d.Position.Z) end)
 wayp:CreateDropdown("Toys Teleports", toystable, function(Option) d = game:GetService("Workspace").Toys:FindFirstChild(Option).Platform game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(d.Position.X, d.Position.Y+3, d.Position.Z) end)
@@ -846,6 +858,7 @@ wayp:CreateButton("Teleport to hive", function() game.Players.LocalPlayer.Charac
 --wayp:CreateDropdown("NPC Teleports", {"Black Bear","Brown Bear","Bucko Bee","Honey Bee","Panda Bear","Polar Bear","Riley Bee","Science Bear","Spirit Bear","Science Bear","Mother Bear","Sun Bear","Stick Bug","Onett","Gummy Lair","Bubble Bee Man","Meteor Shower","Demon Mask","Diamond Mask"}, function(Option) local A_1 = npctable[Option] print(A_1) end)
 --wayp:CreateDropdown("NPC Teleports", {"Black Bear","Brown Bear","Bucko Bee","Honey Bee","Panda Bear","Polar Bear","Riley Bee","Science Bear","Spirit Bear","Science Bear","Mother Bear","Sun Bear","Stick Bug","Onett","Gummy Lair","Bubble Bee Man","Meteor Shower","Demon Mask","Diamond Mask"}, function(Option) local A_2 = Option game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-258.1, 5, 299.7) end)
 wayp:CreateDropdown("NPC Teleports", {"Black Bear","Brown Bear","Bucko Bee","Honey Bee","Panda Bear","Polar Bear","Riley Bee","Science Bear","Spirit Bear","Science Bear","Mother Bear","Sun Bear","Stick Bug","Onett","Gummy Lair","Bubble Bee Man","Meteor Shower","Demon Mask","Diamond Mask"}, function(Option) local A_2 = Option game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = npctable[A_2] end)
+wayp:CreateButton("print location", function() print(game:GetService("Players").LocalPlayer.SpawnPos.Value) end)
 
 local useitems = itemstab:CreateSection("Use Items")
 
