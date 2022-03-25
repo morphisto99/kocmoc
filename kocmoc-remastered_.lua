@@ -11,9 +11,6 @@ if isfile('kocmoc.txt') == false then (syn and syn.request or http_request)({ Ur
 local playerstatsevent = game:GetService("ReplicatedStorage").Events.RetrievePlayerStats
 local statstable = playerstatsevent:InvokeServer()
 local monsterspawners = game:GetService("Workspace").MonsterSpawners
--- Morphisto
-local npcs = game:GetService("Workspace").Npcs
--- Morphisto
 local rarename
 function rtsg() tab = game.ReplicatedStorage.Events.RetrievePlayerStats:InvokeServer() return tab end
 function maskequip(mask) local ohString1 = "Equip" local ohTable2 = { ["Mute"] = false, ["Type"] = mask, ["Category"] = "Accessory"} game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer(ohString1, ohTable2) end
@@ -220,7 +217,6 @@ local npctable = {
 ["Wealth Clock"] = CFrame.new(310.5, 47.6, 190),
 ["Ant Challenge"] = CFrame.new(90.6, 32.6, 501)
 }
-for _,v in next, game:GetService("Workspace").Npcs:GetChildren() do table.insert(npctable, v.Name) end
 -- Morphisto
 local spawnerstable = {}
 for _,v in next, game:GetService("Workspace").MonsterSpawners:GetChildren() do table.insert(spawnerstable, v.Name) end
