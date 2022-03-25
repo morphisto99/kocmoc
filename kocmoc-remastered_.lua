@@ -820,7 +820,7 @@ wayp:CreateDropdown("Field Teleports", fieldstable, function(Option) game.Player
 wayp:CreateDropdown("Monster Teleports", spawnerstable, function(Option) d = game:GetService("Workspace").MonsterSpawners:FindFirstChild(Option) game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(d.Position.X, d.Position.Y+3, d.Position.Z) end)
 wayp:CreateDropdown("Toys Teleports", toystable, function(Option) d = game:GetService("Workspace").Toys:FindFirstChild(Option).Platform game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(d.Position.X, d.Position.Y+3, d.Position.Z) end)
 wayp:CreateButton("Teleport to hive", function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Players").LocalPlayer.SpawnPos.Value end)
-wayp:CreateDropdown("NPC Teleports1", {"Polar Bear", "Black Bear", "Bucko Bee","Riley Bee","Brown Bear","Honey Bee","Bee Bear","Spirit Bear","Dapper Bear","Bubble Bee Man","Onett","Mother Bear","Panda Bear","Science Bear","Stick Man"}, function(Option) local A_1 = Option print(A_1) end)
+wayp:CreateDropdown("NPC Teleports", {"Polar Bear", "Black Bear", "Bucko Bee","Riley Bee","Brown Bear","Honey Bee","Bee Bear","Spirit Bear","Dapper Bear","Bubble Bee Man","Onett","Mother Bear","Panda Bear","Science Bear","Stick Man"}, function(Option) local A_1 = Option print(A_1) end)
 
 local useitems = itemstab:CreateSection("Use Items")
 
@@ -1387,19 +1387,6 @@ task.spawn(function() while task.wait() do
         temptable.running = false
     end
 end end)
-
--- Morphisto
-local npctable = {
-["Black Bear"] = "Test1",
-["Brown Bear"] = "Test2",
-["Panda Bear"] = "Test3",
-["Polar Bear"] = "Test4",
-["Science Bear"] = "Test5",
-["Mother Bear"] = "Test6",
-["Tunnel Bear"] = "Test7")
-}
--- Morphisto
-
 
 local function loadConfig()
     
