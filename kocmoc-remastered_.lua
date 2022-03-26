@@ -1053,18 +1053,6 @@ task.spawn(function() while task.wait() do
             fieldpos = temptable.sprouts.coords
         end
         if kocmoc.toggles.farmpuffshrooms and game.Workspace.Happenings.Puffshrooms:FindFirstChildOfClass("Model") then
-		
-			if api.partwithnamepart("Lvl 10", game.Workspace.Happenings.Puffshrooms) then print("Puffshroom Lvl 10") end
-			if api.partwithnamepart("Lvl 11", game.Workspace.Happenings.Puffshrooms) then print("Puffshroom Lvl 11") end
-			if api.partwithnamepart("Lvl 12", game.Workspace.Happenings.Puffshrooms) then print("Puffshroom Lvl 12") end
-			if api.partwithnamepart("Lvl 13", game.Workspace.Happenings.Puffshrooms) then print("Puffshroom Lvl 13") end
-			if api.partwithnamepart("Lvl 14", game.Workspace.Happenings.Puffshrooms) then print("Puffshroom Lvl 14") end
-			if api.partwithnamepart("Lvl 15", game.Workspace.Happenings.Puffshrooms) then print("Puffshroom Lvl 15") end
-			if api.partwithnamepart("Lvl 16", game.Workspace.Happenings.Puffshrooms) then print("Puffshroom Lvl 16") end
-			if api.partwithnamepart("Lvl 17", game.Workspace.Happenings.Puffshrooms) then print("Puffshroom Lvl 17") end
-			if api.partwithnamepart("Lvl 18", game.Workspace.Happenings.Puffshrooms) then print("Puffshroom Lvl 18") end
-			if api.partwithnamepart("Lvl 19", game.Workspace.Happenings.Puffshrooms) then print("Puffshroom Lvl 19") end
-			
             if api.partwithnamepart("Mythic", game.Workspace.Happenings.Puffshrooms) then
                 temptable.magnitude = 25 
                 fieldpos = api.partwithnamepart("Mythic", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
@@ -1081,6 +1069,7 @@ task.spawn(function() while task.wait() do
                 temptable.magnitude = 25 
                 fieldpos = api.getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
                 fieldposition = fieldpos.Position
+				
             end
         end
         if tonumber(pollenpercentage) < tonumber(kocmoc.vars.convertat) then -- when polen is not full
