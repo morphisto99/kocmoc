@@ -1092,6 +1092,7 @@ task.spawn(function() while task.wait() do
                         task.wait(.5) game:GetService("Workspace").Map.Ground.HighBlock.CanCollide = true temptable.float = false api.tween(.5, CFrame.new(73.2, 176.35, -167)) task.wait(1)
                         for i = 0, 50 do 
                             gettoken(CFrame.new(73.2, 176.35, -167).Position) 
+							if not kocmoc.toggles.autofarm then break
                         end 
                         enableall() 
                         api.tween(2, fieldpos) 
