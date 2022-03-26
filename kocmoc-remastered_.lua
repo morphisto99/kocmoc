@@ -184,29 +184,6 @@ local buffTable = {
     "Tropical Drink";
 }
 
--- Morphisto
-npctable = {
-["Black Bear"] = CFrame.new(-258.1, 5, 299.7),
-["Brown Bear"] = CFrame.new(282, 46, 236),
-["Bucko Bee"] = CFrame.new(302, 62, 105),
-["Honey Bee"] = CFrame.new(-389, 90, -229),
-["Panda Bear"] = CFrame.new(106.3, 35, 50.1),
-["Polar Bear"] = CFrame.new(-106, 119, -77),
-["Riley Bee"] = CFrame.new(-361, 74, 212),
-["Science Bear"] = CFrame.new(267, 103, 20),
-["Mother Bear"] = CFrame.new(-183.8, 4.6, 87.5),
-["Sun Bear"] = CFrame.new(23.25, 14, 360.26),
-["Spirit Bear"] = CFrame.new(-365, 99, 479),
-["Stick Bug"] = CFrame.new(-128, 51, 147),
-["Onett"] = CFrame.new(-8.4, 234, -517.9),
-["Gummy Lair"] = CFrame.new(273, 25261, -745),
-["Bubble Bee Man"] = CFrame.new(89, 312, -278),
-["Meteor Shower"] = CFrame.new(160, 127, -160),
-["Demon Mask"] = CFrame.new(300, 13, 272),
-["Diamond Mask"] = CFrame.new(-336, 132, -385)
-}
--- Morphisto
-
 table.sort(fieldstable)
 table.sort(accesoriestable)
 table.sort(toystable)
@@ -843,8 +820,7 @@ wayp:CreateDropdown("Field Teleports", fieldstable, function(Option) game.Player
 wayp:CreateDropdown("Monster Teleports", spawnerstable, function(Option) d = game:GetService("Workspace").MonsterSpawners:FindFirstChild(Option) game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(d.Position.X, d.Position.Y+3, d.Position.Z) end)
 wayp:CreateDropdown("Toys Teleports", toystable, function(Option) d = game:GetService("Workspace").Toys:FindFirstChild(Option).Platform game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(d.Position.X, d.Position.Y+3, d.Position.Z) end)
 wayp:CreateButton("Teleport to hive", function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Players").LocalPlayer.SpawnPos.Value end)
-wayp:CreateDropdown("NPC Teleports", {"Black Bear","Brown Bear","Bucko Bee","Honey Bee","Panda Bear","Polar Bear","Riley Bee","Science Bear","Spirit Bear","Science Bear","Mother Bear","Sun Bear","Stick Bug","Onett","Gummy Lair","Bubble Bee Man","Meteor Shower","Demon Mask","Diamond Mask"}, function(Option) local A_2 = Option game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = npctable[A_2] end)
-wayp:CreateButton("print location", function() print(game.Players.LocalPlayer.Character.HumanoidRootPart.Position) end)
+wayp:CreateDropdown("NPC Teleports", {"Polar Bear", "Black Bear", "Bucko Bee","Riley Bee","Brown Bear","Honey Bee","Bee Bear","Spirit Bear","Dapper Bear","Bubble Bee Man","Onett","Mother Bear","Panda Bear","Science Bear","Stick Man"}, function(Option) local A_2 = Option print(A_2) end)
 
 local useitems = itemstab:CreateSection("Use Items")
 
@@ -1052,23 +1028,7 @@ task.spawn(function() while task.wait() do
             fieldposition = temptable.sprouts.coords.Position
             fieldpos = temptable.sprouts.coords
         end
-        if kocmoc.toggles.farmpuffshrooms and game.Workspace.Happenings.Puffshrooms:FindFirstChildOfClass("Model") then
-			--fieldpos = api.getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
-			--print(fieldpos)
-			-- game.Workspace.Monsters:FindFirstChild("Mondo Chick (Lvl 8)")
-			--if api.partwithnamepart("Lvl 10", game.Workspace.Happenings.Puffshrooms) then print("Puffshroom Lvl 10") end
-			--if api.partwithnamepart("Lvl 11", game.Workspace.Happenings.Puffshrooms) then print("Puffshroom Lvl 11") end
-			--if api.partwithnamepart("Lvl 12", game.Workspace.Happenings.Puffshrooms) then print("Puffshroom Lvl 12") end
-			--if api.partwithnamepart("Lvl 13", game.Workspace.Happenings.Puffshrooms) then print("Puffshroom Lvl 13") end
-			--if api.partwithnamepart("Lvl 14", game.Workspace.Happenings.Puffshrooms) then print("Puffshroom Lvl 14") end
-			--if api.partwithnamepart("Lvl 15", game.Workspace.Happenings.Puffshrooms) then print("Puffshroom Lvl 15") end
-			--if api.partwithnamepart("Lvl 16", game.Workspace.Happenings.Puffshrooms) then print("Puffshroom Lvl 16") end
-			--if api.partwithnamepart("Lvl 17", game.Workspace.Happenings.Puffshrooms) then print("Puffshroom Lvl 17") end
-			--if api.partwithnamepart("Lvl 18", game.Workspace.Happenings.Puffshrooms) then print("Puffshroom Lvl 18") end
-			--if api.partwithnamepart("Lvl 19", game.Workspace.Happenings.Puffshrooms) then print("Puffshroom Lvl 19") end
-			--puffname = api.partwithnamepart("Lvl 10", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
-			--print(puffname)
-			
+        if kocmoc.toggles.farmpuffshrooms and game.Workspace.Happenings.Puffshrooms:FindFirstChildOfClass("Model") then 
             if api.partwithnamepart("Mythic", game.Workspace.Happenings.Puffshrooms) then
                 temptable.magnitude = 25 
                 fieldpos = api.partwithnamepart("Mythic", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
@@ -1095,7 +1055,7 @@ task.spawn(function() while task.wait() do
                 if kocmoc.toggles.autosprinkler then makesprinklers() end
             else
                 if kocmoc.toggles.killmondo then
-                    while kocmoc.toggles.killmondo and kocmoc.toggles.autofarm and game.Workspace.Monsters:FindFirstChild("Mondo Chick (Lvl 8)") and not temptable.started.vicious and not temptable.started.monsters do
+                    while kocmoc.toggles.killmondo and game.Workspace.Monsters:FindFirstChild("Mondo Chick (Lvl 8)") and not temptable.started.vicious and not temptable.started.monsters do
                         temptable.started.mondo = true
                         while game.Workspace.Monsters:FindFirstChild("Mondo Chick (Lvl 8)") do
                             disableall()
@@ -1104,18 +1064,10 @@ task.spawn(function() while task.wait() do
                             api.tween(1, CFrame.new(mondopition.x, mondopition.y - 60, mondopition.z))
                             task.wait(1)
                             temptable.float = true
-							-- Morphisto
-							if kocmoc.toggles.autofarm = false then
-								game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Players").LocalPlayer.SpawnPos.Value
-								task.wait(1)
-								break
-							end
-							-- Morphisto
                         end
                         task.wait(.5) game:GetService("Workspace").Map.Ground.HighBlock.CanCollide = true temptable.float = false api.tween(.5, CFrame.new(73.2, 176.35, -167)) task.wait(1)
                         for i = 0, 50 do 
                             gettoken(CFrame.new(73.2, 176.35, -167).Position) 
-							if not kocmoc.toggles.autofarm then break end
                         end 
                         enableall() 
                         api.tween(2, fieldpos) 
@@ -1144,13 +1096,13 @@ task.spawn(function() while task.wait() do
             temptable.converting = true
             repeat
                 converthoney()
-            until game.Players.LocalPlayer.CoreStats.Pollen.Value == 0 or not kocmoc.toggles.autofarm
+            until game.Players.LocalPlayer.CoreStats.Pollen.Value == 0
             if kocmoc.toggles.convertballoons and gethiveballoon() then
                 task.wait(6)
                 repeat
                     task.wait()
                     converthoney()
-                until gethiveballoon() == false or not kocmoc.toggles.convertballoons or not kocmoc.toggles.autofarm
+                until gethiveballoon() == false or not kocmoc.toggles.convertballoons
             end
             temptable.converting = false
             temptable.act = temptable.act + 1
