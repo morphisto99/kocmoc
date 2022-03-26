@@ -1073,7 +1073,7 @@ task.spawn(function() while task.wait() do
         end
         if tonumber(pollenpercentage) < tonumber(kocmoc.vars.convertat) then -- when polen is not full
             if not temptable.tokensfarm then
-				-- print("test1")
+				print("test1")
                 api.tween(2, fieldpos)
                 task.wait(2)
                 temptable.tokensfarm = true
