@@ -358,6 +358,7 @@ local xlp = {
                 if part == nil then
                     part = v
                 end
+				print(v:GetExtentsSize().Y.." > "..part:GetExtentsSize().Y)
                 if v:GetExtentsSize().Y > part:GetExtentsSize().Y then
                     part = v
                 end
