@@ -839,7 +839,6 @@ amks:CreateTextBox('Kill Mobs After x Convertions', 'default = 3', true, functio
 
 
 local wayp = wayptab:CreateSection("Waypoints")
-
 wayp:CreateDropdown("Field Teleports", fieldstable, function(Option) game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").FlowerZones:FindFirstChild(Option).CFrame end)
 wayp:CreateDropdown("Monster Teleports", spawnerstable, function(Option) d = game:GetService("Workspace").MonsterSpawners:FindFirstChild(Option) game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(d.Position.X, d.Position.Y+3, d.Position.Z) end)
 wayp:CreateDropdown("Toys Teleports", toystable, function(Option) d = game:GetService("Workspace").Toys:FindFirstChild(Option).Platform game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(d.Position.X, d.Position.Y+3, d.Position.Z) end)
@@ -847,7 +846,6 @@ wayp:CreateButton("Teleport to hive", function() game.Players.LocalPlayer.Charac
 --wayp:CreateDropdown("NPC Teleports", {"Black Bear","Brown Bear","Bucko Bee","Honey Bee","Panda Bear","Polar Bear","Riley Bee","Science Bear","Spirit Bear","Science Bear","Mother Bear","Sun Bear","Stick Bug","Onett","Gummy Lair","Bubble Bee Man","Meteor Shower","Demon Mask","Diamond Mask"}, function(Option) local A_1 = npctable[Option] print(A_1) end)
 --wayp:CreateDropdown("NPC Teleports", {"Black Bear","Brown Bear","Bucko Bee","Honey Bee","Panda Bear","Polar Bear","Riley Bee","Science Bear","Spirit Bear","Science Bear","Mother Bear","Sun Bear","Stick Bug","Onett","Gummy Lair","Bubble Bee Man","Meteor Shower","Demon Mask","Diamond Mask"}, function(Option) local A_2 = Option game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-258.1, 5, 299.7) end)
 wayp:CreateDropdown("NPC Teleports", {"Black Bear","Brown Bear","Bucko Bee","Honey Bee","Panda Bear","Polar Bear","Riley Bee","Science Bear","Spirit Bear","Science Bear","Mother Bear","Sun Bear","Stick Bug","Onett","Gummy Lair","Bubble Bee Man","Meteor Shower","Demon Mask","Diamond Mask"}, function(Option) local A_2 = Option game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = npctable[A_2] end)
-wayp:CreateButton("print location", function() print(game.Players.LocalPlayer.Character.HumanoidRootPart.Position) end)
 
 local useitems = itemstab:CreateSection("Use Items")
 
@@ -1056,17 +1054,6 @@ task.spawn(function() while task.wait() do
             fieldpos = temptable.sprouts.coords
         end
         if kocmoc.toggles.farmpuffshrooms and game.Workspace.Happenings.Puffshrooms:FindFirstChildOfClass("Model") then 
-			if game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffshroom (Lvl 10)") then print ("Puffshroom Lvl 10")
-			if game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffshroom (Lvl 11)") then print ("Puffshroom Lvl 11")
-			if game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffshroom (Lvl 12)") then print ("Puffshroom Lvl 12")
-			if game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffshroom (Lvl 13)") then print ("Puffshroom Lvl 13")
-			if game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffshroom (Lvl 14)") then print ("Puffshroom Lvl 14")
-			if game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffshroom (Lvl 15)") then print ("Puffshroom Lvl 15")
-			if game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffshroom (Lvl 16)") then print ("Puffshroom Lvl 16")
-			if game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffshroom (Lvl 17)") then print ("Puffshroom Lvl 17")
-			if game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffshroom (Lvl 18)") then print ("Puffshroom Lvl 18")
-			if game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffshroom (Lvl 19)") then print ("Puffshroom Lvl 19")
-			
             if api.partwithnamepart("Mythic", game.Workspace.Happenings.Puffshrooms) then
                 temptable.magnitude = 25 
                 fieldpos = api.partwithnamepart("Mythic", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
@@ -1120,7 +1107,6 @@ task.spawn(function() while task.wait() do
                     end
                 end
                 if (fieldposition-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
-					print(fieldposition-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude.." > "..temptable.magnitude) -- Morphisto
                     api.tween(2, fieldpos)
                     task.wait(2)
                     if kocmoc.toggles.autosprinkler then makesprinklers() end
