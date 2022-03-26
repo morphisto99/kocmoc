@@ -1053,6 +1053,16 @@ task.spawn(function() while task.wait() do
             fieldpos = temptable.sprouts.coords
         end
         if kocmoc.toggles.farmpuffshrooms and game.Workspace.Happenings.Puffshrooms:FindFirstChildOfClass("Model") then 
+			if game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffshroom (Lvl 10)") then print ("Puffshroom Lvl 10") end
+			if game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffshroom (Lvl 11)") then print ("Puffshroom Lvl 11") end
+			if game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffshroom (Lvl 12)") then print ("Puffshroom Lvl 12") end
+			if game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffshroom (Lvl 13)") then print ("Puffshroom Lvl 13") end
+			if game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffshroom (Lvl 14)") then print ("Puffshroom Lvl 14") end
+			if game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffshroom (Lvl 15)") then print ("Puffshroom Lvl 15") end
+			if game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffshroom (Lvl 16)") then print ("Puffshroom Lvl 16") end
+			if game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffshroom (Lvl 17)") then print ("Puffshroom Lvl 17") end
+			if game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffshroom (Lvl 18)") then print ("Puffshroom Lvl 18") end
+			if game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffshroom (Lvl 19)") then print ("Puffshroom Lvl 19") end
             if api.partwithnamepart("Mythic", game.Workspace.Happenings.Puffshrooms) then
                 temptable.magnitude = 25 
                 fieldpos = api.partwithnamepart("Mythic", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
@@ -1088,6 +1098,13 @@ task.spawn(function() while task.wait() do
                             api.tween(1, CFrame.new(mondopition.x, mondopition.y - 60, mondopition.z))
                             task.wait(1)
                             temptable.float = true
+							-- Morphisto
+							if kocmoc.toggles.autofarm = false then
+								game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Players").LocalPlayer.SpawnPos.Value
+								task.wait(1)
+								break
+							end
+							-- Morphisto
                         end
                         task.wait(.5) game:GetService("Workspace").Map.Ground.HighBlock.CanCollide = true temptable.float = false api.tween(.5, CFrame.new(73.2, 176.35, -167)) task.wait(1)
                         for i = 0, 50 do 
