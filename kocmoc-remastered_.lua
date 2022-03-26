@@ -1068,12 +1068,12 @@ task.spawn(function() while task.wait() do
             else
                 temptable.magnitude = 25 
                 fieldpos = api.getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
-				print("fieldpos="..fieldpos)
                 fieldposition = fieldpos.Position
             end
         end
         if tonumber(pollenpercentage) < tonumber(kocmoc.vars.convertat) then -- when polen is not full
             if not temptable.tokensfarm then
+				print("test1")
                 api.tween(2, fieldpos)
                 task.wait(2)
                 temptable.tokensfarm = true
@@ -1104,11 +1104,13 @@ task.spawn(function() while task.wait() do
                     end
                 end
                 if (fieldposition-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
+					print("test2")
                     api.tween(2, fieldpos)
                     task.wait(2)
                     if kocmoc.toggles.autosprinkler then makesprinklers() end
                 end
                 getprioritytokens()
+				print("test3")
                 if kocmoc.toggles.avoidmobs then avoidmob() end
                 if kocmoc.toggles.farmclosestleaf then closestleaf() end
                 if kocmoc.toggles.farmbubbles then getbubble() end
@@ -1125,13 +1127,13 @@ task.spawn(function() while task.wait() do
             temptable.converting = true
             repeat
                 converthoney()
-            until game.Players.LocalPlayer.CoreStats.Pollen.Value == 0
+            until game.Players.LocalPlayer.CoreStats.Pollen.Value == 0 or not kocmoc.toggles.autofarm
             if kocmoc.toggles.convertballoons and gethiveballoon() then
                 task.wait(6)
                 repeat
                     task.wait()
                     converthoney()
-                until gethiveballoon() == false or not kocmoc.toggles.convertballoons
+                until gethiveballoon() == false or not kocmoc.toggles.convertballoons or not kocmoc.toggles.autofarm
             end
             temptable.converting = false
             temptable.act = temptable.act + 1
