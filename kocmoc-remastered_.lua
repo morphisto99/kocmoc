@@ -1,7 +1,7 @@
 -- API CALLS
 
 local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Boxking776/kocmoc/main/library.lua"))()
-local api = loadstring(game:HttpGet("https://raw.githubusercontent.com/morphisto99/kocmoc/main/api.lua"))()
+local api = loadstring(game:HttpGet("https://raw.githubusercontent.com/Boxking776/kocmoc/main/api.lua"))()
 local bssapi = loadstring(game:HttpGet("https://raw.githubusercontent.com/Boxking776/kocmoc/main/bssapi.lua"))()
 
 if not isfolder("kocmoc") then makefolder("kocmoc") end
@@ -1068,6 +1068,7 @@ task.spawn(function() while task.wait() do
             else
                 temptable.magnitude = 25 
                 fieldpos = api.getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
+				print(fieldpos)
                 fieldposition = fieldpos.Position
             end
         end
@@ -1079,6 +1080,9 @@ task.spawn(function() while task.wait() do
                 if kocmoc.toggles.autosprinkler then makesprinklers() end
             else
                 if kocmoc.toggles.killmondo then
+					print(temptable.cache.autofarm)
+					print(kocmoc.toggles.autofarm)
+					print(autofarmtoggle)
                     while kocmoc.toggles.killmondo and game.Workspace.Monsters:FindFirstChild("Mondo Chick (Lvl 8)") and not temptable.started.vicious and not temptable.started.monsters do
                         temptable.started.mondo = true
                         while game.Workspace.Monsters:FindFirstChild("Mondo Chick (Lvl 8)") do
@@ -1090,11 +1094,6 @@ task.spawn(function() while task.wait() do
                             temptable.float = true
                         end
                         task.wait(.5) game:GetService("Workspace").Map.Ground.HighBlock.CanCollide = true temptable.float = false api.tween(.5, CFrame.new(73.2, 176.35, -167)) task.wait(1)
-                        
-						print("cache.autofarm="..temptable.cache.autofarm)
-						print("toggles.autofarm="..kocmoc.toggles.autofarm)
-						print("autofarmtoggle="..autofarmtoggle)
-						
 						for i = 0, 50 do 
                             gettoken(CFrame.new(73.2, 176.35, -167).Position)
 							--if not kocmoc.toggles.autofarm then break end
