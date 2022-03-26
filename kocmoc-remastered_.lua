@@ -1052,17 +1052,23 @@ task.spawn(function() while task.wait() do
             fieldposition = temptable.sprouts.coords.Position
             fieldpos = temptable.sprouts.coords
         end
-        if kocmoc.toggles.farmpuffshrooms and game.Workspace.Happenings.Puffshrooms:FindFirstChildOfClass("Model") then 
-			if game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffshroom (Lvl 10)") then print ("Puffshroom Lvl 10") end
-			if game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffshroom (Lvl 11)") then print ("Puffshroom Lvl 11") end
-			if game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffshroom (Lvl 12)") then print ("Puffshroom Lvl 12") end
-			if game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffshroom (Lvl 13)") then print ("Puffshroom Lvl 13") end
-			if game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffshroom (Lvl 14)") then print ("Puffshroom Lvl 14") end
-			if game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffshroom (Lvl 15)") then print ("Puffshroom Lvl 15") end
-			if game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffshroom (Lvl 16)") then print ("Puffshroom Lvl 16") end
-			if game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffshroom (Lvl 17)") then print ("Puffshroom Lvl 17") end
-			if game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffshroom (Lvl 18)") then print ("Puffshroom Lvl 18") end
-			if game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffshroom (Lvl 19)") then print ("Puffshroom Lvl 19") end
+        if kocmoc.toggles.farmpuffshrooms and game.Workspace.Happenings.Puffshrooms:FindFirstChildOfClass("Model") then
+		game.Workspace.Monsters:FindFirstChild("Mondo Chick (Lvl 8)")
+			fieldpos = api.getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
+			print(fieldpos)
+			-- game.Workspace.Monsters:FindFirstChild("Mondo Chick (Lvl 8)")
+			if game.Workspace.Happenings.Puffshrooms:FindFirstChild("Puffshroom (Lvl 10)") then print ("Puffshroom Lvl 10") end
+			if game.Workspace.Happenings.Puffshrooms:FindFirstChild("Puffshroom (Lvl 11)") then print ("Puffshroom Lvl 11") end
+			if game.Workspace.Happenings.Puffshrooms:FindFirstChild("Puffshroom (Lvl 12)") then print ("Puffshroom Lvl 12") end
+			if game.Workspace.Happenings.Puffshrooms:FindFirstChild("Puffshroom (Lvl 13)") then print ("Puffshroom Lvl 13") end
+			if game.Workspace.Happenings.Puffshrooms:FindFirstChild("Puffshroom (Lvl 14)") then print ("Puffshroom Lvl 14") end
+			if game.Workspace.Happenings.Puffshrooms:FindFirstChild("Puffshroom (Lvl 15)") then print ("Puffshroom Lvl 15") end
+			if game.Workspace.Happenings.Puffshrooms:FindFirstChild("Puffshroom (Lvl 16)") then print ("Puffshroom Lvl 16") end
+			if game.Workspace.Happenings.Puffshrooms:FindFirstChild("Puffshroom (Lvl 17)") then print ("Puffshroom Lvl 17") end
+			if game.Workspace.Happenings.Puffshrooms:FindFirstChild("Puffshroom (Lvl 18)") then print ("Puffshroom Lvl 18") end
+			if game.Workspace.Happenings.Puffshrooms:FindFirstChild("Puffshroom (Lvl 19)") then print ("Puffshroom Lvl 19") end
+			pufflevel = api.partwithnamepart("Puffshroom (Lvl 10)", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
+			print(pufflevel)
             if api.partwithnamepart("Mythic", game.Workspace.Happenings.Puffshrooms) then
                 temptable.magnitude = 25 
                 fieldpos = api.partwithnamepart("Mythic", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
