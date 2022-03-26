@@ -1073,15 +1073,15 @@ task.spawn(function() while task.wait() do
         end
         if tonumber(pollenpercentage) < tonumber(kocmoc.vars.convertat) then -- when polen is not full
             if not temptable.tokensfarm then
-				print("test1")
+				-- print("test1")
                 api.tween(2, fieldpos)
                 task.wait(2)
                 temptable.tokensfarm = true
                 if kocmoc.toggles.autosprinkler then makesprinklers() end
             else
                 if kocmoc.toggles.killmondo then
-					--print("cache_autofarm="..temptable.cache.autofarm)
-					print(kocmoc.toggles.autofarm)
+					print(temptable.cache.autofarm)
+					--print(kocmoc.toggles.autofarm)
 					--print("autofarmtoggle="..autofarmtoggle)
                     while kocmoc.toggles.killmondo and game.Workspace.Monsters:FindFirstChild("Mondo Chick (Lvl 8)") and not temptable.started.vicious and not temptable.started.monsters do
                         temptable.started.mondo = true
@@ -1104,13 +1104,13 @@ task.spawn(function() while task.wait() do
                     end
                 end
                 if (fieldposition-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
-					print("test2")
+					-- print("test2")
                     api.tween(2, fieldpos)
                     task.wait(2)
                     if kocmoc.toggles.autosprinkler then makesprinklers() end
                 end
                 getprioritytokens()
-				print("test3")
+				-- print("test3")
                 if kocmoc.toggles.avoidmobs then avoidmob() end
                 if kocmoc.toggles.farmclosestleaf then closestleaf() end
                 if kocmoc.toggles.farmbubbles then getbubble() end
