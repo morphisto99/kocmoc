@@ -358,8 +358,8 @@ local xlp = {
                 if part == nil then
                     part = v
                 end
-                if v:GetExtentsSize().Y < part:GetExtentsSize().Y then
-					print(v:GetExtentsSize().Y.." < "..part:GetExtentsSize().Y)
+                if v:GetExtentsSize().Y >= part:GetExtentsSize().Y then
+					print(v:GetExtentsSize().Y.." >= "..part:GetExtentsSize().Y)
                     part = v
 					break
                 end
