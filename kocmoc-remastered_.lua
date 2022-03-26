@@ -781,7 +781,7 @@ information:CreateLabel("")
 local farmo = farmtab:CreateSection("Farming")
 local fielddropdown = farmo:CreateDropdown("Field", fieldstable, function(String) kocmoc.vars.field = String end) fielddropdown:SetOption(fieldstable[1])
 convertatslider = farmo:CreateSlider("Convert At", 0, 100, 100, false, function(Value) kocmoc.vars.convertat = Value end)
-local autofarmtoggle = farmo:CreateToggle("Autofarm ⚙", nil, function(State) kocmoc.toggles.autofarm = State end) autofarmtoggle:CreateKeybind("U", function(Key) end)
+autofarmtoggle = farmo:CreateToggle("Autofarm ⚙", nil, function(State) kocmoc.toggles.autofarm = State end) autofarmtoggle:CreateKeybind("U", function(Key) end)
 farmo:CreateToggle("Autodig", nil, function(State) kocmoc.toggles.autodig = State end)
 farmo:CreateDropdown("Autodig Mode", {"Normal","Collector Steal"}, function(Option)  kocmoc.vars.autodigmode = Option end)
 farmo:CreateToggle("Don't Convert Pollen", nil, function(State) kocmoc.toggles.disableconversion = State end)
@@ -1090,9 +1090,14 @@ task.spawn(function() while task.wait() do
                             temptable.float = true
                         end
                         task.wait(.5) game:GetService("Workspace").Map.Ground.HighBlock.CanCollide = true temptable.float = false api.tween(.5, CFrame.new(73.2, 176.35, -167)) task.wait(1)
-                        for i = 0, 50 do 
+                        
+						print("cache.autofarm="..temptable.cache.autofarm)
+						print("toggles.autofarm="..temptable.cache.autofarm)
+						print("autofarmtoggle="..autofarmtoggle)
+						
+						for i = 0, 50 do 
                             gettoken(CFrame.new(73.2, 176.35, -167).Position)
-							if not kocmoc.toggles.autofarm then break end
+							--if not kocmoc.toggles.autofarm then break end
                         end 
                         enableall() 
                         api.tween(2, fieldpos) 
