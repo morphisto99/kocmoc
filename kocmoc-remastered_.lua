@@ -1056,16 +1056,16 @@ task.spawn(function() while task.wait() do
 			--fieldpos = api.getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
 			--print(fieldpos)
 			-- game.Workspace.Monsters:FindFirstChild("Mondo Chick (Lvl 8)")
-			if api.partwithnamepart("Lvl 10", game.Workspace.Happenings.Puffshrooms) then print ("Puffshroom Lvl 10") end
-			if api.partwithnamepart("Lvl 11", game.Workspace.Happenings.Puffshrooms) then print ("Puffshroom Lvl 11") end
-			if api.partwithnamepart("Lvl 12", game.Workspace.Happenings.Puffshrooms) then print ("Puffshroom Lvl 12") end
-			if api.partwithnamepart("Lvl 13", game.Workspace.Happenings.Puffshrooms) then print ("Puffshroom Lvl 13") end
-			if api.partwithnamepart("Lvl 14", game.Workspace.Happenings.Puffshrooms) then print ("Puffshroom Lvl 14") end
-			if api.partwithnamepart("Lvl 15", game.Workspace.Happenings.Puffshrooms) then print ("Puffshroom Lvl 15") end
-			if api.partwithnamepart("Lvl 16", game.Workspace.Happenings.Puffshrooms) then print ("Puffshroom Lvl 16") end
-			if api.partwithnamepart("Lvl 17", game.Workspace.Happenings.Puffshrooms) then print ("Puffshroom Lvl 17") end
-			if api.partwithnamepart("Lvl 18", game.Workspace.Happenings.Puffshrooms) then print ("Puffshroom Lvl 18") end
-			if api.partwithnamepart("Lvl 19", game.Workspace.Happenings.Puffshrooms) then print ("Puffshroom Lvl 19") end
+			--if api.partwithnamepart("Lvl 10", game.Workspace.Happenings.Puffshrooms) then print("Puffshroom Lvl 10") end
+			--if api.partwithnamepart("Lvl 11", game.Workspace.Happenings.Puffshrooms) then print("Puffshroom Lvl 11") end
+			--if api.partwithnamepart("Lvl 12", game.Workspace.Happenings.Puffshrooms) then print("Puffshroom Lvl 12") end
+			--if api.partwithnamepart("Lvl 13", game.Workspace.Happenings.Puffshrooms) then print("Puffshroom Lvl 13") end
+			--if api.partwithnamepart("Lvl 14", game.Workspace.Happenings.Puffshrooms) then print("Puffshroom Lvl 14") end
+			--if api.partwithnamepart("Lvl 15", game.Workspace.Happenings.Puffshrooms) then print("Puffshroom Lvl 15") end
+			--if api.partwithnamepart("Lvl 16", game.Workspace.Happenings.Puffshrooms) then print("Puffshroom Lvl 16") end
+			--if api.partwithnamepart("Lvl 17", game.Workspace.Happenings.Puffshrooms) then print("Puffshroom Lvl 17") end
+			--if api.partwithnamepart("Lvl 18", game.Workspace.Happenings.Puffshrooms) then print("Puffshroom Lvl 18") end
+			--if api.partwithnamepart("Lvl 19", game.Workspace.Happenings.Puffshrooms) then print("Puffshroom Lvl 19") end
 			--puffname = api.partwithnamepart("Lvl 10", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
 			--print(puffname)
 			
