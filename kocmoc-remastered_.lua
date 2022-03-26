@@ -1091,6 +1091,7 @@ task.spawn(function() while task.wait() do
                             api.tween(1, CFrame.new(mondopition.x, mondopition.y - 60, mondopition.z))
                             task.wait(1)
                             temptable.float = true
+							if not kocmoc.toggles.autofarm then break end
                         end
                         task.wait(.5) game:GetService("Workspace").Map.Ground.HighBlock.CanCollide = true temptable.float = false api.tween(.5, CFrame.new(73.2, 176.35, -167)) task.wait(1)
 						for i = 0, 50 do 
