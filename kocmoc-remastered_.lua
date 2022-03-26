@@ -184,6 +184,29 @@ local buffTable = {
     "Tropical Drink";
 }
 
+-- Morphisto
+npctable = {
+["Black Bear"] = CFrame.new(-258.1, 5, 299.7),
+["Brown Bear"] = CFrame.new(282, 46, 236),
+["Bucko Bee"] = CFrame.new(302, 62, 105),
+["Honey Bee"] = CFrame.new(-389, 90, -229),
+["Panda Bear"] = CFrame.new(106.3, 35, 50.1),
+["Polar Bear"] = CFrame.new(-106, 119, -77),
+["Riley Bee"] = CFrame.new(-361, 74, 212),
+["Science Bear"] = CFrame.new(267, 103, 20),
+["Mother Bear"] = CFrame.new(-183.8, 4.6, 87.5),
+["Sun Bear"] = CFrame.new(23.25, 14, 360.26),
+["Spirit Bear"] = CFrame.new(-365, 99, 479),
+["Stick Bug"] = CFrame.new(-128, 51, 147),
+["Onett"] = CFrame.new(-8.4, 234, -517.9),
+["Gummy Lair"] = CFrame.new(273, 25261, -745),
+["Bubble Bee Man"] = CFrame.new(89, 312, -278),
+["Meteor Shower"] = CFrame.new(160, 127, -160),
+["Demon Mask"] = CFrame.new(300, 13, 272),
+["Diamond Mask"] = CFrame.new(-336, 132, -385)
+}
+-- Morphisto
+
 table.sort(fieldstable)
 table.sort(accesoriestable)
 table.sort(toystable)
@@ -820,7 +843,9 @@ wayp:CreateDropdown("Field Teleports", fieldstable, function(Option) game.Player
 wayp:CreateDropdown("Monster Teleports", spawnerstable, function(Option) d = game:GetService("Workspace").MonsterSpawners:FindFirstChild(Option) game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(d.Position.X, d.Position.Y+3, d.Position.Z) end)
 wayp:CreateDropdown("Toys Teleports", toystable, function(Option) d = game:GetService("Workspace").Toys:FindFirstChild(Option).Platform game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(d.Position.X, d.Position.Y+3, d.Position.Z) end)
 wayp:CreateButton("Teleport to hive", function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Players").LocalPlayer.SpawnPos.Value end)
-wayp:CreateDropdown("NPC Teleports", {"Polar Bear", "Black Bear", "Bucko Bee","Riley Bee","Brown Bear","Honey Bee","Bee Bear","Spirit Bear","Dapper Bear","Bubble Bee Man","Onett","Mother Bear","Panda Bear","Science Bear","Stick Man"}, function(Option) local A_2 = Option print(A_2) end)
+--wayp:CreateDropdown("NPC Teleports", {"Black Bear","Brown Bear","Bucko Bee","Honey Bee","Panda Bear","Polar Bear","Riley Bee","Science Bear","Spirit Bear","Science Bear","Mother Bear","Sun Bear","Stick Bug","Onett","Gummy Lair","Bubble Bee Man","Meteor Shower","Demon Mask","Diamond Mask"}, function(Option) local A_1 = npctable[Option] print(A_1) end)
+--wayp:CreateDropdown("NPC Teleports", {"Black Bear","Brown Bear","Bucko Bee","Honey Bee","Panda Bear","Polar Bear","Riley Bee","Science Bear","Spirit Bear","Science Bear","Mother Bear","Sun Bear","Stick Bug","Onett","Gummy Lair","Bubble Bee Man","Meteor Shower","Demon Mask","Diamond Mask"}, function(Option) local A_2 = Option game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-258.1, 5, 299.7) end)
+wayp:CreateDropdown("NPC Teleports", {"Black Bear","Brown Bear","Bucko Bee","Honey Bee","Panda Bear","Polar Bear","Riley Bee","Science Bear","Spirit Bear","Science Bear","Mother Bear","Sun Bear","Stick Bug","Onett","Gummy Lair","Bubble Bee Man","Meteor Shower","Demon Mask","Diamond Mask"}, function(Option) local A_2 = Option game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = npctable[A_2] end)
 
 local useitems = itemstab:CreateSection("Use Items")
 
