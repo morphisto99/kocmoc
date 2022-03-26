@@ -698,7 +698,7 @@ end
 
 function makequests()
     for i,v in next, game:GetService("Workspace").NPCs:GetChildren() do
-        if v.Name ~= "Ant Challenge Info" and v.Name ~= "Bubble Bee Man 2" and v.Name ~= "Wind Shrine" and v.Name ~= "Gummy Bear" then if v:FindFirstChild("Platform") then if v.Platform:FindFirstChild("AlertPos") then if v.Platform.AlertPos:FindFirstChild("AlertGui") then if v.Platform.AlertPos.AlertGui:FindFirstChild("ImageLabel") then
+        if v.Name ~= "Ant Challenge Info" and v.Name ~= "Wind Shrine" and v.Name ~= "Gummy Bear" then if v:FindFirstChild("Platform") then if v.Platform:FindFirstChild("AlertPos") then if v.Platform.AlertPos:FindFirstChild("AlertGui") then if v.Platform.AlertPos.AlertGui:FindFirstChild("ImageLabel") then
             image = v.Platform.AlertPos.AlertGui.ImageLabel
             button = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ActivateButton.MouseButton1Click
             if image.ImageTransparency == 0 then
@@ -839,17 +839,6 @@ amks:CreateTextBox('Kill Mobs After x Convertions', 'default = 3', true, functio
 
 
 local wayp = wayptab:CreateSection("Waypoints")
-
-local function getlocation()
-	local player = game:GetService("Players").LocalPlayer
-	local character = player.Character or player.CharacterAdded:wait()
-	local head = character:WaitForChild'Head'
-	local hum = player.Character.HumanoidRootPart
-	LocationX = round(hum.Position.x, 1)
-	LocationY = round(hum.Position.y, 1)
-	LocationZ = round(hum.Position.z, 1)
-	ShowLocation.Text = "Coords: "..LocationX..", "..LocationY..", "..LocationZ	
-end
 
 wayp:CreateDropdown("Field Teleports", fieldstable, function(Option) game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").FlowerZones:FindFirstChild(Option).CFrame end)
 wayp:CreateDropdown("Monster Teleports", spawnerstable, function(Option) d = game:GetService("Workspace").MonsterSpawners:FindFirstChild(Option) game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(d.Position.X, d.Position.Y+3, d.Position.Z) end)
@@ -1067,6 +1056,17 @@ task.spawn(function() while task.wait() do
             fieldpos = temptable.sprouts.coords
         end
         if kocmoc.toggles.farmpuffshrooms and game.Workspace.Happenings.Puffshrooms:FindFirstChildOfClass("Model") then 
+			if game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffshroom (Lvl 10)") then print ("Puffshroom Lvl 10")
+			if game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffshroom (Lvl 11)") then print ("Puffshroom Lvl 11")
+			if game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffshroom (Lvl 12)") then print ("Puffshroom Lvl 12")
+			if game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffshroom (Lvl 13)") then print ("Puffshroom Lvl 13")
+			if game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffshroom (Lvl 14)") then print ("Puffshroom Lvl 14")
+			if game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffshroom (Lvl 15)") then print ("Puffshroom Lvl 15")
+			if game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffshroom (Lvl 16)") then print ("Puffshroom Lvl 16")
+			if game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffshroom (Lvl 17)") then print ("Puffshroom Lvl 17")
+			if game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffshroom (Lvl 18)") then print ("Puffshroom Lvl 18")
+			if game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffshroom (Lvl 19)") then print ("Puffshroom Lvl 19")
+			
             if api.partwithnamepart("Mythic", game.Workspace.Happenings.Puffshrooms) then
                 temptable.magnitude = 25 
                 fieldpos = api.partwithnamepart("Mythic", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
@@ -1102,6 +1102,13 @@ task.spawn(function() while task.wait() do
                             api.tween(1, CFrame.new(mondopition.x, mondopition.y - 60, mondopition.z))
                             task.wait(1)
                             temptable.float = true
+							-- Morphisto
+							if kocmoc.toggles.autofarm = false then
+								game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Players").LocalPlayer.SpawnPos.Value
+								task.wait(1)
+								break
+							end
+							-- Morphisto
                         end
                         task.wait(.5) game:GetService("Workspace").Map.Ground.HighBlock.CanCollide = true temptable.float = false api.tween(.5, CFrame.new(73.2, 176.35, -167)) task.wait(1)
                         for i = 0, 50 do 
@@ -1113,6 +1120,7 @@ task.spawn(function() while task.wait() do
                     end
                 end
                 if (fieldposition-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
+					print(fieldposition-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude.." > "..temptable.magnitude) -- Morphisto
                     api.tween(2, fieldpos)
                     task.wait(2)
                     if kocmoc.toggles.autosprinkler then makesprinklers() end
@@ -1134,13 +1142,13 @@ task.spawn(function() while task.wait() do
             temptable.converting = true
             repeat
                 converthoney()
-            until game.Players.LocalPlayer.CoreStats.Pollen.Value == 0
+            until game.Players.LocalPlayer.CoreStats.Pollen.Value == 0 or not kocmoc.toggles.autofarm -- Morphisto
             if kocmoc.toggles.convertballoons and gethiveballoon() then
                 task.wait(6)
                 repeat
                     task.wait()
                     converthoney()
-                until gethiveballoon() == false or not kocmoc.toggles.convertballoons
+                until gethiveballoon() == false or not kocmoc.toggles.convertballoons or not kocmoc.toggles.autofarm -- Morphisto
             end
             temptable.converting = false
             temptable.act = temptable.act + 1
