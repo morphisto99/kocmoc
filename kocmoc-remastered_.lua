@@ -1091,13 +1091,6 @@ task.spawn(function() while task.wait() do
                             api.tween(1, CFrame.new(mondopition.x, mondopition.y - 60, mondopition.z))
                             task.wait(1)
                             temptable.float = true
-							-- Morphisto
-							if kocmoc.toggles.autofarm = false then
-								game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Players").LocalPlayer.SpawnPos.Value
-								task.wait(1)
-								break
-							end
-							-- Morphisto
                         end
                         task.wait(.5) game:GetService("Workspace").Map.Ground.HighBlock.CanCollide = true temptable.float = false api.tween(.5, CFrame.new(73.2, 176.35, -167)) task.wait(1)
                         for i = 0, 50 do 
@@ -1109,7 +1102,7 @@ task.spawn(function() while task.wait() do
                     end
                 end
                 if (fieldposition-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
-					print(fieldposition-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude.." > "..temptable.magnitude) -- Morphisto
+					-- print(fieldposition-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude.." > "..temptable.magnitude) -- Morphisto
                     api.tween(2, fieldpos)
                     task.wait(2)
                     if kocmoc.toggles.autosprinkler then makesprinklers() end
