@@ -361,6 +361,7 @@ local xlp = {
 				print(v:GetExtentsSize().Y.." > "..part:GetExtentsSize().Y)
                 if v:GetExtentsSize().Y > part:GetExtentsSize().Y then
                     part = v
+					break
                 end
             end
         end
