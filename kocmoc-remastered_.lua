@@ -1068,7 +1068,7 @@ task.spawn(function() while task.wait() do
             else
                 temptable.magnitude = 25 
                 fieldpos = api.getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
-				print(fieldpos)
+				print("fieldpos="..fieldpos)
                 fieldposition = fieldpos.Position
             end
         end
@@ -1080,9 +1080,9 @@ task.spawn(function() while task.wait() do
                 if kocmoc.toggles.autosprinkler then makesprinklers() end
             else
                 if kocmoc.toggles.killmondo then
-					print(temptable.cache.autofarm)
-					print(kocmoc.toggles.autofarm)
-					print(autofarmtoggle)
+					print("cache_autofarm="..temptable.cache.autofarm)
+					print("toggles_autofarm="..kocmoc.toggles.autofarm)
+					print("autofarmtoggle="..autofarmtoggle)
                     while kocmoc.toggles.killmondo and game.Workspace.Monsters:FindFirstChild("Mondo Chick (Lvl 8)") and not temptable.started.vicious and not temptable.started.monsters do
                         temptable.started.mondo = true
                         while game.Workspace.Monsters:FindFirstChild("Mondo Chick (Lvl 8)") do
