@@ -1053,6 +1053,17 @@ task.spawn(function() while task.wait() do
             fieldpos = temptable.sprouts.coords
         end
         if kocmoc.toggles.farmpuffshrooms and game.Workspace.Happenings.Puffshrooms:FindFirstChildOfClass("Model") then 
+			if api.partwithnamepart("10", game.Workspace.Happenings.Puffshrooms) then print("Puffshroom Lvl 10") end
+			if api.partwithnamepart("11", game.Workspace.Happenings.Puffshrooms) then print("Puffshroom Lvl 11") end
+			if api.partwithnamepart("12", game.Workspace.Happenings.Puffshrooms) then print("Puffshroom Lvl 12") end
+			if api.partwithnamepart("13", game.Workspace.Happenings.Puffshrooms) then print("Puffshroom Lvl 13") end
+			if api.partwithnamepart("14", game.Workspace.Happenings.Puffshrooms) then print("Puffshroom Lvl 14") end
+			if api.partwithnamepart("15", game.Workspace.Happenings.Puffshrooms) then print("Puffshroom Lvl 15") end
+			if api.partwithnamepart("16", game.Workspace.Happenings.Puffshrooms) then print("Puffshroom Lvl 16") end
+			if api.partwithnamepart("17", game.Workspace.Happenings.Puffshrooms) then print("Puffshroom Lvl 17") end
+			if api.partwithnamepart("18", game.Workspace.Happenings.Puffshrooms) then print("Puffshroom Lvl 18") end
+			if api.partwithnamepart("19", game.Workspace.Happenings.Puffshrooms) then print("Puffshroom Lvl 19") end
+			
             if api.partwithnamepart("Mythic", game.Workspace.Happenings.Puffshrooms) then
                 temptable.magnitude = 25 
                 fieldpos = api.partwithnamepart("Mythic", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
