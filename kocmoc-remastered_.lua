@@ -1069,7 +1069,6 @@ task.spawn(function() while task.wait() do
                 temptable.magnitude = 25 
                 fieldpos = api.getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
                 fieldposition = fieldpos.Position
-				
             end
         end
         if tonumber(pollenpercentage) < tonumber(kocmoc.vars.convertat) then -- when polen is not full
