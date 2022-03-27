@@ -781,7 +781,7 @@ information:CreateLabel("")
 local farmo = farmtab:CreateSection("Farming")
 local fielddropdown = farmo:CreateDropdown("Field", fieldstable, function(String) kocmoc.vars.field = String end) fielddropdown:SetOption(fieldstable[1])
 convertatslider = farmo:CreateSlider("Convert At", 0, 100, 100, false, function(Value) kocmoc.vars.convertat = Value end)
-local autofarmtoggle = farmo:CreateToggle("Autofarm ⚙", nil, function(State) kocmoc.toggles.autofarm = State end) autofarmtoggle:CreateKeybind("U", function(Key) end)
+autofarmtoggle = farmo:CreateToggle("Autofarm ⚙", nil, function(State) kocmoc.toggles.autofarm = State end) autofarmtoggle:CreateKeybind("U", function(Key) end)
 farmo:CreateToggle("Autodig", nil, function(State) kocmoc.toggles.autodig = State end)
 farmo:CreateDropdown("Autodig Mode", {"Normal","Collector Steal"}, function(Option)  kocmoc.vars.autodigmode = Option end)
 farmo:CreateToggle("Don't Convert Pollen", nil, function(State) kocmoc.toggles.disableconversion = State end)
@@ -1052,7 +1052,18 @@ task.spawn(function() while task.wait() do
             fieldposition = temptable.sprouts.coords.Position
             fieldpos = temptable.sprouts.coords
         end
-        if kocmoc.toggles.farmpuffshrooms and game.Workspace.Happenings.Puffshrooms:FindFirstChildOfClass("Model") then 
+        if kocmoc.toggles.farmpuffshrooms and game.Workspace.Happenings.Puffshrooms:FindFirstChildOfClass("Model") then
+		
+			--if api.partwithnamepart("Lvl 11", game.Workspace.Happenings.Puffshrooms) then print("Puffshroom Lvl 11") end
+			--if api.partwithnamepart("Lvl 12", game.Workspace.Happenings.Puffshrooms) then print("Puffshroom Lvl 12") end
+			--if api.partwithnamepart("Lvl 13", game.Workspace.Happenings.Puffshrooms) then print("Puffshroom Lvl 13") end
+			--if api.partwithnamepart("Lvl 14", game.Workspace.Happenings.Puffshrooms) then print("Puffshroom Lvl 14") end
+			--if api.partwithnamepart("Lvl 15", game.Workspace.Happenings.Puffshrooms) then print("Puffshroom Lvl 15") end
+			--if api.partwithnamepart("Lvl 16", game.Workspace.Happenings.Puffshrooms) then print("Puffshroom Lvl 16") end
+			--if api.partwithnamepart("Lvl 17", game.Workspace.Happenings.Puffshrooms) then print("Puffshroom Lvl 17") end
+			--if api.partwithnamepart("Lvl 18", game.Workspace.Happenings.Puffshrooms) then print("Puffshroom Lvl 18") end
+			--if api.partwithnamepart("Lvl 19", game.Workspace.Happenings.Puffshrooms) then print("Puffshroom Lvl 19") end
+			
             if api.partwithnamepart("Mythic", game.Workspace.Happenings.Puffshrooms) then
                 temptable.magnitude = 25 
                 fieldpos = api.partwithnamepart("Mythic", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
@@ -1065,17 +1076,13 @@ task.spawn(function() while task.wait() do
                 temptable.magnitude = 25 
                 fieldpos = api.partwithnamepart("Epic", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
                 fieldposition = fieldpos.Position
-            elseif api.partwithnamepart("Rare", game.Workspace.Happenings.Puffshrooms) then
-                temptable.magnitude = 25 
-                fieldpos = api.partwithnamepart("Rare", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
-                fieldposition = fieldpos.Position
-			elseif api.partwithnamepart("Lvl 10", game.Workspace.Happenings.Puffshrooms) then
-				temptable.magnitude = 25
-				print("Puffshroom Lvl 10")
             else
                 temptable.magnitude = 25 
                 fieldpos = api.getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
                 fieldposition = fieldpos.Position
+				--if api.partwithnamepart("Lvl 10", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem") then print("Puffshroom Lvl 10") end
+				--if api.partwithnamepart("Lvl 11", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem") then print("Puffshroom Lvl 11") end
+				--if api.partwithnamepart("Lvl 12", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem") then print("Puffshroom Lvl 12") end
             end
         end
         if tonumber(pollenpercentage) < tonumber(kocmoc.vars.convertat) then -- when polen is not full
@@ -1086,6 +1093,9 @@ task.spawn(function() while task.wait() do
                 if kocmoc.toggles.autosprinkler then makesprinklers() end
             else
                 if kocmoc.toggles.killmondo then
+					--print(temptable.cache.autofarm)
+					--print(kocmoc.toggles.autofarm)
+					--print("autofarmtoggle="..autofarmtoggle)
                     while kocmoc.toggles.killmondo and game.Workspace.Monsters:FindFirstChild("Mondo Chick (Lvl 8)") and not temptable.started.vicious and not temptable.started.monsters do
                         temptable.started.mondo = true
                         while game.Workspace.Monsters:FindFirstChild("Mondo Chick (Lvl 8)") do
@@ -1097,7 +1107,7 @@ task.spawn(function() while task.wait() do
                             temptable.float = true
                         end
                         task.wait(.5) game:GetService("Workspace").Map.Ground.HighBlock.CanCollide = true temptable.float = false api.tween(.5, CFrame.new(73.2, 176.35, -167)) task.wait(1)
-                        for i = 0, 50 do 
+						for i = 0, 50 do 
                             gettoken(CFrame.new(73.2, 176.35, -167).Position)
                         end 
                         enableall() 
@@ -1109,8 +1119,10 @@ task.spawn(function() while task.wait() do
                     api.tween(2, fieldpos)
                     task.wait(2)
                     if kocmoc.toggles.autosprinkler then makesprinklers() end
+					--print("puffshroom")
                 end
                 getprioritytokens()
+				-- print("test3")
                 if kocmoc.toggles.avoidmobs then avoidmob() end
                 if kocmoc.toggles.farmclosestleaf then closestleaf() end
                 if kocmoc.toggles.farmbubbles then getbubble() end
@@ -1127,13 +1139,13 @@ task.spawn(function() while task.wait() do
             temptable.converting = true
             repeat
                 converthoney()
-            until game.Players.LocalPlayer.CoreStats.Pollen.Value == 0
+            until game.Players.LocalPlayer.CoreStats.Pollen.Value == 0 or not kocmoc.toggles.autofarm
             if kocmoc.toggles.convertballoons and gethiveballoon() then
                 task.wait(6)
                 repeat
                     task.wait()
                     converthoney()
-                until gethiveballoon() == false or not kocmoc.toggles.convertballoons
+                until gethiveballoon() == false or not kocmoc.toggles.convertballoons or not kocmoc.toggles.autofarm
             end
             temptable.converting = false
             temptable.act = temptable.act + 1
