@@ -1065,6 +1065,13 @@ task.spawn(function() while task.wait() do
                 temptable.magnitude = 25 
                 fieldpos = api.partwithnamepart("Epic", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
                 fieldposition = fieldpos.Position
+            elseif api.partwithnamepart("Rare", game.Workspace.Happenings.Puffshrooms) then
+                temptable.magnitude = 25 
+                fieldpos = api.partwithnamepart("Rare", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
+                fieldposition = fieldpos.Position
+			elseif api.partwithnamepart("Lvl 10", game.Workspace.Happenings.Puffshrooms) then
+				temptable.magnitude = 25
+				print("Puffshroom Lvl 10")
             else
                 temptable.magnitude = 25 
                 fieldpos = api.getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
@@ -1091,7 +1098,7 @@ task.spawn(function() while task.wait() do
                         end
                         task.wait(.5) game:GetService("Workspace").Map.Ground.HighBlock.CanCollide = true temptable.float = false api.tween(.5, CFrame.new(73.2, 176.35, -167)) task.wait(1)
                         for i = 0, 50 do 
-                            gettoken(CFrame.new(73.2, 176.35, -167).Position) 
+                            gettoken(CFrame.new(73.2, 176.35, -167).Position)
                         end 
                         enableall() 
                         api.tween(2, fieldpos) 
