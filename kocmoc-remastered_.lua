@@ -1076,6 +1076,12 @@ task.spawn(function() while task.wait() do
                 temptable.magnitude = 25 
                 fieldpos = api.partwithnamepart("Epic", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
                 fieldposition = fieldpos.Position
+			elseif api.partwithnamepart("Lvl 10", game.Workspace.Happenings.Puffshrooms) then
+				temptable.magnitude = 25
+				print("Puffshroom Lvl 10")
+			elseif api.partwithnamepart("Lvl 11", game.Workspace.Happenings.Puffshrooms) then
+				temptable.magnitude = 25
+				print("Puffshroom Lvl 11")	
             else
                 temptable.magnitude = 25 
                 fieldpos = api.getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
