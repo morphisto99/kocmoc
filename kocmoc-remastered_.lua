@@ -726,7 +726,6 @@ end
 -- Morphisto
 function checkquestcooldown()
 	local cooldown = time() - tonumber(quest_time)
-	print(cooldown)
 	if cooldown > 300 then
 		quest_time = time()
 		makequests()
