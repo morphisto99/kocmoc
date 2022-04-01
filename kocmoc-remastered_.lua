@@ -259,7 +259,7 @@ antpart.Transparency = 1
 antpart.CanCollide = false
 
 -- Morphisto
-local current_time = time()
+quest_time = time()
 -- Morphisto
 
 -- config
@@ -339,7 +339,6 @@ getgenv().kocmoc = {
         npcprefer = "All Quests",
         farmtype = "Walk",
         monstertimer = 3,
-		questcooldown = time(),
         autodigmode = "Normal",
         donoItem = "Coconut",
         donoAmount = 25,
@@ -724,6 +723,13 @@ function getcrosshairs(v)
     end
 end
 
+-- Morphisto
+function checkquestcooldown()
+	local cooldown = time() - tonumber(quest_time)
+	print(cooldown)
+	if cooldown > 120 then makequests() end
+end
+-- Morphisto
 function makequests()
     for i,v in next, game:GetService("Workspace").NPCs:GetChildren() do
         if v.Name ~= "Ant Challenge Info" and v.Name ~= "Bubble Bee Man 2" and v.Name ~= "Wind Shrine" and v.Name ~= "Gummy Bear" then if v:FindFirstChild("Platform") then if v.Platform:FindFirstChild("AlertPos") then if v.Platform.AlertPos:FindFirstChild("AlertGui") then if v.Platform.AlertPos.AlertGui:FindFirstChild("ImageLabel") then
@@ -1002,8 +1008,8 @@ wayp:CreateDropdown("Monster Teleports", spawnerstable, function(Option) d = gam
 wayp:CreateDropdown("Toys Teleports", toystable, function(Option) d = game:GetService("Workspace").Toys:FindFirstChild(Option).Platform game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(d.Position.X, d.Position.Y+3, d.Position.Z) end)
 wayp:CreateButton("Teleport to hive", function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Players").LocalPlayer.SpawnPos.Value end)
 wayp:CreateButton("print location", function() print(game.Players.LocalPlayer.Character.HumanoidRootPart.Position) end) -- Morphisto
-wayp:CreateButton("check time", function() print(tonumber(kocmoc.vars.questcooldown)) print(time()) end) 
-wayp:CreateButton("check time2", function() local cooldown = time() - require(game.ReplicatedStorage.OsTime)() print(cooldown) end) 
+wayp:CreateButton("check time", function() checkquestcooldown() end) 
+wayp:CreateButton("check time2", function() local cooldown = require(game.ReplicatedStorage.OsTime)() print(cooldown) end) 
 wayp:CreateDropdown("NPC Teleports", {"Black Bear","Brown Bear","Bucko Bee","Honey Bee","Panda Bear","Polar Bear","Riley Bee","Science Bear","Spirit Bear","Science Bear","Mother Bear","Sun Bear","Stick Bug","Onett","Gummy Lair","Bubble Bee Man","Meteor Shower","Demon Mask","Diamond Mask"}, function(Option) game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = npctable[Option] end) -- Morphisto
 
 local useitems = itemstab:CreateSection("Use Items")
