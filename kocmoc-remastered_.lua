@@ -1336,7 +1336,7 @@ task.spawn(function() while task.wait() do
                 end
 				if (fieldposition-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
 					api.tween(1.5, fieldpos) -- Morphisto
-					task.wait(2)
+					task.wait(1)
 					if kocmoc.toggles.autosprinkler then makesprinklers() end
 				end
 				getprioritytokens()
