@@ -615,7 +615,13 @@ function converthoney()
         end
     end
 end
-
+-- Morphisto
+function getpuffshrooms()
+    for i,v in next, game.Workspace.Puffshrooms:GetChildren() do
+		print(v)
+    end
+end
+-- Morphisto
 function closestleaf()
     for i,v in next, game.Workspace.Flowers:GetChildren() do
         if temptable.running == false and tonumber((v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude) < temptable.magnitude/1.4 then
@@ -726,6 +732,7 @@ end
 -- Morphisto
 function checkquestcooldown()
 	local cooldown = time() - tonumber(quest_time)
+	print(cooldown)
 	if cooldown > 300 then
 		quest_time = time()
 		makequests()
@@ -1011,7 +1018,7 @@ wayp:CreateDropdown("Monster Teleports", spawnerstable, function(Option) d = gam
 wayp:CreateDropdown("Toys Teleports", toystable, function(Option) d = game:GetService("Workspace").Toys:FindFirstChild(Option).Platform game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(d.Position.X, d.Position.Y+3, d.Position.Z) end)
 wayp:CreateButton("Teleport to hive", function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Players").LocalPlayer.SpawnPos.Value end)
 wayp:CreateButton("print location", function() print(game.Players.LocalPlayer.Character.HumanoidRootPart.Position) end) -- Morphisto
---wayp:CreateButton("check time", function() checkquestcooldown() end) 
+wayp:CreateButton("check Puffshroom", function() getpuffshrooms() end) 
 --wayp:CreateButton("check time2", function() local cooldown = require(game.ReplicatedStorage.OsTime)() print(cooldown) end) 
 wayp:CreateDropdown("NPC Teleports", {"Black Bear","Brown Bear","Bucko Bee","Honey Bee","Panda Bear","Polar Bear","Riley Bee","Science Bear","Spirit Bear","Science Bear","Mother Bear","Sun Bear","Stick Bug","Onett","Gummy Lair","Bubble Bee Man","Meteor Shower","Demon Mask","Diamond Mask"}, function(Option) game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = npctable[Option] end) -- Morphisto
 
@@ -1268,7 +1275,11 @@ task.spawn(function() while task.wait() do
             fieldposition = temptable.sprouts.coords.Position
             fieldpos = temptable.sprouts.coords
         end
-        if kocmoc.toggles.farmpuffshrooms and game.Workspace.Happenings.Puffshrooms:FindFirstChildOfClass("Model") then 
+        if kocmoc.toggles.farmpuffshrooms and game.Workspace.Happenings.Puffshrooms:FindFirstChildOfClass("Model") then
+			print(game.Workspace.Happenings.Puffshrooms:FindFirstChild("Text"))
+			if api.partwithnamepart("Puffshroom", game.Workspace.Happenings.Puffshrooms) then
+				print("Puffshrooms")
+			end
             if api.partwithnamepart("Mythic", game.Workspace.Happenings.Puffshrooms) then
                 temptable.magnitude = 25 
                 fieldpos = api.partwithnamepart("Mythic", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
