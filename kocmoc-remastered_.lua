@@ -617,18 +617,18 @@ function converthoney()
 end
 -- Morphisto
 function getpuffshrooms()
-    --for i,v in next, game.Workspace.Happenings.Puffshrooms:FindFirstChild() do
-	--	print(v)
-    --end
+    for i,v in next, game.Workspace.Happenings.Puffshrooms:FindFirstChild() do
+		print(v)
+		print(v.Name)
+    end
 	
 	for i,v in next, game.Workspace.Happenings.Puffshrooms:GetChildren() do
 		print(v.Name)
-		--for x in string.gmatch(v.Name, "Vicious") do
-		--	if string.find(v.Name, "Vicious") then
-		--		api.tween(1,CFrame.new(v.Position.x, v.Position.y, v.Position.z)) task.wait(1)
-		--		api.tween(0.5, CFrame.new(v.Position.x, v.Position.y, v.Position.z)) task.wait(.5)
-		--	end
-		--end
+		for x in string.gmatch(v.Name, "puff") do
+			if string.find(v.Name, "puff") then
+				print("test")
+			end
+		end
 	end	
 	
 end
