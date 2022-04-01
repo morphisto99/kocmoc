@@ -727,9 +727,13 @@ end
 function checkquestcooldown()
 	local cooldown = time() - tonumber(quest_time)
 	print(cooldown)
-	if cooldown > 120 then makequests() end
+	if cooldown > 300 then
+		quest_time = time()
+		makequests()
+	end
 end
 -- Morphisto
+
 function makequests()
     for i,v in next, game:GetService("Workspace").NPCs:GetChildren() do
         if v.Name ~= "Ant Challenge Info" and v.Name ~= "Bubble Bee Man 2" and v.Name ~= "Wind Shrine" and v.Name ~= "Gummy Bear" then if v:FindFirstChild("Platform") then if v.Platform:FindFirstChild("AlertPos") then if v.Platform.AlertPos:FindFirstChild("AlertGui") then if v.Platform.AlertPos.AlertGui:FindFirstChild("ImageLabel") then
@@ -1008,8 +1012,8 @@ wayp:CreateDropdown("Monster Teleports", spawnerstable, function(Option) d = gam
 wayp:CreateDropdown("Toys Teleports", toystable, function(Option) d = game:GetService("Workspace").Toys:FindFirstChild(Option).Platform game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(d.Position.X, d.Position.Y+3, d.Position.Z) end)
 wayp:CreateButton("Teleport to hive", function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Players").LocalPlayer.SpawnPos.Value end)
 wayp:CreateButton("print location", function() print(game.Players.LocalPlayer.Character.HumanoidRootPart.Position) end) -- Morphisto
-wayp:CreateButton("check time", function() checkquestcooldown() end) 
-wayp:CreateButton("check time2", function() local cooldown = require(game.ReplicatedStorage.OsTime)() print(cooldown) end) 
+--wayp:CreateButton("check time", function() checkquestcooldown() end) 
+--wayp:CreateButton("check time2", function() local cooldown = require(game.ReplicatedStorage.OsTime)() print(cooldown) end) 
 wayp:CreateDropdown("NPC Teleports", {"Black Bear","Brown Bear","Bucko Bee","Honey Bee","Panda Bear","Polar Bear","Riley Bee","Science Bear","Spirit Bear","Science Bear","Mother Bear","Sun Bear","Stick Bug","Onett","Gummy Lair","Bubble Bee Man","Meteor Shower","Demon Mask","Diamond Mask"}, function(Option) game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = npctable[Option] end) -- Morphisto
 
 local useitems = itemstab:CreateSection("Use Items")
@@ -1229,12 +1233,7 @@ task.spawn(function() while task.wait() do
         end
         
         if kocmoc.toggles.autofarm then
-		if kocmoc.toggles.autoquest then
-			--local cooldown = tonumber(kocmoc.vars.questcooldown) - require(game.ReplicatedStorage.OsTime)()
-			--print(kocmoc.vars.questcooldown)
-			--print(require(game.ReplicatedStorage.OsTime)())
-			--makequests()
-		end
+		if kocmoc.toggles.autoquest then checkquestcooldown() end -- Morphisto
         if kocmoc.toggles.autodoquest and game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.Menus.Children.Quests.Content:FindFirstChild("Frame") then
             for i,v in next, game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.Menus.Children.Quests:GetDescendants() do
                 if v.Name == "Description" then
@@ -1351,7 +1350,7 @@ task.spawn(function() while task.wait() do
             temptable.act = temptable.act + 1
             task.wait(6)
             if kocmoc.toggles.autoant and not game:GetService("Workspace").Toys["Ant Challenge"].Busy.Value and rtsg().Eggs.AntPass > 0 then farmant() end
-            --if kocmoc.toggles.autoquest then makequests() end
+            --if kocmoc.toggles.autoquest then makequests() end -- Morphisto
             if kocmoc.toggles.autoplanters then collectplanters() end
             if kocmoc.toggles.autokillmobs then 
                 if temptable.act >= kocmoc.vars.monstertimer then
