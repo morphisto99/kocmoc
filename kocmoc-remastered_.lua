@@ -1310,16 +1310,15 @@ task.spawn(function() while task.wait() do
                 temptable.magnitude = 25 
                 fieldpos = api.getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
                 fieldposition = fieldpos.Position
-				
-				
             end
         end
         
         if tonumber(pollenpercentage) < tonumber(kocmoc.vars.convertat) or (kocmoc.toggles.disableconversion == true) then -- when pollen is not full
             if not temptable.tokensfarm then
                 api.tween(2, fieldpos)
-                task.wait(2)
+                task.wait(1)
                 temptable.tokensfarm = true
+				print("tokensfarm")
                 if kocmoc.toggles.autosprinkler then makesprinklers() end
             else
                 if kocmoc.toggles.killmondo then
@@ -1344,7 +1343,8 @@ task.spawn(function() while task.wait() do
                 end
                 if (fieldposition-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
                     api.tween(2, fieldpos) -- Morphisto
-                    task.wait(2)
+                    task.wait(1)
+					print("fieldposition1")
                     if kocmoc.toggles.autosprinkler then makesprinklers() end
                 end
                 getprioritytokens()
