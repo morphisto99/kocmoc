@@ -617,9 +617,20 @@ function converthoney()
 end
 -- Morphisto
 function getpuffshrooms()
-    for i,v in next, game.Workspace.Happenings.Puffshrooms:FindFirstChild() do
-		print(v)
-    end
+    --for i,v in next, game.Workspace.Happenings.Puffshrooms:FindFirstChild() do
+	--	print(v)
+    --end
+	
+	for i,v in next, game.Workspace.Happenings.Puffshrooms:GetChildren() do
+		print(v.Name)
+		--for x in string.gmatch(v.Name, "Vicious") do
+		--	if string.find(v.Name, "Vicious") then
+		--		api.tween(1,CFrame.new(v.Position.x, v.Position.y, v.Position.z)) task.wait(1)
+		--		api.tween(0.5, CFrame.new(v.Position.x, v.Position.y, v.Position.z)) task.wait(.5)
+		--	end
+		--end
+	end	
+	
 end
 -- Morphisto
 function closestleaf()
@@ -1275,8 +1286,12 @@ task.spawn(function() while task.wait() do
             fieldpos = temptable.sprouts.coords
         end
         if kocmoc.toggles.farmpuffshrooms and game.Workspace.Happenings.Puffshrooms:FindFirstChildOfClass("Model") then
-			for i,v in next, game.Workspace.Happenings.Puffshrooms:FindFirstChild() do
-				print(v)
+		
+			if api.partwithnamepart("Puff", game.Workspace.Happenings.Puffshrooms) then
+				print("Puff found1")
+			end
+			if api.partwithnamepart("Puff", game.Workspace.Happenings.Puffshrooms:FindFirstChild()) then
+				print("Puff found2")
 			end
             if api.partwithnamepart("Mythic", game.Workspace.Happenings.Puffshrooms) then
                 temptable.magnitude = 25 
@@ -1294,7 +1309,8 @@ task.spawn(function() while task.wait() do
                 temptable.magnitude = 25 
                 fieldpos = api.getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
                 fieldposition = fieldpos.Position
-
+				
+				
             end
         end
         
