@@ -1003,7 +1003,7 @@ wayp:CreateDropdown("Toys Teleports", toystable, function(Option) d = game:GetSe
 wayp:CreateButton("Teleport to hive", function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Players").LocalPlayer.SpawnPos.Value end)
 wayp:CreateButton("print location", function() print(game.Players.LocalPlayer.Character.HumanoidRootPart.Position) end) -- Morphisto
 wayp:CreateButton("check time", function() print(require(game.ReplicatedStorage.OsTime)()) end) 
-wayp:CreateButton("check time2", function() local cooldown = 120 - require(game.ReplicatedStorage.OsTime)() print(cooldown) end) 
+wayp:CreateButton("check time2", function() print(kocmoc.vars.questcooldown) print(require(game.ReplicatedStorage.OsTime)()) end) 
 wayp:CreateDropdown("NPC Teleports", {"Black Bear","Brown Bear","Bucko Bee","Honey Bee","Panda Bear","Polar Bear","Riley Bee","Science Bear","Spirit Bear","Science Bear","Mother Bear","Sun Bear","Stick Bug","Onett","Gummy Lair","Bubble Bee Man","Meteor Shower","Demon Mask","Diamond Mask"}, function(Option) game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = npctable[Option] end) -- Morphisto
 
 local useitems = itemstab:CreateSection("Use Items")
@@ -1224,8 +1224,9 @@ task.spawn(function() while task.wait() do
         
         if kocmoc.toggles.autofarm then
 		if kocmoc.toggles.autoquest then
-			local cooldown = tonumber(kocmoc.vars.questcooldown) - require(game.ReplicatedStorage.OsTime)()
-			print(cooldown)
+			--local cooldown = tonumber(kocmoc.vars.questcooldown) - require(game.ReplicatedStorage.OsTime)()
+			--print(kocmoc.vars.questcooldown)
+			--print(require(game.ReplicatedStorage.OsTime)())
 			--makequests()
 		end
         if kocmoc.toggles.autodoquest and game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.Menus.Children.Quests.Content:FindFirstChild("Frame") then
