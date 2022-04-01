@@ -259,7 +259,7 @@ antpart.Transparency = 1
 antpart.CanCollide = false
 
 -- Morphisto
-local current_time = time()
+current_time = time()
 -- Morphisto
 
 -- config
