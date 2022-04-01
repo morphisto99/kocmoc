@@ -1164,26 +1164,6 @@ task.spawn(function() while task.wait() do
 end end)
 -- Morphisto - Camera Fixer
 
--- Morphisto
-local demontoggleouyfyt = false
-task.spawn(function()
-    while wait(1) do
-        if temptable.started.mondo or temptable.started.vicious or temptable.started.windy then
-            if demontoggleouyfyt == false then
-                demontoggleouyfyt = true
-                game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
-            end
-        else
-            if demontoggleouyfyt == true then
-                demontoggleouyfyt = false
-                game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"})
-            end
-        end
-    end
-end)
--- Morphisto
-
-
 local honeytoggleouyfyt = false
 task.spawn(function()
     while wait(1) do
