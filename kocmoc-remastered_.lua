@@ -258,6 +258,10 @@ antpart.Size = Vector3.new(128, 1, 50)
 antpart.Transparency = 1
 antpart.CanCollide = false
 
+-- Morphisto
+local current_time = time()
+-- Morphisto
+
 -- config
 
 getgenv().kocmoc = {
@@ -335,6 +339,7 @@ getgenv().kocmoc = {
         npcprefer = "All Quests",
         farmtype = "Walk",
         monstertimer = 3,
+		questcooldown = current_time,
         autodigmode = "Normal",
         donoItem = "Coconut",
         donoAmount = 25,
@@ -1218,6 +1223,11 @@ task.spawn(function() while task.wait() do
         end
         
         if kocmoc.toggles.autofarm then
+		if kocmoc.toggles.autoquest then
+			local cooldown = questcooldown - require(game.ReplicatedStorage.OsTime)()
+			print(cooldown)
+			--makequests()
+		end
         if kocmoc.toggles.autodoquest and game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.Menus.Children.Quests.Content:FindFirstChild("Frame") then
             for i,v in next, game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.Menus.Children.Quests:GetDescendants() do
                 if v.Name == "Description" then
@@ -1334,7 +1344,7 @@ task.spawn(function() while task.wait() do
             temptable.act = temptable.act + 1
             task.wait(6)
             if kocmoc.toggles.autoant and not game:GetService("Workspace").Toys["Ant Challenge"].Busy.Value and rtsg().Eggs.AntPass > 0 then farmant() end
-            if kocmoc.toggles.autoquest then makequests() end
+            --if kocmoc.toggles.autoquest then makequests() end
             if kocmoc.toggles.autoplanters then collectplanters() end
             if kocmoc.toggles.autokillmobs then 
                 if temptable.act >= kocmoc.vars.monstertimer then
