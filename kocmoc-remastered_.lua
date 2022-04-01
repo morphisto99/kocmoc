@@ -1316,8 +1316,7 @@ task.spawn(function() while task.wait() do
             else
                 if kocmoc.toggles.killmondo then
                     while kocmoc.toggles.killmondo and game.Workspace.Monsters:FindFirstChild("Mondo Chick (Lvl 8)") and not temptable.started.vicious and not temptable.started.monsters do
-                        if not temptable.started.mondo then 
-						temptable.started.mondo = true
+                        temptable.started.mondo = true
                         while game.Workspace.Monsters:FindFirstChild("Mondo Chick (Lvl 8)") do
                             disableall()
                             game:GetService("Workspace").Map.Ground.HighBlock.CanCollide = false 
