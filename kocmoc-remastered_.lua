@@ -1309,7 +1309,7 @@ task.spawn(function() while task.wait() do
         
         if tonumber(pollenpercentage) < tonumber(kocmoc.vars.convertat) or (kocmoc.toggles.disableconversion == true) then -- when pollen is not full
             if not temptable.tokensfarm then
-                api.tween(1.5, fieldpos)
+                api.tween(2, fieldpos)
                 task.wait(1)
                 temptable.tokensfarm = true
                 if kocmoc.toggles.autosprinkler then makesprinklers() end
@@ -1335,7 +1335,7 @@ task.spawn(function() while task.wait() do
                     end
                 end
 				if (fieldposition-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
-					api.tween(1.5, fieldpos) -- Morphisto
+					api.tween(2, fieldpos) -- Morphisto
 					task.wait(1)
 					if kocmoc.toggles.autosprinkler then makesprinklers() end
 				end
