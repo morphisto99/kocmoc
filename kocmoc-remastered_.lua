@@ -5,8 +5,8 @@ getgenv().ExploitSpecific = "📜"
 -- API CALLS
 
 local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Boxking776/kocmoc/main/library.lua"))()
---getgenv().api = loadstring(game:HttpGet("https://raw.githubusercontent.com/Boxking776/kocmoc/main/api.lua"))()
-getgenv().api = loadstring(game:HttpGet("https://raw.githubusercontent.com/morphisto99/kocmoc/main/api.lua"))()
+getgenv().api = loadstring(game:HttpGet("https://raw.githubusercontent.com/Boxking776/kocmoc/main/api.lua"))()
+--getgenv().api = loadstring(game:HttpGet("https://raw.githubusercontent.com/morphisto99/kocmoc/main/api.lua"))()
 local bssapi = loadstring(game:HttpGet("https://raw.githubusercontent.com/Boxking776/kocmoc/main/bssapi.lua"))()
 if not isfolder("kocmoc") then makefolder("kocmoc") end
 if not isfolder("kocmoc/premium") then makefolder("kocmoc/premium") end
@@ -1288,9 +1288,6 @@ task.spawn(function() while task.wait() do
         end
         if kocmoc.toggles.farmpuffshrooms and game.Workspace.Happenings.Puffshrooms:FindFirstChildOfClass("Model") then
 		
-			--if api.partwithnamepart("Puff", game.Workspace.Happenings.Puffshrooms:FindFirstChild()) then
-			--	print("Puff found2")
-			--end
             if api.partwithnamepart("Mythic", game.Workspace.Happenings.Puffshrooms) then
                 temptable.magnitude = 25 
                 fieldpos = api.partwithnamepart("Mythic", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
@@ -1306,7 +1303,6 @@ task.spawn(function() while task.wait() do
             else
                 temptable.magnitude = 25 
                 fieldpos = api.getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
-				print(fieldpos)
                 fieldposition = fieldpos.Position
             end
         end
@@ -1316,7 +1312,6 @@ task.spawn(function() while task.wait() do
                 api.tween(1.5, fieldpos)
                 task.wait(1)
                 temptable.tokensfarm = true
-				print("tokensfarm")
                 if kocmoc.toggles.autosprinkler then makesprinklers() end
             else
                 if kocmoc.toggles.killmondo then
@@ -1340,12 +1335,12 @@ task.spawn(function() while task.wait() do
                     end
                 end
 				if (fieldposition-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
-					api.tween(2, fieldpos) -- Morphisto
+					api.tween(1.5, fieldpos) -- Morphisto
 					task.wait(2)
-					if kocmoc.toggles.autosprinkler and game.Workspace.Happenings.Puffshrooms:FindFirstChildOfClass("Model") then makesprinklers() end
+					if kocmoc.toggles.autosprinkler then makesprinklers() end
 				end
 				getprioritytokens()
-				task.wait(2)
+				task.wait(1)
                 if kocmoc.toggles.avoidmobs then avoidmob() end
                 if kocmoc.toggles.farmclosestleaf then closestleaf() end
                 if kocmoc.toggles.farmbubbles then getbubble() end
