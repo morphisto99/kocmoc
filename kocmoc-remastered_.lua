@@ -1224,7 +1224,7 @@ task.spawn(function() while task.wait() do
         
         if kocmoc.toggles.autofarm then
 		if kocmoc.toggles.autoquest then
-			local cooldown = questcooldown - require(game.ReplicatedStorage.OsTime)()
+			local cooldown = tonumber(kocmoc.vars.questcooldown) - require(game.ReplicatedStorage.OsTime)()
 			print(cooldown)
 			--makequests()
 		end
