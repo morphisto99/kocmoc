@@ -617,7 +617,7 @@ function converthoney()
 end
 -- Morphisto
 function getpuffshrooms()
-    for i,v in next, game.Workspace.Puffshrooms:GetChildren() do
+    for i,v in next, game.Workspace.Happenings.Puffshrooms:GetChildren() do
 		print(v)
     end
 end
@@ -732,7 +732,6 @@ end
 -- Morphisto
 function checkquestcooldown()
 	local cooldown = time() - tonumber(quest_time)
-	print(cooldown)
 	if cooldown > 300 then
 		quest_time = time()
 		makequests()
@@ -1276,9 +1275,8 @@ task.spawn(function() while task.wait() do
             fieldpos = temptable.sprouts.coords
         end
         if kocmoc.toggles.farmpuffshrooms and game.Workspace.Happenings.Puffshrooms:FindFirstChildOfClass("Model") then
-			print(game.Workspace.Happenings.Puffshrooms:FindFirstChild("Text"))
-			if api.partwithnamepart("Puffshroom", game.Workspace.Happenings.Puffshrooms) then
-				print("Puffshrooms")
+			for i,v in next, game.Workspace.Happenings.Puffshrooms:GetChildren() do
+				print(v)
 			end
             if api.partwithnamepart("Mythic", game.Workspace.Happenings.Puffshrooms) then
                 temptable.magnitude = 25 
