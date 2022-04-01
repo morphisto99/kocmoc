@@ -5,7 +5,8 @@ getgenv().ExploitSpecific = "📜"
 -- API CALLS
 
 local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Boxking776/kocmoc/main/library.lua"))()
-getgenv().api = loadstring(game:HttpGet("https://raw.githubusercontent.com/Boxking776/kocmoc/main/api.lua"))()
+--getgenv().api = loadstring(game:HttpGet("https://raw.githubusercontent.com/Boxking776/kocmoc/main/api.lua"))()
+getgenv().api = loadstring(game:HttpGet("https://raw.githubusercontent.com/morphisto99/kocmoc/main/api.lua"))()
 local bssapi = loadstring(game:HttpGet("https://raw.githubusercontent.com/Boxking776/kocmoc/main/bssapi.lua"))()
 if not isfolder("kocmoc") then makefolder("kocmoc") end
 if not isfolder("kocmoc/premium") then makefolder("kocmoc/premium") end
@@ -617,10 +618,10 @@ function converthoney()
 end
 -- Morphisto
 function getpuffshrooms()
-    for i,v in next, game.Workspace.Happenings.Puffshrooms:FindFirstChild() do
-		print(v)
-		print(v.Name)
-    end
+    --for i,v in next, game.Workspace.Happenings.Puffshrooms:FindFirstChild() do
+	--print(v)
+	--	print(v.Name)
+    --end
 	
 	for i,v in next, game.Workspace.Happenings.Puffshrooms:GetChildren() do
 		print(v.Name)
