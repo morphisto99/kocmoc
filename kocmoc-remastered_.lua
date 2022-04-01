@@ -1288,9 +1288,6 @@ task.spawn(function() while task.wait() do
         end
         if kocmoc.toggles.farmpuffshrooms and game.Workspace.Happenings.Puffshrooms:FindFirstChildOfClass("Model") then
 		
-			if api.partwithnamepart("Lvl 10", game.Workspace.Happenings.Puffshrooms) then
-				print("Puff found1")
-			end
 			--if api.partwithnamepart("Puff", game.Workspace.Happenings.Puffshrooms:FindFirstChild()) then
 			--	print("Puff found2")
 			--end
@@ -1309,8 +1306,17 @@ task.spawn(function() while task.wait() do
             else
                 temptable.magnitude = 25 
                 fieldpos = api.getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
+				print(fieldpos)
                 fieldposition = fieldpos.Position
             end
+			-- Morphisto
+			if (fieldposition-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
+				api.tween(2, fieldpos) -- Morphisto
+				task.wait(2)
+				if kocmoc.toggles.autosprinkler then makesprinklers() end
+			end
+			getprioritytokens()
+			-- Morphisto
         end
         
         if tonumber(pollenpercentage) < tonumber(kocmoc.vars.convertat) or (kocmoc.toggles.disableconversion == true) then -- when pollen is not full
@@ -1341,13 +1347,7 @@ task.spawn(function() while task.wait() do
                         temptable.started.mondo = false
                     end
                 end
-                if kocmoc.toggles.farmpuffshrooms and (fieldposition-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
-                    api.tween(2, fieldpos) -- Morphisto
-                    task.wait(2)
-					print("fieldposition1")
-                    if kocmoc.toggles.autosprinkler then makesprinklers() end
-                end
-                getprioritytokens()
+
                 if kocmoc.toggles.avoidmobs then avoidmob() end
                 if kocmoc.toggles.farmclosestleaf then closestleaf() end
                 if kocmoc.toggles.farmbubbles then getbubble() end
