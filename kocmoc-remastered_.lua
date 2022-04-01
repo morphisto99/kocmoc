@@ -1164,6 +1164,26 @@ task.spawn(function() while task.wait() do
 end end)
 -- Morphisto - Camera Fixer
 
+-- Morphisto
+local demontoggleouyfyt = false
+task.spawn(function()
+    while wait(1) do
+        if temptable.started.mondo or temptable.started.vicious or temptable.started.windy then
+            if demontoggleouyfyt == false then
+                demontoggleouyfyt = true
+                game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
+            end
+        else
+            if demontoggleouyfyt == true then
+                demontoggleouyfyt = false
+                game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"})
+            end
+        end
+    end
+end)
+-- Morphisto
+
+
 local honeytoggleouyfyt = false
 task.spawn(function()
     while wait(1) do
@@ -1309,14 +1329,15 @@ task.spawn(function() while task.wait() do
         
         if tonumber(pollenpercentage) < tonumber(kocmoc.vars.convertat) or (kocmoc.toggles.disableconversion == true) then -- when pollen is not full
             if not temptable.tokensfarm then
-                api.tween(2, fieldpos)
+                api.tween(2, fieldpos) -- Morphisto
                 task.wait(1)
                 temptable.tokensfarm = true
                 if kocmoc.toggles.autosprinkler then makesprinklers() end
             else
                 if kocmoc.toggles.killmondo then
                     while kocmoc.toggles.killmondo and game.Workspace.Monsters:FindFirstChild("Mondo Chick (Lvl 8)") and not temptable.started.vicious and not temptable.started.monsters do
-                        temptable.started.mondo = true
+                        if not temptable.started.mondo then 
+						temptable.started.mondo = true
                         while game.Workspace.Monsters:FindFirstChild("Mondo Chick (Lvl 8)") do
                             disableall()
                             game:GetService("Workspace").Map.Ground.HighBlock.CanCollide = false 
@@ -1336,7 +1357,7 @@ task.spawn(function() while task.wait() do
                 end
 				if (fieldposition-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
 					api.tween(2, fieldpos) -- Morphisto
-					task.wait(1)
+					task.wait(1) -- Morphisto
 					if kocmoc.toggles.autosprinkler then makesprinklers() end
 				end
 				getprioritytokens()
