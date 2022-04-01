@@ -357,11 +357,12 @@ local xlp = {
             if v:IsA("Model") then
                 if part == nil then
                     part = v
+		    print("part is nil")
                 end
                 if v:GetExtentsSize().Y > part:GetExtentsSize().Y then
 		    print(v:GetExtentsSize().Y.." > "..part:GetExtentsSize().Y)
                     part = v
-		    break
+		    print(part)
                 end
             end
         end
