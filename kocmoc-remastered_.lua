@@ -1287,12 +1287,12 @@ task.spawn(function() while task.wait() do
         end
         if kocmoc.toggles.farmpuffshrooms and game.Workspace.Happenings.Puffshrooms:FindFirstChildOfClass("Model") then
 		
-			if api.partwithnamepart("Puff", game.Workspace.Happenings.Puffshrooms) then
+			if api.partwithnamepart("Lvl 10", game.Workspace.Happenings.Puffshrooms) then
 				print("Puff found1")
 			end
-			if api.partwithnamepart("Puff", game.Workspace.Happenings.Puffshrooms:FindFirstChild()) then
-				print("Puff found2")
-			end
+			--if api.partwithnamepart("Puff", game.Workspace.Happenings.Puffshrooms:FindFirstChild()) then
+			--	print("Puff found2")
+			--end
             if api.partwithnamepart("Mythic", game.Workspace.Happenings.Puffshrooms) then
                 temptable.magnitude = 25 
                 fieldpos = api.partwithnamepart("Mythic", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
