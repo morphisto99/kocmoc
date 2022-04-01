@@ -1309,14 +1309,6 @@ task.spawn(function() while task.wait() do
 				print(fieldpos)
                 fieldposition = fieldpos.Position
             end
-			-- Morphisto
-			if (fieldposition-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
-				api.tween(2, fieldpos) -- Morphisto
-				task.wait(2)
-				if kocmoc.toggles.autosprinkler then makesprinklers() end
-			end
-			getprioritytokens()
-			-- Morphisto
         end
         
         if tonumber(pollenpercentage) < tonumber(kocmoc.vars.convertat) or (kocmoc.toggles.disableconversion == true) then -- when pollen is not full
@@ -1347,7 +1339,13 @@ task.spawn(function() while task.wait() do
                         temptable.started.mondo = false
                     end
                 end
-
+				if (fieldposition-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
+					api.tween(2, fieldpos) -- Morphisto
+					task.wait(2)
+					if kocmoc.toggles.autosprinkler and game.Workspace.Happenings.Puffshrooms:FindFirstChildOfClass("Model") then makesprinklers() end
+				end
+				getprioritytokens()
+				task.wait(2)
                 if kocmoc.toggles.avoidmobs then avoidmob() end
                 if kocmoc.toggles.farmclosestleaf then closestleaf() end
                 if kocmoc.toggles.farmbubbles then getbubble() end
