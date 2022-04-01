@@ -617,7 +617,7 @@ function converthoney()
 end
 -- Morphisto
 function getpuffshrooms()
-    for i,v in next, game.Workspace.Happenings.Puffshrooms:GetChildren() do
+    for i,v in next, game.Workspace.Happenings.Puffshrooms:FindFirstChild() do
 		print(v)
     end
 end
@@ -1275,7 +1275,7 @@ task.spawn(function() while task.wait() do
             fieldpos = temptable.sprouts.coords
         end
         if kocmoc.toggles.farmpuffshrooms and game.Workspace.Happenings.Puffshrooms:FindFirstChildOfClass("Model") then
-			for i,v in next, game.Workspace.Happenings.Puffshrooms:GetChildren() do
+			for i,v in next, game.Workspace.Happenings.Puffshrooms:FindFirstChild() do
 				print(v)
 			end
             if api.partwithnamepart("Mythic", game.Workspace.Happenings.Puffshrooms) then
@@ -1294,6 +1294,7 @@ task.spawn(function() while task.wait() do
                 temptable.magnitude = 25 
                 fieldpos = api.getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
                 fieldposition = fieldpos.Position
+
             end
         end
         
