@@ -1331,7 +1331,7 @@ task.spawn(function() while task.wait() do
         
         if tonumber(pollenpercentage) < tonumber(kocmoc.vars.convertat) or (kocmoc.toggles.disableconversion == true) then -- when pollen is not full
             if not temptable.tokensfarm then
-				print("tokensfarm")
+				--print("tokensfarm")
                 api.tween(2, fieldpos) -- Morphisto
                 task.wait(1)
                 temptable.tokensfarm = true
@@ -1357,14 +1357,15 @@ task.spawn(function() while task.wait() do
                         temptable.started.mondo = false
                     end
                 end
+				getprioritytokens()
+				task.wait(1)
 				if (fieldposition-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
 					print("test before tween")
 					api.tween(2, fieldpos) -- Morphisto
 					task.wait(1) -- Morphisto
 					if kocmoc.toggles.autosprinkler then makesprinklers() end
 				end
-				getprioritytokens()
-				task.wait(1)
+
                 if kocmoc.toggles.avoidmobs then avoidmob() end
                 if kocmoc.toggles.farmclosestleaf then closestleaf() end
                 if kocmoc.toggles.farmbubbles then getbubble() end
