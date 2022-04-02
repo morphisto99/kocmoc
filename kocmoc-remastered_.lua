@@ -56,7 +56,8 @@ getgenv().temptable = {
         mondo = false,
         windy = false,
         ant = false,
-        monsters = false
+        monsters = false,
+		quests = false -- Morphisto
     },
     detected = {
         vicious = false,
@@ -745,8 +746,10 @@ end
 function checkquestcooldown()
 	local cooldown = time() - tonumber(quest_time)
 	if cooldown > 300 then
+		temptable.started.quests = true
 		quest_time = time()
 		makequests()
+		temptable.started.quests = false
 	end
 end
 -- Morphisto
@@ -1528,7 +1531,7 @@ game:GetService("Workspace").NPCBees.ChildRemoved:Connect(function(v)
 end)
 
 task.spawn(function() while task.wait(0.1) do
-    if not temptable.converting then
+    if not temptable.converting and not temptable.started.quests and kocmoc.toggles.autofarm then -- Morphisto
         if kocmoc.toggles.autosamovar then
             game:GetService("ReplicatedStorage").Events.ToyEvent:FireServer("Samovar")
             platformm = game:GetService("Workspace").Toys.Samovar.Platform
