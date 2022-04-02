@@ -1357,8 +1357,7 @@ task.spawn(function() while task.wait() do
                         temptable.started.mondo = false
                     end
                 end
-				getprioritytokens()
-				task.wait(1)
+				getprioritytokens() -- Morphisto
 				if (fieldposition-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
 					print("test before tween")
 					api.tween(2, fieldpos) -- Morphisto
