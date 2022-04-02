@@ -1370,37 +1370,40 @@ task.spawn(function() while task.wait() do
             end
         elseif tonumber(pollenpercentage) >= tonumber(kocmoc.vars.convertat) then
             if not kocmoc.toggles.disableconversion then
-            temptable.tokensfarm = false
-            api.tween(2, game:GetService("Players").LocalPlayer.SpawnPos.Value * CFrame.fromEulerAnglesXYZ(0, 110, 0) + Vector3.new(0, 0, 9))
-            task.wait(2)
-            temptable.converting = true
-            repeat
-                converthoney()
-            until game.Players.LocalPlayer.CoreStats.Pollen.Value == 0 or not kocmoc.toggles.autofarm -- Morphisto
-            if kocmoc.toggles.convertballoons and gethiveballoon() then
-                task.wait(6)
-                repeat
-                    task.wait()
-                    converthoney()
-                until gethiveballoon() == false or not kocmoc.toggles.convertballoons or not kocmoc.toggles.autofarm -- Morphisto
-            end
-            temptable.converting = false
-            temptable.act = temptable.act + 1
-            task.wait(6)
-            if kocmoc.toggles.autoant and not game:GetService("Workspace").Toys["Ant Challenge"].Busy.Value and rtsg().Eggs.AntPass > 0 then farmant() end
-            --if kocmoc.toggles.autoquest then makequests() end -- Morphisto
-            if kocmoc.toggles.autoplanters then collectplanters() end
-            if kocmoc.toggles.autokillmobs then 
-                if temptable.act >= kocmoc.vars.monstertimer then
-                    temptable.started.monsters = true
-                    temptable.act = 0
-                    killmobs() 
-                    temptable.started.monsters = false
-                end
-            end
-        end
-    end
-end end end end)
+				temptable.tokensfarm = false
+				print("Test for Puffshroom after kill1")
+				api.tween(2, game:GetService("Players").LocalPlayer.SpawnPos.Value * CFrame.fromEulerAnglesXYZ(0, 110, 0) + Vector3.new(0, 0, 9))
+				task.wait(2)
+				temptable.converting = true
+				repeat
+					converthoney()
+				until game.Players.LocalPlayer.CoreStats.Pollen.Value == 0 or not kocmoc.toggles.autofarm -- Morphisto
+				print("Test for Puffshroom after kill2")
+				if kocmoc.toggles.convertballoons and gethiveballoon() then
+					task.wait(6)
+					repeat
+						task.wait()
+						converthoney()
+					until gethiveballoon() == false or not kocmoc.toggles.convertballoons or not kocmoc.toggles.autofarm -- Morphisto
+				end
+				temptable.converting = false
+				temptable.act = temptable.act + 1
+				task.wait(6)
+				if kocmoc.toggles.autoant and not game:GetService("Workspace").Toys["Ant Challenge"].Busy.Value and rtsg().Eggs.AntPass > 0 then farmant() end
+				--if kocmoc.toggles.autoquest then makequests() end -- Morphisto
+				if kocmoc.toggles.autoplanters then collectplanters() end
+				if kocmoc.toggles.autokillmobs then 
+					if temptable.act >= kocmoc.vars.monstertimer then
+						temptable.started.monsters = true
+						temptable.act = 0
+						killmobs() 
+						temptable.started.monsters = false
+					end
+				end
+			end
+		end
+	end
+end end end)
 
 task.spawn(function()
     while task.wait(1) do
