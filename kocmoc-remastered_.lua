@@ -1331,6 +1331,7 @@ task.spawn(function() while task.wait() do
         
         if tonumber(pollenpercentage) < tonumber(kocmoc.vars.convertat) or (kocmoc.toggles.disableconversion == true) then -- when pollen is not full
             if not temptable.tokensfarm then
+				print("tokensfarm")
                 api.tween(2, fieldpos) -- Morphisto
                 task.wait(1)
                 temptable.tokensfarm = true
@@ -1357,6 +1358,7 @@ task.spawn(function() while task.wait() do
                     end
                 end
 				if (fieldposition-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
+					print("test before tween")
 					api.tween(2, fieldpos) -- Morphisto
 					task.wait(1) -- Morphisto
 					if kocmoc.toggles.autosprinkler then makesprinklers() end
@@ -1371,17 +1373,16 @@ task.spawn(function() while task.wait() do
                 if not kocmoc.toggles.donotfarmtokens and done then gettoken() end
                 if not kocmoc.toggles.farmflower then getflower() end
             end
-        elseif tonumber(pollenpercentage) >= tonumber(kocmoc.vars.convertat) then
+			
+        elseif tonumber(pollenpercentage) >= tonumber(kocmoc.vars.convertat) then -- when pollen if full
             if not kocmoc.toggles.disableconversion then
 				temptable.tokensfarm = false
-				print("Test for Puffshroom after kill1")
 				api.tween(2, game:GetService("Players").LocalPlayer.SpawnPos.Value * CFrame.fromEulerAnglesXYZ(0, 110, 0) + Vector3.new(0, 0, 9))
 				task.wait(2)
 				temptable.converting = true
 				repeat
 					converthoney()
 				until game.Players.LocalPlayer.CoreStats.Pollen.Value == 0 or not kocmoc.toggles.autofarm -- Morphisto
-				print("Test for Puffshroom after kill2")
 				if kocmoc.toggles.convertballoons and gethiveballoon() then
 					task.wait(6)
 					repeat
