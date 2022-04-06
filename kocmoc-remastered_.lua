@@ -1299,18 +1299,23 @@ task.spawn(function() while task.wait() do
                             end
 						-- Morphisto
 						elseif string.find(text, "Rhino") and not string.find(text, "Complete!") then
+							print("Farming quest for Phinos")
 							fieldselected = game:GetService("Workspace").FlowerZones["Bamboo Field"]
                             break
-						elseif string.find(text, "Mantis") or string.find(textt, "Werewol") and not string.find(v.Text, 'Complete!') then
+						elseif string.find(text, "Mantis") or string.find(text, "Werewol") and not string.find(text, 'Complete!') then
+							print("Farming quest for Mantises")
 							fieldselected = game:GetService("Workspace").FlowerZones["Pine Tree Forest"]
                             break
 						elseif string.find(text, "Spider") and not string.find(text, "Complete!") then
+							print("Farming quest for Spiders")
 							fieldselected = game:GetService("Workspace").FlowerZones["Spider Field"]
                             break
 						elseif string.find(text, "Scorpion") and not string.find(text, "Complete!") then
+							print("Farming quest for Scorpions")
 							fieldselected = game:GetService("Workspace").FlowerZones["Rose Field"]
                             break
 						elseif string.find(text, "Lady") and not string.find(text, "Complete!") then
+							print("Farming quest for Lady Bugs")
 							fieldselected = game:GetService("Workspace").FlowerZones["Strawberry Field"]
                             break
                         end
