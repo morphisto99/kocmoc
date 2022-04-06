@@ -1297,20 +1297,20 @@ task.spawn(function() while task.wait() do
                                 fieldselected = game:GetService("Workspace").FlowerZones[kocmoc.bestfields.red]
                                 break
                             end
-							-- Morphisto
-						elseif string.find(v.Text, 'Rhino') and not string.find(v.Text, 'Complete!') Then
+						-- Morphisto
+						elseif string.find(text, "Rhino") and not string.find(text, "Complete!") then
 							fieldselected = game:GetService("Workspace").FlowerZones["Bamboo Field"]
                             break
-						elseif string.find(v.Text, 'Mantis') or string.find(v.Text, 'Werewol') and not string.find(v.Text, 'Complete!') Then
+						elseif string.find(text, "Mantis") or string.find(textt, "Werewol") and not string.find(v.Text, 'Complete!') then
 							fieldselected = game:GetService("Workspace").FlowerZones["Pine Tree Forest"]
                             break
-						elseif string.find(v.Text, 'Spider') and not string.find(v.Text, 'Complete!') Then
+						elseif string.find(text, "Spider") and not string.find(text, "Complete!") then
 							fieldselected = game:GetService("Workspace").FlowerZones["Spider Field"]
                             break
-						elseif string.find(v.Text, 'Scorpion') and not string.find(v.Text, 'Complete!') Then
+						elseif string.find(text, "Scorpion") and not string.find(text, "Complete!") then
 							fieldselected = game:GetService("Workspace").FlowerZones["Rose Field"]
                             break
-						elseif string.find(v.Text, 'Lady') and not string.find(v.Text, 'Complete!') Then
+						elseif string.find(text, "Lady") and not string.find(text, "Complete!") then
 							fieldselected = game:GetService("Workspace").FlowerZones["Strawberry Field"]
                             break
                         end
