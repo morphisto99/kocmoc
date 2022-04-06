@@ -44,7 +44,7 @@ getgenv().temptable = {
     shouldiconvertballoonnow = false,
     balloondetected = false,
     puffshroomdetected = false,
-    magnitude = 60,
+    magnitude = 65,
     blacklist = {
         ""
     },
@@ -1171,7 +1171,7 @@ end end)
 local demontoggleouyfyt = false
 task.spawn(function()
     while wait(1) do
-        if temptable.started.mondo or temptable.started.vicious or temptable.started.windy then
+        if temptable.started.mondo or temptable.started.vicious or temptable.started.windy or temptable.started.ant then
             if demontoggleouyfyt == false then
                 demontoggleouyfyt = true
                 game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
@@ -1359,10 +1359,8 @@ task.spawn(function() while task.wait() do
                 end
 				getprioritytokens() -- Morphisto
 				if (fieldposition-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
-					getprioritytokens()
-					task.wait(1)
 					api.tween(2, fieldpos) -- Morphisto
-					task.wait(1) -- Morphisto
+					task.wait(2) -- Morphisto
 					if kocmoc.toggles.autosprinkler then makesprinklers() end
 				end
 
