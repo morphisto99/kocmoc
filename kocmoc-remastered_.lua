@@ -745,7 +745,7 @@ end
 -- Morphisto
 function checkquestcooldown()
 	local cooldown = time() - tonumber(quest_time)
-	if cooldown > 300 then
+	if cooldown > 300 and not temptable.started.vicious then
 		temptable.started.quests = true
 		quest_time = time()
 		makequests()
@@ -1490,9 +1490,42 @@ local function collectorSteal()
 end
 
 task.spawn(function() while task.wait(0.001) do
-    if kocmoc.toggles.traincrab then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-259, 111.8, 496.4) * CFrame.fromEulerAnglesXYZ(0, 110, 90) temptable.float = true temptable.float = false end
-    if kocmoc.toggles.farmrares then for k,v in next, game.workspace.Collectibles:GetChildren() do if v.CFrame.YVector.Y == 1 then if v.Transparency == 0 then decal = v:FindFirstChildOfClass("Decal") for e,r in next, kocmoc.rares do if decal.Texture == r or decal.Texture == "rbxassetid://"..r then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame break end end end end end end
-    if kocmoc.toggles.autodig then if game.Players.LocalPlayer then if game.Players.LocalPlayer.Character then if game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool") then if game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool"):FindFirstChild("ClickEvent", true) then clickevent = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool"):FindFirstChild("ClickEvent", true) or nil end end end if clickevent then clickevent:FireServer() end end collectorSteal() workspace.NPCs.Onett.Onett["Porcelain Dipper"].ClickEvent:FireServer() end
+    if kocmoc.toggles.traincrab then
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-259, 111.8, 496.4) * CFrame.fromEulerAnglesXYZ(0, 110, 90)
+		temptable.float = true
+		temptable.float = false
+	end
+    if kocmoc.toggles.farmrares and not temptable.started.ant then
+		for k,v in next, game.workspace.Collectibles:GetChildren() do
+			if v.CFrame.YVector.Y == 1 then
+				if v.Transparency == 0 then
+					decal = v:FindFirstChildOfClass("Decal")
+					for e,r in next, kocmoc.rares do
+						if decal.Texture == r or decal.Texture == "rbxassetid://"..r then
+							game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
+							break
+						end
+					end
+				end
+			end
+		end
+	end
+    if kocmoc.toggles.autodig then
+		if game.Players.LocalPlayer then
+			if game.Players.LocalPlayer.Character then
+				if game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool") then
+					if game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool"):FindFirstChild("ClickEvent", true) then
+						clickevent = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool"):FindFirstChild("ClickEvent", true) or nil
+					end
+				end
+			end
+			if clickevent then
+				clickevent:FireServer()
+			end
+		end
+		collectorSteal()
+		workspace.NPCs.Onett.Onett["Porcelain Dipper"].ClickEvent:FireServer()
+	end
 end end)
 
 game:GetService("Workspace").Particles.Folder2.ChildAdded:Connect(function(child)
