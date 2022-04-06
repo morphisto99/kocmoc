@@ -1282,9 +1282,11 @@ task.spawn(function() while task.wait() do
                         if api.returnvalue(fieldstable, text) and not string.find(v.Text, "Complete!") and not api.findvalue(kocmoc.blacklistedfields, api.returnvalue(fieldstable, text)) then
                             d = api.returnvalue(fieldstable, text)
                             fieldselected = game:GetService("Workspace").FlowerZones[d]
+							print("test quest fieldstable="..d)
                             break
                         elseif api.returnvalue(pollentypes, text) and not string.find(v.Text, 'Complete!') then
                             d = api.returnvalue(pollentypes, text)
+							print("test quest pollentypes="..d)
                             if d == "Blue Flowers" or d == "Blue Pollen" then
                                 fieldselected = game:GetService("Workspace").FlowerZones[kocmoc.bestfields.blue]
                                 break
@@ -1296,6 +1298,7 @@ task.spawn(function() while task.wait() do
                                 break
                             end
                         end
+						print("quest text="..text)
                     end
                 end
             end
