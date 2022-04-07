@@ -1340,7 +1340,7 @@ task.spawn(function() while task.wait() do
             end
         else
             fieldselected = game:GetService("Workspace").FlowerZones[kocmoc.vars.field]
-			SwapMaskonField(kocmoc.vars.field)
+			--SwapMaskonField(kocmoc.vars.field)
         end
         fieldpos = CFrame.new(fieldselected.Position.X, fieldselected.Position.Y+3, fieldselected.Position.Z)
         fieldposition = fieldselected.Position
