@@ -1190,16 +1190,21 @@ end)
 
 -- Morphisto
 local currentField = ""
+currentMask = ""
 local function SwapMaskonField(ifield)
 	if kocmoc.toggles.swapmaskonfield and ifield ~= currentField then
 		if ifield == "Coconut Field" or ifield == "Spider Field" or ifield == "Pineapple Patch" or ifield == "Dandelion Field" or ifield == "Sunflower Field" or ifield == "Pumpkin Patch" then
 			game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Gummy Mask";Category="Accessory"})
+			currentMask = "Gummy Mask"
 		elseif ifield == "Rose Field" or ifield == "Pepper Patch" or ifield == "Mushroom Field" or ifield == "Strawberry Field" then
 			game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
+			currentMask = "Demon Mask"
 		elseif ifield == "Blue Flower Field" or ifield == "Pine Tree Forest" or ifield == "Stump Field" or ifield == "Bamboo Field" then
 			game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Diamond Mask";Category="Accessory"})
+			currentMask = "Diamond Mask"
 		else
 			game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"})
+			currentMask = kocmoc.vars.defmask
 		end
 		currentField = ifield
 	end
@@ -1210,17 +1215,21 @@ local honeytoggleouyfyt = false
 task.spawn(function()
     while wait(1) do
         if kocmoc.toggles.honeymaskconv == true then
-        if temptable.converting then
-            if honeytoggleouyfyt == false then
-                honeytoggleouyfyt = true
-                    game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Honey Mask";Category="Accessory"})
-            end
-        else
-            if honeytoggleouyfyt == true and not kocmoc.toggles.swapmaskonfield then
-                honeytoggleouyfyt = false
-                game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"})
-            end
-        end
+			if temptable.converting then
+				if honeytoggleouyfyt == false then
+					honeytoggleouyfyt = true
+					game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Honey Mask";Category="Accessory"})
+				end
+			else
+				if honeytoggleouyfyt == true then
+					honeytoggleouyfyt = false
+					if kocmoc.toggles.swapmaskonfield then
+						game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=currentMask;Category="Accessory"})
+					else
+						game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"})
+					end
+				end
+			end
         end
     end
 end)
