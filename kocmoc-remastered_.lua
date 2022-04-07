@@ -1191,21 +1191,14 @@ end)
 -- Morphisto
 local currentField = ""
 local function SwapMaskonField(ifield)
-	print("ifield="..ifield)
-	print("currentField="..currentField)
 	if kocmoc.toggles.swapmaskonfield and ifield ~= currentField then
-		print("ifield1="..ifield)
 		if ifield == "Coconut Field" or ifield == "Spider Field" or ifield == "Pineapple Patch" or ifield == "Dandelion Field" or ifield == "Sunflower Field" then
-			print("You're on White Field")
 			game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Gummy Mask";Category="Accessory"})
 		elseif ifield == "Rose Field" or ifield == "Pepper Patch" or ifield == "Mushroom Field" or ifield == "Strawberry Field" then
-			print("You're on Red Field")
 			game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
 		elseif ifield == "Blue Flower Field" or ifield == "Pine Tree Forest" or ifield == "Stump Field" or ifield == "Bamboo Field" then
-			print("You're on Blue Field")
 			game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Diamond Mask";Category="Accessory"})
 		else
-			print("You're on default Field")
 			game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"})
 		end
 		currentField = ifield
@@ -1223,7 +1216,7 @@ task.spawn(function()
                     game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Honey Mask";Category="Accessory"})
             end
         else
-            if honeytoggleouyfyt == true then
+            if honeytoggleouyfyt == true and not kocmoc.toggles.swapmaskonfield then
                 honeytoggleouyfyt = false
                 game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"})
             end
