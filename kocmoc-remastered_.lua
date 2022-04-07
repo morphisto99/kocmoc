@@ -1192,7 +1192,7 @@ end)
 local currentField = ""
 local function SwapMaskonField(ifield)
 	if kocmoc.toggles.swapmaskonfield and ifield ~= currentField then
-		if ifield == "Coconut Field" or ifield == "Spider Field" or ifield == "Pineapple Patch" or ifield == "Dandelion Field" or ifield == "Sunflower Field" then
+		if ifield == "Coconut Field" or ifield == "Spider Field" or ifield == "Pineapple Patch" or ifield == "Dandelion Field" or ifield == "Sunflower Field" or ifield == "Pumpkin Patch" then
 			game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Gummy Mask";Category="Accessory"})
 		elseif ifield == "Rose Field" or ifield == "Pepper Patch" or ifield == "Mushroom Field" or ifield == "Strawberry Field" then
 			game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
@@ -1310,17 +1310,17 @@ task.spawn(function() while task.wait() do
 							--print("test quest pollentypes="..d)
                             if d == "Blue Flowers" or d == "Blue Pollen" then
                                 fieldselected = game:GetService("Workspace").FlowerZones[kocmoc.bestfields.blue]
-								print("test quest pollentypes field ="..kocmoc.bestfields.blue)
+								--print("test quest pollentypes field ="..kocmoc.bestfields.blue)
 								SwapMaskonField(kocmoc.bestfields.blue)
                                 break
                             elseif d == "White Flowers" or d == "White Pollen" then
                                 fieldselected = game:GetService("Workspace").FlowerZones[kocmoc.bestfields.white]
-								print("test quest pollentypes field ="..kocmoc.bestfields.white)
+								--print("test quest pollentypes field ="..kocmoc.bestfields.white)
 								SwapMaskonField(kocmoc.bestfields.white)
                                 break
                             elseif d == "Red Flowers" or d == "Red Pollen" then
                                 fieldselected = game:GetService("Workspace").FlowerZones[kocmoc.bestfields.red]
-								print("test quest pollentypes field ="..kocmoc.bestfields.red)
+								--print("test quest pollentypes field ="..kocmoc.bestfields.red)
 								SwapMaskonField(kocmoc.bestfields.red)
                                 break
                             end
@@ -1328,31 +1328,30 @@ task.spawn(function() while task.wait() do
 						elseif string.find(text, "Rhino") and not string.find(text, "Complete!") then
 							--print("Farming quest for Phinos")
 							fieldselected = game:GetService("Workspace").FlowerZones["Bamboo Field"]
-							--SwapMaskonField("Bamboo Field")
+							SwapMaskonField("Bamboo Field")
                             break
 						elseif string.find(text, "Mantis") or string.find(text, "Werewol") and not string.find(text, 'Complete!') then
 							--print("Farming quest for Mantises")
 							fieldselected = game:GetService("Workspace").FlowerZones["Pine Tree Forest"]
-							--SwapMaskonField("Pine Tree Forest")
+							SwapMaskonField("Pine Tree Forest")
                             break
 						elseif string.find(text, "Spider") and not string.find(text, "Complete!") then
 							--print("Farming quest for Spiders")
 							fieldselected = game:GetService("Workspace").FlowerZones["Spider Field"]
-							--SwapMaskonField("Spider Field")
+							SwapMaskonField("Spider Field")
                             break
 						elseif string.find(text, "Scorpion") and not string.find(text, "Complete!") then
 							--print("Farming quest for Scorpions")
 							fieldselected = game:GetService("Workspace").FlowerZones["Rose Field"]
-							--SwapMaskonField("Rose Field")
+							SwapMaskonField("Rose Field")
                             break
 						elseif string.find(text, "Lady") and not string.find(text, "Complete!") then
 							--print("Farming quest for Lady Bugs")
 							fieldselected = game:GetService("Workspace").FlowerZones["Strawberry Field"]
-							--SwapMaskonField("Strawberry Field")
+							SwapMaskonField("Strawberry Field")
                             break
                         end
 						-- Morphisto
-						--print("quest text="..text)
                     end
                 end
             end
