@@ -1191,8 +1191,9 @@ end)
 -- Morphisto
 local currentField = ""
 local function SwapMaskonField(ifield)
-	print("swapmaskonfield="..kocmoc.toggles.swapmaskonfield)
+	--print("swapmaskonfield="..kocmoc.toggles.swapmaskonfield)
 	if kocmoc.toggles.swapmaskonfield and ifield ~= currentField then
+		print(kocmoc.toggles.swapmaskonfield)
 		if ifield == "Coconut Field" or ifield == "Spider Field" or ifield == "Pineapple Patch" or ifield == "Dandelion Field" or ifield == "Sunflower Field" then
 			game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Gummy Mask";Category="Accessory"})
 		elseif ifield == "Rose Field" or ifield == "Pepper Patch" or ifield == "Mushroom Field" or ifield == "Strawberry Field" then
