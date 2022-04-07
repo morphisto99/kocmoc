@@ -1532,14 +1532,14 @@ end
 -- Morphisto
 local function SwapMaskonField(field)
 	if kocmoc.toggles.swapmaskonfield then
-		if field == "Coconut Field" or field == "Spider Field" or field == "Pineapple Patch" or field == "Dandelion Patch" or field == "Sunflower Field" then
+		if field == "Coconut Field" or field == "Spider Field" or field == "Pineapple Patch" or field == "Dandelion Field" or field == "Sunflower Field" then
 			game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Gummy Mask";Category="Accessory"})
 		elseif field == "Rose Field" or field == "Pepper Patch" or field == "Mushroom Field" or field == "Strawberry Field" then
 			game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
 		elseif field == "Blue Flower Field" or field == "Pine Tree Forest" or field == "Stump Field" or field == "Bamboo Field" then
 			game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Diamond Mask";Category="Accessory"})
-		else
-			game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"})
+		--else
+			--game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"})
 		end
 	end
 end
