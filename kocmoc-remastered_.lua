@@ -1359,7 +1359,7 @@ task.spawn(function() while task.wait() do
             end
         else
             fieldselected = game:GetService("Workspace").FlowerZones[kocmoc.vars.field] -- autofarm field
-			if kocmoc.toggles.swapmaskonfield then SwapMaskonField(kocmoc.vars.field) -- Morphisto
+			if kocmoc.toggles.swapmaskonfield then SwapMaskonField(kocmoc.vars.field) end -- Morphisto
         end
         fieldpos = CFrame.new(fieldselected.Position.X, fieldselected.Position.Y+3, fieldselected.Position.Z)
         fieldposition = fieldselected.Position
