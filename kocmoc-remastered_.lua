@@ -1284,8 +1284,8 @@ task.spawn(function() while task.wait() do
                         if api.returnvalue(fieldstable, text) and not string.find(v.Text, "Complete!") and not api.findvalue(kocmoc.blacklistedfields, api.returnvalue(fieldstable, text)) then
                             d = api.returnvalue(fieldstable, text)
                             fieldselected = game:GetService("Workspace").FlowerZones[d]
-							SwapMaskonField(d)
-							--print("test quest fieldstable="..d)
+							--SwapMaskonField(d)
+							print("test quest fieldstable="..d)
                             break
                         elseif api.returnvalue(pollentypes, text) and not string.find(v.Text, 'Complete!') then
                             d = api.returnvalue(pollentypes, text)
@@ -1340,6 +1340,7 @@ task.spawn(function() while task.wait() do
             end
         else
             fieldselected = game:GetService("Workspace").FlowerZones[kocmoc.vars.field]
+			print(kocmoc.vars.field)
 			--SwapMaskonField(kocmoc.vars.field)
         end
         fieldpos = CFrame.new(fieldselected.Position.X, fieldselected.Position.Y+3, fieldselected.Position.Z)
@@ -1530,16 +1531,16 @@ local function collectorSteal()
 end
 
 -- Morphisto
-local function SwapMaskonField(field)
+local function SwapMaskonField(ifield)
 	if kocmoc.toggles.swapmaskonfield then
-		if field == "Coconut Field" or field == "Spider Field" or field == "Pineapple Patch" or field == "Dandelion Field" or field == "Sunflower Field" then
+		if ifield == "Coconut Field" or ifield == "Spider Field" or ifield == "Pineapple Patch" or ifield == "Dandelion Field" or ifield == "Sunflower Field" then
 			game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Gummy Mask";Category="Accessory"})
-		elseif field == "Rose Field" or field == "Pepper Patch" or field == "Mushroom Field" or field == "Strawberry Field" then
+		elseif ifield == "Rose Field" or ifield == "Pepper Patch" or ifield == "Mushroom Field" or ifield == "Strawberry Field" then
 			game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
-		elseif field == "Blue Flower Field" or field == "Pine Tree Forest" or field == "Stump Field" or field == "Bamboo Field" then
+		elseif ifield == "Blue Flower Field" or ifield == "Pine Tree Forest" or ifield == "Stump Field" or ifield == "Bamboo Field" then
 			game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Diamond Mask";Category="Accessory"})
-		--else
-			--game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"})
+		else
+			game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"})
 		end
 	end
 end
