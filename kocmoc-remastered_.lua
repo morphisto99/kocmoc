@@ -990,7 +990,7 @@ uiclock = farmt:CreateToggle("Auto Wealth Clock", nil, function(State) kocmoc.to
 farmt:CreateToggle("Auto Gingerbread Bears", nil, function(State) kocmoc.toggles.collectgingerbreads = State end)
 farmt:CreateToggle("Auto Samovar", nil, function(State) kocmoc.toggles.autosamovar = State end)
 farmt:CreateToggle("Auto Stockings", nil, function(State) kocmoc.toggles.autostockings = State end)
-uiautoplanters = farmt:CreateToggle("Auto Planters", nil, function(State) kocmoc.toggles.autoplanters = State end)
+uiautoplanters = farmt:CreateToggle("Auto Planters", nil, function(State) kocmoc.toggles.autoplanters = State end):AddToolTip("Will re-plant your planters after converting, if they hit 100%")
 farmt:CreateToggle("Auto Honey Candles", nil, function(State) kocmoc.toggles.autocandles = State end)
 farmt:CreateToggle("Auto Beesmas Feast", nil, function(State) kocmoc.toggles.autofeast = State end)
 farmt:CreateToggle("Auto Onett's Lid Art", nil, function(State) kocmoc.toggles.autoonettart = State end)
@@ -1813,7 +1813,7 @@ if kocmoc.vars.defmask ~= "" then uidefmask:SetOption(kocmoc.vars.defmask) end -
 if kocmoc.toggles.autodispense then uiautodispense:SetState(true) end -- Morphisto
 if kocmoc.toggles.autoboosters then uiautoboosters:SetState(true) end -- Morphisto
 if kocmoc.toggles.clock then uiclock:SetState(true) end -- Morphisto
-if kocmoc.toggles.autoplanters then uiautoplanters:SetState(true) end -- Morphisto
+--if kocmoc.toggles.autoplanters then uiautoplanters:SetState(true) end -- Morphisto
 if kocmoc.toggles.freeantpass then uifreeantpass:SetState(true) end -- Morphisto
 if kocmoc.toggles.farmsprouts then uifarmsprouts:SetState(true) end -- Morphisto
 if kocmoc.toggles.farmpuffshrooms then uifarmpuffshrooms:SetState(true) end -- Morphisto
