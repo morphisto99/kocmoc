@@ -960,7 +960,10 @@ local farmo = farmtab:CreateSection("Farming")
 local fielddropdown = farmo:CreateDropdown("Field", fieldstable, function(String) kocmoc.vars.field = String end) fielddropdown:SetOption(fieldstable[1])
 convertatslider = farmo:CreateSlider("Convert At", 0, 100, 100, false, function(Value) kocmoc.vars.convertat = Value end)
 local autofarmtoggle = farmo:CreateToggle("Autofarm [⚙]", nil, function(State) kocmoc.toggles.autofarm = State end) autofarmtoggle:CreateKeybind("U", function(Key) end)
-farmo:CreateToggle("Autodig", nil, function(State) kocmoc.toggles.autodig = State end)
+if kocmoc.toggles.autofarm then autofarmtoggle:SetState(true) end -- Morphisto
+
+local uiautodig = farmo:CreateToggle("Autodig", nil, function(State) kocmoc.toggles.autodig = State end)
+if kocmoc.toggles.autodig then uiautodig:SetState(true) end -- Morphisto
 farmo:CreateDropdown("Autodig Mode", {"Normal","Collector Steal"}, function(Option)  kocmoc.vars.autodigmode = Option end)
 
 local contt = farmtab:CreateSection("Container Tools")
@@ -984,7 +987,8 @@ end)
 farmo:CreateDropdown("Default Mask",MasksTable,function(val)
     kocmoc.vars.defmask = val
 end)
-local uimaskonfield = farmo:CreateToggle("Swap Mask on Field", nil, function(State) kocmoc.toggles.swapmaskonfield = State end) uimaskonfield:SetState(true) -- Morphisto
+local uimaskonfield = farmo:CreateToggle("Swap Mask on Field", nil, function(State) kocmoc.toggles.swapmaskonfield = State end)
+if kocmoc.toggles.swapmaskonfield then uimaskonfield:SetState(true) end -- Morphisto
 
 --farmo:CreateToggle("Farm Closest Leaves", nil, function(State) kocmoc.toggles.farmclosestleaf = State end)
 
@@ -1223,7 +1227,7 @@ task.spawn(function()
 				end
 			else
 				if honeytoggleouyfyt == true then
-					print("honeytoggleouyfyt=true")
+					--print("honeytoggleouyfyt=true")
 					honeytoggleouyfyt = false
 					if kocmoc.toggles.swapmaskonfield then
 						game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=currentMask;Category="Accessory"})
