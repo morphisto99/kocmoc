@@ -1223,6 +1223,7 @@ task.spawn(function()
 				end
 			else
 				if honeytoggleouyfyt == true then
+					print("honeytoggleouyfyt=true")
 					honeytoggleouyfyt = false
 					if kocmoc.toggles.swapmaskonfield then
 						game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=currentMask;Category="Accessory"})
