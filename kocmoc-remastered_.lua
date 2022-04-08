@@ -1813,7 +1813,7 @@ if kocmoc.vars.defmask ~= "" then uidefmask:SetOption(kocmoc.vars.defmask) end -
 if kocmoc.toggles.autodispense then uiautodispense:SetState(true) end -- Morphisto
 if kocmoc.toggles.autoboosters then uiautoboosters:SetState(true) end -- Morphisto
 if kocmoc.toggles.clock then uiclock:SetState(true) end -- Morphisto
-if kocmoc.toggles.autoplanters then uiautoplanters:SetState(true) end -- Morphisto
+--if kocmoc.toggles.autoplanters then uiautoplanters:SetState(true) end -- Morphisto
 if kocmoc.toggles.freeantpass then uifreeantpass:SetState(true) end -- Morphisto
 if kocmoc.toggles.farmsprouts then uifarmsprouts:SetState(true) end -- Morphisto
 if kocmoc.toggles.farmpuffshrooms then uifarmpuffshrooms:SetState(true) end -- Morphisto
