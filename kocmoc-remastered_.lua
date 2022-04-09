@@ -651,19 +651,15 @@ end
 -- Morphisto
 
 -- Morphisto
-function killquestmobs()
+function killquestmobs(mobsname)
     for i,v in pairs(game:GetService("Workspace").MonsterSpawners:GetChildren()) do
         if v:FindFirstChild("Territory") then
-            if v.Name ~= "Commando Chick" and v.Name ~= "CoconutCrab" and v.Name ~= "StumpSnail" and v.Name ~= "TunnelBear" and v.Name ~= "King Beetle Cave" and not v.Name:match("CaveMonster") and not v:FindFirstChild("TimerLabel", true).Visible then
-                if v.Name:match("Werewolf") then
+            if v.Name:match(mobsname) and v.Name ~= "Commando Chick" and v.Name ~= "CoconutCrab" and v.Name ~= "StumpSnail" and v.Name ~= "TunnelBear" and v.Name ~= "King Beetle Cave" and not v.Name:match("CaveMonster") and not v:FindFirstChild("TimerLabel", true).Visible then
+				if v.Name:match("Werewolf") then
                     monsterpart = game:GetService("Workspace").Territories.WerewolfPlateau.w
-                elseif v.Name:match("Mushroom") then
-                    monsterpart = game:GetService("Workspace").Territories.MushroomZone.Part
-                else
-                    monsterpart = v.Territory.Value
-                end
-				print(v.Name)
-				print(monsterpart)
+				else
+					monsterpart = v.Territory.Value
+				end
                 api.humanoidrootpart().CFrame = monsterpart.CFrame
                 repeat api.humanoidrootpart().CFrame = monsterpart.CFrame avoidmob() task.wait(1) until v:FindFirstChild("TimerLabel", true).Visible
                 for i = 1, 4 do gettoken(monsterpart.Position) end
@@ -1372,36 +1368,36 @@ task.spawn(function() while task.wait() do
 						-- Morphisto
 						elseif string.find(text, "Rhino") and not string.find(text, "Complete!") then
 							--print("Farming quest for Phinos")
-							
-							fieldselected = game:GetService("Workspace").FlowerZones["Bamboo Field"]
+							killquestmobs("Rhino")
+							--fieldselected = game:GetService("Workspace").FlowerZones["Bamboo Field"]
 							SwapMaskonField("Bamboo Field")
                             break
 						elseif string.find(text, "Mantis") and not string.find(text, 'Complete!') then
-							
-							fieldselected = game:GetService("Workspace").FlowerZones["Pine Tree Forest"]
+							killquestmobs("Mantis")
+							--fieldselected = game:GetService("Workspace").FlowerZones["Pine Tree Forest"]
 							SwapMaskonField("Pine Tree Forest")						
 						elseif string.find(text, "Werewol") and not string.find(text, 'Complete!') then
 							--print("Farming quest for Mantises")
-							
-							fieldselected = game:GetService("Workspace").FlowerZones["Pine Tree Forest"]
+							killquestmobs("Werewolf")
+							--fieldselected = game:GetService("Workspace").FlowerZones["Pine Tree Forest"]
 							SwapMaskonField("Pine Tree Forest")
                             break
 						elseif string.find(text, "Spider") and not string.find(text, "Complete!") then
-							
+							killquestmobs("Spider")
 							--print("Farming quest for Spiders")
-							fieldselected = game:GetService("Workspace").FlowerZones["Spider Field"]
+							--fieldselected = game:GetService("Workspace").FlowerZones["Spider Field"]
 							SwapMaskonField("Spider Field")
                             break
 						elseif string.find(text, "Scorpion") and not string.find(text, "Complete!") then
 							--print("Farming quest for Scorpions")
-							
-							fieldselected = game:GetService("Workspace").FlowerZones["Rose Field"]
+							killquestmobs("Scorpion")
+							--fieldselected = game:GetService("Workspace").FlowerZones["Rose Field"]
 							SwapMaskonField("Rose Field")
                             break
 						elseif string.find(text, "Lady") and not string.find(text, "Complete!") then
-							
+							killquestmobs("Ladybug")
 							--print("Farming quest for Lady Bugs")
-							fieldselected = game:GetService("Workspace").FlowerZones["Strawberry Field"]
+							--fieldselected = game:GetService("Workspace").FlowerZones["Strawberry Field"]
 							SwapMaskonField("Strawberry Field")
                             break
                         end
