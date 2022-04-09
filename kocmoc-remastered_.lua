@@ -650,6 +650,30 @@ end
 
 -- Morphisto
 
+-- Morphisto
+function killquestmobs()
+    for i,v in pairs(game:GetService("Workspace").MonsterSpawners:GetChildren()) do
+        if v:FindFirstChild("Territory") then
+			print(v.Name)
+            if v.Name ~= "Commando Chick" and v.Name ~= "CoconutCrab" and v.Name ~= "StumpSnail" and v.Name ~= "TunnelBear" and v.Name ~= "King Beetle Cave" and not v.Name:match("CaveMonster") and not v:FindFirstChild("TimerLabel", true).Visible then
+                if v.Name:match("Werewolf") then
+                    monsterpart = game:GetService("Workspace").Territories.WerewolfPlateau.w
+                elseif v.Name:match("Mushroom") then
+                    monsterpart = game:GetService("Workspace").Territories.MushroomZone.Part
+                else
+                    monsterpart = v.Territory.Value
+                end
+                api.humanoidrootpart().CFrame = monsterpart.CFrame
+                repeat api.humanoidrootpart().CFrame = monsterpart.CFrame avoidmob() task.wait(1) until v:FindFirstChild("TimerLabel", true).Visible
+                for i = 1, 4 do gettoken(monsterpart.Position) end
+            end
+        end
+    end
+end
+-- Morphisto
+
+
+
 function closestleaf()
     for i,v in next, game.Workspace.Flowers:GetChildren() do
         if temptable.running == false and tonumber((v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude) < temptable.magnitude/1.4 then
@@ -1044,7 +1068,7 @@ wayp:CreateDropdown("Monster Teleports", spawnerstable, function(Option) d = gam
 wayp:CreateDropdown("Toys Teleports", toystable, function(Option) d = game:GetService("Workspace").Toys:FindFirstChild(Option).Platform game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(d.Position.X, d.Position.Y+3, d.Position.Z) end)
 wayp:CreateButton("Teleport to hive", function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Players").LocalPlayer.SpawnPos.Value end)
 wayp:CreateButton("print location", function() print(game.Players.LocalPlayer.Character.HumanoidRootPart.Position) end) -- Morphisto
-wayp:CreateButton("check Puffshroom", function() getpuffshrooms() end) 
+wayp:CreateButton("check Puffshroom", function() killquestmobs() end) 
 --wayp:CreateButton("check time2", function() local cooldown = require(game.ReplicatedStorage.OsTime)() print(cooldown) end) 
 wayp:CreateDropdown("NPC Teleports", {"Black Bear","Brown Bear","Bucko Bee","Honey Bee","Panda Bear","Polar Bear","Riley Bee","Science Bear","Spirit Bear","Science Bear","Mother Bear","Sun Bear","Stick Bug","Onett","Gummy Lair","Bubble Bee Man","Meteor Shower","Demon Mask","Diamond Mask"}, function(Option) game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = npctable[Option] end) -- Morphisto
 
@@ -1347,34 +1371,34 @@ task.spawn(function() while task.wait() do
 						-- Morphisto
 						elseif string.find(text, "Rhino") and not string.find(text, "Complete!") then
 							--print("Farming quest for Phinos")
-							chkMobsCooldown("Rhino")
+							
 							fieldselected = game:GetService("Workspace").FlowerZones["Bamboo Field"]
 							SwapMaskonField("Bamboo Field")
                             break
 						elseif string.find(text, "Mantis") and not string.find(text, 'Complete!') then
-							chkMobsCooldown("Mantis")
+							
 							fieldselected = game:GetService("Workspace").FlowerZones["Pine Tree Forest"]
 							SwapMaskonField("Pine Tree Forest")						
 						elseif string.find(text, "Werewol") and not string.find(text, 'Complete!') then
 							--print("Farming quest for Mantises")
-							chkMobsCooldown("Werewolf")
+							
 							fieldselected = game:GetService("Workspace").FlowerZones["Pine Tree Forest"]
 							SwapMaskonField("Pine Tree Forest")
                             break
 						elseif string.find(text, "Spider") and not string.find(text, "Complete!") then
-							chkMobsCooldown("Spider")
+							
 							--print("Farming quest for Spiders")
 							fieldselected = game:GetService("Workspace").FlowerZones["Spider Field"]
 							SwapMaskonField("Spider Field")
                             break
 						elseif string.find(text, "Scorpion") and not string.find(text, "Complete!") then
 							--print("Farming quest for Scorpions")
-							chkMobsCooldown("Scorpion")
+							
 							fieldselected = game:GetService("Workspace").FlowerZones["Rose Field"]
 							SwapMaskonField("Rose Field")
                             break
 						elseif string.find(text, "Lady") and not string.find(text, "Complete!") then
-							chkMobsCooldown("Lady Bug")
+							
 							--print("Farming quest for Lady Bugs")
 							fieldselected = game:GetService("Workspace").FlowerZones["Strawberry Field"]
 							SwapMaskonField("Strawberry Field")
