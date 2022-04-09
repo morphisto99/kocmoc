@@ -642,7 +642,7 @@ end
 local function isWerewolfOnCooldown()
     local isOnCooldown = false
     local v1 = require(game.ReplicatedStorage.ClientStatCache):Get();
-	print(require(game.ReplicatedStorage.StatTools).GetLastCooldownTime(v1, "WindShrine"))
+	print(require(game.ReplicatedStorage.StatTools).GetLastCooldownTime(v1, "Werewolf"))
     local cooldown = 3600 - (require(game.ReplicatedStorage.OsTime)() - (require(game.ReplicatedStorage.StatTools).GetLastCooldownTime(v1, "WindShrine")))
 	print("cooldown="..cooldown)
     if cooldown > 0 then isOnCooldown = true end
