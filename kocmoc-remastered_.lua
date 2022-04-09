@@ -639,11 +639,10 @@ end
 
 -- Morphisto
 
-local function isWerewolfOnCooldown()
+local function chkMobsCooldown(mobsname)
     local isOnCooldown = false
     local v1 = require(game.ReplicatedStorage.ClientStatCache):Get();
-	print(require(game.ReplicatedStorage.StatTools).GetLastCooldownTime(v1, "Werewolf"))
-    local cooldown = 3600 - (require(game.ReplicatedStorage.OsTime)() - (require(game.ReplicatedStorage.StatTools).GetLastCooldownTime(v1, "WindShrine")))
+    local cooldown = 3600 - (require(game.ReplicatedStorage.OsTime)() - (require(game.ReplicatedStorage.StatTools).GetLastCooldownTime(v1, mobsname)))
 	print("cooldown="..cooldown)
     if cooldown > 0 then isOnCooldown = true end
     return isOnCooldown
@@ -1045,7 +1044,7 @@ wayp:CreateDropdown("Monster Teleports", spawnerstable, function(Option) d = gam
 wayp:CreateDropdown("Toys Teleports", toystable, function(Option) d = game:GetService("Workspace").Toys:FindFirstChild(Option).Platform game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(d.Position.X, d.Position.Y+3, d.Position.Z) end)
 wayp:CreateButton("Teleport to hive", function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Players").LocalPlayer.SpawnPos.Value end)
 wayp:CreateButton("print location", function() print(game.Players.LocalPlayer.Character.HumanoidRootPart.Position) end) -- Morphisto
-wayp:CreateButton("check Puffshroom", function() isWerewolfOnCooldown() end) 
+wayp:CreateButton("check Puffshroom", function() getpuffshrooms() end) 
 --wayp:CreateButton("check time2", function() local cooldown = require(game.ReplicatedStorage.OsTime)() print(cooldown) end) 
 wayp:CreateDropdown("NPC Teleports", {"Black Bear","Brown Bear","Bucko Bee","Honey Bee","Panda Bear","Polar Bear","Riley Bee","Science Bear","Spirit Bear","Science Bear","Mother Bear","Sun Bear","Stick Bug","Onett","Gummy Lair","Bubble Bee Man","Meteor Shower","Demon Mask","Diamond Mask"}, function(Option) game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = npctable[Option] end) -- Morphisto
 
@@ -1348,25 +1347,34 @@ task.spawn(function() while task.wait() do
 						-- Morphisto
 						elseif string.find(text, "Rhino") and not string.find(text, "Complete!") then
 							--print("Farming quest for Phinos")
+							chkMobsCooldown("Rhino")
 							fieldselected = game:GetService("Workspace").FlowerZones["Bamboo Field"]
 							SwapMaskonField("Bamboo Field")
                             break
-						elseif string.find(text, "Mantis") or string.find(text, "Werewol") and not string.find(text, 'Complete!') then
+						elseif string.find(text, "Mantis") and not string.find(text, 'Complete!') then
+							chkMobsCooldown("Mantis")
+							fieldselected = game:GetService("Workspace").FlowerZones["Pine Tree Forest"]
+							SwapMaskonField("Pine Tree Forest")						
+						elseif string.find(text, "Werewol") and not string.find(text, 'Complete!') then
 							--print("Farming quest for Mantises")
+							chkMobsCooldown("Werewolf")
 							fieldselected = game:GetService("Workspace").FlowerZones["Pine Tree Forest"]
 							SwapMaskonField("Pine Tree Forest")
                             break
 						elseif string.find(text, "Spider") and not string.find(text, "Complete!") then
+							chkMobsCooldown("Spider")
 							--print("Farming quest for Spiders")
 							fieldselected = game:GetService("Workspace").FlowerZones["Spider Field"]
 							SwapMaskonField("Spider Field")
                             break
 						elseif string.find(text, "Scorpion") and not string.find(text, "Complete!") then
 							--print("Farming quest for Scorpions")
+							chkMobsCooldown("Scorpion")
 							fieldselected = game:GetService("Workspace").FlowerZones["Rose Field"]
 							SwapMaskonField("Rose Field")
                             break
 						elseif string.find(text, "Lady") and not string.find(text, "Complete!") then
+							chkMobsCooldown("Lady Bug")
 							--print("Farming quest for Lady Bugs")
 							fieldselected = game:GetService("Workspace").FlowerZones["Strawberry Field"]
 							SwapMaskonField("Strawberry Field")
