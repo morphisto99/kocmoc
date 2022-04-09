@@ -662,6 +662,7 @@ function killquestmobs()
                 else
                     monsterpart = v.Territory.Value
                 end
+				print(v.Name)
 				print(monsterpart)
                 api.humanoidrootpart().CFrame = monsterpart.CFrame
                 repeat api.humanoidrootpart().CFrame = monsterpart.CFrame avoidmob() task.wait(1) until v:FindFirstChild("TimerLabel", true).Visible
