@@ -662,12 +662,12 @@ function killquestmobs(mobsname)
 				end
                 api.humanoidrootpart().CFrame = monsterpart.CFrame
 				local count = 0;
-                repeat api.humanoidrootpart().CFrame = monsterpart.CFrame avoidmob()
+                repeat
+					api.humanoidrootpart().CFrame = monsterpart.CFrame
+					avoidmob()
 					task.wait(1)
 					count = count + 1
-					print("count="..count)
-					--if count > 14 then break end
-				until v:FindFirstChild("TimerLabel", true).Visible or not kocmoc.toggles.autofarm or count > 14
+				until v:FindFirstChild("TimerLabel", true).Visible or not kocmoc.toggles.autofarm or count > 30
                 for i = 1, 4 do gettoken(monsterpart.Position) end
             end
         end
