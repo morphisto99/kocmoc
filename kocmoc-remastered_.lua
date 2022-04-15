@@ -642,7 +642,7 @@ end
 local function chkMobsCooldown(mobsname, mobtime)
     local isOnCooldown = false
     local v1 = require(game.ReplicatedStorage.ClientStatCache):Get();
-	print(mobsname.. "="..v1)
+	print(mobsname.."="..v1)
     local cooldown = mobtime - (require(game.ReplicatedStorage.OsTime)() - (require(game.ReplicatedStorage.StatTools).GetLastCooldownTime(v1, mobsname)))
 	--print(mobsname.." cooldown="..cooldown)
     if cooldown > 0 then isOnCooldown = true end
