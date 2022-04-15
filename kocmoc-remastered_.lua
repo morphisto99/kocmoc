@@ -661,7 +661,9 @@ function killquestmobs(mobsname)
 					monsterpart = v.Territory.Value
 				end
                 api.humanoidrootpart().CFrame = monsterpart.CFrame
-                repeat api.humanoidrootpart().CFrame = monsterpart.CFrame avoidmob() task.wait(1) until v:FindFirstChild("TimerLabel", true).Visible
+                repeat api.humanoidrootpart().CFrame = monsterpart.CFrame avoidmob()
+					task.wait(1)
+				until v:FindFirstChild("TimerLabel", true).Visible or not kocmoc.toggles.autofarm
                 for i = 1, 4 do gettoken(monsterpart.Position) end
             end
         end
