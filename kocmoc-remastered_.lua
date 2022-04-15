@@ -652,7 +652,6 @@ end
 
 -- Morphisto
 function killquestmobs(mobsname)
-	local count = 0
     for i,v in pairs(game:GetService("Workspace").MonsterSpawners:GetChildren()) do
         if v:FindFirstChild("Territory") then
             if v.Name:match(mobsname) and v.Name ~= "Commando Chick" and v.Name ~= "CoconutCrab" and v.Name ~= "StumpSnail" and v.Name ~= "TunnelBear" and v.Name ~= "King Beetle Cave" and not v.Name:match("CaveMonster") and not v:FindFirstChild("TimerLabel", true).Visible then
@@ -662,11 +661,13 @@ function killquestmobs(mobsname)
 					monsterpart = v.Territory.Value
 				end
                 api.humanoidrootpart().CFrame = monsterpart.CFrame
+				local count = 0;
                 repeat api.humanoidrootpart().CFrame = monsterpart.CFrame avoidmob()
 					task.wait(1)
 					count = count + 1
-					if mcount > 14 then break end
-				until v:FindFirstChild("TimerLabel", true).Visible or not kocmoc.toggles.autofarm
+					print("count="..count)
+					--if count > 14 then break end
+				until v:FindFirstChild("TimerLabel", true).Visible or not kocmoc.toggles.autofarm or count > 14
                 for i = 1, 4 do gettoken(monsterpart.Position) end
             end
         end
