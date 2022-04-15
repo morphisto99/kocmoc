@@ -639,12 +639,11 @@ end
 
 -- Morphisto
 
-local function chkMobsCooldown(mobsname, mobtime)
+local function chkMobsCooldown(mobsname)
     local isOnCooldown = false
     local v1 = require(game.ReplicatedStorage.ClientStatCache):Get();
-	print(mobsname.."="..v1)
-    local cooldown = mobtime - (require(game.ReplicatedStorage.OsTime)() - (require(game.ReplicatedStorage.StatTools).GetLastCooldownTime(v1, mobsname)))
-	--print(mobsname.." cooldown="..cooldown)
+    local cooldown = 3600 - (require(game.ReplicatedStorage.OsTime)() - (require(game.ReplicatedStorage.StatTools).GetLastCooldownTime(v1, mobsname)))
+	print("cooldown="..cooldown)
     if cooldown > 0 then isOnCooldown = true end
     return isOnCooldown
 end
@@ -662,9 +661,11 @@ function killquestmobs(mobsname)
 					monsterpart = v.Territory.Value
 				end
                 api.humanoidrootpart().CFrame = monsterpart.CFrame
+				local count = 0
                 repeat api.humanoidrootpart().CFrame = monsterpart.CFrame avoidmob()
 					task.wait(1)
-				until v:FindFirstChild("TimerLabel", true).Visible or not kocmoc.toggles.autofarm
+					count = count + 1
+				until v:FindFirstChild("TimerLabel", true).Visible or not kocmoc.toggles.autofarm or count = 15
                 for i = 1, 4 do gettoken(monsterpart.Position) end
             end
         end
@@ -1371,50 +1372,34 @@ task.spawn(function() while task.wait() do
 						-- Morphisto
 						elseif string.find(text, "Rhino") and not string.find(text, "Complete!") then
 							--print("Farming quest for Phinos")
-							--killquestmobs("Rhino")
-							chkMobsCooldown("Rhino Cave 1", 300)
-							chkMobsCooldown("Rhino Cave 2", 300)
-							chkMobsCooldown("Rhino Cave 3", 300)
-							chkMobsCooldown("Rhino Bush", 300)
-							chkMobsCooldown("PineappleBeetle", 300)
+							killquestmobs("Rhino")
 							--fieldselected = game:GetService("Workspace").FlowerZones["Bamboo Field"]
 							SwapMaskonField("Bamboo Field")
                             break
 						elseif string.find(text, "Mantis") and not string.find(text, 'Complete!') then
-							--killquestmobs("Mantis")
-							chkMobsCooldown("ForestMantis1", 1200)
-							chkMobsCooldown("ForestMantis2", 1200)
-							chkMobsCooldown("PineappleMantis1", 1200)
+							killquestmobs("Mantis")
 							--fieldselected = game:GetService("Workspace").FlowerZones["Pine Tree Forest"]
 							SwapMaskonField("Pine Tree Forest")						
 						elseif string.find(text, "Werewol") and not string.find(text, 'Complete!') then
 							--print("Farming quest for Mantises")
-							--killquestmobs("Werewolf")
-							chkMobsCooldown("WerewolfCave", 3600)
+							killquestmobs("Werewolf")
 							--fieldselected = game:GetService("Workspace").FlowerZones["Pine Tree Forest"]
-							SwapMaskonField("Pumpkin Patch")
+							SwapMaskonField("Pine Tree Forest")
                             break
 						elseif string.find(text, "Spider") and not string.find(text, "Complete!") then
-							--killquestmobs("Spider")
-							chkMobsCooldown("Spider Cave", 1800)
+							killquestmobs("Spider")
 							--print("Farming quest for Spiders")
 							--fieldselected = game:GetService("Workspace").FlowerZones["Spider Field"]
 							SwapMaskonField("Spider Field")
                             break
 						elseif string.find(text, "Scorpion") and not string.find(text, "Complete!") then
 							--print("Farming quest for Scorpions")
-							--killquestmobs("Scorpion")
-							chkMobsCooldown("ScorpionBush", 1200)
-							chkMobsCooldown("ScorpionBush2", 1200)
+							killquestmobs("Scorpion")
 							--fieldselected = game:GetService("Workspace").FlowerZones["Rose Field"]
 							SwapMaskonField("Rose Field")
                             break
 						elseif string.find(text, "Lady") and not string.find(text, "Complete!") then
-							--killquestmobs("Ladybug")
-							chkMobsCooldown("LadyBug Bush", 300)
-							chkMobsCooldown("Rhino Bush", 300)
-							chkMobsCooldown("LadyBug Bush 2", 300)
-							chkMobsCooldown("LadyBug Bush 3", 300)
+							killquestmobs("Ladybug")
 							--print("Farming quest for Lady Bugs")
 							--fieldselected = game:GetService("Workspace").FlowerZones["Strawberry Field"]
 							SwapMaskonField("Strawberry Field")
