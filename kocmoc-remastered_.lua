@@ -642,8 +642,9 @@ end
 local function chkMobsCooldown(mobsname, mobtime)
     local isOnCooldown = false
     local v1 = require(game.ReplicatedStorage.ClientStatCache):Get();
+	print(mobsname.. "="..v1)
     local cooldown = mobtime - (require(game.ReplicatedStorage.OsTime)() - (require(game.ReplicatedStorage.StatTools).GetLastCooldownTime(v1, mobsname)))
-	print(mobsname.." cooldown="..cooldown)
+	--print(mobsname.." cooldown="..cooldown)
     if cooldown > 0 then isOnCooldown = true end
     return isOnCooldown
 end
@@ -1403,8 +1404,8 @@ task.spawn(function() while task.wait() do
 						elseif string.find(text, "Scorpion") and not string.find(text, "Complete!") then
 							--print("Farming quest for Scorpions")
 							--killquestmobs("Scorpion")
-							chkMobsCooldown("RoseBush", 1200)
-							chkMobsCooldown("RoseBush2", 1200)
+							chkMobsCooldown("ScorpionBush", 1200)
+							chkMobsCooldown("ScorpionBush2", 1200)
 							--fieldselected = game:GetService("Workspace").FlowerZones["Rose Field"]
 							SwapMaskonField("Rose Field")
                             break
