@@ -1354,7 +1354,7 @@ task.spawn(function() while task.wait() do
                             d = api.returnvalue(fieldstable, text)
                             fieldselected = game:GetService("Workspace").FlowerZones[d]
 							SwapMaskonField(d)
-							--print("test quest fieldstable="..d)
+							print("test quest fieldstable="..d)
                             break
                         elseif api.returnvalue(pollentypes, text) and not string.find(v.Text, 'Complete!') then
                             d = api.returnvalue(pollentypes, text)
@@ -1415,13 +1415,11 @@ task.spawn(function() while task.wait() do
                     end
                 end
             end
-			print("test1")
         else
             fieldselected = game:GetService("Workspace").FlowerZones[kocmoc.vars.field] -- autofarm field
 			-- Morphisto
-			if kocmoc.toggles.swapmaskonfield then
-				print("test2="..kocmoc.vars.field)
-				SwapMaskonField(kocmoc.vars.field)
+			if kocmoc.toggles.swapmaskonfield and currentMask ~= kocmoc.vars.defmask then
+				game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"})
 			end
 			-- Morphisto
         end
