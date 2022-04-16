@@ -1354,7 +1354,7 @@ task.spawn(function() while task.wait() do
                             d = api.returnvalue(fieldstable, text)
                             fieldselected = game:GetService("Workspace").FlowerZones[d]
 							SwapMaskonField(d)
-							print("test quest fieldstable="..d)
+							--print("test quest fieldstable="..d)
                             break
                         elseif api.returnvalue(pollentypes, text) and not string.find(v.Text, 'Complete!') then
                             d = api.returnvalue(pollentypes, text)
@@ -1376,40 +1376,64 @@ task.spawn(function() while task.wait() do
                                 break
                             end
 						-- Morphisto
-						elseif string.find(text, "Rhino") and not string.find(text, "Complete!") then
-							--print("Farming quest for Phinos")
-							killquestmobs("Rhino")
-							--fieldselected = game:GetService("Workspace").FlowerZones["Bamboo Field"]
-							SwapMaskonField("Bamboo Field")
-                            break
-						elseif string.find(text, "Mantis") and not string.find(text, 'Complete!') then
-							killquestmobs("Mantis")
-							--fieldselected = game:GetService("Workspace").FlowerZones["Pine Tree Forest"]
-							SwapMaskonField("Pine Tree Forest")						
-						elseif string.find(text, "Werewol") and not string.find(text, 'Complete!') then
-							--print("Farming quest for Mantises")
-							killquestmobs("Werewolf")
-							--fieldselected = game:GetService("Workspace").FlowerZones["Pine Tree Forest"]
-							SwapMaskonField("Pine Tree Forest")
-                            break
-						elseif string.find(text, "Spider") and not string.find(text, "Complete!") then
-							killquestmobs("Spider")
-							--print("Farming quest for Spiders")
-							--fieldselected = game:GetService("Workspace").FlowerZones["Spider Field"]
-							SwapMaskonField("Spider Field")
-                            break
-						elseif string.find(text, "Scorpion") and not string.find(text, "Complete!") then
-							--print("Farming quest for Scorpions")
-							killquestmobs("Scorpion")
-							--fieldselected = game:GetService("Workspace").FlowerZones["Rose Field"]
-							SwapMaskonField("Rose Field")
-                            break
-						elseif string.find(text, "Lady") and not string.find(text, "Complete!") then
-							killquestmobs("Ladybug")
-							--print("Farming quest for Lady Bugs")
-							--fieldselected = game:GetService("Workspace").FlowerZones["Strawberry Field"]
-							SwapMaskonField("Strawberry Field")
-                            break
+						elseif string.find(text, "Rhino") then
+							if not string.find(text, "Complete!") then
+								--print("Farming quest for Phinos")
+								killquestmobs("Rhino")
+								--fieldselected = game:GetService("Workspace").FlowerZones["Bamboo Field"]
+								SwapMaskonField("Bamboo Field")
+								break
+							elseif string.find(text, "Complete!") then
+								makequests()
+							end
+						elseif string.find(text, "Mantis") then
+							if not string.find(text, 'Complete!') then
+								killquestmobs("Mantis")
+								--fieldselected = game:GetService("Workspace").FlowerZones["Pine Tree Forest"]
+								SwapMaskonField("Pine Tree Forest")
+							elseif string.find(text, 'Complete!') then
+								makequests()
+							end
+						elseif string.find(text, "Werewol") then
+							if not string.find(text, 'Complete!') then
+								--print("Farming quest for Mantises")
+								killquestmobs("Werewolf")
+								--fieldselected = game:GetService("Workspace").FlowerZones["Pine Tree Forest"]
+								SwapMaskonField("Pine Tree Forest")
+								break
+							elseif string.find(text, 'Complete!') then
+								makequests()
+							end
+						elseif string.find(text, "Spider") then
+							if not string.find(text, "Complete!") then
+								killquestmobs("Spider")
+								--print("Farming quest for Spiders")
+								--fieldselected = game:GetService("Workspace").FlowerZones["Spider Field"]
+								SwapMaskonField("Spider Field")
+								break
+							elseif string.find(text, "Complete!") then
+								makequests()
+							end
+						elseif string.find(text, "Scorpion") then
+							if not string.find(text, "Complete!") then
+								--print("Farming quest for Scorpions")
+								killquestmobs("Scorpion")
+								--fieldselected = game:GetService("Workspace").FlowerZones["Rose Field"]
+								SwapMaskonField("Rose Field")
+								break
+							elseif string.find(text, "Complete!") then
+								makequests()
+							end
+						elseif string.find(text, "Lady") then
+							if not string.find(text, "Complete!") then
+								killquestmobs("Ladybug")
+								--print("Farming quest for Lady Bugs")
+								--fieldselected = game:GetService("Workspace").FlowerZones["Strawberry Field"]
+								SwapMaskonField("Strawberry Field")
+								break
+							elseif string.find(text, "Complete!") then
+								makequests()
+							end
                         end
 						-- Morphisto
                     end
