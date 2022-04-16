@@ -1238,6 +1238,7 @@ local function SwapMaskonField(ifield)
 		elseif ifield == "Rose Field" or ifield == "Pepper Patch" or ifield == "Mushroom Field" or ifield == "Strawberry Field" then
 			game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
 			currentMask = "Demon Mask"
+			
 		elseif ifield == "Blue Flower Field" or ifield == "Pine Tree Forest" or ifield == "Stump Field" or ifield == "Bamboo Field" then
 			game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Diamond Mask";Category="Accessory"})
 			currentMask = "Diamond Mask"
@@ -1245,6 +1246,7 @@ local function SwapMaskonField(ifield)
 			game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"})
 			currentMask = kocmoc.vars.defmask
 		end
+		print("currentMask="..currentMask)
 		currentField = ifield
 	end
 end
@@ -1413,10 +1415,12 @@ task.spawn(function() while task.wait() do
                     end
                 end
             end
+			print("test1")
         else
             fieldselected = game:GetService("Workspace").FlowerZones[kocmoc.vars.field] -- autofarm field
 			-- Morphisto
 			if kocmoc.toggles.swapmaskonfield then
+				print("test2="..kocmoc.vars.field)
 				SwapMaskonField(kocmoc.vars.field)
 			end
 			-- Morphisto
