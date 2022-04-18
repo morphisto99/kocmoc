@@ -200,29 +200,6 @@ for i,v in pairs(AccessoryTypes) do
     end
 end
 
--- Morphisto
-npctable = {
-	["Black Bear"] = CFrame.new(-258.1, 5, 299.7),
-	["Brown Bear"] = CFrame.new(282, 46, 236),
-	["Bucko Bee"] = CFrame.new(302, 62, 105),
-	["Honey Bee"] = CFrame.new(-455.6, 103.8, -224.2),
-	["Panda Bear"] = CFrame.new(106.3, 35, 50.1),
-	["Polar Bear"] = CFrame.new(-106, 119, -77),
-	["Riley Bee"] = CFrame.new(-361, 74, 212),
-	["Science Bear"] = CFrame.new(267, 103, 20),
-	["Mother Bear"] = CFrame.new(-183.8, 4.6, 87.5),
-	["Sun Bear"] = CFrame.new(23.25, 14, 360.26),
-	["Spirit Bear"] = CFrame.new(-365, 99, 479),
-	["Stick Bug"] = CFrame.new(-128, 51, 147),
-	["Onett"] = CFrame.new(-8.4, 234, -517.9),
-	["Gummy Lair"] = CFrame.new(273, 25261, -745),
-	["Bubble Bee Man"] = CFrame.new(89, 312, -278),
-	["Meteor Shower"] = CFrame.new(160, 127, -160),
-	["Demon Mask"] = CFrame.new(300, 13, 272),
-	["Diamond Mask"] = CFrame.new(-336, 132, -385)
-}
--- Morphisto
-
 table.sort(fieldstable)
 table.sort(accesoriestable)
 table.sort(toystable)
@@ -329,7 +306,6 @@ getgenv().kocmoc = {
         autodonate = false,
         autouseconvertors = false,
         honeymaskconv = false,
-		swapmaskonfield = false, -- Morphisto
         resetbeeenergy = false
     },
     vars = {
@@ -620,32 +596,6 @@ function converthoney()
     end
 end
 
--- Morphisto
-function killquestmobs(mobsname)
-	for i,v in pairs(game:GetService("Workspace").MonsterSpawners:GetChildren()) do
-		if v:FindFirstChild("Territory") then
-			if v.Name:match(mobsname) and v.Name ~= "Commando Chick" and v.Name ~= "CoconutCrab" and v.Name ~= "StumpSnail" and v.Name ~= "TunnelBear" and v.Name ~= "King Beetle Cave" and not v.Name:match("CaveMonster") and not v:FindFirstChild("TimerLabel", true).Visible then
-				if v.Name:match("Werewolf") then
-					imonsterpart = game:GetService("Workspace").Territories.WerewolfPlateau.w
-				else
-					monsterpart = v.Territory.Value
-				end
-				api.humanoidrootpart().CFrame = monsterpart.CFrame
-				local count = 0;
-				repeat
-					api.humanoidrootpart().CFrame = monsterpart.CFrame
-					avoidmob()
-					task.wait(1)
-					count = count + 1
-				until v:FindFirstChild("TimerLabel", true).Visible or not kocmoc.toggles.autofarm or count > 30
-				if count < 31 then
-					for i = 1, 4 do gettoken(monsterpart.Position) end
-				end
-			end
-		end
-	end
-end
--- Morphisto
 function closestleaf()
     for i,v in next, game.Workspace.Flowers:GetChildren() do
         if temptable.running == false and tonumber((v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude) < temptable.magnitude/1.4 then
@@ -858,9 +808,7 @@ local function useConvertors()
         converted=true
         end
     end
-    if GetItemListWithValue()["Micro-Converter"] > 0 and string.find(kocmoc.vars.autouseMode,"Micro") or string.find(kocmoc.vars.autouseMode,"All") then -- Morphisto
-		game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Micro-Converter"}) -- Morphisto
-	elseif GetItemListWithValue()["Snowflake"] > 0 and string.find(kocmoc.vars.autouseMode,"Snowflak") or string.find(kocmoc.vars.autouseMode,"All") then
+    if GetItemListWithValue()["Snowflake"] > 0 and string.find(kocmoc.vars.autouseMode,"Snowflak") or string.find(kocmoc.vars.autouseMode,"All") then
         game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Snowflake"})
     end
         if GetItemListWithValue()["Coconut"] > 0 and string.find(kocmoc.vars.autouseMode,"Coconut") or string.find(kocmoc.vars.autouseMode,"All") then
@@ -974,7 +922,7 @@ uiautodigmode = farmo:CreateDropdown("Autodig Mode", {"Normal","Collector Steal"
 local contt = farmtab:CreateSection("Container Tools")
 uidisableconvert = contt:CreateToggle("Don't Convert Pollen", nil, function(State) kocmoc.toggles.disableconversion = State end)
 uiautouseconverters = contt:CreateToggle("Auto Bag Reduction",nil,function(Boole) kocmoc.toggles.autouseconvertors = Boole end)
-uiautouseMode = contt:CreateDropdown("Bag Reduction Mode",{"Micro Converters", "Tickets and Micros", "Ticket Converters","Just Snowflakes","Just Coconuts","Snowflakes and Coconuts","Tickets and Snowflakes","Tickets and Coconuts","All"},function(Select) kocmoc.vars.autouseMode = Select end) -- Morphisto
+contt:CreateDropdown("Bag Reduction Mode",{"Ticket Converters","Just Snowflakes","Just Coconuts","Snowflakes and Coconuts","Tickets and Snowflakes","Tickets and Coconuts","All"},function(Select) kocmoc.vars.autouseMode = Select end)
 contt:CreateSlider("Reduction Confirmation Time",3,20,10,false,function(tttttttt) kocmoc.vars.autoconvertWaitTime = tonumber(tttttttt) end)
 
 uiautosprinkler = farmo:CreateToggle("Auto Sprinkler", nil, function(State) kocmoc.toggles.autosprinkler = State end)
@@ -993,8 +941,6 @@ uidefmask = farmo:CreateDropdown("Default Mask",MasksTable,function(val)
     kocmoc.vars.defmask = val
 end)
 --farmo:CreateToggle("Farm Closest Leaves", nil, function(State) kocmoc.toggles.farmclosestleaf = State end)
-
-uimaskonfield = farmo:CreateToggle("Swap Mask on Field", nil, function(State) kocmoc.toggles.swapmaskonfield = State end)
 
 local farmt = farmtab:CreateSection("Farming")
 uiautodispense = farmt:CreateToggle("Auto Dispenser [⚙]", nil, function(State) kocmoc.toggles.autodispense = State end)
@@ -1044,9 +990,6 @@ wayp:CreateDropdown("Field Teleports", fieldstable, function(Option) game.Player
 wayp:CreateDropdown("Monster Teleports", spawnerstable, function(Option) d = game:GetService("Workspace").MonsterSpawners:FindFirstChild(Option) game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(d.Position.X, d.Position.Y+3, d.Position.Z) end)
 wayp:CreateDropdown("Toys Teleports", toystable, function(Option) d = game:GetService("Workspace").Toys:FindFirstChild(Option).Platform game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(d.Position.X, d.Position.Y+3, d.Position.Z) end)
 wayp:CreateButton("Teleport to hive", function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Players").LocalPlayer.SpawnPos.Value end)
-
-wayp:CreateButton("print location", function() print(game.Players.LocalPlayer.Character.HumanoidRootPart.Position) end) -- Morphisto
-wayp:CreateDropdown("NPC Teleports", {"Black Bear","Brown Bear","Bucko Bee","Honey Bee","Panda Bear","Polar Bear","Riley Bee","Science Bear","Spirit Bear","Science Bear","Mother Bear","Sun Bear","Stick Bug","Onett","Gummy Lair","Bubble Bee Man","Meteor Shower","Demon Mask","Diamond Mask"}, function(Option) game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = npctable[Option] end) -- Morphisto
 
 local useitems = itemstab:CreateSection("Use Items")
 
@@ -1402,45 +1345,6 @@ end end)
 
 -- script
 
--- Morphisto
-local demontoggleouyfyt = false
-task.spawn(function()e
-	while wait(1) do
-		if temptable.started.mondo or temptable.started.vicious or temptable.started.windy or temptable.started.ant then
-			if demontoggleouyfyt == false then
-				demontoggleouyfyt = true
-				game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
-			end
-		else
-			if demontoggleouyfyt == true then
-				demontoggleouyfyt = false
-				game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"})
-			end
-		end
-	end
-end)
--- Morphisto
--- Morphisto
-currentField = ""
-currentMask = ""
-local function SwapMaskonField(ifield)	if kocmoc.toggles.swapmaskonfield and ifield ~= currentField then
-		if ifield == "Coconut Field" or ifield == "Spider Field" or ifield == "Pineapple Patch" or ifield == "Dandelion Field" or ifield == "Sunflower Field" or ifield == "Pumpkin Patch" then
-			game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Gummy Mask";Category="Accessory"})
-			currentMask = "Gummy Mask"
-		elseif ifield == "Rose Field" or ifield == "Pepper Patch" or ifield == "Mushroom Field" or ifield == "Strawberry Field" then
-			game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
-			currentMask = "Demon Mask"
-		elseif ifield == "Blue Flower Field" or ifield == "Pine Tree Forest" or ifield == "Stump Field" or ifield == "Bamboo Field" then
-			game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Diamond Mask";Category="Accessory"})
-			currentMask = "Diamond Mask"
-		else
-			game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"})
-			currentMask = kocmoc.vars.defmask
-		end
-		currentField = ifield
-	end
-end
--- Morphisto
 local honeytoggleouyfyt = false
 task.spawn(function()
     while wait(1) do
@@ -1537,71 +1441,17 @@ task.spawn(function() while task.wait() do
                         if api.returnvalue(fieldstable, text) and not string.find(v.Text, "Complete!") and not api.findvalue(kocmoc.blacklistedfields, api.returnvalue(fieldstable, text)) then
                             d = api.returnvalue(fieldstable, text)
                             fieldselected = game:GetService("Workspace").FlowerZones[d]
-							SwapMaskonField(d) -- Morphisto
                             break
-                        -- Morphisto
-						elseif string.find(text, "Rhino") then
-							if not string.find(text, 'Complete!') then
-								killquestmobs("Rhino")
-								SwapMaskonField("Bamboo Field")
-							elseif string.find(text, 'Complete!') then
-								makequests()
-							end
-							break
-						elseif string.find(text, "Mantis") then
-							if not string.find(text, 'Complete!') then
-								killquestmobs("Mantis")
-								SwapMaskonField("Pine Tree Forest")
-							elseif string.find(text, 'Complete!') then
-								makequests()
-							end
-							break
-						elseif string.find(text, "Werewol") then
-							if not string.find(text, 'Complete!') then
-								killquestmobs("Werewolf")
-								SwapMaskonField("Pine Tree Forest")
-							elseif string.find(text, 'Complete!') then
-								makequests()
-							end
-							break
-						elseif string.find(text, "Spider") then
-							if not string.find(text, 'Complete!') then
-								killquestmobs("Spider")
-								SwapMaskonField("Spider Field")
-							elseif string.find(text, 'Complete!') then
-								makequests()
-							end
-							break
-						elseif string.find(text, "Scorpion") then
-							if not string.find(text, 'Complete!') then
-								killquestmobs("Scorpion")
-								SwapMaskonField("Rose Field")
-							elseif string.find(text, 'Complete!') then
-								makequests()
-							end
-							break
-						elseif string.find(text, "Lady") then
-							if not string.find(text, 'Complete!') then
-								killquestmobs("Ladybug")
-								SwapMaskonField("Strawberry Field")
-							elseif string.find(text, 'Complete!') then
-								makequests()
-							end
-							break
-						-- Morphisto
-						elseif api.returnvalue(pollentypes, text) and not string.find(v.Text, 'Complete!') then
+                        elseif api.returnvalue(pollentypes, text) and not string.find(v.Text, 'Complete!') then
                             d = api.returnvalue(pollentypes, text)
                             if d == "Blue Flowers" or d == "Blue Pollen" then
                                 fieldselected = game:GetService("Workspace").FlowerZones[kocmoc.bestfields.blue]
-								SwapMaskonField(kocmoc.bestfields.blue) -- Morphisto
                                 break
                             elseif d == "White Flowers" or d == "White Pollen" then
                                 fieldselected = game:GetService("Workspace").FlowerZones[kocmoc.bestfields.white]
-								SwapMaskonField(kocmoc.bestfields.white) -- Morphisto
                                 break
                             elseif d == "Red Flowers" or d == "Red Pollen" then
                                 fieldselected = game:GetService("Workspace").FlowerZones[kocmoc.bestfields.red]
-								SwapMaskonField(kocmoc.bestfields.red) -- Morphisto
                                 break
                             end
                         end
@@ -1609,12 +1459,7 @@ task.spawn(function() while task.wait() do
                 end
             end
         else
-			fieldselected = game:GetService("Workspace").FlowerZones[kocmoc.vars.field] -- Autofarm field
-			-- Morphisto
-			if kocmoc.toggles.swapmaskonfield and currentMask ~= kocmoc.vars.defmask then
-				game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"})
-			end
-			-- Morphisto
+			fieldselected = game:GetService("Workspace").FlowerZones[kocmoc.vars.field]
         end
         fieldpos = CFrame.new(fieldselected.Position.X, fieldselected.Position.Y+3, fieldselected.Position.Z)
         fieldposition = fieldselected.Position
@@ -1674,7 +1519,7 @@ task.spawn(function() while task.wait() do
                     end
                 end
                 if (fieldposition-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
-                    api.tween(2, fieldpos) -- Morphisto
+                    api.tween(0.1, fieldpos)
                     task.wait(2)
                     if kocmoc.toggles.autosprinkler then makesprinklers() end
                 end
@@ -1695,13 +1540,13 @@ task.spawn(function() while task.wait() do
             temptable.converting = true
             repeat
                 converthoney()
-            until game.Players.LocalPlayer.CoreStats.Pollen.Value == 0 or not kocmoc.toggles.autofarm -- Morphisto
+            until game.Players.LocalPlayer.CoreStats.Pollen.Value == 0
             if kocmoc.toggles.convertballoons and gethiveballoon() then
                 task.wait(6)
                 repeat
                     task.wait()
                     converthoney()
-                until gethiveballoon() == false or not kocmoc.toggles.convertballoons or not kocmoc.toggles.autofarm -- Morphisto
+                until gethiveballoon() == false or not kocmoc.toggles.convertballoons
             end
             temptable.converting = false
             temptable.act = temptable.act + 1
@@ -1868,7 +1713,7 @@ game:GetService("Workspace").NPCBees.ChildRemoved:Connect(function(v)
 end)
 
 task.spawn(function() while task.wait(0.1) do
-    if not temptable.converting and not temptable.started.quests and kocmoc.toggles.autofarm then -- Morphisto
+    if not temptable.converting then
         if kocmoc.toggles.autosamovar then
             game:GetService("ReplicatedStorage").Events.ToyEvent:FireServer("Samovar")
             platformm = game:GetService("Workspace").Toys.Samovar.Platform
@@ -2168,56 +2013,6 @@ task.spawn(function()
 end)
 
 if _G.autoload then if isfile("kocmoc/BSS_".._G.autoload..".json") then kocmoc = game:service'HttpService':JSONDecode(readfile("kocmoc/BSS_".._G.autoload..".json")) end end
-if kocmoc.toggles.autofarm then autofarmtoggle:SetState(true) end -- Morphisto
-if kocmoc.toggles.autodig then uiautodig:SetState(true) end -- Morphisto
-if kocmoc.toggles.swapmaskonfield then uimaskonfield:SetState(true) end -- Morphisto
-if kocmoc.vars.field ~= "" then fielddropdown:SetOption(kocmoc.vars.field) end -- Morphisto
-if kocmoc.vars.autodigmode ~= "" then uiautodigmode:SetOption(kocmoc.vars.autodigmode) end -- Morphisto
-if kocmoc.toggles.disableconversion then uidisableconvert:SetState(true) end -- Morphisto
-if kocmoc.toggles.autouseconvertors then uiautouseconverters:SetState(true) end -- Morphisto
-if kocmoc.vars.autouseMode ~= "" then uiautouseMode:SetOption(kocmoc.vars.autouseMode) end -- Morphisto
-if kocmoc.toggles.autosprinkler then uiautosprinkler:SetState(true) end -- Morphisto
-if kocmoc.toggles.farmbubbles then uifarmbubbles:SetState(true) end -- Morphisto
-if kocmoc.toggles.farmflame then uifarmflame:SetState(true) end -- Morphisto
-if kocmoc.toggles.farmcoco then uifarmcoco:SetState(true) end -- Morphisto
-if kocmoc.toggles.collectcrosshairs then uicollectcrosshair:SetState(true) end -- Morphisto
-if kocmoc.toggles.farmfuzzy then uifarmfuzzy:SetState(true) end -- Morphisto
-if kocmoc.toggles.farmunderballoons then uifarmunderballoons:SetState(true) end -- Morphisto
-if kocmoc.toggles.farmclouds then uifarmclouds:SetState(true) end -- Morphisto
-if kocmoc.toggles.honeymaskconv then uihoneymaskconv:SetState(true) end -- Morphisto
-if kocmoc.vars.defmask ~= "" then uidefmask:SetOption(kocmoc.vars.defmask) end -- Morphisto
-if kocmoc.toggles.autodispense then uiautodispense:SetState(true) end -- Morphisto
-if kocmoc.toggles.autoboosters then uiautoboosters:SetState(true) end -- Morphisto
-if kocmoc.toggles.clock then uiclock:SetState(true) end -- Morphisto
-if kocmoc.toggles.freeantpass then uifreeantpass:SetState(true) end -- Morphisto
-if kocmoc.toggles.farmsprouts then uifarmsprouts:SetState(true) end -- Morphisto
-if kocmoc.toggles.farmpuffshrooms then uifarmpuffshrooms:SetState(true) end -- Morphisto
-if kocmoc.toggles.farmrares then uifarmrares:SetState(true) end -- Morphisto
-if kocmoc.toggles.autoquest then uiautoquest:SetState(true) end -- Morphisto
-if kocmoc.toggles.autodoquest then uiautodoquest:SetState(true) end -- Morphisto
-if kocmoc.toggles.honeystorm then uihoneystorm:SetState(true) end -- Morphisto
-if kocmoc.toggles.killmondo then uikillmondo:SetState(true) end -- Morphisto
-if kocmoc.toggles.killvicious then uikillvicious:SetState(true) end -- Morphisto
-if kocmoc.toggles.killwindy then uikillwindy:SetState(true) end -- Morphisto
-if kocmoc.toggles.loopspeed then wstoggle:SetState(true) end -- Morphisto
-if kocmoc.toggles.loopjump then jptoggle:SetState(true) end -- Morphisto
-if kocmoc.toggles.convertballoons then uiconvertballoons:SetState(true) end -- Morphisto
-if kocmoc.dispensesettings.rj then uirj:SetState(true) end -- Morphisto
-if kocmoc.dispensesettings.blub then uiblub:SetState(true) end -- Morphisto
-if kocmoc.dispensesettings.straw then uistraw:SetState(true) end -- Morphisto
-if kocmoc.dispensesettings.treat then uitreat:SetState(true) end -- Morphisto
-if kocmoc.dispensesettings.coconut then uicoconut:SetState(true) end -- Morphisto
-if kocmoc.dispensesettings.glue then uiglue:SetState(true) end -- Morphisto
-if kocmoc.dispensesettings.white then uiwhite:SetState(true) end -- Morphisto
-if kocmoc.dispensesettings.blue then uiblue:SetState(true) end -- Morphisto
-if kocmoc.dispensesettings.red then uired:SetState(true) end -- Morphisto
-if kocmoc.bestfields.white ~= "" then uibestwhite:SetOption(kocmoc.bestfields.white) end -- Morphisto
-if kocmoc.bestfields.red ~= "" then uibestred:SetOption(kocmoc.bestfields.red) end -- Morphisto
-if kocmoc.bestfields.blue ~= "" then uibestblue:SetOption(kocmoc.bestfields.blue) end -- Morphisto
-if kocmoc.vars.npcprefer ~= "" then uinpcprefer:SetOption(kocmoc.vars.npcprefer) end -- Morphisto
-if kocmoc.toggles.tptonpc then uitptonpc:SetState(true) end -- Morphisto
-if kocmoc.vars.defmask ~= "" then game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"}) end -- Morphisto
-
 for _, part in next, workspace:FindFirstChild("FieldDecos"):GetDescendants() do if part:IsA("BasePart") then part.CanCollide = false part.Transparency = part.Transparency < 0.5 and 0.5 or part.Transparency task.wait() end end
 for _, part in next, workspace:FindFirstChild("Decorations"):GetDescendants() do if part:IsA("BasePart") and (part.Parent.Name == "Bush" or part.Parent.Name == "Blue Flower") then part.CanCollide = false part.Transparency = part.Transparency < 0.5 and 0.5 or part.Transparency task.wait() end end
 for i,v in next, workspace.Decorations.Misc:GetDescendants() do if v.Parent.Name == "Mushroom" then v.CanCollide = false v.Transparency = 0.5 end end
