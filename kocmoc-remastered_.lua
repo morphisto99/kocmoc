@@ -1547,7 +1547,7 @@ task.spawn(function() while task.wait() do
                     end
                 end
                 if (fieldposition-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
-                    api.tween(0.1, fieldpos)
+                    api.tween(2, fieldpos) -- Morphisto
                     task.wait(2)
                     if kocmoc.toggles.autosprinkler then makesprinklers() end
                 end
@@ -1568,13 +1568,13 @@ task.spawn(function() while task.wait() do
             temptable.converting = true
             repeat
                 converthoney()
-            until game.Players.LocalPlayer.CoreStats.Pollen.Value == 0
+            until game.Players.LocalPlayer.CoreStats.Pollen.Value == 0 or not kocmoc.toggles.autofarm -- Morphisto
             if kocmoc.toggles.convertballoons and gethiveballoon() then
                 task.wait(6)
                 repeat
                     task.wait()
                     converthoney()
-                until gethiveballoon() == false or not kocmoc.toggles.convertballoons
+                until gethiveballoon() == false or not kocmoc.toggles.convertballoons or not kocmoc.toggles.autofarm -- Morphisto
             end
             temptable.converting = false
             temptable.act = temptable.act + 1
@@ -1741,7 +1741,7 @@ game:GetService("Workspace").NPCBees.ChildRemoved:Connect(function(v)
 end)
 
 task.spawn(function() while task.wait(0.1) do
-    if not temptable.converting then
+    if not temptable.converting and not temptable.started.quests and kocmoc.toggles.autofarm then -- Morphisto
         if kocmoc.toggles.autosamovar then
             game:GetService("ReplicatedStorage").Events.ToyEvent:FireServer("Samovar")
             platformm = game:GetService("Workspace").Toys.Samovar.Platform
