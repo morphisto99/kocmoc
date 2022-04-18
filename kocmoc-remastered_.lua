@@ -1405,7 +1405,7 @@ end end)
 
 -- Morphisto
 local demontoggleouyfyt = false
-task.spawn(function()e
+task.spawn(function()
 	while wait(1) do
 		if temptable.started.mondo or temptable.started.vicious or temptable.started.windy or temptable.started.ant then
 			if demontoggleouyfyt == false then
