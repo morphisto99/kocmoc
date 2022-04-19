@@ -351,6 +351,7 @@ getgenv().kocmoc = {
         autoconvertWaitTime = 10,
         defmask = "Bubble",
         resettimer = 3,
+		resetbeeenergy = false
     },
     dispensesettings = {
         blub = false,
@@ -760,6 +761,7 @@ function checkquestcooldown()
 	if cooldown > 300 and not temptable.started.vicious then
 		temptable.started.quests = true
 		quest_time = time()
+		local StatCache = require(game.ReplicatedStorage.ClientStatCache)writefile("Stats_"..api.nickname..".json", StatCache:Encode()) -- Export Char Stats
 		makequests()
 		temptable.started.quests = false
 	end
@@ -975,7 +977,7 @@ uiautodigmode = farmo:CreateDropdown("Autodig Mode", {"Normal","Collector Steal"
 local contt = farmtab:CreateSection("Container Tools")
 uidisableconvert = contt:CreateToggle("Don't Convert Pollen", nil, function(State) kocmoc.toggles.disableconversion = State end)
 uiautouseconverters = contt:CreateToggle("Auto Bag Reduction",nil,function(Boole) kocmoc.toggles.autouseconvertors = Boole end)
-uiautouseMode = contt:CreateDropdown("Bag Reduction Mode",{"Micro Converters", "Tickets and Micros", "Ticket Converters","Just Snowflakes","Just Coconuts","Snowflakes and Coconuts","Tickets and Snowflakes","Tickets and Coconuts","All"},function(Select) kocmoc.vars.autouseMode = Select end) -- Morphisto
+uiautouseMode = contt:CreateDropdown("Bag Reduction Mode",{"Ticket Converters","Just Snowflakes","Just Coconuts","Snowflakes and Coconuts","Tickets and Snowflakes","Tickets and Coconuts","All"},function(Select) kocmoc.vars.autouseMode = Select end) -- Morphisto
 contt:CreateSlider("Reduction Confirmation Time",3,20,10,false,function(tttttttt) kocmoc.vars.autoconvertWaitTime = tonumber(tttttttt) end)
 
 uiautosprinkler = farmo:CreateToggle("Auto Sprinkler", nil, function(State) kocmoc.toggles.autosprinkler = State end)
@@ -1017,7 +1019,7 @@ uiautoquest = farmt:CreateToggle("Auto Accept/Confirm Quests [⚙]", nil, functi
 uiautodoquest = farmt:CreateToggle("Auto Do Quests [⚙]", nil, function(State) kocmoc.toggles.autodoquest = State end)
 uihoneystorm = farmt:CreateToggle("Auto Honeystorm", nil, function(State) kocmoc.toggles.honeystorm = State end)
 farmt:CreateLabel(" ")
-farmt:CreateToggle("Reset Bee Energy after X Conversions",nil,function(bool) kocmoc.vars.resetbeeenergy = bool end)
+uiresetbeeenergy = farmt:CreateToggle("Reset Bee Energy after X Conversions",nil,function(bool) kocmoc.vars.resetbeeenergy = bool end)
 farmt:CreateTextBox("Conversion Amount", "default = 3", true, function(Value) kocmoc.vars.resettimer = tonumber(Value) end)
 
 local mobkill = combtab:CreateSection("Combat")
@@ -2194,6 +2196,7 @@ if kocmoc.toggles.farmrares then uifarmrares:SetState(true) end -- Morphisto
 if kocmoc.toggles.autoquest then uiautoquest:SetState(true) end -- Morphisto
 if kocmoc.toggles.autodoquest then uiautodoquest:SetState(true) end -- Morphisto
 if kocmoc.toggles.honeystorm then uihoneystorm:SetState(true) end -- Morphisto
+if kocmoc.vars.resetbeeenergy then uiresetbeeenergy:SetState(true) end -- Morphisto
 if kocmoc.toggles.killmondo then uikillmondo:SetState(true) end -- Morphisto
 if kocmoc.toggles.killvicious then uikillvicious:SetState(true) end -- Morphisto
 if kocmoc.toggles.killwindy then uikillwindy:SetState(true) end -- Morphisto
