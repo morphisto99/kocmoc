@@ -627,7 +627,7 @@ function killquestmobs(mobsname)
 		if v:FindFirstChild("Territory") then
 			if v.Name:match(mobsname) and v.Name ~= "Commando Chick" and v.Name ~= "CoconutCrab" and v.Name ~= "StumpSnail" and v.Name ~= "TunnelBear" and v.Name ~= "King Beetle Cave" and not v.Name:match("CaveMonster") and not v:FindFirstChild("TimerLabel", true).Visible then
 				if v.Name:match("Werewolf") then
-					imonsterpart = game:GetService("Workspace").Territories.WerewolfPlateau.w
+					monsterpart = game:GetService("Workspace").Territories.WerewolfPlateau.w
 				else
 					monsterpart = v.Territory.Value
 				end
