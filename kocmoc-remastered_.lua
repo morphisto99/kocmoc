@@ -2090,7 +2090,7 @@ local function getNearestField(part)
     return resultingFieldPos
 end
 
-local function fetchVisualMonsterString(v)
+function fetchVisualMonsterString(v) -- Morphisto
     local mobText = nil
             if v:FindFirstChild("Attachment") then
             if v:FindFirstChild("Attachment"):FindFirstChild("TimerGui") then
