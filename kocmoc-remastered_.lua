@@ -650,6 +650,10 @@ end
 
 -- Morphisto
 function KillCoconutCrab()
+	for i,v in pairs(workspace.Monsters:GetChildren()) do
+		print(v.Name)
+	end
+	
     for i,v in pairs(game:GetService("Workspace").MonsterSpawners:GetChildren()) do
         if not string.find(v.Name,"CaveMonster") then
 			local mobText = nil
@@ -665,13 +669,13 @@ function KillCoconutCrab()
 					end
 					api.humanoidrootpart().CFrame = CFrame.new(-307.52117919922, 107.91863250732, 467.86791992188)
 					
-					while game.Workspace.Monsters:FindFirstChild("Coconut Crab (Lvl 12)") and not temptable.started.vicious and not temptable.started.monsters do
+					while game:GetService("Workspace").MonsterSpawners:FindFirstChild("Coconut Crab (Lvl 12)") and not temptable.started.vicious and not temptable.started.monsters do
 						print("inside of Coconut Crab loop")
 					end
 					api.tween(.5, CFrame.new(-259.4, 71.9, 462.1))
 					task.wait(1)
 					for i = 0, 50 do 
-						gettoken(CFrame.new(73.2, 176.35, -167).Position) 
+						gettoken(CFrame.new(-259.4, 71.9, 462.1).Position) 
 					end
 					enableall()
 					if farmrarescache then
