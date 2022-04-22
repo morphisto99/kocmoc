@@ -668,8 +668,8 @@ function KillCoconutCrab()
 						farmrarescache = true
 					end
 					api.humanoidrootpart().CFrame = CFrame.new(-307.52117919922, 107.91863250732, 467.86791992188)
-					
-					while game:GetService("Workspace").MonsterSpawners:FindFirstChild("Coconut Crab (Lvl 12)") and not temptable.started.vicious and not temptable.started.monsters do
+					task.wait(5)
+					while game.Workspace.Monsters:FindFirstChild("Coconut Crab (Lvl 12)") and not temptable.started.vicious and not temptable.started.monsters do
 						print("inside of Coconut Crab loop")
 					end
 					api.tween(.5, CFrame.new(-259.4, 71.9, 462.1))
