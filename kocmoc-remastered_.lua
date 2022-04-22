@@ -2136,7 +2136,7 @@ task.spawn(function()
     end
     end)
     local panel = hometab:CreateSection("Mob Panel")
-    local statusTable = {}
+    statusTable = {} -- Morphisto
     for i,v in pairs(game:GetService("Workspace").MonsterSpawners:GetChildren()) do
         if not string.find(v.Name,"CaveMonster") then
 			local mobText = nil
