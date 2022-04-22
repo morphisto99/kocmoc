@@ -652,7 +652,7 @@ end
 function KillCoconutCrab()
 	for i,v in pairs(statusTable) do
 		if v[1] and v[2] then
-			print(v[1]..":"..v[2])
+			--print(v[1]..":"..v[2])
 			if v[1] == "Coconut Crab" and v[2] == "Ready" then
 				print("Coconut Crab is Ready to kill")
 				game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
@@ -676,6 +676,7 @@ function KillCoconutCrab()
 					kocmoc.toggles.farmrares = true
 				end
 			end
+			--print(v[1])
 		end
 	end
 end
