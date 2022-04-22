@@ -661,7 +661,6 @@ function KillCoconutCrab()
 			if mobText ~= nil then
 				if mobText == "Coconut Crab: Ready" then
 					game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
-					disableall()
 					farmrarescache = false
 					if kocmoc.toggles.farmrares then
 						kocmoc.toggles.farmrares = false
@@ -671,6 +670,8 @@ function KillCoconutCrab()
 					task.wait(5)
 					while game.Workspace.Monsters:FindFirstChild("Coconut Crab (Lvl 12)") and not temptable.started.vicious and not temptable.started.monsters do
 						print("inside of Coconut Crab loop")
+						disableall()
+						task.wait(1)
 					end
 					api.tween(.5, CFrame.new(-259.4, 71.9, 462.1))
 					task.wait(1)
