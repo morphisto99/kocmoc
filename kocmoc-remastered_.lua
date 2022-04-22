@@ -1049,6 +1049,7 @@ wayp:CreateDropdown("Toys Teleports", toystable, function(Option) d = game:GetSe
 wayp:CreateButton("Teleport to hive", function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Players").LocalPlayer.SpawnPos.Value end)
 
 wayp:CreateButton("print location", function() print(game.Players.LocalPlayer.Character.HumanoidRootPart.Position) end) -- Morphisto
+wayp:CreateButton("Kill Coconut Crab", function() KillCoconutCrab() end) -- Morphisto
 wayp:CreateDropdown("NPC Teleports", {"Black Bear","Brown Bear","Bucko Bee","Honey Bee","Panda Bear","Polar Bear","Riley Bee","Science Bear","Spirit Bear","Science Bear","Mother Bear","Sun Bear","Stick Bug","Onett","Gummy Lair","Bubble Bee Man","Meteor Shower","Demon Mask","Diamond Mask"}, function(Option) game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = npctable[Option] end) -- Morphisto
 
 local useitems = itemstab:CreateSection("Use Items")
@@ -1427,7 +1428,8 @@ end)
 -- Morphisto
 currentField = ""
 currentMask = ""
-local function SwapMaskonField(ifield)	if kocmoc.toggles.swapmaskonfield and ifield ~= currentField then
+local function SwapMaskonField(ifield)
+	if kocmoc.toggles.swapmaskonfield and ifield ~= currentField then
 		if ifield == "Coconut Field" or ifield == "Spider Field" or ifield == "Pineapple Patch" or ifield == "Dandelion Field" or ifield == "Sunflower Field" or ifield == "Pumpkin Patch" then
 			game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Gummy Mask";Category="Accessory"})
 			currentMask = "Gummy Mask"
@@ -1442,6 +1444,43 @@ local function SwapMaskonField(ifield)	if kocmoc.toggles.swapmaskonfield and ifi
 			currentMask = kocmoc.vars.defmask
 		end
 		currentField = ifield
+	end
+end
+-- Morphisto
+
+-- Morphisto
+local function KillCoconutCrab()
+	for i,v in pairs(statusTable) do
+		if v[1] and v[2] then
+			print(v[1]..":"..v[2])
+			if v[1] == "Coconut Crab" and v[2] == "Ready" then
+				print("Coconut Crab is Ready to kill")
+				game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
+				disableall()
+				farmrarescache = false
+				if kocmoc.toggles.farmrares then
+					kocmoc.toggles.farmrares = false
+					farmrarescache = true
+				end
+				api.humanoidrootpart().CFrame = CFrame.new(-307.52117919922, 107.91863250732, 467.86791992188)
+				while game.Workspace.Monsters:FindFirstChild("Coconut Crab (Lvl 12)") and not temptable.started.vicious and not temptable.started.monsters do
+					--temptable.started.mondo = true
+					--task.wait(.5) game:GetService("Workspace").Map.Ground.HighBlock.CanCollide = true temptable.float = false api.tween(.5, CFrame.new(73.2, 176.35, -167)) task.wait(1)
+					--for i = 0, 50 do 
+					--	gettoken(CFrame.new(73.2, 176.35, -167).Position) 
+					--end 
+					 
+					--api.tween(2, fieldpos) 
+					--temptable.started.mondo = false
+				end
+				api.tween(.5, CFrame.new(-259.4, 71.9, 462.1)) task.wait(1)
+				for i = 0, 50 do 
+					gettoken(CFrame.new(73.2, 176.35, -167).Position) 
+				end
+				enableall()
+				if farmrarescache then kocmoc.toggles.farmrares = true
+			end
+		end
 	end
 end
 -- Morphisto
@@ -2102,17 +2141,16 @@ task.spawn(function()
     local panel = hometab:CreateSection("Mob Panel")
     local statusTable = {}
     for i,v in pairs(game:GetService("Workspace").MonsterSpawners:GetChildren()) do
-        --if not string.find(v.Name,"CaveMonster") then
+        if not string.find(v.Name,"CaveMonster") then
 			local mobText = nil
 			mobText = fetchVisualMonsterString(v)
-			print(mobText)
 			if mobText ~= nil then
 				local mob = panel:CreateButton(mobText,function()
 					api.tween(1,CFrame.new(getNearestField(v)))
 				end)
 				table.insert(statusTable,{mob,v})
 			end
-        --end
+        end
     end
     local mob2 = panel:CreateButton("Mondo Chick: 00:00",function() api.tween(1,game:GetService("Workspace").FlowerZones["Mountain Top Field"].CFrame) end)
     local panel2 = hometab:CreateSection("Utility Panel")
