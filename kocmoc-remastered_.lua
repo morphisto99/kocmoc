@@ -1473,12 +1473,13 @@ local function KillCoconutCrab()
 					--api.tween(2, fieldpos) 
 					--temptable.started.mondo = false
 				end
-				api.tween(.5, CFrame.new(-259.4, 71.9, 462.1)) task.wait(1)
+				api.tween(.5, CFrame.new(-259.4, 71.9, 462.1))
+				task.wait(1)
 				for i = 0, 50 do 
 					gettoken(CFrame.new(73.2, 176.35, -167).Position) 
 				end
 				enableall()
-				if farmrarescache then kocmoc.toggles.farmrares = true
+				if farmrarescache then kocmoc.toggles.farmrares = true end
 			end
 		end
 	end
