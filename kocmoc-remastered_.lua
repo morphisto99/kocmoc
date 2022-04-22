@@ -1450,9 +1450,10 @@ end
 
 -- Morphisto
 local function KillCoconutCrab()
+--[[
 	for i,v in pairs(statusTable) do
 		if v[1] and v[2] then
-			print(v[1]..":"..v[2])
+			--print(v[1]..":"..v[2])
 			if v[1] == "Coconut Crab" and v[2] == "Ready" then
 				print("Coconut Crab is Ready to kill")
 				game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
@@ -1464,14 +1465,7 @@ local function KillCoconutCrab()
 				end
 				api.humanoidrootpart().CFrame = CFrame.new(-307.52117919922, 107.91863250732, 467.86791992188)
 				while game.Workspace.Monsters:FindFirstChild("Coconut Crab (Lvl 12)") and not temptable.started.vicious and not temptable.started.monsters do
-					--temptable.started.mondo = true
-					--task.wait(.5) game:GetService("Workspace").Map.Ground.HighBlock.CanCollide = true temptable.float = false api.tween(.5, CFrame.new(73.2, 176.35, -167)) task.wait(1)
-					--for i = 0, 50 do 
-					--	gettoken(CFrame.new(73.2, 176.35, -167).Position) 
-					--end 
-					 
-					--api.tween(2, fieldpos) 
-					--temptable.started.mondo = false
+
 				end
 				api.tween(.5, CFrame.new(-259.4, 71.9, 462.1))
 				task.wait(1)
@@ -1479,10 +1473,13 @@ local function KillCoconutCrab()
 					gettoken(CFrame.new(73.2, 176.35, -167).Position) 
 				end
 				enableall()
-				if farmrarescache then kocmoc.toggles.farmrares = true end
+				if farmrarescache then
+					kocmoc.toggles.farmrares = true
+				end
 			end
 		end
 	end
+]]--
 end
 -- Morphisto
 
