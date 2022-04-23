@@ -594,6 +594,40 @@ function converthoney()
     end
 end
 
+-- Morphisto
+function KillCoconutCrab()
+	local crabisready = false
+	for i,v in pairs(game:GetService("Workspace").MonsterSpawners:GetChildren()) do
+		if not string.find(v.Name,"CaveMonster") then
+			local mobText = nil
+			mobText = fetchVisualMonsterString(v)
+			if mobText ~= nil then
+				if mobText == "Coconut Crab: Ready" then
+					crabisready = true
+				end
+			end
+		end
+	end
+	if crabisready then
+		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
+		disableall()
+		api.humanoidrootpart().CFrame = CFrame.new(-307.52117919922, 107.91863250732, 467.86791992188)
+		task.wait(5)
+		while game.Workspace.Monsters:FindFirstChild("Coconut Crab (Lvl 12)") and not temptable.started.vicious and not temptable.started.monsters do
+			task.wait(1)
+		end
+		api.tween(.5, CFrame.new(-259.4, 71.9, 462.1))
+		task.wait(1)
+		if kocmoc.toggles.autosprinkler then makesprinklers() end
+		for i = 0, 50 do
+			gettoken(CFrame.new(-259.4, 71.9, 462.1).Position)
+		end
+		enableall()
+		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"}
+	end
+end
+-- Morphisto
+
 function closestleaf()
     for i,v in next, game.Workspace.Flowers:GetChildren() do
         if temptable.running == false and tonumber((v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude) < temptable.magnitude/1.4 then
@@ -952,7 +986,7 @@ farmt:CreateToggle("Reset Bee Energy after X Conversions",nil,function(bool) koc
 farmt:CreateTextBox("Conversion Amount", "default = 3", true, function(Value) kocmoc.vars.resettimer = tonumber(Value) end)
 
 local mobkill = combtab:CreateSection("Combat")
-uikillcrab = mobkill:CreateToggle("Kill Crab", nil, function(State) print(kocmoc.toggles.killcrab) end)
+uikillcrab = mobkill:CreateToggle("Kill Crab", nil, function(State) kocmoc.toggles.killcrab = State end)
 mobkill:CreateToggle("Train Snail", nil, function(State) fd = game.Workspace.FlowerZones['Stump Field'] if State then api.humanoidrootpart().CFrame = CFrame.new(fd.Position.X, fd.Position.Y-6, fd.Position.Z) else api.humanoidrootpart().CFrame = CFrame.new(fd.Position.X, fd.Position.Y+2, fd.Position.Z) end end)
 mobkill:CreateToggle("Kill Mondo", nil, function(State) kocmoc.toggles.killmondo = State end)
 mobkill:CreateToggle("Kill Vicious", nil, function(State) kocmoc.toggles.killvicious = State end)
