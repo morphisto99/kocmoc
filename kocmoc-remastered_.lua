@@ -1681,10 +1681,6 @@ local function collectorSteal()
     end
 end
 
-function KillCoconutCrab2()
-	print("test123")
-end
-
 task.spawn(function() while task.wait(0.001) do
     if kocmoc.toggles.traincrab then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-259, 111.8, 496.4) * CFrame.fromEulerAnglesXYZ(0, 110, 90) temptable.float = true temptable.float = false end
     if kocmoc.toggles.farmrares then for k,v in next, game.workspace.Collectibles:GetChildren() do if v.CFrame.YVector.Y == 1 then if v.Transparency == 0 then decal = v:FindFirstChildOfClass("Decal") for e,r in next, kocmoc.rares do if decal.Texture == r or decal.Texture == "rbxassetid://"..r then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame break end end end end end end
@@ -1920,7 +1916,7 @@ local function getNearestField(part)
     return resultingFieldPos
 end
 
-local function fetchVisualMonsterString(v)
+function fetchVisualMonsterString(v)
     local mobText = nil
             if v:FindFirstChild("Attachment") then
             if v:FindFirstChild("Attachment"):FindFirstChild("TimerGui") then
