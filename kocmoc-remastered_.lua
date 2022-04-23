@@ -2137,7 +2137,7 @@ function KillCoconutCrab()
 		end
 		api.tween(.5, CFrame.new(-259.4, 71.9, 462.1))
 		task.wait(1)
-		if kocmoc.toggles.autosprinkler then makesprinklers() end
+		--if kocmoc.toggles.autosprinkler then makesprinklers() end
 		for i = 0, 50 do
 			gettoken(CFrame.new(-259.4, 71.9, 462.1).Position)
 		end
