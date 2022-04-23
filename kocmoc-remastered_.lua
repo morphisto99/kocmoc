@@ -2142,7 +2142,7 @@ function KillCoconutCrab()
 		end
 		temptable.started.crab = false
 		enableall()
-		--game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"}
+		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"}
 	end
 end
 -- Morphisto
