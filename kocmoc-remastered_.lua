@@ -84,8 +84,8 @@ getgenv().temptable = {
         coords
     },
     cache = {
-		farmpuffshrooms = false,
-		farmrares = false,
+		farmpuffshrooms = false, -- Morphisto
+		farmrares = false, -- Morphisto
         autofarm = false,
         killmondo = false,
         vicious = false,
@@ -332,7 +332,6 @@ getgenv().kocmoc = {
         autouseconvertors = false,
         honeymaskconv = false,
 		swapmaskonfield = false, -- Morphisto
-		killcrab = false, -- Morphisto
         resetbeeenergy = false
     },
     vars = {
@@ -385,17 +384,15 @@ function farm(trying)
 end
 
 function disableall()
-	-- Morphisto
-	if kocmoc.toggles.farmrares then
-		temptable.cache.farmrares = true
-		kocmoc.toggles.farmrares = false
+    if kocmoc.toggles.farmrares then -- Morphisto
+		temptable.cache.farmrares = true -- Morphisto
+		kocmoc.toggles.farmrares = false -- Morphisto
 	end
-	if kocmoc.toggles.farmpuffshrooms then
-		temptable.cache.farmpuffshrooms = true
-		kocmoc.toggles.farmpuffshrooms = false
+	if kocmoc.toggles.farmpuffshrooms then -- Morphisto
+		temptable.cache.farmpuffshrooms = true -- Morphisto
+		kocmoc.toggles.farmpuffshrooms = false -- Morphisto
 	end
-	-- Morphisto
-    if kocmoc.toggles.autofarm and not temptable.converting then
+	if kocmoc.toggles.autofarm and not temptable.converting then
         temptable.cache.autofarm = true
         kocmoc.toggles.autofarm = false
     end
@@ -414,15 +411,15 @@ function disableall()
 end
 
 function enableall()
-	if temptable.cache.farmrares then
-		kocmoc.toggles.farmrares = true
-		temptable.cache.farmrares = false
+    if temptable.cache.farmrares then -- Morphisto
+		kocmoc.toggles.farmrares = true -- Morphisto
+		temptable.cache.farmrares = false -- Morphisto
 	end
-	if temptable.cache.farmpuffshrooms then
-		kocmoc.toggles.farmpuffshrooms = true
-		temptable.cache.farmpuffshrooms = false
+	if temptable.cache.farmpuffshrooms then -- Morphisto
+		kocmoc.toggles.farmpuffshrooms = true -- Morphisto
+		temptable.cache.farmpuffshrooms = false -- Morphisto
 	end
-    if temptable.cache.autofarm then
+	if temptable.cache.autofarm then
         kocmoc.toggles.autofarm = true
         temptable.cache.autofarm = false
     end
@@ -667,41 +664,6 @@ function killquestmobs(mobsname)
 		end
 	end
 end
--- Morphisto
-
--- Morphisto
-function KillCoconutCrab()
-	local crabisready = false
-    for i,v in pairs(game:GetService("Workspace").MonsterSpawners:GetChildren()) do
-        if not string.find(v.Name,"CaveMonster") then
-			local mobText = nil
-			mobText = fetchVisualMonsterString(v)
-			if mobText ~= nil then
-				if mobText == "Coconut Crab: Ready" then
-					crabisready = true			
-				end
-			end
-        end
-    end
-	if crabisready then
-		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
-		disableall()
-		api.humanoidrootpart().CFrame = CFrame.new(-307.52117919922, 107.91863250732, 467.86791992188)
-		task.wait(5)
-		while game.Workspace.Monsters:FindFirstChild("Coconut Crab (Lvl 12)") and not temptable.started.vicious and not temptable.started.monsters do
-			task.wait(1)
-		end
-		api.tween(.5, CFrame.new(-259.4, 71.9, 462.1))
-		task.wait(1)
-		if kocmoc.toggles.autosprinkler then makesprinklers() end
-		for i = 0, 50 do 
-			gettoken(CFrame.new(-259.4, 71.9, 462.1).Position) 
-		end
-		enableall()
-		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"}
-	end
-end
-
 -- Morphisto
 
 function closestleaf()
@@ -1028,12 +990,12 @@ fielddropdown = farmo:CreateDropdown("Field", fieldstable, function(String) kocm
 convertatslider = farmo:CreateSlider("Convert At", 0, 100, 100, false, function(Value) kocmoc.vars.convertat = Value end)
 autofarmtoggle = farmo:CreateToggle("Autofarm [⚙]", nil, function(State) kocmoc.toggles.autofarm = State end) autofarmtoggle:CreateKeybind("U", function(Key) end)
 uiautodig = farmo:CreateToggle("Autodig", nil, function(State) kocmoc.toggles.autodig = State end)
-uiautodigmode = farmo:CreateDropdown("Autodig Mode", {"Normal","Collector Steal"}, function(Option) kocmoc.vars.autodigmode = Option end)
+uiautodigmode = farmo:CreateDropdown("Autodig Mode", {"Normal","Collector Steal"}, function(Option)  kocmoc.vars.autodigmode = Option end)
 
 local contt = farmtab:CreateSection("Container Tools")
 uidisableconvert = contt:CreateToggle("Don't Convert Pollen", nil, function(State) kocmoc.toggles.disableconversion = State end)
 uiautouseconverters = contt:CreateToggle("Auto Bag Reduction",nil,function(Boole) kocmoc.toggles.autouseconvertors = Boole end)
-uiautouseMode = contt:CreateDropdown("Bag Reduction Mode",{"Ticket Converters","Just Snowflakes","Just Coconuts","Snowflakes and Coconuts","Tickets and Snowflakes","Tickets and Coconuts","All"},function(Select) kocmoc.vars.autouseMode = Select end) -- Morphisto
+uiautouseMode = contt:CreateDropdown("Bag Reduction Mode",{"Micro Converters", "Tickets and Micros", "Ticket Converters","Just Snowflakes","Just Coconuts","Snowflakes and Coconuts","Tickets and Snowflakes","Tickets and Coconuts","All"},function(Select) kocmoc.vars.autouseMode = Select end) -- Morphisto
 contt:CreateSlider("Reduction Confirmation Time",3,20,10,false,function(tttttttt) kocmoc.vars.autoconvertWaitTime = tonumber(tttttttt) end)
 
 uiautosprinkler = farmo:CreateToggle("Auto Sprinkler", nil, function(State) kocmoc.toggles.autosprinkler = State end)
@@ -1079,7 +1041,7 @@ uiresetbeeenergy = farmt:CreateToggle("Reset Bee Energy after X Conversions",nil
 farmt:CreateTextBox("Conversion Amount", "default = 3", true, function(Value) kocmoc.vars.resettimer = tonumber(Value) end)
 
 local mobkill = combtab:CreateSection("Combat")
-uikillcrab = mobkill:CreateToggle("Kill Crab", nil, function(State) kocmoc.toggles.killcrab = State end)
+mobkill:CreateToggle("Train Crab", nil, function(State) if State then api.humanoidrootpart().CFrame = CFrame.new(-307.52117919922, 107.91863250732, 467.86791992188) end end)
 mobkill:CreateToggle("Train Snail", nil, function(State) fd = game.Workspace.FlowerZones['Stump Field'] if State then api.humanoidrootpart().CFrame = CFrame.new(fd.Position.X, fd.Position.Y-6, fd.Position.Z) else api.humanoidrootpart().CFrame = CFrame.new(fd.Position.X, fd.Position.Y+2, fd.Position.Z) end end)
 uikillmondo = mobkill:CreateToggle("Kill Mondo", nil, function(State) kocmoc.toggles.killmondo = State end)
 uikillvicious = mobkill:CreateToggle("Kill Vicious", nil, function(State) kocmoc.toggles.killvicious = State end)
@@ -1105,7 +1067,6 @@ wayp:CreateDropdown("Toys Teleports", toystable, function(Option) d = game:GetSe
 wayp:CreateButton("Teleport to hive", function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Players").LocalPlayer.SpawnPos.Value end)
 
 wayp:CreateButton("print location", function() print(game.Players.LocalPlayer.Character.HumanoidRootPart.Position) end) -- Morphisto
-wayp:CreateButton("Kill Coconut Crab", function() KillCoconutCrab() end) -- Morphisto
 wayp:CreateDropdown("NPC Teleports", {"Black Bear","Brown Bear","Bucko Bee","Honey Bee","Panda Bear","Polar Bear","Riley Bee","Science Bear","Spirit Bear","Science Bear","Mother Bear","Sun Bear","Stick Bug","Onett","Gummy Lair","Bubble Bee Man","Meteor Shower","Demon Mask","Diamond Mask"}, function(Option) game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = npctable[Option] end) -- Morphisto
 
 local useitems = itemstab:CreateSection("Use Items")
@@ -1591,7 +1552,6 @@ task.spawn(function() while task.wait() do
         
         if kocmoc.toggles.autofarm then
         if kocmoc.toggles.autoquest then checkquestcooldown() end -- Morphisto
-		if kocmoc.toggles.killcrab then KillCoconutCrab() end -- Morphisto
 		if kocmoc.toggles.autodoquest and game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.Menus.Children.Quests.Content:FindFirstChild("Frame") then
             for i,v in next, game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.Menus.Children.Quests:GetDescendants() do
                 if v.Name == "Description" then
@@ -1673,7 +1633,12 @@ task.spawn(function() while task.wait() do
                 end
             end
         else
-			fieldselected = game:GetService("Workspace").FlowerZones[kocmoc.vars.field]
+			fieldselected = game:GetService("Workspace").FlowerZones[kocmoc.vars.field] -- Autofarm field
+			-- Morphisto
+			if kocmoc.toggles.swapmaskonfield and currentMask ~= kocmoc.vars.defmask then
+				game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"})
+			end
+			-- Morphisto
         end
         fieldpos = CFrame.new(fieldselected.Position.X, fieldselected.Position.Y+3, fieldselected.Position.Z)
         fieldposition = fieldselected.Position
@@ -2111,7 +2076,7 @@ local function getNearestField(part)
     return resultingFieldPos
 end
 
-function fetchVisualMonsterString(v) -- Morphisto
+local function fetchVisualMonsterString(v)
     local mobText = nil
             if v:FindFirstChild("Attachment") then
             if v:FindFirstChild("Attachment"):FindFirstChild("TimerGui") then
@@ -2159,17 +2124,17 @@ task.spawn(function()
     end
     end)
     local panel = hometab:CreateSection("Mob Panel")
-    statusTable = {} -- Morphisto
+    local statusTable = {}
     for i,v in pairs(game:GetService("Workspace").MonsterSpawners:GetChildren()) do
         if not string.find(v.Name,"CaveMonster") then
-			local mobText = nil
-			mobText = fetchVisualMonsterString(v)
-			if mobText ~= nil then
-				local mob = panel:CreateButton(mobText,function()
-					api.tween(1,CFrame.new(getNearestField(v)))
-				end)
-				table.insert(statusTable,{mob,v})
-			end
+        local mobText = nil
+        mobText = fetchVisualMonsterString(v)
+        if mobText ~= nil then
+            local mob = panel:CreateButton(mobText,function()
+                api.tween(1,CFrame.new(getNearestField(v)))
+            end)
+            table.insert(statusTable,{mob,v})
+        end
         end
     end
     local mob2 = panel:CreateButton("Mondo Chick: 00:00",function() api.tween(1,game:GetService("Workspace").FlowerZones["Mountain Top Field"].CFrame) end)
