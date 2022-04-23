@@ -2126,7 +2126,7 @@ function KillCoconutCrab()
 		end
 	end
 	if crabisready then
-		print("It's ready")
+		--print("It's ready")
 		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
 		temptable.started.crab = true
 		disableall()
@@ -2135,7 +2135,7 @@ function KillCoconutCrab()
 		while game.Workspace.Monsters:FindFirstChild("Coconut Crab (Lvl 12)") and not temptable.started.vicious and not temptable.started.monsters do
 			task.wait(1)
 		end
-		--api.tween(.5, CFrame.new(-259.4, 71.9, 462.1))
+		api.tween(1, CFrame.new(-259.4, 71.9, 462.1))
 		task.wait(1)
 		--if kocmoc.toggles.autosprinkler then makesprinklers() end
 		--for i = 0, 50 do
