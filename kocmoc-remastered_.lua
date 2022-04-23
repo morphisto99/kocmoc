@@ -52,6 +52,7 @@ getgenv().temptable = {
     configname = "",
     tokenpath = game:GetService("Workspace").Collectibles,
     started = {
+		crab = false, -- Morphisto
         vicious = false,
         mondo = false,
         windy = false,
@@ -86,6 +87,7 @@ getgenv().temptable = {
     cache = {
 		farmpuffshrooms = false, -- Morphisto
 		farmrares = false, -- Morphisto
+		killcrab = false, -- Morphisto
         autofarm = false,
         killmondo = false,
         vicious = false,
@@ -393,6 +395,10 @@ function disableall()
 		temptable.cache.farmpuffshrooms = true -- Morphisto
 		kocmoc.toggles.farmpuffshrooms = false -- Morphisto
 	end
+    if kocmoc.toggles.killcrab and not temptable.started.crab then -- Morhisto
+        kocmoc.toggles.killcrab = false -- Morhisto
+        temptable.cache.killcrab = true -- Morhisto
+    end
 	if kocmoc.toggles.autofarm and not temptable.converting then
         temptable.cache.autofarm = true
         kocmoc.toggles.autofarm = false
@@ -420,6 +426,10 @@ function enableall()
 		kocmoc.toggles.farmpuffshrooms = true -- Morphisto
 		temptable.cache.farmpuffshrooms = false -- Morphisto
 	end
+    if temptable.cache.killcrab then -- Morphisto
+        kocmoc.toggles.killcrab = true -- Morphisto
+        temptable.cache.killcrab = false -- Morphisto
+    end
 	if temptable.cache.autofarm then
         kocmoc.toggles.autofarm = true
         temptable.cache.autofarm = false
@@ -1042,7 +1052,7 @@ uiresetbeeenergy = farmt:CreateToggle("Reset Bee Energy after X Conversions",nil
 farmt:CreateTextBox("Conversion Amount", "default = 3", true, function(Value) kocmoc.vars.resettimer = tonumber(Value) end)
 
 local mobkill = combtab:CreateSection("Combat")
-uikillcrab = mobkill:CreateToggle("Kill Crab", nil, function(State) KillCoconutCrab() end) -- Morphisto
+uikillcrab = mobkill:CreateToggle("Kill Crab", nil, function(State) kocmoc.toggles.killcrab = State end) -- Morphisto
 mobkill:CreateToggle("Train Snail", nil, function(State) fd = game.Workspace.FlowerZones['Stump Field'] if State then api.humanoidrootpart().CFrame = CFrame.new(fd.Position.X, fd.Position.Y-6, fd.Position.Z) else api.humanoidrootpart().CFrame = CFrame.new(fd.Position.X, fd.Position.Y+2, fd.Position.Z) end end)
 uikillmondo = mobkill:CreateToggle("Kill Mondo", nil, function(State) kocmoc.toggles.killmondo = State end)
 uikillvicious = mobkill:CreateToggle("Kill Vicious", nil, function(State) kocmoc.toggles.killvicious = State end)
@@ -1482,9 +1492,10 @@ function KillCoconutCrab()
 	end
 	if crabisready then
 		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
+		temptable.started.crab = true
 		disableall()
 		api.humanoidrootpart().CFrame = CFrame.new(-307.52117919922, 107.91863250732, 467.86791992188)
-		task.wait(5)
+		task.wait(10)
 		while game.Workspace.Monsters:FindFirstChild("Coconut Crab (Lvl 12)") and not temptable.started.vicious and not temptable.started.monsters do
 			task.wait(1)
 		end
@@ -1496,6 +1507,7 @@ function KillCoconutCrab()
 		end
 		enableall()
 		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"}
+		temptable.started.crab = false
 	end
 end
 -- Morphisto
@@ -1587,7 +1599,6 @@ task.spawn(function() while task.wait() do
         
         if kocmoc.toggles.autofarm then
         if kocmoc.toggles.autoquest then checkquestcooldown() end -- Morphisto
-		if kocmoc.toggles.killcrab then KillCoconutCrab() end -- Morphisto
 		if kocmoc.toggles.autodoquest and game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.Menus.Children.Quests.Content:FindFirstChild("Frame") then
             for i,v in next, game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.Menus.Children.Quests:GetDescendants() do
                 if v.Name == "Description" then
@@ -1733,6 +1744,7 @@ task.spawn(function() while task.wait() do
                         temptable.started.mondo = false
                     end
                 end
+				if kocmoc.toggles.killcrab then KillCoconutCrab() end -- Morphisto
                 if (fieldposition-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
                     api.tween(2, fieldpos) -- Morphisto
                     task.wait(2)
