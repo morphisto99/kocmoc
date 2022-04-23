@@ -671,6 +671,7 @@ end
 
 -- Morphisto
 function KillCoconutCrab()
+[[--
 	local crabisready = false
     for i,v in pairs(game:GetService("Workspace").MonsterSpawners:GetChildren()) do
         if not string.find(v.Name,"CaveMonster") then
@@ -700,7 +701,9 @@ function KillCoconutCrab()
 		enableall()
 		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"}
 	end
+--]]
 end
+
 -- Morphisto
 
 function closestleaf()
