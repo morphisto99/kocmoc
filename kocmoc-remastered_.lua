@@ -331,8 +331,8 @@ getgenv().kocmoc = {
         autodonate = false,
         autouseconvertors = false,
         honeymaskconv = false,
-		killcrab = false, -- Morphisto
-		swapmaskonfield = false, -- Morphisto
+		killcrab = false,
+		swapmaskonfield = false,
         resetbeeenergy = false
     },
     vars = {
@@ -1076,7 +1076,7 @@ uiresetbeeenergy = farmt:CreateToggle("Reset Bee Energy after X Conversions",nil
 farmt:CreateTextBox("Conversion Amount", "default = 3", true, function(Value) kocmoc.vars.resettimer = tonumber(Value) end)
 
 local mobkill = combtab:CreateSection("Combat")
-uikillcrab = mobkill:CreateToggle("Kill Crab", nil, function(State) kocmoc.toggles.killcrab = State end)
+--uikillcrab = mobkill:CreateToggle("Kill Crab", nil, function(State) kocmoc.toggles.killcrab = State end)
 mobkill:CreateToggle("Train Snail", nil, function(State) fd = game.Workspace.FlowerZones['Stump Field'] if State then api.humanoidrootpart().CFrame = CFrame.new(fd.Position.X, fd.Position.Y-6, fd.Position.Z) else api.humanoidrootpart().CFrame = CFrame.new(fd.Position.X, fd.Position.Y+2, fd.Position.Z) end end)
 uikillmondo = mobkill:CreateToggle("Kill Mondo", nil, function(State) kocmoc.toggles.killmondo = State end)
 uikillvicious = mobkill:CreateToggle("Kill Vicious", nil, function(State) kocmoc.toggles.killvicious = State end)
