@@ -2144,7 +2144,7 @@ function KillCoconutCrab()
 			gettoken(CFrame.new(-259.4, 71.9, 462.1).Position)
 		end
 		enableall()
-		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"} --?
+		--game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"} --?
 		temptable.started.crab = false
 	end
 end
