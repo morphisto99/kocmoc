@@ -1052,7 +1052,7 @@ uiresetbeeenergy = farmt:CreateToggle("Reset Bee Energy after X Conversions",nil
 farmt:CreateTextBox("Conversion Amount", "default = 3", true, function(Value) kocmoc.vars.resettimer = tonumber(Value) end)
 
 local mobkill = combtab:CreateSection("Combat")
-uikillcrab = mobkill:CreateToggle("Kill Crab", nil, function(State) kocmoc.toggles.killcrab = State end) -- Morphisto
+uikillcrab = mobkill:CreateToggle("Kill Crab", nil, function(State) KillCoconutCrab() end) -- Morphisto
 mobkill:CreateToggle("Train Snail", nil, function(State) fd = game.Workspace.FlowerZones['Stump Field'] if State then api.humanoidrootpart().CFrame = CFrame.new(fd.Position.X, fd.Position.Y-6, fd.Position.Z) else api.humanoidrootpart().CFrame = CFrame.new(fd.Position.X, fd.Position.Y+2, fd.Position.Z) end end)
 uikillmondo = mobkill:CreateToggle("Kill Mondo", nil, function(State) kocmoc.toggles.killmondo = State end)
 uikillvicious = mobkill:CreateToggle("Kill Vicious", nil, function(State) kocmoc.toggles.killvicious = State end)
@@ -1491,23 +1491,24 @@ function KillCoconutCrab()
 		end
 	end
 	if crabisready then
-		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
-		temptable.started.crab = true
-		disableall()
-		api.humanoidrootpart().CFrame = CFrame.new(-307.52117919922, 107.91863250732, 467.86791992188)
-		task.wait(5)
-		while game.Workspace.Monsters:FindFirstChild("Coconut Crab (Lvl 12)") and not temptable.started.vicious and not temptable.started.monsters do
-			task.wait(1)
-		end
-		api.tween(.5, CFrame.new(-259.4, 71.9, 462.1))
-		task.wait(1)
-		if kocmoc.toggles.autosprinkler then makesprinklers() end
-		for i = 0, 50 do
-			gettoken(CFrame.new(-259.4, 71.9, 462.1).Position)
-		end
-		enableall()
-		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"}
-		temptable.started.crab = false
+		print("It's ready")
+		--game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
+		--temptable.started.crab = true
+		--disableall()
+		--api.humanoidrootpart().CFrame = CFrame.new(-307.52117919922, 107.91863250732, 467.86791992188)
+		--task.wait(5)
+		--while game.Workspace.Monsters:FindFirstChild("Coconut Crab (Lvl 12)") and not temptable.started.vicious and not temptable.started.monsters do
+			--task.wait(1)
+		--end
+		--api.tween(.5, CFrame.new(-259.4, 71.9, 462.1))
+		--task.wait(1)
+		--if kocmoc.toggles.autosprinkler then makesprinklers() end
+		--for i = 0, 50 do
+			--gettoken(CFrame.new(-259.4, 71.9, 462.1).Position)
+		--end
+		--enableall()
+		--game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"}
+		--temptable.started.crab = false
 	end
 end
 -- Morphisto
