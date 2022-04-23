@@ -2126,7 +2126,7 @@ function KillCoconutCrab()
 		end
 	end
 	if crabisready then
-		--print("It's ready")
+		print(kocmoc.toggles.autosprinkler)
 		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
 		temptable.started.crab = true
 		disableall()
@@ -2137,12 +2137,13 @@ function KillCoconutCrab()
 		end
 		api.tween(1, CFrame.new(-259.4, 71.9, 462.1))
 		task.wait(1)
-		--if kocmoc.toggles.autosprinkler then makesprinklers() end
-		--for i = 0, 50 do
-			--gettoken(CFrame.new(-259.4, 71.9, 462.1).Position)
-		--end
-		--enableall()
-		--game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"}
+		
+		if kocmoc.toggles.autosprinkler then makesprinklers() end
+		for i = 0, 50 do
+			gettoken(CFrame.new(-259.4, 71.9, 462.1).Position)
+		end
+		enableall()
+		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"}
 		temptable.started.crab = false
 	end
 end
