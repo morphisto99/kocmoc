@@ -2126,10 +2126,10 @@ function KillCoconutCrab()
 		end
 	end
 	if crabisready then
-		print("It's ready")
+		--print("It's ready")
 		--game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
 		temptable.started.crab = true
-		--disableall()
+		disableall()
 		api.humanoidrootpart().CFrame = CFrame.new(-307.52117919922, 107.91863250732, 467.86791992188)
 		task.wait(10)
 		while game.Workspace.Monsters:FindFirstChild("Coconut Crab (Lvl 12)") and not temptable.started.vicious and not temptable.started.monsters do
