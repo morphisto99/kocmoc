@@ -86,7 +86,8 @@ getgenv().temptable = {
     },
     cache = {
 		farmpuffshrooms = false, -- Morphisto
-		farmrares = false, -- Morphisto		killcrab = false, -- Morphisto
+		farmrares = false, -- Morphisto
+		killcrab = false, -- Morphisto
         autofarm = false,
         killmondo = false,
         vicious = false,
