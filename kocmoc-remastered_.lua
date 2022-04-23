@@ -84,6 +84,8 @@ getgenv().temptable = {
         coords
     },
     cache = {
+		farmpuffshrooms = false,
+		farmrares = false,
         autofarm = false,
         killmondo = false,
         vicious = false,
@@ -330,6 +332,7 @@ getgenv().kocmoc = {
         autouseconvertors = false,
         honeymaskconv = false,
 		swapmaskonfield = false, -- Morphisto
+		killcrab = false, -- Morphisto
         resetbeeenergy = false
     },
     vars = {
@@ -382,6 +385,16 @@ function farm(trying)
 end
 
 function disableall()
+	-- Morphisto
+	if kocmoc.toggles.farmrares then
+		temptable.cache.farmrares = true
+		kocmoc.toggles.farmrares = false
+	end
+	if kocmoc.toggles.farmpuffshrooms then
+		temptable.cache.farmpuffshrooms = true
+		kocmoc.toggles.farmpuffshrooms = false
+	end
+	-- Morphisto
     if kocmoc.toggles.autofarm and not temptable.converting then
         temptable.cache.autofarm = true
         kocmoc.toggles.autofarm = false
@@ -401,6 +414,14 @@ function disableall()
 end
 
 function enableall()
+	if temptable.cache.farmrares then
+		kocmoc.toggles.farmrares = true
+		temptable.cache.farmrares = false
+	end
+	if temptable.cache.farmpuffshrooms then
+		kocmoc.toggles.farmpuffshrooms = true
+		temptable.cache.farmpuffshrooms = false
+	end
     if temptable.cache.autofarm then
         kocmoc.toggles.autofarm = true
         temptable.cache.autofarm = false
@@ -650,44 +671,37 @@ end
 
 -- Morphisto
 function KillCoconutCrab()
-	--for i,v in pairs(workspace.Monsters:GetChildren()) do
-	--	print(v.Name)
-	--end
-	
+	local crabisready = false
     for i,v in pairs(game:GetService("Workspace").MonsterSpawners:GetChildren()) do
         if not string.find(v.Name,"CaveMonster") then
 			local mobText = nil
 			mobText = fetchVisualMonsterString(v)
 			if mobText ~= nil then
 				if mobText == "Coconut Crab: Ready" then
-					game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
-					if kocmoc.toggles.farmrares then kocmoc.toggles.farmrares = false end
-					if kocmoc.toggles.autofarm then kocmoc.toggles.autofarm = false end
-					disableall()
-					api.humanoidrootpart().CFrame = CFrame.new(-307.52117919922, 107.91863250732, 467.86791992188)
-					task.wait(5)			
+					crabisready = true			
 				end
 			end
         end
     end
-	
-	while game.Workspace.Monsters:FindFirstChild("Coconut Crab (Lvl 12)") and not temptable.started.vicious and not temptable.started.monsters do
-		print("inside of Coconut Crab loop")
-		--disableall()
+	if crabisready then
+		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
+		disableall()
+		api.humanoidrootpart().CFrame = CFrame.new(-307.52117919922, 107.91863250732, 467.86791992188)
+		task.wait(5)
+		while game.Workspace.Monsters:FindFirstChild("Coconut Crab (Lvl 12)") and not temptable.started.vicious and not temptable.started.monsters do
+			task.wait(1)
+		end
+		api.tween(.5, CFrame.new(-259.4, 71.9, 462.1))
 		task.wait(1)
+		if kocmoc.toggles.autosprinkler then makesprinklers() end
+		for i = 0, 50 do 
+			gettoken(CFrame.new(-259.4, 71.9, 462.1).Position) 
+		end
+		enableall()
+		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"}
 	end
-	api.tween(.5, CFrame.new(-259.4, 71.9, 462.1))
-	task.wait(1)
-	for i = 0, 50 do 
-		gettoken(CFrame.new(-259.4, 71.9, 462.1).Position) 
-	end
-	enableall()
-	if not kocmoc.toggles.farmrares then kocmoc.toggles.farmrares = true end
-	if not kocmoc.toggles.autofarm then kocmoc.toggles.autofarm = true end	
-	
 end
 -- Morphisto
-
 
 function closestleaf()
     for i,v in next, game.Workspace.Flowers:GetChildren() do
@@ -1064,7 +1078,7 @@ uiresetbeeenergy = farmt:CreateToggle("Reset Bee Energy after X Conversions",nil
 farmt:CreateTextBox("Conversion Amount", "default = 3", true, function(Value) kocmoc.vars.resettimer = tonumber(Value) end)
 
 local mobkill = combtab:CreateSection("Combat")
-mobkill:CreateToggle("Train Crab", nil, function(State) if State then api.humanoidrootpart().CFrame = CFrame.new(-307.52117919922, 107.91863250732, 467.86791992188) end end)
+uikillcrab = mobkill:CreateToggle("Kill Crab", nil, function(State) kocmoc.toggles.killcrab = State end)
 mobkill:CreateToggle("Train Snail", nil, function(State) fd = game.Workspace.FlowerZones['Stump Field'] if State then api.humanoidrootpart().CFrame = CFrame.new(fd.Position.X, fd.Position.Y-6, fd.Position.Z) else api.humanoidrootpart().CFrame = CFrame.new(fd.Position.X, fd.Position.Y+2, fd.Position.Z) end end)
 uikillmondo = mobkill:CreateToggle("Kill Mondo", nil, function(State) kocmoc.toggles.killmondo = State end)
 uikillvicious = mobkill:CreateToggle("Kill Vicious", nil, function(State) kocmoc.toggles.killvicious = State end)
@@ -1576,6 +1590,7 @@ task.spawn(function() while task.wait() do
         
         if kocmoc.toggles.autofarm then
         if kocmoc.toggles.autoquest then checkquestcooldown() end -- Morphisto
+		if kocmoc.toggles.killcrab then KillCoconutCrab() end -- Morphisto
 		if kocmoc.toggles.autodoquest and game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.Menus.Children.Quests.Content:FindFirstChild("Frame") then
             for i,v in next, game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.Menus.Children.Quests:GetDescendants() do
                 if v.Name == "Description" then
