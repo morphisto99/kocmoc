@@ -354,7 +354,7 @@ getgenv().kocmoc = {
         selectedTreatAmount = 0,
         autouseMode = "Just Tickets",
         autoconvertWaitTime = 10,
-        defmask = "Bubble",
+        defmask = "Demon Mask",
         resettimer = 3,
 		resetbeeenergy = false
     },
@@ -2127,6 +2127,7 @@ function KillCoconutCrab()
 	end
 	if crabisready then
 		print(kocmoc.toggles.autosprinkler)
+		print(kocmoc.vars.defmask)
 		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
 		temptable.started.crab = true
 		disableall()
@@ -2138,7 +2139,7 @@ function KillCoconutCrab()
 		api.tween(1, CFrame.new(-259.4, 71.9, 462.1))
 		task.wait(1)
 		
-		if kocmoc.toggles.autosprinkler then makesprinklers() end
+		--if kocmoc.toggles.autosprinkler then makesprinklers() end
 		for i = 0, 50 do
 			gettoken(CFrame.new(-259.4, 71.9, 462.1).Position)
 		end
