@@ -594,8 +594,9 @@ function converthoney()
     end
 end
 
--- Morphisto
 [[--
+-- Morphisto
+
 function KillCoconutCrab()
 	local crabisready = false
 	for i,v in pairs(game:GetService("Workspace").MonsterSpawners:GetChildren()) do
