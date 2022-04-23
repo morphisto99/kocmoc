@@ -661,31 +661,30 @@ function KillCoconutCrab()
 			if mobText ~= nil then
 				if mobText == "Coconut Crab: Ready" then
 					game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
-					farmrarescache = false
-					if kocmoc.toggles.farmrares then
-						kocmoc.toggles.farmrares = false
-						farmrarescache = true
-					end
+					if kocmoc.toggles.farmrares then kocmoc.toggles.farmrares = false end
+					if kocmoc.toggles.autofarm then kocmoc.toggles.autofarm = false end
+					disableall()
 					api.humanoidrootpart().CFrame = CFrame.new(-307.52117919922, 107.91863250732, 467.86791992188)
-					task.wait(5)
-					while game.Workspace.Monsters:FindFirstChild("Coconut Crab (Lvl 12)") and not temptable.started.vicious and not temptable.started.monsters do
-						--print("inside of Coconut Crab loop")
-						--disableall()
-						task.wait(3)
-					end
-					api.tween(.5, CFrame.new(-259.4, 71.9, 462.1))
-					task.wait(1)
-					for i = 0, 50 do 
-						gettoken(CFrame.new(-259.4, 71.9, 462.1).Position) 
-					end
-					enableall()
-					if farmrarescache then
-						kocmoc.toggles.farmrares = true
-					end				
+					task.wait(5)			
 				end
 			end
         end
     end
+	
+	while game.Workspace.Monsters:FindFirstChild("Coconut Crab (Lvl 12)") and not temptable.started.vicious and not temptable.started.monsters do
+		print("inside of Coconut Crab loop")
+		--disableall()
+		task.wait(1)
+	end
+	api.tween(.5, CFrame.new(-259.4, 71.9, 462.1))
+	task.wait(1)
+	for i = 0, 50 do 
+		gettoken(CFrame.new(-259.4, 71.9, 462.1).Position) 
+	end
+	enableall()
+	if not kocmoc.toggles.farmrares then kocmoc.toggles.farmrares = true end
+	if not kocmoc.toggles.autofarm then kocmoc.toggles.autofarm = true end	
+	
 end
 -- Morphisto
 
