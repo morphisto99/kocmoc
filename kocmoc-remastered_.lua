@@ -84,6 +84,8 @@ getgenv().temptable = {
         coords
     },
     cache = {
+		farmpuffshrooms = false,
+		farmrares = false,
         autofarm = false,
         killmondo = false,
         vicious = false,
@@ -330,6 +332,7 @@ getgenv().kocmoc = {
         autouseconvertors = false,
         honeymaskconv = false,
 		swapmaskonfield = false, -- Morphisto
+		killcrab = false, -- Morphisto
         resetbeeenergy = false
     },
     vars = {
@@ -382,6 +385,16 @@ function farm(trying)
 end
 
 function disableall()
+	-- Morphisto
+	if kocmoc.toggles.farmrares then
+		temptable.cache.farmrares = true
+		kocmoc.toggles.farmrares = false
+	end
+	if kocmoc.toggles.farmpuffshrooms then
+		temptable.cache.farmpuffshrooms = true
+		kocmoc.toggles.farmpuffshrooms = false
+	end
+	-- Morphisto
     if kocmoc.toggles.autofarm and not temptable.converting then
         temptable.cache.autofarm = true
         kocmoc.toggles.autofarm = false
@@ -401,6 +414,14 @@ function disableall()
 end
 
 function enableall()
+	if temptable.cache.farmrares then
+		kocmoc.toggles.farmrares = true
+		temptable.cache.farmrares = false
+	end
+	if temptable.cache.farmpuffshrooms then
+		kocmoc.toggles.farmpuffshrooms = true
+		temptable.cache.farmpuffshrooms = false
+	end
     if temptable.cache.autofarm then
         kocmoc.toggles.autofarm = true
         temptable.cache.autofarm = false
@@ -646,6 +667,41 @@ function killquestmobs(mobsname)
 		end
 	end
 end
+-- Morphisto
+
+-- Morphisto
+function KillCoconutCrab()
+	local crabisready = false
+    for i,v in pairs(game:GetService("Workspace").MonsterSpawners:GetChildren()) do
+        if not string.find(v.Name,"CaveMonster") then
+			local mobText = nil
+			mobText = fetchVisualMonsterString(v)
+			if mobText ~= nil then
+				if mobText == "Coconut Crab: Ready" then
+					crabisready = true			
+				end
+			end
+        end
+    end
+	if crabisready then
+		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
+		disableall()
+		api.humanoidrootpart().CFrame = CFrame.new(-307.52117919922, 107.91863250732, 467.86791992188)
+		task.wait(5)
+		while game.Workspace.Monsters:FindFirstChild("Coconut Crab (Lvl 12)") and not temptable.started.vicious and not temptable.started.monsters do
+			task.wait(1)
+		end
+		api.tween(.5, CFrame.new(-259.4, 71.9, 462.1))
+		task.wait(1)
+		if kocmoc.toggles.autosprinkler then makesprinklers() end
+		for i = 0, 50 do 
+			gettoken(CFrame.new(-259.4, 71.9, 462.1).Position) 
+		end
+		enableall()
+		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"}
+	end
+end
+
 -- Morphisto
 
 function closestleaf()
@@ -1023,7 +1079,7 @@ uiresetbeeenergy = farmt:CreateToggle("Reset Bee Energy after X Conversions",nil
 farmt:CreateTextBox("Conversion Amount", "default = 3", true, function(Value) kocmoc.vars.resettimer = tonumber(Value) end)
 
 local mobkill = combtab:CreateSection("Combat")
-mobkill:CreateToggle("Train Crab", nil, function(State) if State then api.humanoidrootpart().CFrame = CFrame.new(-307.52117919922, 107.91863250732, 467.86791992188) end end)
+uikillcrab = mobkill:CreateToggle("Kill Crab", nil, function(State) kocmoc.toggles.killcrab = State end)
 mobkill:CreateToggle("Train Snail", nil, function(State) fd = game.Workspace.FlowerZones['Stump Field'] if State then api.humanoidrootpart().CFrame = CFrame.new(fd.Position.X, fd.Position.Y-6, fd.Position.Z) else api.humanoidrootpart().CFrame = CFrame.new(fd.Position.X, fd.Position.Y+2, fd.Position.Z) end end)
 uikillmondo = mobkill:CreateToggle("Kill Mondo", nil, function(State) kocmoc.toggles.killmondo = State end)
 uikillvicious = mobkill:CreateToggle("Kill Vicious", nil, function(State) kocmoc.toggles.killvicious = State end)
@@ -1049,6 +1105,7 @@ wayp:CreateDropdown("Toys Teleports", toystable, function(Option) d = game:GetSe
 wayp:CreateButton("Teleport to hive", function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Players").LocalPlayer.SpawnPos.Value end)
 
 wayp:CreateButton("print location", function() print(game.Players.LocalPlayer.Character.HumanoidRootPart.Position) end) -- Morphisto
+wayp:CreateButton("Kill Coconut Crab", function() KillCoconutCrab() end) -- Morphisto
 wayp:CreateDropdown("NPC Teleports", {"Black Bear","Brown Bear","Bucko Bee","Honey Bee","Panda Bear","Polar Bear","Riley Bee","Science Bear","Spirit Bear","Science Bear","Mother Bear","Sun Bear","Stick Bug","Onett","Gummy Lair","Bubble Bee Man","Meteor Shower","Demon Mask","Diamond Mask"}, function(Option) game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = npctable[Option] end) -- Morphisto
 
 local useitems = itemstab:CreateSection("Use Items")
@@ -1427,7 +1484,8 @@ end)
 -- Morphisto
 currentField = ""
 currentMask = ""
-local function SwapMaskonField(ifield)	if kocmoc.toggles.swapmaskonfield and ifield ~= currentField then
+local function SwapMaskonField(ifield)
+	if kocmoc.toggles.swapmaskonfield and ifield ~= currentField then
 		if ifield == "Coconut Field" or ifield == "Spider Field" or ifield == "Pineapple Patch" or ifield == "Dandelion Field" or ifield == "Sunflower Field" or ifield == "Pumpkin Patch" then
 			game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Gummy Mask";Category="Accessory"})
 			currentMask = "Gummy Mask"
@@ -1533,6 +1591,7 @@ task.spawn(function() while task.wait() do
         
         if kocmoc.toggles.autofarm then
         if kocmoc.toggles.autoquest then checkquestcooldown() end -- Morphisto
+		if kocmoc.toggles.killcrab then KillCoconutCrab() end -- Morphisto
 		if kocmoc.toggles.autodoquest and game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.Menus.Children.Quests.Content:FindFirstChild("Frame") then
             for i,v in next, game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.Menus.Children.Quests:GetDescendants() do
                 if v.Name == "Description" then
@@ -2052,7 +2111,7 @@ local function getNearestField(part)
     return resultingFieldPos
 end
 
-local function fetchVisualMonsterString(v)
+function fetchVisualMonsterString(v) -- Morphisto
     local mobText = nil
             if v:FindFirstChild("Attachment") then
             if v:FindFirstChild("Attachment"):FindFirstChild("TimerGui") then
@@ -2100,17 +2159,17 @@ task.spawn(function()
     end
     end)
     local panel = hometab:CreateSection("Mob Panel")
-    local statusTable = {}
+    statusTable = {} -- Morphisto
     for i,v in pairs(game:GetService("Workspace").MonsterSpawners:GetChildren()) do
         if not string.find(v.Name,"CaveMonster") then
-        local mobText = nil
-        mobText = fetchVisualMonsterString(v)
-        if mobText ~= nil then
-            local mob = panel:CreateButton(mobText,function()
-                api.tween(1,CFrame.new(getNearestField(v)))
-            end)
-            table.insert(statusTable,{mob,v})
-        end
+			local mobText = nil
+			mobText = fetchVisualMonsterString(v)
+			if mobText ~= nil then
+				local mob = panel:CreateButton(mobText,function()
+					api.tween(1,CFrame.new(getNearestField(v)))
+				end)
+				table.insert(statusTable,{mob,v})
+			end
         end
     end
     local mob2 = panel:CreateButton("Mondo Chick: 00:00",function() api.tween(1,game:GetService("Workspace").FlowerZones["Mountain Top Field"].CFrame) end)
@@ -2217,6 +2276,7 @@ if kocmoc.bestfields.red ~= "" then uibestred:SetOption(kocmoc.bestfields.red) e
 if kocmoc.bestfields.blue ~= "" then uibestblue:SetOption(kocmoc.bestfields.blue) end -- Morphisto
 if kocmoc.vars.npcprefer ~= "" then uinpcprefer:SetOption(kocmoc.vars.npcprefer) end -- Morphisto
 if kocmoc.toggles.tptonpc then uitptonpc:SetState(true) end -- Morphisto
+if kocmoc.toggles.killcrab then uikillcrab:SetState(true) end -- Morphisto
 if kocmoc.vars.defmask ~= "" then game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"}) end -- Morphisto
 
 for _, part in next, workspace:FindFirstChild("FieldDecos"):GetDescendants() do if part:IsA("BasePart") then part.CanCollide = false part.Transparency = part.Transparency < 0.5 and 0.5 or part.Transparency task.wait() end end
