@@ -2111,42 +2111,6 @@ function fetchVisualMonsterString(v)
     return mobText
 end
 
--- Morphisto
-function KillCoconutCrab()
-	local crabisready = false
-	for i,v in pairs(game:GetService("Workspace").MonsterSpawners:GetChildren()) do
-		if not string.find(v.Name,"CaveMonster") then
-			local mobText = nil
-			mobText = fetchVisualMonsterString(v)
-			if mobText ~= nil then
-				if mobText == "Coconut Crab: Ready" then
-					crabisready = true
-				end
-			end
-		end
-	end
-	if crabisready then
-		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
-		temptable.started.crab = true
-		disableall()
-		api.humanoidrootpart().CFrame = CFrame.new(-307.52117919922, 107.91863250732, 467.86791992188)
-		task.wait(10)
-		while game.Workspace.Monsters:FindFirstChild("Coconut Crab (Lvl 12)") and not temptable.started.vicious and not temptable.started.monsters do
-			task.wait(1)
-		end
-		api.tween(1, CFrame.new(-259.4, 71.9, 462.1))
-		task.wait(1)
-		--if kocmoc.toggles.autosprinkler then makesprinklers() end
-		for i = 0, 50 do
-			gettoken(CFrame.new(-259.4, 71.9, 462.1).Position)
-		end
-		temptable.started.crab = false
-		enableall()
-		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"}
-	end
-end
--- Morphisto
-
 local function getToyCooldown(toy)
 local c = require(game.ReplicatedStorage.ClientStatCache):Get()
 local name = toy
@@ -2291,6 +2255,43 @@ if kocmoc.vars.npcprefer ~= "" then uinpcprefer:SetOption(kocmoc.vars.npcprefer)
 if kocmoc.toggles.tptonpc then uitptonpc:SetState(true) end -- Morphisto
 if kocmoc.toggles.killcrab then uikillcrab:SetState(true) end -- Morphisto
 if kocmoc.vars.defmask ~= "" then game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"}) end -- Morphisto
+
+-- Morphisto
+function KillCoconutCrab()
+	local crabisready = false
+	for i,v in pairs(game:GetService("Workspace").MonsterSpawners:GetChildren()) do
+		if not string.find(v.Name,"CaveMonster") then
+			local mobText = nil
+			mobText = fetchVisualMonsterString(v)
+			if mobText ~= nil then
+				if mobText == "Coconut Crab: Ready" then
+					crabisready = true
+				end
+			end
+		end
+	end
+	if crabisready then
+		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
+		temptable.started.crab = true
+		disableall()
+		api.humanoidrootpart().CFrame = CFrame.new(-307.52117919922, 107.91863250732, 467.86791992188)
+		task.wait(10)
+		while game.Workspace.Monsters:FindFirstChild("Coconut Crab (Lvl 12)") and not temptable.started.vicious and not temptable.started.monsters do
+			task.wait(1)
+		end
+		api.tween(1, CFrame.new(-259.4, 71.9, 462.1))
+		task.wait(1)
+		if kocmoc.toggles.autosprinkler then makesprinklers() end
+		for i = 0, 50 do
+			gettoken(CFrame.new(-259.4, 71.9, 462.1).Position)
+		end
+		temptable.started.crab = false
+		enableall()
+		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
+	end
+end
+-- Morphisto
+
 
 for _, part in next, workspace:FindFirstChild("FieldDecos"):GetDescendants() do if part:IsA("BasePart") then part.CanCollide = false part.Transparency = part.Transparency < 0.5 and 0.5 or part.Transparency task.wait() end end
 for _, part in next, workspace:FindFirstChild("Decorations"):GetDescendants() do if part:IsA("BasePart") and (part.Parent.Name == "Bush" or part.Parent.Name == "Blue Flower") then part.CanCollide = false part.Transparency = part.Transparency < 0.5 and 0.5 or part.Transparency task.wait() end end
