@@ -2285,7 +2285,15 @@ function KillCoconutCrab()
 		if GetItemListWithValue()["Stinger"] > 0 then -- Morphisto
 			game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Stinger"}) -- Morphisto
 		end
+		local oilcooldown = time() -- Morphisto
 		while game.Workspace.Monsters:FindFirstChild("Coconut Crab (Lvl 12)") and not temptable.started.vicious and not temptable.started.monsters do
+			local cooldown = time() - tonumber(oilcooldown)
+			if cooldown > 30 then
+				if GetItemListWithValue()["Stinger"] > 0 then -- Morphisto
+					game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Stinger"}) -- Morphisto
+				end
+				oilcooldown = time()
+			end
 			task.wait(1)
 		end
 		api.tween(1, CFrame.new(-259.4, 71.9, 462.1))
