@@ -2064,7 +2064,7 @@ local function getMonsterName(name)
         ["Beetle"]="Rhino Beetle";
         ["Tunnel"]="Tunnel Bear";
         ["Coco"]="Coconut Crab";
-        ["King"]="King Beetle";
+        ["King"]="King Beetle Cave";
         ["Stump"]="Stump Snail";
         ["Were"]="Werewolf"
     }
