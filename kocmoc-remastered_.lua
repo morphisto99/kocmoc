@@ -2325,7 +2325,9 @@ end
 
 function KillTest()
 	for i = 0, 100 do
-		api.humanoidrootpart().CFrame = CFrame.new(283.4128112792969, 20.783041000366211, -39.41004943847656)
+		api.humanoidrootpart().CFrame = CFrame.new(283.4128112792969, 25.783041000366211, -39.41004943847656)
+		temptable.float = true
+		task.wait(1)
 	end
 end
 
@@ -2352,15 +2354,15 @@ function KillTunnelBear()
 		task.wait(15)
 		--api.humanoidrootpart().CFrame = CFrame.new(350.4, 25.7, -39.41)
 		api.humanoidrootpart().CFrame = CFrame.new(400.4, 6.783, -39.41)
-		task.wait(5)
+		task.wait(3)
 		--if GetItemListWithValue()["Stinger"] > 0 then
 			--game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Stinger"})
 		--end
 		while game.Workspace.Monsters:FindFirstChild("Tunnel Bear (Lvl 9)") and not temptable.started.vicious and not temptable.started.monsters and not temptable.started.mondo and not temptable.started.crab do
 			game:GetService("Workspace").Map.Ground.HighBlock.CanCollide = false 
 			mondopition = game.Workspace.Monsters["Tunnel Bear (Lvl 9)"].Head.Position
-			--api.tween(1, CFrame.new(mondopition.x, mondopition.y - 60, mondopition.z))
-			api.humanoidrootpart().CFrame = CFrame.new(mondopition.x, mondopition.y + 10, mondopition.z)
+			api.tween(.5, CFrame.new(mondopition.x, mondopition.y + 13, mondopition.z))
+			--api.humanoidrootpart().CFrame = CFrame.new(mondopition.x, mondopition.y + 13, mondopition.z)
 			task.wait(1)
 			temptable.float = true
 		end
