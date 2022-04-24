@@ -2363,8 +2363,8 @@ function KillTunnelBear()
 			task.wait(1)
 			temptable.float = true
 		end
+		task.wait(0.5) game:GetService("Workspace").Map.Ground.HighBlock.CanCollide = true temptable.float = false api.tween(1, CFrame.new(400.4, 6.783, -39.41)) task.wait(1)
 		--api.tween(1, CFrame.new(400.4, 6.783, -39.41))
-		task.wait(1)
 		--for i = 0, 50 do
 			--gettoken(CFrame.new(400.4, 6.783, -39.41).Position)
 		--end
