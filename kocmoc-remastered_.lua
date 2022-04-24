@@ -2358,11 +2358,11 @@ function KillTunnelBear()
 		--while game.Workspace.Monsters:FindFirstChild("Tunnel Bear (Lvl 9)") and not temptable.started.vicious and not temptable.started.monsters and not temptable.started.mondo and not temptable.started.crab do
 			--task.wait(1)
 		--end
-		api.tween(1, CFrame.new(400.4, 6.783, -39.41))
+		--api.tween(1, CFrame.new(400.4, 6.783, -39.41))
 		task.wait(1)
-		for i = 0, 50 do
-			gettoken(CFrame.new(400.4, 6.783, -39.41).Position)
-		end
+		--for i = 0, 50 do
+			--gettoken(CFrame.new(400.4, 6.783, -39.41).Position)
+		--end
 		enableall()
 		temptable.started.tunnelbear = false
 		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"}
