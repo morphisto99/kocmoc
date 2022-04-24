@@ -2098,7 +2098,7 @@ function fetchVisualMonsterString(v)
                 if v:FindFirstChild("Attachment"):FindFirstChild("TimerGui"):FindFirstChild("TimerLabel") then
                     if v:FindFirstChild("Attachment"):FindFirstChild("TimerGui"):FindFirstChild("TimerLabel").Visible == true then
                         local splitTimer = string.split(v:FindFirstChild("Attachment"):FindFirstChild("TimerGui"):FindFirstChild("TimerLabel").Text," ")
-						print(v.Name)
+						--print(v.Name)
                         if splitTimer[3] ~= nil then
                             mobText = v.Name .. ": " .. splitTimer[3]
                         elseif splitTimer[2] ~= nil then
