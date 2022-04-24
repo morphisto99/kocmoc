@@ -2270,6 +2270,7 @@ if kocmoc.bestfields.blue ~= "" then uibestblue:SetOption(kocmoc.bestfields.blue
 if kocmoc.vars.npcprefer ~= "" then uinpcprefer:SetOption(kocmoc.vars.npcprefer) end -- Morphisto
 if kocmoc.toggles.tptonpc then uitptonpc:SetState(true) end -- Morphisto
 if kocmoc.toggles.killcrab then uikillcrab:SetState(true) end -- Morphisto
+if kocmoc.toggles.killtunnelbear then uikilltunnelbear:SetState(true) end -- Morphisto
 if kocmoc.vars.defmask ~= "" then game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"}) end -- Morphisto
 
 -- Morphisto
