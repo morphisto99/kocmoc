@@ -2359,7 +2359,7 @@ function KillTunnelBear()
 		while game.Workspace.Monsters:FindFirstChild("Tunnel Bear (Lvl 9)") and not temptable.started.vicious and not temptable.started.monsters and not temptable.started.mondo and not temptable.started.crab do
 			game:GetService("Workspace").Map.Ground.HighBlock.CanCollide = false 
 			mondopition = game.Workspace.Monsters["Tunnel Bear (Lvl 9)"].Head.Position
-			api.tween(1, CFrame.new(mondopition.x, mondopition.y + 25, mondopition.z))
+			api.tween(1, CFrame.new(mondopition.x, mondopition.y + 15, mondopition.z))
 			task.wait(1)
 			temptable.float = true
 		end
