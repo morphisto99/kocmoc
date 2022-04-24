@@ -2325,7 +2325,7 @@ end
 
 function KillTest()
 	for i = 0, 100 do
-		api.humanoidrootpart().CFrame = CFrame.new(400.4128112792969, 25.783041000366211, -39.41004943847656)
+		api.humanoidrootpart().CFrame = CFrame.new(350.4128112792969, 27.783041000366211, -39.41004943847656)
 		temptable.float = true
 		task.wait(1)
 	end
@@ -2351,7 +2351,7 @@ function KillTunnelBear()
 		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
 		temptable.started.tunnelbear = true
 		disableall()
-		api.humanoidrootpart().CFrame = CFrame.new(400.4128112792969, 6.783041000366211, -39.41004943847656)
+		api.humanoidrootpart().CFrame = CFrame.new(283.4128112792969, 6.783041000366211, -39.41004943847656)
 		task.wait(15)
 		--api.humanoidrootpart().CFrame = CFrame.new(350.4, 25.7, -39.41)
 		api.humanoidrootpart().CFrame = CFrame.new(400.4, 6.783, -39.41)
@@ -2361,7 +2361,7 @@ function KillTunnelBear()
 		--end
 		
 		for i = 0, 20 do
-			api.humanoidrootpart().CFrame = CFrame.new(400.4128112792969, 25.783041000366211, -39.41004943847656)
+			api.humanoidrootpart().CFrame = CFrame.new(350.4128112792969, 27.783041000366211, -39.41004943847656)
 			temptable.float = true
 			task.wait(1)
 		end
@@ -2371,7 +2371,7 @@ function KillTunnelBear()
 			--mondopition = game.Workspace.Monsters["Tunnel Bear (Lvl 9)"].Head.Position
 			--api.tween(.5, CFrame.new(mondopition.x, mondopition.y + 13, mondopition.z))
 			--api.humanoidrootpart().CFrame = CFrame.new(mondopition.x, mondopition.y + 13, mondopition.z)
-			api.humanoidrootpart().CFrame = CFrame.new(283.4128112792969, 25.783041000366211, -39.41004943847656)
+			api.humanoidrootpart().CFrame = CFrame.new(283.4128112792969, 27.783041000366211, -39.41004943847656)
 			temptable.float = true
 			task.wait(1)
 		end
