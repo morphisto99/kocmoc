@@ -1080,7 +1080,7 @@ wayp:CreateDropdown("Monster Teleports", spawnerstable, function(Option) d = gam
 wayp:CreateDropdown("Toys Teleports", toystable, function(Option) d = game:GetService("Workspace").Toys:FindFirstChild(Option).Platform game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(d.Position.X, d.Position.Y+3, d.Position.Z) end)
 wayp:CreateButton("Teleport to hive", function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Players").LocalPlayer.SpawnPos.Value end)
 wayp:CreateButton("print location", function() print(game.Players.LocalPlayer.Character.HumanoidRootPart.Position) end) -- Morphisto
-wayp:CreateButton("Kill Tunnel Bear", function() KillTunnelBear() end) -- Morphisto
+wayp:CreateButton("Test", function() KillTest() end) -- Morphisto
 wayp:CreateDropdown("NPC Teleports", {"Black Bear","Brown Bear","Bucko Bee","Honey Bee","Panda Bear","Polar Bear","Riley Bee","Science Bear","Spirit Bear","Science Bear","Mother Bear","Sun Bear","Stick Bug","Onett","Gummy Lair","Bubble Bee Man","Meteor Shower","Demon Mask","Diamond Mask"}, function(Option) game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = npctable[Option] end) -- Morphisto
 
 local useitems = itemstab:CreateSection("Use Items")
@@ -2309,13 +2309,16 @@ function KillCoconutCrab()
 end
 -- Morphisto
 
+function KillTest()
+	for i,v in next, game:GetService("Workspace").MonsterSpawners:GetChildren() do
+		print(v.Name)
+	end
+end
+
 -- Morphisto
 function KillTunnelBear()
 	local tunnelbearisready = false
-	for i,v in next, game:GetService("Workspace").MonsterSpawners:GetChildren() do
-	--for i,v in pairs(game:GetService("Workspace").MonsterSpawners:GetChildren()) do
-		print(v.Name)
-		[[--
+	for i,v in pairs(game:GetService("Workspace").MonsterSpawners:GetChildren()) do
 		if not string.find(v.Name,"CaveMonster") then
 			local mobText = nil
 			mobText = fetchVisualMonsterString(v)
@@ -2326,9 +2329,7 @@ function KillTunnelBear()
 				end
 			end
 		end
-		]]--
 	end
-	[[--
 	if tunnelbearisready then
 		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
 		temptable.started.crab = true
@@ -2362,7 +2363,6 @@ function KillTunnelBear()
 		enableall()
 		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
 	end
-	]]--
 end
 -- Morphisto
 
