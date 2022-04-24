@@ -2347,8 +2347,6 @@ function KillTunnelBear()
 	end
 
 	if tunnelbearisready then
-		print("Tunnel Bear is Ready!")
-		--[[
 		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
 		temptable.started.tunnelbear = true
 		disableall()
@@ -2370,7 +2368,6 @@ function KillTunnelBear()
 		enableall()
 		temptable.started.tunnelbear = false
 		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"}
-		]]--
 	end
 
 end
