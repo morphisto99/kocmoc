@@ -2324,10 +2324,8 @@ end
 -- Morphisto
 
 function KillTest()
-	for i,v in next, game:GetService("Workspace").MonsterSpawners:GetChildren() do
-		local imobText = nil
-		imobText = fetchVisualMonsterString(v)
-		print(imobText)
+	for i,v in pairs(workspace.Monsters:GetChildren()) do
+		print(v.Name)
 	end
 end
 
@@ -2357,9 +2355,9 @@ function KillTunnelBear()
 		if GetItemListWithValue()["Stinger"] > 0 then
 			game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Stinger"})
 		end
-		while game.Workspace.Monsters:FindFirstChild("Tunnel Bear (Lvl 9)") and not temptable.started.vicious and not temptable.started.monsters and not temptable.started.mondo and not temptable.started.crab do
-			task.wait(1)
-		end
+		--while game.Workspace.Monsters:FindFirstChild("Tunnel Bear (Lvl 9)") and not temptable.started.vicious and not temptable.started.monsters and not temptable.started.mondo and not temptable.started.crab do
+			--task.wait(1)
+		--end
 		api.tween(1, CFrame.new(400.4, 6.783, -39.41))
 		task.wait(1)
 		for i = 0, 50 do
