@@ -2099,14 +2099,14 @@ function fetchVisualMonsterString(v)
                     if v:FindFirstChild("Attachment"):FindFirstChild("TimerGui"):FindFirstChild("TimerLabel").Visible == true then
                         local splitTimer = string.split(v:FindFirstChild("Attachment"):FindFirstChild("TimerGui"):FindFirstChild("TimerLabel").Text," ")
                         if splitTimer[3] ~= nil then
-                            mobText = getMonsterName(v.Name) .. ": " .. splitTimer[3]
+                            mobText = v.Name .. ": " .. splitTimer[3]
                         elseif splitTimer[2] ~= nil then
-                            mobText = getMonsterName(v.Name) .. ": " .. splitTimer[2]
+                            mobText = v.Name .. ": " .. splitTimer[2]
                         else
-                            mobText = getMonsterName(v.Name) .. ": " .. splitTimer[1]
+                            mobText = v.Name .. ": " .. splitTimer[1]
                         end
                     else
-                        mobText = getMonsterName(v.Name) .. ": Ready"
+                        mobText = v.Name .. ": Ready"
                     end
                 end
             end
