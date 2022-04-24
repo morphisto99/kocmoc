@@ -2311,7 +2311,9 @@ end
 
 function KillTest()
 	for i,v in next, game:GetService("Workspace").MonsterSpawners:GetChildren() do
-		print(v.Name)
+		local imobText = nil
+		imobText = fetchVisualMonsterString(v)
+		print(imobText)
 	end
 end
 
