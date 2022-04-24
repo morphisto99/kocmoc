@@ -2352,22 +2352,22 @@ function KillTunnelBear()
 		disableall()
 		api.humanoidrootpart().CFrame = CFrame.new(283.4128112792969, 6.783041000366211, -39.41004943847656)
 		task.wait(15)
-		api.humanoidrootpart().CFrame = CFrame.new(350.4, 38.7, -39.41)
+		api.humanoidrootpart().CFrame = CFrame.new(350.4, 25.7, -39.41)
 		task.wait(5)
-		--if GetItemListWithValue()["Stinger"] > 0 then
-			--game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Stinger"})
-		--end
-		--while game.Workspace.Monsters:FindFirstChild("Tunnel Bear (Lvl 9)") and not temptable.started.vicious and not temptable.started.monsters and not temptable.started.mondo and not temptable.started.crab do
-		--	task.wait(1)
-		--end
-		--api.tween(.5, CFrame.new(400.4, 6.783, -39.41))
-		--task.wait(1)
-		--for i = 0, 50 do
-			--gettoken(CFrame.new(400.4, 6.783, -39.41).Position)
-		--end
-		--enableall()
-		--temptable.started.tunnelbear = false
-		--game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"}
+		if GetItemListWithValue()["Stinger"] > 0 then
+			game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Stinger"})
+		end
+		while game.Workspace.Monsters:FindFirstChild("Tunnel Bear (Lvl 9)") and not temptable.started.vicious and not temptable.started.monsters and not temptable.started.mondo and not temptable.started.crab do
+			task.wait(1)
+		end
+		api.tween(1, CFrame.new(400.4, 6.783, -39.41))
+		task.wait(1)
+		for i = 0, 50 do
+			gettoken(CFrame.new(400.4, 6.783, -39.41).Position)
+		end
+		enableall()
+		temptable.started.tunnelbear = false
+		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"}
 	end
 
 end
