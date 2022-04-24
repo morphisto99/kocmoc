@@ -2329,6 +2329,7 @@ function KillTest()
 		temptable.float = true
 		task.wait(1)
 	end
+	temptable.float = false
 end
 
 -- Morphisto
