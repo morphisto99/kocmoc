@@ -2365,7 +2365,7 @@ function KillTunnelBear()
 		--end
 		enableall()
 		temptable.started.tunnelbear = false
-		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"}
+		--game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"}
 	end
 
 end
