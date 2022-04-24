@@ -1079,8 +1079,8 @@ wayp:CreateDropdown("Field Teleports", fieldstable, function(Option) game.Player
 wayp:CreateDropdown("Monster Teleports", spawnerstable, function(Option) d = game:GetService("Workspace").MonsterSpawners:FindFirstChild(Option) game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(d.Position.X, d.Position.Y+3, d.Position.Z) end)
 wayp:CreateDropdown("Toys Teleports", toystable, function(Option) d = game:GetService("Workspace").Toys:FindFirstChild(Option).Platform game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(d.Position.X, d.Position.Y+3, d.Position.Z) end)
 wayp:CreateButton("Teleport to hive", function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Players").LocalPlayer.SpawnPos.Value end)
-
 wayp:CreateButton("print location", function() print(game.Players.LocalPlayer.Character.HumanoidRootPart.Position) end) -- Morphisto
+wayp:CreateButton("Kill Tunnel Bear", function() KillTunnelBear() end) -- Morphisto
 wayp:CreateDropdown("NPC Teleports", {"Black Bear","Brown Bear","Bucko Bee","Honey Bee","Panda Bear","Polar Bear","Riley Bee","Science Bear","Spirit Bear","Science Bear","Mother Bear","Sun Bear","Stick Bug","Onett","Gummy Lair","Bubble Bee Man","Meteor Shower","Demon Mask","Diamond Mask"}, function(Option) game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = npctable[Option] end) -- Morphisto
 
 local useitems = itemstab:CreateSection("Use Items")
@@ -2279,18 +2279,18 @@ function KillCoconutCrab()
 		disableall()
 		api.humanoidrootpart().CFrame = CFrame.new(-307.52117919922, 107.91863250732, 467.86791992188)
 		task.wait(10)
-		if GetItemListWithValue()["Oil"] > 0 then -- Morphisto
-			game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Oil"}) -- Morphisto
+		if GetItemListWithValue()["Oil"] > 0 then
+			game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Oil"})
 		end
-		if GetItemListWithValue()["Stinger"] > 0 then -- Morphisto
-			game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Stinger"}) -- Morphisto
+		if GetItemListWithValue()["Stinger"] > 0 then
+			game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Stinger"})
 		end
 		local oilcooldown = time() -- Morphisto
 		while game.Workspace.Monsters:FindFirstChild("Coconut Crab (Lvl 12)") and not temptable.started.vicious and not temptable.started.monsters do
 			local cooldown = time() - tonumber(oilcooldown)
 			if cooldown > 30 then
-				if GetItemListWithValue()["Stinger"] > 0 then -- Morphisto
-					game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Stinger"}) -- Morphisto
+				if GetItemListWithValue()["Stinger"] > 0 then
+					game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Stinger"})
 				end
 				oilcooldown = time()
 			end
@@ -2308,6 +2308,63 @@ function KillCoconutCrab()
 	end
 end
 -- Morphisto
+
+-- Morphisto
+function KillTunnelBear()
+	local tunnelbearisready = false
+	game:GetService("Workspace").MonsterSpawners:FindFirstChild(Option)
+	for i,v in next, game:GetService("Workspace").MonsterSpawners:GetChildren() do
+	--for i,v in pairs(game:GetService("Workspace").MonsterSpawners:GetChildren()) do
+		print(v.Name)
+		if not string.find(v.Name,"CaveMonster") then
+			local mobText = nil
+			mobText = fetchVisualMonsterString(v)
+			if mobText ~= nil then
+				if mobText == "Tunnel Bear: Ready" then
+					print("Tunnel Bear is Ready")
+					tunnelbearisready = true
+				end
+			end
+		end
+	end
+	[[--
+	if tunnelbearisready then
+		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
+		temptable.started.crab = true
+		disableall()
+		api.humanoidrootpart().CFrame = CFrame.new(-307.52117919922, 107.91863250732, 467.86791992188)
+		task.wait(10)
+		if GetItemListWithValue()["Oil"] > 0 then
+			game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Oil"})
+		end
+		if GetItemListWithValue()["Stinger"] > 0 then
+			game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Stinger"})
+		end
+		local oilcooldown = time() -- Morphisto
+		while game.Workspace.Monsters:FindFirstChild("Coconut Crab (Lvl 12)") and not temptable.started.vicious and not temptable.started.monsters do
+			local cooldown = time() - tonumber(oilcooldown)
+			if cooldown > 30 then
+				if GetItemListWithValue()["Stinger"] > 0 then
+					game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Stinger"})
+				end
+				oilcooldown = time()
+			end
+			task.wait(1)
+		end
+		api.tween(1, CFrame.new(-259.4, 71.9, 462.1))
+		task.wait(1)
+		if kocmoc.toggles.autosprinkler then makesprinklers() end
+		for i = 0, 50 do
+			gettoken(CFrame.new(-259.4, 71.9, 462.1).Position)
+		end
+		temptable.started.crab = false
+		enableall()
+		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
+	end
+	]]--
+end
+-- Morphisto
+
 
 for _, part in next, workspace:FindFirstChild("FieldDecos"):GetDescendants() do if part:IsA("BasePart") then part.CanCollide = false part.Transparency = part.Transparency < 0.5 and 0.5 or part.Transparency task.wait() end end
 for _, part in next, workspace:FindFirstChild("Decorations"):GetDescendants() do if part:IsA("BasePart") and (part.Parent.Name == "Bush" or part.Parent.Name == "Blue Flower") then part.CanCollide = false part.Transparency = part.Transparency < 0.5 and 0.5 or part.Transparency task.wait() end end
