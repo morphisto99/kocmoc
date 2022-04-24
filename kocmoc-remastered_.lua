@@ -2315,6 +2315,7 @@ function KillTunnelBear()
 	for i,v in next, game:GetService("Workspace").MonsterSpawners:GetChildren() do
 	--for i,v in pairs(game:GetService("Workspace").MonsterSpawners:GetChildren()) do
 		print(v.Name)
+		[[--
 		if not string.find(v.Name,"CaveMonster") then
 			local mobText = nil
 			mobText = fetchVisualMonsterString(v)
@@ -2325,6 +2326,7 @@ function KillTunnelBear()
 				end
 			end
 		end
+		]]--
 	end
 	[[--
 	if tunnelbearisready then
