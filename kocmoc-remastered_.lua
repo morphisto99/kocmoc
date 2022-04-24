@@ -2312,7 +2312,6 @@ end
 -- Morphisto
 function KillTunnelBear()
 	local tunnelbearisready = false
-	game:GetService("Workspace").MonsterSpawners:FindFirstChild(Option)
 	for i,v in next, game:GetService("Workspace").MonsterSpawners:GetChildren() do
 	--for i,v in pairs(game:GetService("Workspace").MonsterSpawners:GetChildren()) do
 		print(v.Name)
