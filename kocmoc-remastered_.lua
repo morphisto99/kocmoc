@@ -2387,7 +2387,7 @@ function KillKingBeetle()
 		end
 	end
 	if kingbeetleisready then
-		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
+		--game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
 		temptable.started.kingbeetle = true
 		disableall()
 		api.humanoidrootpart().CFrame = CFrame.new(148.34913635253906, 34.24530792236328, 182.07960510253906)
@@ -2402,8 +2402,8 @@ function KillKingBeetle()
 		--for i = 0, 50 do
 			--gettoken(CFrame.new(180.1517, 4.845, 184.5).Position)
 		--end
-		--enableall()
-		temptable.started.kingbeetle = false
+		enableall()
+		--temptable.started.kingbeetle = false
 		--game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"}
 	end
 end
