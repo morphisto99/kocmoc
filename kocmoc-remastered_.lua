@@ -1685,10 +1685,6 @@ task.spawn(function() while task.wait() do
                 temptable.magnitude = 25 
                 fieldpos = api.partwithnamepart("Epic", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
                 fieldposition = fieldpos.Position
-            elseif api.partwithnamepart("Rare", game.Workspace.Happenings.Puffshrooms) then
-                temptable.magnitude = 25 
-                fieldpos = api.partwithnamepart("Rare", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
-                fieldposition = fieldpos.Position
             else
                 temptable.magnitude = 25 
                 fieldpos = api.getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
@@ -2353,32 +2349,19 @@ function KillTunnelBear()
 		disableall()
 		api.humanoidrootpart().CFrame = CFrame.new(283.4128112792969, 6.783041000366211, -39.41004943847656)
 		task.wait(15)
-		--api.humanoidrootpart().CFrame = CFrame.new(350.4, 25.7, -39.41)
 		api.humanoidrootpart().CFrame = CFrame.new(400.4, 6.783, -39.41)
 		task.wait(4)
-		--if GetItemListWithValue()["Stinger"] > 0 then
-			--game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Stinger"})
-		--end
-		--for i = 0, 10 do
-			--api.humanoidrootpart().CFrame = CFrame.new(350.4128112792969, 29.783041000366211, -39.41004943847656)
-			--temptable.float = true
-			--task.wait(1)
-		--end
-		
+		if GetItemListWithValue()["Stinger"] > 0 then
+			game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Stinger"})
+		end
 		while game.Workspace.Monsters:FindFirstChild("Tunnel Bear (Lvl 9)") and not temptable.started.vicious and not temptable.started.monsters and not temptable.started.mondo and not temptable.started.crab do
-			--game:GetService("Workspace").Map.Ground.HighBlock.CanCollide = false 
-			--mondopition = game.Workspace.Monsters["Tunnel Bear (Lvl 9)"].Head.Position
-			--api.tween(.5, CFrame.new(mondopition.x, mondopition.y + 13, mondopition.z))
-			--api.humanoidrootpart().CFrame = CFrame.new(mondopition.x, mondopition.y + 13, mondopition.z)
 			api.humanoidrootpart().CFrame = CFrame.new(350.4128112792969, 29.783041000366211, -39.41004943847656)
 			temptable.float = true
 			task.wait(1)
 		end
 		task.wait(0.5)
-		--game:GetService("Workspace").Map.Ground.HighBlock.CanCollide = true
 		temptable.float = false
 		api.tween(1, CFrame.new(400.4, 6.783, -39.41)) task.wait(1)
-		--api.tween(1, CFrame.new(400.4, 6.783, -39.41))
 		for i = 0, 60 do
 			gettoken(CFrame.new(400.4, 6.783, -39.41).Position)
 		end
