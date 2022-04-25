@@ -1101,6 +1101,7 @@ wayp:CreateDropdown("Monster Teleports", spawnerstable, function(Option) d = gam
 wayp:CreateDropdown("Toys Teleports", toystable, function(Option) d = game:GetService("Workspace").Toys:FindFirstChild(Option).Platform game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(d.Position.X, d.Position.Y+3, d.Position.Z) end)
 wayp:CreateButton("Teleport to hive", function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Players").LocalPlayer.SpawnPos.Value end)
 wayp:CreateButton("print location", function() print(game.Players.LocalPlayer.Character.HumanoidRootPart.Position) end) -- Morphisto
+wayp:CreateButton("Test", function() KillKingBeetle() end) -- Morphisto
 wayp:CreateDropdown("NPC Teleports", {"Black Bear","Brown Bear","Bucko Bee","Honey Bee","Panda Bear","Polar Bear","Riley Bee","Science Bear","Spirit Bear","Science Bear","Mother Bear","Sun Bear","Stick Bug","Onett","Gummy Lair","Bubble Bee Man","Meteor Shower","Demon Mask","Diamond Mask"}, function(Option) game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = npctable[Option] end) -- Morphisto
 
 local useitems = itemstab:CreateSection("Use Items")
@@ -1729,7 +1730,7 @@ task.spawn(function() while task.wait() do
                 end
                 if kocmoc.toggles.killcrab then KillCoconutCrab() end -- Morphisto
 				if kocmoc.toggles.killtunnelbear then KillTunnelBear() end -- Morphisto
-				if kocmoc.toggles.killkingbeetle then KillKingBeetle() end -- Morphisto
+				--if kocmoc.toggles.killkingbeetle then KillKingBeetle() end -- Morphisto
 				if (fieldposition-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
                     api.tween(2, fieldpos) -- Morphisto
                     task.wait(2)
@@ -2387,13 +2388,14 @@ function KillKingBeetle()
 		end
 	end
 	if kingbeetleisready then
+		print("King Beetle is Ready")
 		--game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
-		temptable.started.kingbeetle = true
-		disableall()
-		api.humanoidrootpart().CFrame = CFrame.new(148.34913635253906, 34.24530792236328, 182.07960510253906)
-		task.wait(15)
-		api.humanoidrootpart().CFrame = CFrame.new(186.95, 4.845, 138.24)
-		task.wait(3)
+		--temptable.started.kingbeetle = true
+		--disableall()
+		--api.humanoidrootpart().CFrame = CFrame.new(148.34913635253906, 34.24530792236328, 182.07960510253906)
+		--task.wait(15)
+		--api.humanoidrootpart().CFrame = CFrame.new(186.95, 4.845, 138.24)
+		--task.wait(3)
 		--while game.Workspace.Monsters:FindFirstChild("King Beetle (Lvl 7)") and not temptable.started.vicious and not temptable.started.monsters and not temptable.started.mondo and not temptable.started.crab and not temptable.started.tunnelbear do
 			--task.wait(1)
 		--end
@@ -2402,7 +2404,7 @@ function KillKingBeetle()
 		--for i = 0, 50 do
 			--gettoken(CFrame.new(180.1517, 4.845, 184.5).Position)
 		--end
-		enableall()
+		--enableall()
 		--temptable.started.kingbeetle = false
 		--game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"}
 	end
