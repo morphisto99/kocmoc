@@ -90,7 +90,8 @@ getgenv().temptable = {
 		farmpuffshrooms = false, -- Morphisto
 		farmrares = false, -- Morphisto
 		killcrab = false, -- Morphisto
-		killtunnelbear = false, --Morphisto
+		killtunnelbear = false, -- Morphisto
+		killkingbeetle = false, -- Morphisto
         autofarm = false,
         killmondo = false,
         vicious = false,
@@ -407,6 +408,10 @@ function disableall()
 		kocmoc.toggles.killtunnelbear = false -- Morphisto
 		temptable.cache.killtunnelbear = true -- Morphisto
 	end
+	if kocmoc.toggles.killkingbeetle and not temptable.started.kingbeetle then -- Morphisto
+		kocmoc.toggles.killkingbeetle = false -- Morphisto
+		temptable.cache.killkingbeetle = true -- Morphisto
+	end
 	if kocmoc.toggles.autofarm and not temptable.converting then
         temptable.cache.autofarm = true
         kocmoc.toggles.autofarm = false
@@ -441,6 +446,10 @@ function enableall()
 	if temptable.cache.killtunnelbear then -- Morphisto
 		kocmoc.toggles.killtunnelbear = true -- Morphisto
 		temptable.cache.killtunnelbear = false -- Morphisto
+	end
+	if temptable.cache.killkingbeetle then -- Morphisto
+		kocmoc.toggles.killkingbeetle = true -- Morphisto
+		temptable.cache.killkingbeetle = false -- Morphisto
 	end
 	if temptable.cache.autofarm then
         kocmoc.toggles.autofarm = true
@@ -1092,7 +1101,7 @@ wayp:CreateDropdown("Field Teleports", fieldstable, function(Option) game.Player
 wayp:CreateDropdown("Monster Teleports", spawnerstable, function(Option) d = game:GetService("Workspace").MonsterSpawners:FindFirstChild(Option) game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(d.Position.X, d.Position.Y+3, d.Position.Z) end)
 wayp:CreateDropdown("Toys Teleports", toystable, function(Option) d = game:GetService("Workspace").Toys:FindFirstChild(Option).Platform game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(d.Position.X, d.Position.Y+3, d.Position.Z) end)
 wayp:CreateButton("Teleport to hive", function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Players").LocalPlayer.SpawnPos.Value end)
-wayp:CreateButton("Test", function() KillTest() end) -- Morphisto
+wayp:CreateButton("Test", function() KillKingBeetle() end) -- Morphisto
 wayp:CreateButton("print location", function() print(game.Players.LocalPlayer.Character.HumanoidRootPart.Position) end) -- Morphisto
 wayp:CreateDropdown("NPC Teleports", {"Black Bear","Brown Bear","Bucko Bee","Honey Bee","Panda Bear","Polar Bear","Riley Bee","Science Bear","Spirit Bear","Science Bear","Mother Bear","Sun Bear","Stick Bug","Onett","Gummy Lair","Bubble Bee Man","Meteor Shower","Demon Mask","Diamond Mask"}, function(Option) game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = npctable[Option] end) -- Morphisto
 
