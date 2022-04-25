@@ -1730,6 +1730,7 @@ task.spawn(function() while task.wait() do
                 end
                 if kocmoc.toggles.killcrab then KillCoconutCrab() end -- Morphisto
 				if kocmoc.toggles.killtunnelbear then KillTunnelBear() end -- Morphisto
+				if kocmoc.toggles.killkingbeetle then KillKingBeetle() end -- Morphisto
 				if (fieldposition-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
                     api.tween(2, fieldpos) -- Morphisto
                     task.wait(2)
