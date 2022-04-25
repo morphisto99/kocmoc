@@ -36,7 +36,7 @@ for _, v in pairs(game:GetService("CoreGui"):GetDescendants()) do
     end
 end
 getgenv().temptable = {
-    version = "3.2.9-1",
+    version = "3.2.9",
     blackfield = "Sunflower Field",
     redfields = {},
     bluefields = {},
@@ -52,15 +52,15 @@ getgenv().temptable = {
     configname = "",
     tokenpath = game:GetService("Workspace").Collectibles,
     started = {
-		tunnelbear = false, -- Morphisto
 		crab = false, -- Morphisto
+		tunnelbear = false, -- Morphisto
 		kingbeetle = false, --Morphisto
         vicious = false,
         mondo = false,
         windy = false,
         ant = false,
         monsters = false,
-		quests = false -- Morphisto
+		quests = false
     },
     detected = {
         vicious = false,
@@ -2306,8 +2306,8 @@ function KillCoconutCrab()
 		if GetItemListWithValue()["Stinger"] > 0 then
 			game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Stinger"})
 		end
-		local oilcooldown = time() -- Morphisto
-		while game.Workspace.Monsters:FindFirstChild("Coconut Crab (Lvl 12)") and not temptable.started.vicious and not temptable.started.monsters do
+		local oilcooldown = time()
+		while game.Workspace.Monsters:FindFirstChild("Coconut Crab (Lvl 12)") and not temptable.started.vicious and not temptable.started.monsters and not temptable.started.mondo and not temptable.started.tunnelbear and not temptable.started.kingbeetle do
 			local cooldown = time() - tonumber(oilcooldown)
 			if cooldown > 30 then
 				if GetItemListWithValue()["Stinger"] > 0 then
@@ -2325,19 +2325,10 @@ function KillCoconutCrab()
 		end
 		temptable.started.crab = false
 		enableall()
-		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
+		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"}
 	end
 end
 -- Morphisto
-
-function KillTest()
-	for i = 0, 100 do
-		api.humanoidrootpart().CFrame = CFrame.new(350.4128112792969, 27.783041000366211, -39.41004943847656)
-		temptable.float = true
-		task.wait(1)
-	end
-	temptable.float = false
-end
 
 -- Morphisto
 function KillTunnelBear()
@@ -2371,7 +2362,7 @@ function KillTunnelBear()
 		end
 		task.wait(0.5)
 		temptable.float = false
-		api.tween(1, CFrame.new(400.4, 6.783, -39.41)) task.wait(1)
+		api.tween(1, CFrame.new(400.4, 6.783, -39.41))
 		for i = 0, 60 do
 			gettoken(CFrame.new(400.4, 6.783, -39.41).Position)
 		end
@@ -2379,7 +2370,6 @@ function KillTunnelBear()
 		temptable.started.tunnelbear = false
 		--game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"}
 	end
-
 end
 -- Morphisto
 
@@ -2409,7 +2399,7 @@ function KillKingBeetle()
 			task.wait(1)
 		end
 		task.wait(0.5)
-		api.tween(1, CFrame.new(180.1517, 4.845, 184.5)) task.wait(1)
+		api.tween(1, CFrame.new(180.1517, 4.845, 184.5))
 		for i = 0, 50 do
 			gettoken(CFrame.new(180.1517, 4.845, 184.5).Position)
 		end
