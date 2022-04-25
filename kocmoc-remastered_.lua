@@ -1584,6 +1584,7 @@ task.spawn(function() while task.wait() do
                     if string.match(v.Parent.Parent.TitleBar.Text, kocmoc.vars.npcprefer) or kocmoc.vars.npcprefer == "All Quests" and not string.find(v.Text, "Puffshroom") then
                         pollentypes = {'White Pollen', "Red Pollen", "Blue Pollen", "Blue Flowers", "Red Flowers", "White Flowers"}
                         text = v.Text
+						print(text)
                         if api.returnvalue(fieldstable, text) and not string.find(v.Text, "Complete!") and not api.findvalue(kocmoc.blacklistedfields, api.returnvalue(fieldstable, text)) then
                             d = api.returnvalue(fieldstable, text)
                             fieldselected = game:GetService("Workspace").FlowerZones[d]
@@ -1592,6 +1593,7 @@ task.spawn(function() while task.wait() do
                         -- Morphisto
 						elseif string.find(text, "Rhino") then
 							if not string.find(text, 'Complete!') then
+								print("Rhino found!")
 								killquestmobs("Rhino")
 								SwapMaskonField("Bamboo Field")
 							elseif string.find(text, 'Complete!') then
