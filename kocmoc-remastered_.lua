@@ -2355,23 +2355,22 @@ function KillTunnelBear()
 		task.wait(15)
 		--api.humanoidrootpart().CFrame = CFrame.new(350.4, 25.7, -39.41)
 		api.humanoidrootpart().CFrame = CFrame.new(400.4, 6.783, -39.41)
-		task.wait(5)
+		task.wait(4)
 		--if GetItemListWithValue()["Stinger"] > 0 then
 			--game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Stinger"})
 		--end
-		
-		for i = 0, 20 do
-			api.humanoidrootpart().CFrame = CFrame.new(350.4128112792969, 29.783041000366211, -39.41004943847656)
-			temptable.float = true
-			task.wait(1)
-		end
+		--for i = 0, 10 do
+			--api.humanoidrootpart().CFrame = CFrame.new(350.4128112792969, 29.783041000366211, -39.41004943847656)
+			--temptable.float = true
+			--task.wait(1)
+		--end
 		
 		while game.Workspace.Monsters:FindFirstChild("Tunnel Bear (Lvl 9)") and not temptable.started.vicious and not temptable.started.monsters and not temptable.started.mondo and not temptable.started.crab do
 			--game:GetService("Workspace").Map.Ground.HighBlock.CanCollide = false 
 			--mondopition = game.Workspace.Monsters["Tunnel Bear (Lvl 9)"].Head.Position
 			--api.tween(.5, CFrame.new(mondopition.x, mondopition.y + 13, mondopition.z))
 			--api.humanoidrootpart().CFrame = CFrame.new(mondopition.x, mondopition.y + 13, mondopition.z)
-			api.humanoidrootpart().CFrame = CFrame.new(283.4128112792969, 29.783041000366211, -39.41004943847656)
+			api.humanoidrootpart().CFrame = CFrame.new(350.4128112792969, 29.783041000366211, -39.41004943847656)
 			temptable.float = true
 			task.wait(1)
 		end
@@ -2380,12 +2379,12 @@ function KillTunnelBear()
 		temptable.float = false
 		api.tween(1, CFrame.new(400.4, 6.783, -39.41)) task.wait(1)
 		--api.tween(1, CFrame.new(400.4, 6.783, -39.41))
-		for i = 0, 50 do
+		for i = 0, 60 do
 			gettoken(CFrame.new(400.4, 6.783, -39.41).Position)
 		end
 		enableall()
 		temptable.started.tunnelbear = false
-		--game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"}
+		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"}
 	end
 
 end
