@@ -2395,7 +2395,7 @@ function KillKingBeetle()
 		task.wait(15)
 		api.humanoidrootpart().CFrame = CFrame.new(186.95, 4.845, 138.24)
 		task.wait(3)
-		while game.Workspace.Monsters:FindFirstChild("Tunnel Bear (Lvl 9)") and not temptable.started.vicious and not temptable.started.monsters and not temptable.started.mondo and not temptable.started.crab and not temptable.started.tunnelbear do
+		while game.Workspace.Monsters:FindFirstChild("King Beetle (Lvl 7)") and not temptable.started.vicious and not temptable.started.monsters and not temptable.started.mondo and not temptable.started.crab and not temptable.started.tunnelbear do
 			task.wait(1)
 		end
 		task.wait(0.5)
