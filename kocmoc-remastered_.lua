@@ -1083,7 +1083,7 @@ uikillvicious = mobkill:CreateToggle("Kill Vicious", nil, function(State) kocmoc
 uikillwindy = mobkill:CreateToggle("Kill Windy", nil, function(State) kocmoc.toggles.killwindy = State end)
 mobkill:CreateToggle("Auto Kill Mobs", nil, function(State) kocmoc.toggles.autokillmobs = State end):AddToolTip("Kills mobs after x pollen converting")
 mobkill:CreateToggle("Avoid Mobs", nil, function(State) kocmoc.toggles.avoidmobs = State end)
-uiautoant = mobkill:CreateToggle("Auto Ant", nil, function(State) kocmoc.toggles.autoant = State end):AddToolTip("You Need Spark Stuff 😋; Goes to Ant Challenge after pollen converting")
+--uiautoant = mobkill:CreateToggle("Auto Ant", nil, function(State) kocmoc.toggles.autoant = State end):AddToolTip("You Need Spark Stuff 😋; Goes to Ant Challenge after pollen converting")
 
 local serverhopkill = combtab:CreateSection("Serverhopping Combat")
 serverhopkill:CreateButton("Vicious Bee Serverhopper [⚠️][📜]",function() loadstring(game:HttpGet("https://raw.githubusercontent.com/Boxking776/kocmoc/main/functions/viciousbeeserverhop.lua"))() end):AddToolTip("Serverhops for rouge vicious bees")
@@ -2257,7 +2257,7 @@ if kocmoc.vars.resetbeeenergy then uiresetbeeenergy:SetState(true) end -- Morphi
 if kocmoc.toggles.killmondo then uikillmondo:SetState(true) end -- Morphisto
 if kocmoc.toggles.killvicious then uikillvicious:SetState(true) end -- Morphisto
 if kocmoc.toggles.killwindy then uikillwindy:SetState(true) end -- Morphisto
-if kocmoc.toggles.autoant then uiautoant:SetState(true) end -- Morphisto
+--if kocmoc.toggles.autoant then uiautoant:SetState(true) end -- Morphisto
 if kocmoc.toggles.loopspeed then wstoggle:SetState(true) end -- Morphisto
 if kocmoc.toggles.loopjump then jptoggle:SetState(true) end -- Morphisto
 if kocmoc.toggles.convertballoons then uiconvertballoons:SetState(true) end -- Morphisto
