@@ -60,7 +60,7 @@ getgenv().temptable = {
         windy = false,
         ant = false,
         monsters = false,
-		quests = false
+		quests = false -- Morphisto
     },
     detected = {
         vicious = false,
@@ -1083,7 +1083,7 @@ uikillvicious = mobkill:CreateToggle("Kill Vicious", nil, function(State) kocmoc
 uikillwindy = mobkill:CreateToggle("Kill Windy", nil, function(State) kocmoc.toggles.killwindy = State end)
 mobkill:CreateToggle("Auto Kill Mobs", nil, function(State) kocmoc.toggles.autokillmobs = State end):AddToolTip("Kills mobs after x pollen converting")
 mobkill:CreateToggle("Avoid Mobs", nil, function(State) kocmoc.toggles.avoidmobs = State end)
-mobkill:CreateToggle("Auto Ant", nil, function(State) kocmoc.toggles.autoant = State end):AddToolTip("You Need Spark Stuff 😋; Goes to Ant Challenge after pollen converting")
+uiautoant = mobkill:CreateToggle("Auto Ant", nil, function(State) kocmoc.toggles.autoant = State end):AddToolTip("You Need Spark Stuff 😋; Goes to Ant Challenge after pollen converting")
 
 local serverhopkill = combtab:CreateSection("Serverhopping Combat")
 serverhopkill:CreateButton("Vicious Bee Serverhopper [⚠️][📜]",function() loadstring(game:HttpGet("https://raw.githubusercontent.com/Boxking776/kocmoc/main/functions/viciousbeeserverhop.lua"))() end):AddToolTip("Serverhops for rouge vicious bees")
@@ -1100,7 +1100,6 @@ wayp:CreateDropdown("Field Teleports", fieldstable, function(Option) game.Player
 wayp:CreateDropdown("Monster Teleports", spawnerstable, function(Option) d = game:GetService("Workspace").MonsterSpawners:FindFirstChild(Option) game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(d.Position.X, d.Position.Y+3, d.Position.Z) end)
 wayp:CreateDropdown("Toys Teleports", toystable, function(Option) d = game:GetService("Workspace").Toys:FindFirstChild(Option).Platform game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(d.Position.X, d.Position.Y+3, d.Position.Z) end)
 wayp:CreateButton("Teleport to hive", function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Players").LocalPlayer.SpawnPos.Value end)
-wayp:CreateButton("Test", function() KillKingBeetle() end) -- Morphisto
 wayp:CreateButton("print location", function() print(game.Players.LocalPlayer.Character.HumanoidRootPart.Position) end) -- Morphisto
 wayp:CreateDropdown("NPC Teleports", {"Black Bear","Brown Bear","Bucko Bee","Honey Bee","Panda Bear","Polar Bear","Riley Bee","Science Bear","Spirit Bear","Science Bear","Mother Bear","Sun Bear","Stick Bug","Onett","Gummy Lair","Bubble Bee Man","Meteor Shower","Demon Mask","Diamond Mask"}, function(Option) game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = npctable[Option] end) -- Morphisto
 
@@ -2083,7 +2082,7 @@ local function getMonsterName(name)
         ["Beetle"]="Rhino Beetle";
         ["Tunnel"]="Tunnel Bear";
         ["Coco"]="Coconut Crab";
-        ["King"]="King Beetle Cave";
+        ["King"]="King Beetle";
         ["Stump"]="Stump Snail";
         ["Were"]="Werewolf"
     }
@@ -2258,6 +2257,7 @@ if kocmoc.vars.resetbeeenergy then uiresetbeeenergy:SetState(true) end -- Morphi
 if kocmoc.toggles.killmondo then uikillmondo:SetState(true) end -- Morphisto
 if kocmoc.toggles.killvicious then uikillvicious:SetState(true) end -- Morphisto
 if kocmoc.toggles.killwindy then uikillwindy:SetState(true) end -- Morphisto
+if kocmoc.toggles.autoant then uiautoant:SetState(true) end -- Morphisto
 if kocmoc.toggles.loopspeed then wstoggle:SetState(true) end -- Morphisto
 if kocmoc.toggles.loopjump then jptoggle:SetState(true) end -- Morphisto
 if kocmoc.toggles.convertballoons then uiconvertballoons:SetState(true) end -- Morphisto
@@ -2323,8 +2323,8 @@ function KillCoconutCrab()
 		for i = 0, 50 do
 			gettoken(CFrame.new(-259.4, 71.9, 462.1).Position)
 		end
-		temptable.started.crab = false
 		enableall()
+		temptable.started.crab = false
 		--game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"}
 	end
 end
@@ -2355,14 +2355,14 @@ function KillTunnelBear()
 		if GetItemListWithValue()["Stinger"] > 0 then
 			game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Stinger"})
 		end
-		while game.Workspace.Monsters:FindFirstChild("Tunnel Bear (Lvl 9)") and not temptable.started.vicious and not temptable.started.monsters and not temptable.started.mondo and not temptable.started.crab do
+		while game.Workspace.Monsters:FindFirstChild("Tunnel Bear (Lvl 9)") and not temptable.started.vicious and not temptable.started.monsters and not temptable.started.mondo and not temptable.started.crab and not temptable.started.kingbeetle do
 			api.humanoidrootpart().CFrame = CFrame.new(350.4128112792969, 29.783041000366211, -39.41004943847656)
 			temptable.float = true
 			task.wait(1)
 		end
 		task.wait(0.5)
 		temptable.float = false
-		api.tween(1, CFrame.new(400.4, 6.783, -39.41)) task.wait(1)
+		api.tween(1, CFrame.new(400.4, 6.783, -39.41))
 		for i = 0, 60 do
 			gettoken(CFrame.new(400.4, 6.783, -39.41).Position)
 		end
@@ -2395,11 +2395,11 @@ function KillKingBeetle()
 		task.wait(15)
 		api.humanoidrootpart().CFrame = CFrame.new(186.95, 4.845, 138.24)
 		task.wait(3)
-		while game.Workspace.Monsters:FindFirstChild("King Beetle (Lvl 7)") and not temptable.started.vicious and not temptable.started.monsters and not temptable.started.mondo and not temptable.started.crab and not temptable.started.tunnelbear do
+		while game.Workspace.Monsters:FindFirstChild("King Beetle (Lvl 7)") and not temptable.started.vicious and not temptable.started.monsters do
 			task.wait(1)
 		end
 		task.wait(0.5)
-		api.tween(1, CFrame.new(180.1517, 4.845, 184.5)) task.wait(1)
+		api.tween(1, CFrame.new(180.1517, 4.845, 184.5))
 		for i = 0, 50 do
 			gettoken(CFrame.new(180.1517, 4.845, 184.5).Position)
 		end
