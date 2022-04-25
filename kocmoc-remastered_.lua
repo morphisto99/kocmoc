@@ -1057,7 +1057,7 @@ uiclock = farmt:CreateToggle("Auto Wealth Clock", nil, function(State) kocmoc.to
 -- BEESMAS MARKER farmt:CreateToggle("Auto Gingerbread Bears", nil, function(State) kocmoc.toggles.collectgingerbreads = State end)
 -- BEESMAS MARKER farmt:CreateToggle("Auto Samovar", nil, function(State) kocmoc.toggles.autosamovar = State end)
 -- BEESMAS MARKER farmt:CreateToggle("Auto Stockings", nil, function(State) kocmoc.toggles.autostockings = State end)
-farmt:CreateToggle("Auto Planters", nil, function(State) kocmoc.toggles.autoplanters = State end):AddToolTip("Will re-plant your planters after converting, if they hit 100%")
+uiautoplanter = farmt:CreateToggle("Auto Planters", nil, function(State) kocmoc.toggles.autoplanters = State end) -- Morphisto
 -- BEESMAS MARKER farmt:CreateToggle("Auto Honey Candles", nil, function(State) kocmoc.toggles.autocandles = State end)
 -- BEESMAS MARKER farmt:CreateToggle("Auto Beesmas Feast", nil, function(State) kocmoc.toggles.autofeast = State end)
 -- BEESMAS MARKER farmt:CreateToggle("Auto Onett's Lid Art", nil, function(State) kocmoc.toggles.autoonettart = State end)
@@ -1083,7 +1083,7 @@ uikillvicious = mobkill:CreateToggle("Kill Vicious", nil, function(State) kocmoc
 uikillwindy = mobkill:CreateToggle("Kill Windy", nil, function(State) kocmoc.toggles.killwindy = State end)
 mobkill:CreateToggle("Auto Kill Mobs", nil, function(State) kocmoc.toggles.autokillmobs = State end):AddToolTip("Kills mobs after x pollen converting")
 mobkill:CreateToggle("Avoid Mobs", nil, function(State) kocmoc.toggles.avoidmobs = State end)
---uiautoant = mobkill:CreateToggle("Auto Ant", nil, function(State) kocmoc.toggles.autoant = State end):AddToolTip("You Need Spark Stuff 😋; Goes to Ant Challenge after pollen converting")
+uiautoant = mobkill:CreateToggle("Auto Ant", nil, function(State) kocmoc.toggles.autoant = State end) -- Morphisto
 
 local serverhopkill = combtab:CreateSection("Serverhopping Combat")
 serverhopkill:CreateButton("Vicious Bee Serverhopper [⚠️][📜]",function() loadstring(game:HttpGet("https://raw.githubusercontent.com/Boxking776/kocmoc/main/functions/viciousbeeserverhop.lua"))() end):AddToolTip("Serverhops for rouge vicious bees")
@@ -2246,6 +2246,7 @@ if kocmoc.vars.defmask ~= "" then uidefmask:SetOption(kocmoc.vars.defmask) end -
 if kocmoc.toggles.autodispense then uiautodispense:SetState(true) end -- Morphisto
 if kocmoc.toggles.autoboosters then uiautoboosters:SetState(true) end -- Morphisto
 if kocmoc.toggles.clock then uiclock:SetState(true) end -- Morphisto
+if kocmoc.toggles.autoplanter then uiautoplanter:SetState(true) end -- Morphisto
 if kocmoc.toggles.freeantpass then uifreeantpass:SetState(true) end -- Morphisto
 if kocmoc.toggles.farmsprouts then uifarmsprouts:SetState(true) end -- Morphisto
 if kocmoc.toggles.farmpuffshrooms then uifarmpuffshrooms:SetState(true) end -- Morphisto
@@ -2257,7 +2258,7 @@ if kocmoc.vars.resetbeeenergy then uiresetbeeenergy:SetState(true) end -- Morphi
 if kocmoc.toggles.killmondo then uikillmondo:SetState(true) end -- Morphisto
 if kocmoc.toggles.killvicious then uikillvicious:SetState(true) end -- Morphisto
 if kocmoc.toggles.killwindy then uikillwindy:SetState(true) end -- Morphisto
---if kocmoc.toggles.autoant then uiautoant:SetState(true) end -- Morphisto
+if kocmoc.toggles.autoant then uiautoant:SetState(true) end -- Morphisto
 if kocmoc.toggles.loopspeed then wstoggle:SetState(true) end -- Morphisto
 if kocmoc.toggles.loopjump then jptoggle:SetState(true) end -- Morphisto
 if kocmoc.toggles.convertballoons then uiconvertballoons:SetState(true) end -- Morphisto
