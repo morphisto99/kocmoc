@@ -2398,11 +2398,11 @@ function KillKingBeetle()
 			--task.wait(1)
 		--end
 		--task.wait(0.5)
-		api.tween(1, CFrame.new(180.1517, 4.845, 184.5))
-		for i = 0, 50 do
-			gettoken(CFrame.new(180.1517, 4.845, 184.5).Position)
-		end
-		enableall()
+		--api.tween(1, CFrame.new(180.1517, 4.845, 184.5))
+		--for i = 0, 50 do
+			--gettoken(CFrame.new(180.1517, 4.845, 184.5).Position)
+		--end
+		--enableall()
 		temptable.started.kingbeetle = false
 		--game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"}
 	end
