@@ -36,7 +36,7 @@ for _, v in pairs(game:GetService("CoreGui"):GetDescendants()) do
     end
 end
 getgenv().temptable = {
-    version = "3.2.9-1",
+    version = "3.2.9",
     blackfield = "Sunflower Field",
     redfields = {},
     bluefields = {},
@@ -1068,7 +1068,7 @@ uiclock = farmt:CreateToggle("Auto Wealth Clock", nil, function(State) kocmoc.to
 -- BEESMAS MARKER farmt:CreateToggle("Auto Gingerbread Bears", nil, function(State) kocmoc.toggles.collectgingerbreads = State end)
 -- BEESMAS MARKER farmt:CreateToggle("Auto Samovar", nil, function(State) kocmoc.toggles.autosamovar = State end)
 -- BEESMAS MARKER farmt:CreateToggle("Auto Stockings", nil, function(State) kocmoc.toggles.autostockings = State end)
-uiautoplanters = farmt:CreateToggle("Auto Planters", nil, function(State) kocmoc.toggles.autoplanters = State end) -- Morphisto
+uiautoplanters = farmt:CreateToggle("Auto Planters", nil, function(State) kocmoc.toggles.autoplanters = State end)
 -- BEESMAS MARKER farmt:CreateToggle("Auto Honey Candles", nil, function(State) kocmoc.toggles.autocandles = State end)
 -- BEESMAS MARKER farmt:CreateToggle("Auto Beesmas Feast", nil, function(State) kocmoc.toggles.autofeast = State end)
 -- BEESMAS MARKER farmt:CreateToggle("Auto Onett's Lid Art", nil, function(State) kocmoc.toggles.autoonettart = State end)
@@ -1089,12 +1089,13 @@ uikillcrab = mobkill:CreateToggle("Kill Crab", nil, function(State) kocmoc.toggl
 uikilltunnelbear = mobkill:CreateToggle("Kill Tunnel Bear", nil, function(State) kocmoc.toggles.killtunnelbear = State end) -- Morphisto
 uikillkingbeetle = mobkill:CreateToggle("Kill King Beetle", nil, function(State) kocmoc.toggles.killkingbeetle = State end) -- Morphisto
 uikillstumpsnail = mobkill:CreateToggle("Kill Stump Snail", nil, function(State) kocmoc.toggles.killstumpsnail = State end) -- Morphisto
+mobkill:CreateToggle("Train Snail", nil, function(State) fd = game.Workspace.FlowerZones['Stump Field'] if State then api.humanoidrootpart().CFrame = CFrame.new(fd.Position.X, fd.Position.Y-6, fd.Position.Z) else api.humanoidrootpart().CFrame = CFrame.new(fd.Position.X, fd.Position.Y+2, fd.Position.Z) end end)
 uikillmondo = mobkill:CreateToggle("Kill Mondo", nil, function(State) kocmoc.toggles.killmondo = State end)
 uikillvicious = mobkill:CreateToggle("Kill Vicious", nil, function(State) kocmoc.toggles.killvicious = State end)
 uikillwindy = mobkill:CreateToggle("Kill Windy", nil, function(State) kocmoc.toggles.killwindy = State end)
 mobkill:CreateToggle("Auto Kill Mobs", nil, function(State) kocmoc.toggles.autokillmobs = State end):AddToolTip("Kills mobs after x pollen converting")
 mobkill:CreateToggle("Avoid Mobs", nil, function(State) kocmoc.toggles.avoidmobs = State end)
-uiautoant = mobkill:CreateToggle("Auto Ant", nil, function(State) kocmoc.toggles.autoant = State end) -- Morphisto
+uiautoant = mobkill:CreateToggle("Auto Ant", nil, function(State) kocmoc.toggles.autoant = State end)
 
 local serverhopkill = combtab:CreateSection("Serverhopping Combat")
 serverhopkill:CreateButton("Vicious Bee Serverhopper [⚠️][📜]",function() loadstring(game:HttpGet("https://raw.githubusercontent.com/Boxking776/kocmoc/main/functions/viciousbeeserverhop.lua"))() end):AddToolTip("Serverhops for rouge vicious bees")
@@ -1717,7 +1718,6 @@ task.spawn(function() while task.wait() do
                 task.wait(2)
                 temptable.tokensfarm = true
                 if kocmoc.toggles.autosprinkler then makesprinklers() end
-				print("inside of temptable.tokensfarm")
             else
                 if kocmoc.toggles.killmondo then
                     while kocmoc.toggles.killmondo and game.Workspace.Monsters:FindFirstChild("Mondo Chick (Lvl 8)") and not temptable.started.vicious and not temptable.started.monsters do
@@ -1744,10 +1744,9 @@ task.spawn(function() while task.wait() do
 				if kocmoc.toggles.killkingbeetle then KillKingBeetle() end -- Morphisto
 				if kocmoc.toggles.killstumpsnail then KillStumpSnail() end -- Morphisto
 				if (fieldposition-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
-                    api.tween(1, fieldpos) -- Morphisto
-                    task.wait(2)
+                    api.tween(2, fieldpos) -- Morphisto
+                    task.wait(1) -- Morphisto
                     if kocmoc.toggles.autosprinkler then makesprinklers() end
-					print("inside of temptable.magnitude")
                 end
                 getprioritytokens()
                 if kocmoc.toggles.avoidmobs then avoidmob() end
@@ -2444,11 +2443,10 @@ function KillStumpSnail()
 		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
 		temptable.started.stumpsnail = true
 		disableall()
-
-		fd = game.Workspace.FlowerZones['Stump Field']
+		fd = game.Workspace.FlowerZones['Stump Field'])
 		api.humanoidrootpart().CFrame = CFrame.new(fd.Position.X, fd.Position.Y-6, fd.Position.Z)
 		task.wait(15)
-		while game.Workspace.Monsters:FindFirstChild("Stump Snail (Lvl 6)") and not temptable.started.vicious and not temptable.started.monsters do
+		while game.Workspace.Monsters:FindFirstChild("Stump Snail (Lvl 6))") and not temptable.started.vicious and not temptable.started.monsters do
 			task.wait(1)
 		end
 		task.wait(0.5)
