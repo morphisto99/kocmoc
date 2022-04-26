@@ -54,7 +54,8 @@ getgenv().temptable = {
     started = {
 		crab = false, -- Morphisto
 		tunnelbear = false, -- Morphisto
-		kingbeetle = false, --Morphisto
+		kingbeetle = false, -- Morphisto
+		stumpsnail = false, -- Morphisto
         vicious = false,
         mondo = false,
         windy = false,
@@ -92,6 +93,7 @@ getgenv().temptable = {
 		killcrab = false, -- Morphisto
 		killtunnelbear = false, -- Morphisto
 		killkingbeetle = false, -- Morphisto
+		killstumpsnail = false, -- Morphisto
         autofarm = false,
         killmondo = false,
         vicious = false,
@@ -337,6 +339,7 @@ getgenv().kocmoc = {
         autodonate = false,
         autouseconvertors = false,
         honeymaskconv = false,
+		killstumpsnail = false, -- Morphisto
 		killkingbeetle = false, -- Morphisto
 		killtunnelbear = false, -- Morphisto
 		killcrab = false, -- Morphisto
@@ -413,6 +416,10 @@ function disableall()
 		kocmoc.toggles.killkingbeetle = false -- Morphisto
 		temptable.cache.killkingbeetle = true -- Morphisto
 	end
+	if kocmoc.toggles.killstumpsnail and not temptable.started.stumpsnail then -- Morphisto
+		kocmoc.toggles.killstumpsnail = false -- Morphisto
+		temptable.cache.killstumpsnail = true -- Morphisto
+	end
 	if kocmoc.toggles.autofarm and not temptable.converting then
         temptable.cache.autofarm = true
         kocmoc.toggles.autofarm = false
@@ -451,6 +458,10 @@ function enableall()
 	if temptable.cache.killkingbeetle then -- Morphisto
 		kocmoc.toggles.killkingbeetle = true -- Morphisto
 		temptable.cache.killkingbeetle = false -- Morphisto
+	end
+	if temptable.cache.killstumpsnail then -- Morphisto
+		kocmoc.toggles.killstumpsnail = true -- Morphisto
+		temptable.cache.killstumpsnail = false -- Morphisto
 	end
 	if temptable.cache.autofarm then
         kocmoc.toggles.autofarm = true
@@ -1077,7 +1088,7 @@ local mobkill = combtab:CreateSection("Combat")
 uikillcrab = mobkill:CreateToggle("Kill Crab", nil, function(State) kocmoc.toggles.killcrab = State end) -- Morphisto
 uikilltunnelbear = mobkill:CreateToggle("Kill Tunnel Bear", nil, function(State) kocmoc.toggles.killtunnelbear = State end) -- Morphisto
 uikillkingbeetle = mobkill:CreateToggle("Kill King Beetle", nil, function(State) kocmoc.toggles.killkingbeetle = State end) -- Morphisto
-mobkill:CreateToggle("Train Snail", nil, function(State) fd = game.Workspace.FlowerZones['Stump Field'] if State then api.humanoidrootpart().CFrame = CFrame.new(fd.Position.X, fd.Position.Y-6, fd.Position.Z) else api.humanoidrootpart().CFrame = CFrame.new(fd.Position.X, fd.Position.Y+2, fd.Position.Z) end end)
+uikillstumpsnail = mobkill:CreateToggle("Kill Stump Snail", nil, function(State) kocmoc.toggles.killstumpsnail = State end) -- Morphisto
 uikillmondo = mobkill:CreateToggle("Kill Mondo", nil, function(State) kocmoc.toggles.killmondo = State end)
 uikillvicious = mobkill:CreateToggle("Kill Vicious", nil, function(State) kocmoc.toggles.killvicious = State end)
 uikillwindy = mobkill:CreateToggle("Kill Windy", nil, function(State) kocmoc.toggles.killwindy = State end)
@@ -1730,6 +1741,7 @@ task.spawn(function() while task.wait() do
                 if kocmoc.toggles.killcrab then KillCoconutCrab() end -- Morphisto
 				if kocmoc.toggles.killtunnelbear then KillTunnelBear() end -- Morphisto
 				if kocmoc.toggles.killkingbeetle then KillKingBeetle() end -- Morphisto
+				if kocmoc.toggles.killstumpsnail then KillStumpSnail() end -- Morphisto
 				if (fieldposition-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
                     api.tween(2, fieldpos) -- Morphisto
                     task.wait(2)
@@ -2279,6 +2291,7 @@ if kocmoc.toggles.tptonpc then uitptonpc:SetState(true) end -- Morphisto
 if kocmoc.toggles.killcrab then uikillcrab:SetState(true) end -- Morphisto
 if kocmoc.toggles.killtunnelbear then uikilltunnelbear:SetState(true) end -- Morphisto
 if kocmoc.toggles.killkingbeetle then uikillkingbeetle:SetState(true) end -- Morphisto
+if kocmoc.toggles.killstumpsnail then uikillstumpsnail:SetState(true) end -- Morphisto
 if kocmoc.vars.defmask ~= "" then game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"}) end -- Morphisto
 
 -- Morphisto
@@ -2406,6 +2419,39 @@ function KillKingBeetle()
 		end
 		enableall()
 		temptable.started.kingbeetle = false
+		--game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"}
+	end
+end
+-- Morphisto
+
+-- Morphisto
+function KillStumpSnail()
+	local stumpsnailisready = false
+	for i,v in pairs(game:GetService("Workspace").MonsterSpawners:GetChildren()) do
+		if not string.find(v.Name,"CaveMonster") then
+			local mobText = nil
+			mobText = fetchVisualMonsterString(v)
+			if mobText ~= nil then
+				if mobText == "StumpSnail: Ready" then
+					stumpsnailisready = true
+				end
+			end
+		end
+	end
+	if stumpsnailisready then
+		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
+		temptable.started.stumpsnail = true
+		disableall()
+
+		fd = game.Workspace.FlowerZones['Stump Field']
+		api.humanoidrootpart().CFrame = CFrame.new(fd.Position.X, fd.Position.Y-6, fd.Position.Z)
+		task.wait(15)
+		while game.Workspace.Monsters:FindFirstChild("Stump Snail (Lvl 6)") and not temptable.started.vicious and not temptable.started.monsters do
+			task.wait(1)
+		end
+		task.wait(0.5)
+		enableall()
+		temptable.started.stumpsnail = false
 		--game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"}
 	end
 end
