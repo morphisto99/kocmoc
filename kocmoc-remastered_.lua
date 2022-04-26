@@ -2447,6 +2447,7 @@ function KillStumpSnail()
 		task.wait(15)
 		while game.Workspace.Monsters:FindFirstChild("Stump Snail (Lvl 6)") and not temptable.started.vicious and not temptable.started.monsters do
 			task.wait(1)
+			print("inside of Stump Snail loop.")
 		end
 		task.wait(0.5)
 		enableall()
