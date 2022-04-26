@@ -1089,7 +1089,6 @@ uikillcrab = mobkill:CreateToggle("Kill Crab", nil, function(State) kocmoc.toggl
 uikilltunnelbear = mobkill:CreateToggle("Kill Tunnel Bear", nil, function(State) kocmoc.toggles.killtunnelbear = State end) -- Morphisto
 uikillkingbeetle = mobkill:CreateToggle("Kill King Beetle", nil, function(State) kocmoc.toggles.killkingbeetle = State end) -- Morphisto
 uikillstumpsnail = mobkill:CreateToggle("Kill Stump Snail", nil, function(State) kocmoc.toggles.killstumpsnail = State end) -- Morphisto
-mobkill:CreateToggle("Train Snail", nil, function(State) fd = game.Workspace.FlowerZones['Stump Field'] if State then api.humanoidrootpart().CFrame = CFrame.new(fd.Position.X, fd.Position.Y-6, fd.Position.Z) else api.humanoidrootpart().CFrame = CFrame.new(fd.Position.X, fd.Position.Y+2, fd.Position.Z) end end)
 uikillmondo = mobkill:CreateToggle("Kill Mondo", nil, function(State) kocmoc.toggles.killmondo = State end)
 uikillvicious = mobkill:CreateToggle("Kill Vicious", nil, function(State) kocmoc.toggles.killvicious = State end)
 uikillwindy = mobkill:CreateToggle("Kill Windy", nil, function(State) kocmoc.toggles.killwindy = State end)
@@ -2443,10 +2442,10 @@ function KillStumpSnail()
 		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
 		temptable.started.stumpsnail = true
 		disableall()
-		fd = game.Workspace.FlowerZones['Stump Field'])
+		fd = game.Workspace.FlowerZones['Stump Field']
 		api.humanoidrootpart().CFrame = CFrame.new(fd.Position.X, fd.Position.Y-6, fd.Position.Z)
 		task.wait(15)
-		while game.Workspace.Monsters:FindFirstChild("Stump Snail (Lvl 6))") and not temptable.started.vicious and not temptable.started.monsters do
+		while game.Workspace.Monsters:FindFirstChild("Stump Snail (Lvl 6)") and not temptable.started.vicious and not temptable.started.monsters do
 			task.wait(1)
 		end
 		task.wait(0.5)
