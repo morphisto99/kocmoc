@@ -1717,6 +1717,7 @@ task.spawn(function() while task.wait() do
                 task.wait(2)
                 temptable.tokensfarm = true
                 if kocmoc.toggles.autosprinkler then makesprinklers() end
+				print("inside of temptable.tokensfarm")
             else
                 if kocmoc.toggles.killmondo then
                     while kocmoc.toggles.killmondo and game.Workspace.Monsters:FindFirstChild("Mondo Chick (Lvl 8)") and not temptable.started.vicious and not temptable.started.monsters do
@@ -1743,9 +1744,10 @@ task.spawn(function() while task.wait() do
 				if kocmoc.toggles.killkingbeetle then KillKingBeetle() end -- Morphisto
 				if kocmoc.toggles.killstumpsnail then KillStumpSnail() end -- Morphisto
 				if (fieldposition-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
-                    api.tween(2, fieldpos) -- Morphisto
+                    api.tween(1, fieldpos) -- Morphisto
                     task.wait(2)
                     if kocmoc.toggles.autosprinkler then makesprinklers() end
+					print("inside of temptable.magnitude")
                 end
                 getprioritytokens()
                 if kocmoc.toggles.avoidmobs then avoidmob() end
