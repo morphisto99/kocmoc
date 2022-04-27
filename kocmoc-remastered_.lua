@@ -2460,8 +2460,15 @@ end
 
 function KillTest()
 	--game.ReplicatedStorage.Events.ToyEvent:FireServer("Honeystorm")
-	for _,v in next, game:GetService("Workspace").Toys:GetChildren() do
-		print(v.Name)
+	for i,v in pairs("Honeystorm") do
+		local cooldown,isUsable = getToyCooldown(i)
+		if cooldown ~= nil and isUsable ~= nil then
+			if isUsable then
+				print(i..": Ready")
+			else
+				print(i..": "..require(game.ReplicatedStorage.TimeString)(cooldown))
+			end
+		end
 	end
 end
 
