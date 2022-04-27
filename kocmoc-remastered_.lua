@@ -1720,10 +1720,28 @@ task.spawn(function() while task.wait() do
                 if kocmoc.toggles.autosprinkler then makesprinklers() end
             else
                 if kocmoc.toggles.killmondo then
-                    while kocmoc.toggles.killmondo and game.Workspace.Monsters:FindFirstChild("Mondo Chick (Lvl 8)") and not temptable.started.vicious and not temptable.started.monsters do
+                    while kocmoc.toggles.killmondo and game.Workspace.Monsters:FindFirstChild("Mondo Chick (Lvl 8)") and not temptable.started.vicious and not temptable.started.monsters and kocmoc.toggles.autofarm do -- Morphisto
                         temptable.started.mondo = true
-                        while game.Workspace.Monsters:FindFirstChild("Mondo Chick (Lvl 8)") do
-                            disableall()
+						-- Morphisto
+						disableall()
+						if GetItemListWithValue()["Oil"] > 0 then
+							game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Oil"})
+						end
+						if GetItemListWithValue()["Stinger"] > 0 then
+							game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Stinger"})
+						end
+						local stingercooldown = time()
+						-- Morphisto
+                        while game.Workspace.Monsters:FindFirstChild("Mondo Chick (Lvl 8)") and kocmoc.toggles.autofarm do -- Morphisto
+							-- Morphisto
+							local cooldown = time() - tonumber(stingercooldown)
+							if cooldown > 28 then
+								if GetItemListWithValue()["Stinger"] > 0 then
+									game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Stinger"})
+								end
+								stingercooldown = time()
+							end
+							-- Morphisto
                             game:GetService("Workspace").Map.Ground.HighBlock.CanCollide = false 
                             mondopition = game.Workspace.Monsters["Mondo Chick (Lvl 8)"].Head.Position
                             api.tween(1, CFrame.new(mondopition.x, mondopition.y - 60, mondopition.z))
@@ -1732,7 +1750,8 @@ task.spawn(function() while task.wait() do
                         end
                         task.wait(.5) game:GetService("Workspace").Map.Ground.HighBlock.CanCollide = true temptable.float = false api.tween(.5, CFrame.new(73.2, 176.35, -167)) task.wait(1)
                         for i = 0, 50 do 
-                            gettoken(CFrame.new(73.2, 176.35, -167).Position) 
+                            gettoken(CFrame.new(73.2, 176.35, -167).Position)
+							if not kocmoc.toggles.autofarm then break end -- Morphisto
                         end 
                         enableall() 
                         api.tween(2, fieldpos) 
