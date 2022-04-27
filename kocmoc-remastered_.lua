@@ -1722,7 +1722,7 @@ task.spawn(function() while task.wait() do
                 if kocmoc.toggles.autosprinkler then makesprinklers() end
             else
                 if kocmoc.toggles.killmondo then
-                    while kocmoc.toggles.killmondo and game.Workspace.Monsters:FindFirstChild("Mondo Chick (Lvl 8)") and not temptable.started.vicious and not temptable.started.monsters and not kocmoc.toggles.autofarm do
+                    while kocmoc.toggles.killmondo and game.Workspace.Monsters:FindFirstChild("Mondo Chick (Lvl 8)") and not temptable.started.vicious and not temptable.started.monsters do
                         temptable.started.mondo = true
 						-- Morphisto
 						disableall()
@@ -1734,7 +1734,7 @@ task.spawn(function() while task.wait() do
 						end
 						local stingercooldown = time()
 						-- Morphisto
-                        while game.Workspace.Monsters:FindFirstChild("Mondo Chick (Lvl 8)") and not kocmoc.toggles.autofarm do -- Morphisto
+                        while game.Workspace.Monsters:FindFirstChild("Mondo Chick (Lvl 8)") do -- Morphisto
 							-- Morphisto
 							local cooldown = time() - tonumber(stingercooldown)
 							if cooldown > 28 then
@@ -2488,9 +2488,9 @@ function KillTest()
 
 	for i,v in next, game:GetService("Workspace").Happenings.Puffshrooms:GetChildren() do
 		print(v.Name)
-		local imobText = nil
-		imobText = fetchVisualMonsterString(v)
-		print(imobText)
+		--local imobText = nil
+		--imobText = fetchVisualMonsterString(v)
+		--print(imobText)
 	end
 end
 
