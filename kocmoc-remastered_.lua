@@ -2460,6 +2460,7 @@ end
 
 function KillTest()
 	--game.ReplicatedStorage.Events.ToyEvent:FireServer("Honeystorm")
+	print("test")
 	for i,v in pairs("Honeystorm") do
 		local cooldown,isUsable = getToyCooldown(i)
 		if cooldown ~= nil and isUsable ~= nil then
