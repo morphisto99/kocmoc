@@ -2460,10 +2460,10 @@ end
 
 function KillTest()
 	--game.ReplicatedStorage.Events.ToyEvent:FireServer("Honeystorm")
-	test1 = game:GetService("ReplicatedStorage").Events.ToyEvent:GetChildren("Honeystorm")
-	print(test1)
-	--test2 = game:GetService("ReplicatedStorage").Events.ToyEvent:FindFirstChild("Homeystorm")
-			
+	--test1 = game:GetService("ReplicatedStorage").Events.ToyEvent:GetChildren("Honeystorm")
+	--print(test1)
+	test2 = game:GetService("ReplicatedStorage").Events.ToyEvent:FindFirstChild("Homeystorm")
+	print(test2)	
 	--cooldown = game:GetService("ReplicatedStorage").Events.ToyEvent:FireServer("Honeystorm")
 	--print("cooldown=" .. cooldown)
 
