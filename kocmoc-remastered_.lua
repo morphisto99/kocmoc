@@ -2447,8 +2447,8 @@ function KillStumpSnail()
 		task.wait(15)
 		while game.Workspace.Monsters:FindFirstChild("Stump Snail (Lvl 6)") and not temptable.started.vicious and not temptable.started.monsters do
 			task.wait(1)
-			print("inside of Stump Snail loop.")
 		end
+		api.humanoidrootpart().CFrame = CFrame.new(fd.Position.X, fd.Position.Y+2, fd.Position.Z)
 		task.wait(0.5)
 		enableall()
 		temptable.started.stumpsnail = false
