@@ -2460,9 +2460,9 @@ end
 
 function KillTest()
 	--game.ReplicatedStorage.Events.ToyEvent:FireServer("Honeystorm")
-	for i,v in next, game:GetService("ReplicatedStorage").Events.ToyEvent:GetChildren() do
-		print(v.Name)
-	end
+	--for i,v in next, game:GetService("ReplicatedStorage").Events.ToyEvent:GetChildren() do
+		--print(v.Name)
+	--end
 	cooldown = game:GetService("ReplicatedStorage").Events.ToyEvent:FireServer("Honeystorm")
 	print("cooldown=" .. cooldown)
 
