@@ -823,7 +823,7 @@ function checkquestcooldown()
 	if cooldown > 300 and not temptable.started.vicious then
 		temptable.started.quests = true
 		quest_time = time()
-		local StatCache = require(game.ReplicatedStorage.ClientStatCache)writefile("Stats_"..api.nickname..".json", StatCache:Encode()) -- Export Char Stats
+		--local StatCache = require(game.ReplicatedStorage.ClientStatCache)writefile("Stats_"..api.nickname..".json", StatCache:Encode()) -- Export Char Stats
 		makequests()
 		temptable.started.quests = false
 	end
@@ -1658,6 +1658,8 @@ task.spawn(function() while task.wait() do
 								makequests()
 							end
 							break
+						elseif string.find(text, "Army Ants") or string.find(text, "Fire Ants") then -- Morphisto
+							if not game:GetService("Workspace").Toys["Ant Challenge"].Busy.Value and rtsg().Eggs.AntPass > 0 then farmant() end -- Morphisto
 						-- Morphisto
 						elseif api.returnvalue(pollentypes, text) and not string.find(v.Text, 'Complete!') then
                             d = api.returnvalue(pollentypes, text)
@@ -2478,14 +2480,18 @@ end
 -- Morphisto
 
 function KillTest()
-	--game.ReplicatedStorage.Events.ToyEvent:FireServer("Honeystorm")
-	--test1 = game:GetService("ReplicatedStorage").Events.ToyEvent:GetChildren("Honeystorm")
-	--print(test1)
-	test2 = game:GetService("ReplicatedStorage").Events.ToyEvent:FindFirstChild("Honeystorm")
-	print(test2)	
-	--cooldown = game:GetService("ReplicatedStorage").Events.ToyEvent:FireServer("Honeystorm")
-	--print("cooldown=" .. cooldown)
+	for i,v in next, game:GetService("Workspace").MonsterSpawners:GetChildren() do
+		local imobText = nil
+		imobText = fetchVisualMonsterString(v)
+		print(imobText)
+	end
 
+	for i,v in next, game:GetService("Workspace").Happenings.Puffshrooms:GetChildren() do
+		print(v.Name)
+		local imobText = nil
+		imobText = fetchVisualMonsterString(v)
+		print(imobText)
+	end
 end
 
 for _, part in next, workspace:FindFirstChild("FieldDecos"):GetDescendants() do if part:IsA("BasePart") then part.CanCollide = false part.Transparency = part.Transparency < 0.5 and 0.5 or part.Transparency task.wait() end end
