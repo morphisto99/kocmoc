@@ -2460,17 +2460,12 @@ end
 
 function KillTest()
 	--game.ReplicatedStorage.Events.ToyEvent:FireServer("Honeystorm")
-	print("test")
-	for i,v in pairs("Honeystorm") do
-		local cooldown,isUsable = getToyCooldown(i)
-		if cooldown ~= nil and isUsable ~= nil then
-			if isUsable then
-				print(i..": Ready")
-			else
-				print(i..": "..require(game.ReplicatedStorage.TimeString)(cooldown))
-			end
-		end
+	for i,v in next, game:GetService("ReplicatedStorage").Events.ToyEvent:GetChildren() do
+		print(v.Name)
 	end
+	cooldown = game:GetService("ReplicatedStorage").Events.ToyEvent:FireServer("Honeystorm")
+	print("cooldown=" .. cooldown)
+
 end
 
 for _, part in next, workspace:FindFirstChild("FieldDecos"):GetDescendants() do if part:IsA("BasePart") then part.CanCollide = false part.Transparency = part.Transparency < 0.5 and 0.5 or part.Transparency task.wait() end end
