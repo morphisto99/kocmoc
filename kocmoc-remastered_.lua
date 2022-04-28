@@ -1518,6 +1518,7 @@ local function SwapMaskonField(ifield)
 			currentMask = kocmoc.vars.defmask
 		end
 		currentField = ifield
+		print('currentMask=' .. currentMask .. ' currentField=' .. currentField)
 	end
 end
 -- Morphisto
@@ -1618,6 +1619,7 @@ task.spawn(function() while task.wait() do
                         if api.returnvalue(fieldstable, text) and not string.find(v.Text, "Complete!") and not api.findvalue(kocmoc.blacklistedfields, api.returnvalue(fieldstable, text)) then
                             d = api.returnvalue(fieldstable, text)
                             fieldselected = game:GetService("Workspace").FlowerZones[d]
+							print(d)
 							SwapMaskonField(d) -- Morphisto
                             break
                         -- Morphisto
