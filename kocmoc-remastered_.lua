@@ -2358,7 +2358,7 @@ function KillCoconutCrab()
 			game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Stinger"})
 		end
 		local oilcooldown = time()
-		while game.Workspace.Monsters:FindFirstChild("Coconut Crab (Lvl 12)") and not temptable.started.vicious and not temptable.started.monsters and kocmoc.toggles.autofarm do
+		while game.Workspace.Monsters:FindFirstChild("Coconut Crab (Lvl 12)") and not temptable.started.vicious and not temptable.started.monsters do
 			local cooldown = time() - tonumber(oilcooldown)
 			if cooldown > 30 then
 				if GetItemListWithValue()["Stinger"] > 0 then
@@ -2483,7 +2483,7 @@ function KillStumpSnail()
 		fd = game.Workspace.FlowerZones['Stump Field']
 		api.humanoidrootpart().CFrame = CFrame.new(fd.Position.X, fd.Position.Y-6, fd.Position.Z)
 		task.wait(15)
-		while game.Workspace.Monsters:FindFirstChild("Stump Snail (Lvl 6)") and not temptable.started.vicious and not temptable.started.monsters and kocmoc.toggles.autofarm do
+		while game.Workspace.Monsters:FindFirstChild("Stump Snail (Lvl 6)") and not temptable.started.vicious and not temptable.started.monsters do
 			task.wait(1)
 		end
 		task.wait(0.5)
@@ -2503,10 +2503,10 @@ function KillTest()
 	--end
 
 	for i,v in next, game:GetService("ReplicatedStorage").Events.ToyEvent:GetChildren() do
-		print(v)
-		--local imobText = nil
-		--imobText = fetchVisualMonsterString(v)
-		--print(imobText)
+		--print(v)
+		local imobText = nil
+		imobText = fetchVisualMonsterString(v)
+		print(imobText)
 	end
 end
 
