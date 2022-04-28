@@ -1208,6 +1208,8 @@ end)
 visu:CreateButton("Spawn Puffshroom Spores",function()
 task.spawn(function() syn.secure_call(function()
 local field = game:GetService("Workspace").FlowerZones:GetChildren()[math.random(1,#game:GetService("Workspace").FlowerZones:GetChildren())]
+print('field=' .. field)
+SwapMaskonField(field)
 local pos = field.CFrame.p
 require(game.ReplicatedStorage.LocalFX.PuffshroomSporeThrow)({
       Start = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.p,
@@ -1216,6 +1218,7 @@ require(game.ReplicatedStorage.LocalFX.PuffshroomSporeThrow)({
 end, game.Players.LocalPlayer.PlayerScripts.ClientInit) 
 wait(10)
 workspace.Particles:FindFirstChild("SporeCloud"):Destroy()
+print('Puffshroom Destroyed?')
 end)
 end)
 visu:CreateButton("Spawn Party Popper",function()
@@ -1619,7 +1622,6 @@ task.spawn(function() while task.wait() do
                         if api.returnvalue(fieldstable, text) and not string.find(v.Text, "Complete!") and not api.findvalue(kocmoc.blacklistedfields, api.returnvalue(fieldstable, text)) then
                             d = api.returnvalue(fieldstable, text)
                             fieldselected = game:GetService("Workspace").FlowerZones[d]
-							print(d)
 							SwapMaskonField(d) -- Morphisto
                             break
                         -- Morphisto
