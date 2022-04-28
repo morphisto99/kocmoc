@@ -2354,7 +2354,7 @@ function KillCoconutCrab()
 			game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Stinger"})
 		end
 		local oilcooldown = time()
-		while game.Workspace.Monsters:FindFirstChild("Coconut Crab (Lvl 12)") and not temptable.started.vicious and not temptable.started.monsters do
+		while game.Workspace.Monsters:FindFirstChild("Coconut Crab (Lvl 12)") and not temptable.started.vicious and not temptable.started.monsters and kocmoc.toggles.autofarm do
 			local cooldown = time() - tonumber(oilcooldown)
 			if cooldown > 30 then
 				if GetItemListWithValue()["Stinger"] > 0 then
@@ -2491,12 +2491,12 @@ end
 -- Morphisto
 
 function KillTest()
-	for i,v in next, game:GetService("Workspace").Events.ToyEvent:GetChildren() do
-		print(v.Name)
+	--for i,v in next, game:GetService("Workspace").Events.ToyEvent:GetChildren() do
+		--print(v.Name)
 		--local imobText = nil
 		--imobText = fetchVisualMonsterString(v)
 		--print(imobText)
-	end
+	--end
 
 	for i,v in next, game:GetService("ReplicatedStorage").Events.ToyEvent:GetChildren() do
 		print(v.Name)
