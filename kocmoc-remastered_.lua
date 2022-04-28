@@ -2479,7 +2479,7 @@ function KillStumpSnail()
 		fd = game.Workspace.FlowerZones['Stump Field']
 		api.humanoidrootpart().CFrame = CFrame.new(fd.Position.X, fd.Position.Y-6, fd.Position.Z)
 		task.wait(15)
-		while game.Workspace.Monsters:FindFirstChild("Stump Snail (Lvl 6)") and not temptable.started.vicious and not temptable.started.monsters do
+		while game.Workspace.Monsters:FindFirstChild("Stump Snail (Lvl 6)") and not temptable.started.vicious and not temptable.started.monsters and kocmoc.toggles.autofarm do
 			task.wait(1)
 		end
 		task.wait(0.5)
@@ -2499,7 +2499,7 @@ function KillTest()
 	--end
 
 	for i,v in next, game:GetService("ReplicatedStorage").Events.ToyEvent:GetChildren() do
-		print(v.Name)
+		print(v)
 		--local imobText = nil
 		--imobText = fetchVisualMonsterString(v)
 		--print(imobText)
