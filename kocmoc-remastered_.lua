@@ -2491,13 +2491,14 @@ end
 -- Morphisto
 
 function KillTest()
-	--for i,v in next, game:GetService("Workspace").MonsterSpawners:GetChildren() do
+	for i,v in next, game:GetService("Workspace").Events.ToyEvent:GetChildren() do
+		print(v.Name)
 		--local imobText = nil
 		--imobText = fetchVisualMonsterString(v)
 		--print(imobText)
-	--end
+	end
 
-	for i,v in next, game:GetService("Workspace").Happenings.Puffshrooms:GetChildren() do
+	for i,v in next, game:GetService("ReplicatedStorage").Events.ToyEvent:GetChildren() do
 		print(v.Name)
 		--local imobText = nil
 		--imobText = fetchVisualMonsterString(v)
