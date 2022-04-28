@@ -88,6 +88,7 @@ getgenv().temptable = {
         coords
     },
     cache = {
+		autoant = false, -- Morphisto
 		farmpuffshrooms = false, -- Morphisto
 		farmrares = false, -- Morphisto
 		killcrab = false, -- Morphisto
@@ -420,6 +421,10 @@ function disableall()
 		kocmoc.toggles.killstumpsnail = false -- Morphisto
 		temptable.cache.killstumpsnail = true -- Morphisto
 	end
+	if kocmoc.toggles.autoant and not temptable.started.ant then -- Morphisto
+		kocmoc.toggles.autoant = false -- Morphisto
+		temptable.cache.autoant = true -- Morphisto
+	end
 	if kocmoc.toggles.autofarm and not temptable.converting then
         temptable.cache.autofarm = true
         kocmoc.toggles.autofarm = false
@@ -462,6 +467,10 @@ function enableall()
 	if temptable.cache.killstumpsnail then -- Morphisto
 		kocmoc.toggles.killstumpsnail = true -- Morphisto
 		temptable.cache.killstumpsnail = false -- Morphisto
+	end
+	if temptable.cache.autoant then -- Morphisto
+		kocmoc.toggles.autoant = true -- Morphisto
+		temptable.cache.autoant = false -- Morphisto
 	end
 	if temptable.cache.autofarm then
         kocmoc.toggles.autofarm = true
@@ -585,6 +594,7 @@ end
 function farmant()
     antpart.CanCollide = true
     temptable.started.ant = true
+	disableall()
     anttable = {left = true, right = false}
     temptable.oldtool = rtsg()['EquippedCollector']
     game.ReplicatedStorage.Events.ItemPackageEvent:InvokeServer("Equip",{["Mute"] = true,["Type"] = "Spark Staff",["Category"] = "Collector"})
@@ -616,6 +626,7 @@ function farmant()
     game.ReplicatedStorage.Events.ItemPackageEvent:InvokeServer("Equip",{["Mute"] = true,["Type"] = temptable.oldtool,["Category"] = "Collector"})
     temptable.started.ant = false
     antpart.CanCollide = false
+	enableall()
 end
 
 function collectplanters()
