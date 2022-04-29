@@ -2377,7 +2377,7 @@ function KillCoconutCrab()
 		end
 		enableall()
 		temptable.started.crab = false
-		--game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"}
+		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"})
 	end
 end
 -- Morphisto
@@ -2420,7 +2420,7 @@ function KillTunnelBear()
 		end
 		enableall()
 		temptable.started.tunnelbear = false
-		--game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"}
+		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"})
 	end
 end
 -- Morphisto
@@ -2457,7 +2457,7 @@ function KillKingBeetle()
 		end
 		enableall()
 		temptable.started.kingbeetle = false
-		--game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"}
+		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"})
 	end
 end
 -- Morphisto
@@ -2490,7 +2490,8 @@ function KillStumpSnail()
 		task.wait(0.5)
 		enableall()
 		temptable.started.stumpsnail = false
-		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"}
+		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"})
+		--local ohString1 = "Equip" local ohTable2 = { ["Mute"] = false, ["Type"] = kocmoc.vars.defmask, ["Category"] = "Accessory" } game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer(ohString1, ohTable2) 
 	end
 end
 -- Morphisto
