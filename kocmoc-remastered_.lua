@@ -715,6 +715,10 @@ function killquestmobs(mobsname)
 				if count < 31 then
 					for i = 1, 4 do gettoken(monsterpart.Position) end
 				end
+				if count > 30 then
+					api.humanoidrootpart().CFrame = CFrame.new(243.895538, 4.3493037, 320.418457)
+					task.wait(15)
+				end
 			end
 		end
 	end
@@ -837,6 +841,7 @@ function checkquestcooldown()
 		--local StatCache = require(game.ReplicatedStorage.ClientStatCache)writefile("Stats_"..api.nickname..".json", StatCache:Encode()) -- Export Char Stats
 		makequests()
 		temptable.started.quests = false
+		if kocmoc.toggles.honeystorm then game.ReplicatedStorage.Events.ToyEvent:FireServer("Honeystorm") end
 	end
 end
 -- Morphisto
@@ -1208,8 +1213,6 @@ end)
 visu:CreateButton("Spawn Puffshroom Spores",function()
 task.spawn(function() syn.secure_call(function()
 local field = game:GetService("Workspace").FlowerZones:GetChildren()[math.random(1,#game:GetService("Workspace").FlowerZones:GetChildren())]
-print('field=' .. field)
-SwapMaskonField(field)
 local pos = field.CFrame.p
 require(game.ReplicatedStorage.LocalFX.PuffshroomSporeThrow)({
       Start = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.p,
@@ -1218,7 +1221,6 @@ require(game.ReplicatedStorage.LocalFX.PuffshroomSporeThrow)({
 end, game.Players.LocalPlayer.PlayerScripts.ClientInit) 
 wait(10)
 workspace.Particles:FindFirstChild("SporeCloud"):Destroy()
-print('Puffshroom Destroyed?')
 end)
 end)
 visu:CreateButton("Spawn Party Popper",function()
@@ -2031,7 +2033,6 @@ end end)
 task.spawn(function() while task.wait(1) do
     temptable.runningfor = temptable.runningfor + 1
     temptable.honeycurrent = statsget().Totals.Honey
-    if kocmoc.toggles.honeystorm then game.ReplicatedStorage.Events.ToyEvent:FireServer("Honeystorm") end
     if kocmoc.toggles.collectgingerbreads then game:GetService("ReplicatedStorage").Events.ToyEvent:FireServer("Gingerbread House") end
     if kocmoc.toggles.autodispense then
         if kocmoc.dispensesettings.rj then local A_1 = "Free Royal Jelly Dispenser" local Event = game:GetService("ReplicatedStorage").Events.ToyEvent Event:FireServer(A_1) end
@@ -2489,7 +2490,7 @@ function KillStumpSnail()
 		task.wait(0.5)
 		enableall()
 		temptable.started.stumpsnail = false
-		--game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"}
+		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"}
 	end
 end
 -- Morphisto
