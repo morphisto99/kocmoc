@@ -1744,6 +1744,9 @@ task.spawn(function() while task.wait() do
 					if GetItemListWithValue()["Oil"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Oil"})
 					end
+					if GetItemListWithValue()["Cloud Vial"] > 0 then
+						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Cloud Vial"})
+					end
 					if GetItemListWithValue()["Blue Extract"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Blue Extract"})
 					end
