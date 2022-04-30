@@ -1718,8 +1718,9 @@ task.spawn(function() while task.wait() do
 			for i,v in pairs(game:GetService("Workspace").FlowerZones:GetChildren()) do
 				local mobText = nil
 				mobText = fetchVisualMonsterString(v)
+				print(mobText)
 				if mobText ~= nil then
-					print(CFrame.new(getNearestField(v)))
+					--print(CFrame.new(getNearestField(v)))
 				end
 			end
 			-- Morphisto
