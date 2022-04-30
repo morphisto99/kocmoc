@@ -1736,6 +1736,10 @@ task.spawn(function() while task.wait() do
                 temptable.magnitude = 25 
                 fieldpos = api.partwithnamepart("Epic", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
                 fieldposition = fieldpos.Position
+            elseif api.partwithnamepart("Rare", game.Workspace.Happenings.Puffshrooms) then
+                temptable.magnitude = 25 
+                fieldpos = api.partwithnamepart("Rare", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
+                fieldposition = fieldpos.Position
 				if temptable.puffshroomdetected and not temptable.puffshroomboosted then
 					if GetItemListWithValue()["Oil"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Oil"})
@@ -1762,8 +1766,9 @@ task.spawn(function() while task.wait() do
                 fieldpos = api.getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
                 fieldposition = fieldpos.Position
             end
-		elseif kocmoc.toggles.farmpuffshrooms then
+		elseif kocmoc.toggles.farmpuffshrooms and temptable.puffshroomboosted then
 			temptable.puffshroomdetected = false
+			temptable.puffshroomboosted = false
         end
         
         if (tonumber(pollenpercentage) < tonumber(kocmoc.vars.convertat)) or (kocmoc.toggles.disableconversion == true) then
