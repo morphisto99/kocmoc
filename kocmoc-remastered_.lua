@@ -1745,7 +1745,8 @@ task.spawn(function() while task.wait() do
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Oil"})
 						task.wait(1)
 					end
-					print("cloud=" .. GetItemListWithValue()["Cloud Vial"])
+					print("cloud=" .. GetItemListWithValue()["Glue"])
+					print("cloud=" .. GetItemListWithValue()["Cloud"])
 					--[[
 					if GetItemListWithValue()["Cloud Vial"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Cloud Vial"})
