@@ -44,6 +44,7 @@ getgenv().temptable = {
     shouldiconvertballoonnow = false,
     balloondetected = false,
     puffshroomdetected = false,
+	puffshroomboosted = false,
     magnitude = 60,
     blacklist = {
         ""
@@ -162,8 +163,18 @@ local planterst = {
 for i,v in next, temptable.blacklist do if v == api.nickname then game.Players.LocalPlayer:Kick("You're blacklisted! Get clapped!") end end
 if temptable.honeystart == 0 then temptable.honeystart = statstable.Totals.Honey end
 
-for i,v in next, game:GetService("Workspace").MonsterSpawners:GetDescendants() do if v.Name == "TimerAttachment" then v.Name = "Attachment" end end
-for i,v in next, game:GetService("Workspace").MonsterSpawners:GetChildren() do if v.Name == "RoseBush" then v.Name = "ScorpionBush" elseif v.Name == "RoseBush2" then v.Name = "ScorpionBush2" end end
+for i,v in next, game:GetService("Workspace").MonsterSpawners:GetDescendants() do
+	if v.Name == "TimerAttachment" then
+		v.Name = "Attachment"
+	end
+end
+for i,v in next, game:GetService("Workspace").MonsterSpawners:GetChildren() do
+	if v.Name == "RoseBush" then
+		v.Name = "ScorpionBush"
+	elseif v.Name == "RoseBush2" then
+		v.Name = "ScorpionBush2"
+	end
+end
 for i,v in next, game:GetService("Workspace").FlowerZones:GetChildren() do if v:FindFirstChild("ColorGroup") then if v:FindFirstChild("ColorGroup").Value == "Red" then table.insert(temptable.redfields, v.Name) elseif v:FindFirstChild("ColorGroup").Value == "Blue" then table.insert(temptable.bluefields, v.Name) end else table.insert(temptable.whitefields, v.Name) end end
 local flowertable = {}
 for _,z in next, game:GetService("Workspace").Flowers:GetChildren() do table.insert(flowertable, z.Position) end
@@ -1711,7 +1722,8 @@ task.spawn(function() while task.wait() do
             fieldposition = temptable.sprouts.coords.Position
             fieldpos = temptable.sprouts.coords
         end
-        if kocmoc.toggles.farmpuffshrooms and game.Workspace.Happenings.Puffshrooms:FindFirstChildOfClass("Model") then 
+        if kocmoc.toggles.farmpuffshrooms and game.Workspace.Happenings.Puffshrooms:FindFirstChildOfClass("Model") then
+			temptable.puffshroomdetected = true
             if api.partwithnamepart("Mythic", game.Workspace.Happenings.Puffshrooms) then
                 temptable.magnitude = 25 
                 fieldpos = api.partwithnamepart("Mythic", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
@@ -1724,11 +1736,34 @@ task.spawn(function() while task.wait() do
                 temptable.magnitude = 25 
                 fieldpos = api.partwithnamepart("Epic", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
                 fieldposition = fieldpos.Position
+				if temptable.puffshroomdetected and not temptable.puffshroomboosted then
+					if GetItemListWithValue()["Oil"] > 0 then
+						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Oil"})
+					end
+					if GetItemListWithValue()["Blue Extract"] > 0 then
+						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Blue Extract"})
+					end
+					if GetItemListWithValue()["Red Extract"] > 0 then
+						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Red Extract"})
+					end
+					if GetItemListWithValue()["Tropical Drink"] > 0 then
+						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Tropical Drink"})
+					end
+					if GetItemListWithValue()["Glitter"] > 0 then
+						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Glitter"})
+					end
+					if GetItemListWithValue()["Glue"] > 0 then
+						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Glue"})
+					end
+					temptable.puffshroomboosted = true
+				end
             else
                 temptable.magnitude = 25 
                 fieldpos = api.getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
                 fieldposition = fieldpos.Position
             end
+		elseif kocmoc.toggles.farmpuffshrooms then
+			temptable.puffshroomdetected = false
         end
         
         if (tonumber(pollenpercentage) < tonumber(kocmoc.vars.convertat)) or (kocmoc.toggles.disableconversion == true) then
@@ -2497,18 +2532,19 @@ end
 -- Morphisto
 
 function KillTest()
-	--for i,v in next, game:GetService("Workspace").Events.ToyEvent:GetChildren() do
-		--print(v.Name)
-		--local imobText = nil
-		--imobText = fetchVisualMonsterString(v)
-		--print(imobText)
-	--end
-
-	for i,v in next, game:GetService("ReplicatedStorage").Events.ToyEvent:GetChildren() do
-		--print(v)
-		local imobText = nil
-		imobText = fetchVisualMonsterString(v)
-		print(imobText)
+	for i,v in next, game:GetService("Workspace").MonsterSpawners:GetDescendants() do
+		print(v.Name)
+		if v.Name == "TimerAttachment" then
+			v.Name = "Attachment"
+		end
+	end
+	for i,v in next, game:GetService("Workspace").MonsterSpawners:GetChildren() do
+		print(v.Name)
+		if v.Name == "RoseBush" then
+			v.Name = "ScorpionBush"
+		elseif v.Name == "RoseBush2" then
+			v.Name = "ScorpionBush2"
+		end
 	end
 end
 
