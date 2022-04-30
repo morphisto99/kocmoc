@@ -1743,24 +1743,31 @@ task.spawn(function() while task.wait() do
 				if temptable.puffshroomdetected and not temptable.puffshroomboosted then
 					if GetItemListWithValue()["Oil"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Oil"})
+						task.wait(1)
 					end
 					if GetItemListWithValue()["Cloud Vial"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Cloud Vial"})
+						task.wait(1)
 					end
 					if GetItemListWithValue()["Blue Extract"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Blue Extract"})
+						task.wait(1)
 					end
 					if GetItemListWithValue()["Red Extract"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Red Extract"})
+						task.wait(1)
 					end
 					if GetItemListWithValue()["Tropical Drink"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Tropical Drink"})
+						task.wait(1)
 					end
 					if GetItemListWithValue()["Glitter"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Glitter"})
+						task.wait(1)
 					end
 					if GetItemListWithValue()["Glue"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Glue"})
+						task.wait(1)
 					end
 					temptable.puffshroomboosted = true
 				end
@@ -1828,6 +1835,7 @@ task.spawn(function() while task.wait() do
                     api.tween(2, fieldpos) -- Morphisto
                     task.wait(1)
                     if kocmoc.toggles.autosprinkler then makesprinklers() end
+					print("Teleport to main field for farming")
                 end
                 getprioritytokens()
                 if kocmoc.toggles.avoidmobs then avoidmob() end
