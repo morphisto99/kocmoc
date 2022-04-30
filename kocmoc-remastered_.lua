@@ -206,12 +206,23 @@ end
 local buffTable = {
     ["Blue Extract"]={b=false,DecalID="2495936060"};
     ["Red Extract"]={b=false,DecalID="2495935291"};
-    ["Oil"]={b=false,DecalID="2545746569"}; --?
+    ["Oil"]={b=false,DecalID="2545746569"};
     ["Enzymes"]={b=false,DecalID="2584584968"};
     ["Glue"]={b=false,DecalID="2504978518"};
     ["Glitter"]={b=false,DecalID="2542899798"};
     ["Tropical Drink"]={b=false,DecalID="3835877932"};
 }
+-- Morphisto
+local puffbuffTable = {
+	["Oil"]={b=false,DecalID="2545746569"}; --?
+    ["Blue Extract"]={b=false,DecalID="2495936060"};
+    ["Red Extract"]={b=false,DecalID="2495935291"};
+    ["Cloud Vial"]={b=false,DecalID="3030569073"};
+    ["Glue"]={b=false,DecalID="2504978518"};
+    ["Glitter"]={b=false,DecalID="2542899798"};
+    ["Tropical Drink"]={b=false,DecalID="3835877932"};
+}
+-- Morphisto
 local AccessoryTypes = require(game:GetService("ReplicatedStorage").Accessories).GetTypes()
 local MasksTable = {}
 for i,v in pairs(AccessoryTypes) do
@@ -1534,7 +1545,6 @@ local function SwapMaskonField(ifield)
 			currentMask = kocmoc.vars.defmask
 		end
 		currentField = ifield
-		print('currentMask=' .. currentMask .. ' currentField=' .. currentField)
 	end
 end
 -- Morphisto
@@ -1745,8 +1755,9 @@ task.spawn(function() while task.wait() do
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Oil"})
 						task.wait(1)
 					end
-					print("cloud=" .. GetItemListWithValue()["Glue"])
-					print("cloud=" .. GetItemListWithValue()["Cloud"])
+					print("Glue=" .. GetItemListWithValue()["Glue"])
+					print("cloud=" .. GetItemListWithValue()["CloudVial"])
+					print("Blue Extract=" .. GetItemListWithValue()["BlueExtract"])
 					--[[
 					if GetItemListWithValue()["Cloud Vial"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Cloud Vial"})
