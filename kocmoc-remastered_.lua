@@ -1710,17 +1710,12 @@ task.spawn(function() while task.wait() do
             end
         else
 			fieldselected = game:GetService("Workspace").FlowerZones[kocmoc.vars.field] -- Autofarm field
-			for i,v in next, game:GetService("Workspace").FlowerZones:GetChildren() do
-				print(getNearestField(v.Name))
-				--print(v.Name)
-			end
-
 			for i,v in pairs(game:GetService("Workspace").FlowerZones:GetChildren()) do
 				local mobText = nil
 				mobText = fetchVisualMonsterString(v)
 				print(mobText)
 				if mobText ~= nil then
-					--print(CFrame.new(getNearestField(v)))
+					print(CFrame.new(getNearestField(v)))
 				end
 			end
 			-- Morphisto
