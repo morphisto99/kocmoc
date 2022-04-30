@@ -1711,7 +1711,8 @@ task.spawn(function() while task.wait() do
         else
 			fieldselected = game:GetService("Workspace").FlowerZones[kocmoc.vars.field] -- Autofarm field
 			for i,v in next, game:GetService("Workspace").FlowerZones:GetChildren() do
-				print(v.Name)
+				print('Nearest Field=' .. getNearestField(v))
+				--print(v.Name)
 			end
 			-- Morphisto
 			if kocmoc.toggles.swapmaskonfield and currentMask ~= kocmoc.vars.defmask then
