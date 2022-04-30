@@ -1741,35 +1741,27 @@ task.spawn(function() while task.wait() do
 				if temptable.puffshroomdetected and not temptable.puffshroomboosted then
 					if GetItemListWithValue()["Oil"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Oil"})
-						task.wait(1)
 					end
 					if GetItemListWithValue()["JellyBeans"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "JellyBeans"})
-						task.wait(1)
 					end
 					if GetItemListWithValue()["CloudVial"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "CloudVial"})
-						task.wait(1)
 					end
 					if GetItemListWithValue()["BlueExtract"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "BlueExtract"})
-						task.wait(1)
 					end
 					if GetItemListWithValue()["RedExtract"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "RedExtract"})
-						task.wait(1)
 					end
 					if GetItemListWithValue()["TropicalDrink"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "TropicalDrink"})
-						task.wait(1)
 					end
 					if GetItemListWithValue()["Glitter"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Glitter"})
-						task.wait(1)
 					end
 					if GetItemListWithValue()["Glue"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Glue"})
-						task.wait(1)
 					end
 					temptable.puffshroomboosted = true
 				end
@@ -1780,35 +1772,27 @@ task.spawn(function() while task.wait() do
 				if temptable.puffshroomdetected and not temptable.puffshroomboosted then
 					if GetItemListWithValue()["Oil"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Oil"})
-						task.wait(1)
 					end
 					if GetItemListWithValue()["JellyBeans"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "JellyBeans"})
-						task.wait(1)
 					end
 					if GetItemListWithValue()["CloudVial"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "CloudVial"})
-						task.wait(1)
 					end
 					if GetItemListWithValue()["BlueExtract"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "BlueExtract"})
-						task.wait(1)
 					end
 					if GetItemListWithValue()["RedExtract"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "RedExtract"})
-						task.wait(1)
 					end
 					if GetItemListWithValue()["TropicalDrink"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "TropicalDrink"})
-						task.wait(1)
 					end
 					if GetItemListWithValue()["Glitter"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Glitter"})
-						task.wait(1)
 					end
 					if GetItemListWithValue()["Glue"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Glue"})
-						task.wait(1)
 					end
 					temptable.puffshroomboosted = true
 				end
@@ -1816,45 +1800,6 @@ task.spawn(function() while task.wait() do
                 temptable.magnitude = 25 
                 fieldpos = api.partwithnamepart("Epic", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
                 fieldposition = fieldpos.Position
-            elseif api.partwithnamepart("Rare", game.Workspace.Happenings.Puffshrooms) then
-                temptable.magnitude = 25 
-                fieldpos = api.partwithnamepart("Rare", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
-                fieldposition = fieldpos.Position
-				if temptable.puffshroomdetected and not temptable.puffshroomboosted then
-					if GetItemListWithValue()["Oil"] > 0 then
-						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Oil"})
-						task.wait(1)
-					end
-					if GetItemListWithValue()["JellyBeans"] > 0 then
-						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "JellyBeans"})
-						task.wait(1)
-					end
-					if GetItemListWithValue()["CloudVial"] > 0 then
-						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "CloudVial"})
-						task.wait(1)
-					end
-					if GetItemListWithValue()["BlueExtract"] > 0 then
-						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "BlueExtract"})
-						task.wait(1)
-					end
-					if GetItemListWithValue()["RedExtract"] > 0 then
-						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "RedExtract"})
-						task.wait(1)
-					end
-					if GetItemListWithValue()["TropicalDrink"] > 0 then
-						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "TropicalDrink"})
-						task.wait(1)
-					end
-					if GetItemListWithValue()["Glitter"] > 0 then
-						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Glitter"})
-						task.wait(1)
-					end
-					if GetItemListWithValue()["Glue"] > 0 then
-						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Glue"})
-						task.wait(1)
-					end
-					temptable.puffshroomboosted = true
-				end
             else
                 temptable.magnitude = 25 
                 fieldpos = api.getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
@@ -2643,10 +2588,15 @@ function KillStumpSnail()
 			task.wait(15)
 		else
 			while game.Workspace.Monsters:FindFirstChild("Stump Snail (Lvl 6)") and not temptable.started.vicious and not temptable.started.monsters do
+				game:GetService("Workspace").Map.Ground.HighBlock.CanCollide = false
+				snailposition = game.Workspace.Monsters["Stump Snail (Lvl 6)"].Head.Position
+				api.tween(1, CFrame.new(snailposition.x, snailposition.y - 6, snailposition.z))
 				task.wait(1)
 			end
-			api.humanoidrootpart().CFrame = CFrame.new(fd.Position.X, fd.Position.Y+2, fd.Position.Z)
 			task.wait(0.5)
+			game:GetService("Workspace").Map.Ground.HighBlock.CanCollide = true
+			api.humanoidrootpart().CFrame = CFrame.new(fd.Position.X, fd.Position.Y+2, fd.Position.Z)
+			task.wait(1)
 		end
 		enableall()
 		temptable.started.stumpsnail = false
@@ -2665,25 +2615,9 @@ function KillTest()
 		end
 	end
 	]]--
-    for i,v in pairs(game:GetService("Workspace").MonsterSpawners:GetChildren()) do
-        if v:FindFirstChild("MonsterLevel") then
-			print(v.Name)
-			--[[
-            if v.Name ~= "Commando Chick" and v.Name ~= "CoconutCrab" and v.Name ~= "StumpSnail" and v.Name ~= "TunnelBear" and v.Name ~= "King Beetle Cave" and not v.Name:match("CaveMonster") and not v:FindFirstChild("TimerLabel", true).Visible then
-                if v.Name:match("Werewolf") then
-                    monsterpart = game:GetService("Workspace").Territories.WerewolfPlateau.w
-                elseif v.Name:match("Mushroom") then
-                    monsterpart = game:GetService("Workspace").Territories.MushroomZone.Part
-                else
-                    monsterpart = v.Territory.Value
-                end
-                api.humanoidrootpart().CFrame = monsterpart.CFrame
-                repeat api.humanoidrootpart().CFrame = monsterpart.CFrame avoidmob() task.wait(1) until v:FindFirstChild("TimerLabel", true).Visible
-                for i = 1, 4 do gettoken(monsterpart.Position) end
-            end
-			]]--
-        end
-    end	
+	for i,v in pairs(getupvalues(require(game:GetService("Workspace").MonsterSpawners.MonsterLevel).GeLevel)) do
+		print(v)
+	end	
 	
 end
 
