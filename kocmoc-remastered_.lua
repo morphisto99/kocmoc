@@ -1745,6 +1745,8 @@ task.spawn(function() while task.wait() do
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Oil"})
 						task.wait(1)
 					end
+					print("cloud=" .. GetItemListWithValue()["Cloud Vial"])
+					--[[
 					if GetItemListWithValue()["Cloud Vial"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Cloud Vial"})
 						task.wait(1)
@@ -1753,6 +1755,7 @@ task.spawn(function() while task.wait() do
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Blue Extract"})
 						task.wait(1)
 					end
+
 					if GetItemListWithValue()["Red Extract"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Red Extract"})
 						task.wait(1)
@@ -1769,6 +1772,7 @@ task.spawn(function() while task.wait() do
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Glue"})
 						task.wait(1)
 					end
+					]]--
 					temptable.puffshroomboosted = true
 				end
             else
