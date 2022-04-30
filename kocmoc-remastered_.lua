@@ -860,9 +860,9 @@ function checkquestcooldown()
 	if cooldown > 300 and not temptable.started.vicious then
 		temptable.started.quests = true
 		quest_time = time()
-		--local StatCache = require(game.ReplicatedStorage.ClientStatCache)writefile("Stats_"..api.nickname..".json", StatCache:Encode()) -- Export Char Stats
 		makequests()
 		temptable.started.quests = false
+		if kocmoc.toggles.autoplanters then collectplanters() end
 		if kocmoc.toggles.honeystorm then game.ReplicatedStorage.Events.ToyEvent:FireServer("Honeystorm") end
 	end
 end
@@ -1885,7 +1885,6 @@ task.spawn(function() while task.wait() do
             task.wait(6)
             if kocmoc.toggles.autoant and not game:GetService("Workspace").Toys["Ant Challenge"].Busy.Value and rtsg().Eggs.AntPass > 0 then farmant() end
             if kocmoc.toggles.autoquest then makequests() end
-            if kocmoc.toggles.autoplanters then collectplanters() end
             if kocmoc.toggles.autokillmobs then 
                 if temptable.act >= kocmoc.vars.monstertimer then
                     temptable.started.monsters = true
