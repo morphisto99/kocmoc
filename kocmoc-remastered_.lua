@@ -1711,7 +1711,7 @@ task.spawn(function() while task.wait() do
         else
 			fieldselected = game:GetService("Workspace").FlowerZones[kocmoc.vars.field] -- Autofarm field
 			for i,v in next, game:GetService("Workspace").FlowerZones:GetChildren() do
-				print('Nearest Field=' .. getNearestField(v))
+				print(getNearestField(v.Name))
 				--print(v.Name)
 			end
 			-- Morphisto
