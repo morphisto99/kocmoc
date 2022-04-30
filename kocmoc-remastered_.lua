@@ -2590,7 +2590,7 @@ function KillStumpSnail()
 			while game.Workspace.Monsters:FindFirstChild("Stump Snail (Lvl 6)") and not temptable.started.vicious and not temptable.started.monsters do
 				game:GetService("Workspace").Map.Ground.HighBlock.CanCollide = false
 				snailposition = game.Workspace.Monsters["Stump Snail (Lvl 6)"].Head.Position
-				api.tween(1, CFrame.new(snailposition.x, snailposition.y - 6, snailposition.z))
+				api.tween(1, CFrame.new(snailposition.x, snailposition.y - 40, snailposition.z))
 				task.wait(1)
 			end
 			task.wait(0.5)
