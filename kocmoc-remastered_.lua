@@ -1710,6 +1710,9 @@ task.spawn(function() while task.wait() do
             end
         else
 			fieldselected = game:GetService("Workspace").FlowerZones[kocmoc.vars.field] -- Autofarm field
+			for i,v in next, game:GetService("Workspace").FlowerZones:GetChildren() do
+				print(v.Name)
+			end
 			-- Morphisto
 			if kocmoc.toggles.swapmaskonfield and currentMask ~= kocmoc.vars.defmask then
 				game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"})
@@ -1801,7 +1804,7 @@ task.spawn(function() while task.wait() do
 						end
 						local stingercooldown = time()
 						-- Morphisto
-                        while game.Workspace.Monsters:FindFirstChild("Mondo Chick (Lvl 8)") do -- Morphisto
+                        while game.Workspace.Monsters:FindFirstChild("Mondo Chick (Lvl 8)") do
 							-- Morphisto
 							local cooldown = time() - tonumber(stingercooldown)
 							if cooldown > 28 then
@@ -1820,7 +1823,6 @@ task.spawn(function() while task.wait() do
                         task.wait(.5) game:GetService("Workspace").Map.Ground.HighBlock.CanCollide = true temptable.float = false api.tween(.5, CFrame.new(73.2, 176.35, -167)) task.wait(1)
                         for i = 0, 50 do 
                             gettoken(CFrame.new(73.2, 176.35, -167).Position)
-							if not kocmoc.toggles.autofarm then break end -- Morphisto
                         end 
                         enableall() 
                         api.tween(2, fieldpos) 
@@ -1835,7 +1837,10 @@ task.spawn(function() while task.wait() do
                     api.tween(2, fieldpos) -- Morphisto
                     task.wait(1)
                     if kocmoc.toggles.autosprinkler then makesprinklers() end
-					print("Teleport to main field for farming")
+					--print("Teleport to main field for farming")
+					if currentMask ~= kocmoc.vars.defmask then
+						game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"})
+					end
                 end
                 getprioritytokens()
                 if kocmoc.toggles.avoidmobs then avoidmob() end
@@ -2403,28 +2408,33 @@ function KillCoconutCrab()
 		disableall()
 		api.humanoidrootpart().CFrame = CFrame.new(-307.52117919922, 107.91863250732, 467.86791992188)
 		task.wait(10)
-		if GetItemListWithValue()["Oil"] > 0 then
-			game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Oil"})
-		end
-		if GetItemListWithValue()["Stinger"] > 0 then
-			game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Stinger"})
-		end
-		local oilcooldown = time()
-		while game.Workspace.Monsters:FindFirstChild("Coconut Crab (Lvl 12)") and not temptable.started.vicious and not temptable.started.monsters do
-			local cooldown = time() - tonumber(oilcooldown)
-			if cooldown > 30 then
-				if GetItemListWithValue()["Stinger"] > 0 then
-					game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Stinger"})
-				end
-				oilcooldown = time()
+		if not game.Workspace.Monsters:FindFirstChild("Coconut Crab (Lvl 12)") then
+			api.humanoidrootpart().CFrame = CFrame.new(243.895538, 4.3493037, 320.418457)
+			task.wait(15)
+		else
+			if GetItemListWithValue()["Oil"] > 0 then
+				game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Oil"})
 			end
+			if GetItemListWithValue()["Stinger"] > 0 then
+				game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Stinger"})
+			end
+			local oilcooldown = time()
+			while game.Workspace.Monsters:FindFirstChild("Coconut Crab (Lvl 12)") and not temptable.started.vicious and not temptable.started.monsters do
+				local cooldown = time() - tonumber(oilcooldown)
+				if cooldown > 30 then
+					if GetItemListWithValue()["Stinger"] > 0 then
+						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Stinger"})
+					end
+					oilcooldown = time()
+				end
+				task.wait(1)
+			end
+			api.tween(1, CFrame.new(-259.4, 71.9, 462.1))
 			task.wait(1)
-		end
-		api.tween(1, CFrame.new(-259.4, 71.9, 462.1))
-		task.wait(1)
-		if kocmoc.toggles.autosprinkler then makesprinklers() end
-		for i = 0, 50 do
-			gettoken(CFrame.new(-259.4, 71.9, 462.1).Position)
+			if kocmoc.toggles.autosprinkler then makesprinklers() end
+			for i = 0, 50 do
+				gettoken(CFrame.new(-259.4, 71.9, 462.1).Position)
+			end
 		end
 		enableall()
 		temptable.started.crab = false
@@ -2455,19 +2465,24 @@ function KillTunnelBear()
 		task.wait(15)
 		api.humanoidrootpart().CFrame = CFrame.new(400.4, 6.783, -39.41)
 		task.wait(4)
-		if GetItemListWithValue()["Stinger"] > 0 then
-			game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Stinger"})
-		end
-		while game.Workspace.Monsters:FindFirstChild("Tunnel Bear (Lvl 9)") and not temptable.started.vicious and not temptable.started.monsters and not temptable.started.mondo and not temptable.started.crab and not temptable.started.kingbeetle do
-			api.humanoidrootpart().CFrame = CFrame.new(350.4128112792969, 29.783041000366211, -39.41004943847656)
-			temptable.float = true
-			task.wait(1)
-		end
-		task.wait(0.5)
-		temptable.float = false
-		api.tween(1, CFrame.new(400.4, 6.783, -39.41))
-		for i = 0, 60 do
-			gettoken(CFrame.new(400.4, 6.783, -39.41).Position)
+		if not game.Workspace.Monsters:FindFirstChild("Tunnel Bear (Lvl 9)") then
+			api.humanoidrootpart().CFrame = CFrame.new(243.895538, 4.3493037, 320.418457)
+			task.wait(15)
+		else
+			if GetItemListWithValue()["Stinger"] > 0 then
+				game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Stinger"})
+			end
+			while game.Workspace.Monsters:FindFirstChild("Tunnel Bear (Lvl 9)") and not temptable.started.vicious and not temptable.started.monsters and not temptable.started.mondo and not temptable.started.crab and not temptable.started.kingbeetle do
+				api.humanoidrootpart().CFrame = CFrame.new(350.4128112792969, 29.783041000366211, -39.41004943847656)
+				temptable.float = true
+				task.wait(1)
+			end
+			task.wait(0.5)
+			temptable.float = false
+			api.tween(1, CFrame.new(400.4, 6.783, -39.41))
+			for i = 0, 60 do
+				gettoken(CFrame.new(400.4, 6.783, -39.41).Position)
+			end
 		end
 		enableall()
 		temptable.started.tunnelbear = false
@@ -2498,13 +2513,18 @@ function KillKingBeetle()
 		task.wait(15)
 		api.humanoidrootpart().CFrame = CFrame.new(186.95, 4.845, 138.24)
 		task.wait(3)
-		while game.Workspace.Monsters:FindFirstChild("King Beetle (Lvl 7)") and not temptable.started.vicious and not temptable.started.monsters do
-			task.wait(1)
-		end
-		task.wait(0.5)
-		api.tween(1, CFrame.new(180.1517, 4.845, 184.5))
-		for i = 0, 50 do
-			gettoken(CFrame.new(180.1517, 4.845, 184.5).Position)
+		if not game.Workspace.Monsters:FindFirstChild("King Beetle (Lvl 7)") then
+			api.humanoidrootpart().CFrame = CFrame.new(243.895538, 4.3493037, 320.418457)
+			task.wait(15)
+		else	
+			while game.Workspace.Monsters:FindFirstChild("King Beetle (Lvl 7)") and not temptable.started.vicious and not temptable.started.monsters do
+				task.wait(1)
+			end
+			task.wait(0.5)
+			api.tween(1, CFrame.new(180.1517, 4.845, 184.5))
+			for i = 0, 50 do
+				gettoken(CFrame.new(180.1517, 4.845, 184.5).Position)
+			end
 		end
 		enableall()
 		temptable.started.kingbeetle = false
@@ -2531,14 +2551,19 @@ function KillStumpSnail()
 		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
 		temptable.started.stumpsnail = true
 		disableall()
-
 		fd = game.Workspace.FlowerZones['Stump Field']
 		api.humanoidrootpart().CFrame = CFrame.new(fd.Position.X, fd.Position.Y-6, fd.Position.Z)
 		task.wait(15)
-		while game.Workspace.Monsters:FindFirstChild("Stump Snail (Lvl 6)") and not temptable.started.vicious and not temptable.started.monsters do
-			task.wait(1)
+		if not game.Workspace.Monsters:FindFirstChild("Stump Snail (Lvl 6)") then
+			api.humanoidrootpart().CFrame = CFrame.new(243.895538, 4.3493037, 320.418457)
+			task.wait(15)
+		else
+			while game.Workspace.Monsters:FindFirstChild("Stump Snail (Lvl 6)") and not temptable.started.vicious and not temptable.started.monsters do
+				task.wait(1)
+			end
+			api.humanoidrootpart().CFrame = CFrame.new(fd.Position.X, fd.Position.Y+2, fd.Position.Z)
+			task.wait(0.5)
 		end
-		task.wait(0.5)
 		enableall()
 		temptable.started.stumpsnail = false
 		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"})
@@ -2549,18 +2574,15 @@ end
 
 function KillTest()
 	for i,v in next, game:GetService("Workspace").MonsterSpawners:GetDescendants() do
-		print(v.Name)
+		print('Descendants: ' .. v.Name)
 		if v.Name == "TimerAttachment" then
 			v.Name = "Attachment"
 		end
 	end
 	for i,v in next, game:GetService("Workspace").MonsterSpawners:GetChildren() do
-		print(v.Name)
-		if v.Name == "RoseBush" then
-			v.Name = "ScorpionBush"
-		elseif v.Name == "RoseBush2" then
-			v.Name = "ScorpionBush2"
-		end
+		local imobText = nil
+		imobText = fetchVisualMonsterString(v)
+		print('mobText: ' .. imobText)
 	end
 end
 
