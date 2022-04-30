@@ -1809,23 +1809,23 @@ task.spawn(function() while task.wait() do
                         temptable.started.mondo = true
 						-- Morphisto
 						disableall()
-						if GetItemListWithValue()["Oil"] > 0 then
-							game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Oil"})
-						end
-						if GetItemListWithValue()["Stinger"] > 0 then
-							game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Stinger"})
-						end
-						local stingercooldown = time()
+						--if GetItemListWithValue()["Oil"] > 0 then
+							--game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Oil"})
+						--end
+						--if GetItemListWithValue()["Stinger"] > 0 then
+							--game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Stinger"})
+						--end
+						--local stingercooldown = time()
 						-- Morphisto
                         while game.Workspace.Monsters:FindFirstChild("Mondo Chick (Lvl 8)") do
 							-- Morphisto
-							local cooldown = time() - tonumber(stingercooldown)
-							if cooldown > 28 then
-								if GetItemListWithValue()["Stinger"] > 0 then
-									game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Stinger"})
-								end
-								stingercooldown = time()
-							end
+							--local cooldown = time() - tonumber(stingercooldown)
+							--if cooldown > 28 then
+								--if GetItemListWithValue()["Stinger"] > 0 then
+									--game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Stinger"})
+								--end
+								--stingercooldown = time()
+							--end
 							-- Morphisto
                             game:GetService("Workspace").Map.Ground.HighBlock.CanCollide = false 
                             mondopition = game.Workspace.Monsters["Mondo Chick (Lvl 8)"].Head.Position
