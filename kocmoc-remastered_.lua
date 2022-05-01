@@ -1856,10 +1856,11 @@ task.spawn(function() while task.wait() do
                         api.tween(2, fieldpos) 
                         temptable.started.mondo = false
 						task.wait(1)
-						print(GetItemListWithValue()["LoadedDice"])
-						--if GetItemListWithValue()["LoadedDice"] > 0 then
-							--game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "LoadedDice"})
-						--end	
+						print('Loaded Dice=' .. GetItemListWithValue()["LoadedDice"])
+						if GetItemListWithValue()["LoadedDice"] = 25 then
+							print("Mondo Chick Killed. Activate Loaded Dice for boosting..")
+							game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "LoadedDice"})
+						end	
                     end
                 end
                 if kocmoc.toggles.killcrab then KillCoconutCrab() end -- Morphisto
@@ -1870,7 +1871,6 @@ task.spawn(function() while task.wait() do
                     api.tween(2, fieldpos) -- Morphisto
                     task.wait(1)
                     if kocmoc.toggles.autosprinkler then makesprinklers() end
-					--print("Teleport to main field for farming")
 					if currentMask ~= kocmoc.vars.defmask then
 						game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"})
 					end
