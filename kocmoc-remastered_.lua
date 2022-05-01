@@ -1874,6 +1874,9 @@ task.spawn(function() while task.wait() do
 					if currentMask ~= kocmoc.vars.defmask then
 						game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"})
 					end
+					if GetItemListWithValue()["LoadedDice"] == 25 then
+						print("Activate Loaded Dice for boosting..")
+					end	
                 end
                 getprioritytokens()
                 if kocmoc.toggles.avoidmobs then avoidmob() end
