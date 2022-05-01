@@ -1856,7 +1856,7 @@ task.spawn(function() while task.wait() do
                         api.tween(2, fieldpos) 
                         temptable.started.mondo = false
 						task.wait(1)
-						
+						print(GetItemListWithValue()["LoadedDice"])
 						--if GetItemListWithValue()["LoadedDice"] > 0 then
 							--game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "LoadedDice"})
 						--end	
@@ -1874,7 +1874,6 @@ task.spawn(function() while task.wait() do
 					if currentMask ~= kocmoc.vars.defmask then
 						game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"})
 					end
-					print(GetItemListWithValue()["LoadedDice"])
                 end
                 getprioritytokens()
                 if kocmoc.toggles.avoidmobs then avoidmob() end
