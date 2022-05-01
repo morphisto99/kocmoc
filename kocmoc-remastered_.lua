@@ -862,7 +862,11 @@ function checkquestcooldown()
 		quest_time = time()
 		makequests()
 		temptable.started.quests = false
-		if kocmoc.toggles.autoplanters then collectplanters() end
+		if kocmoc.toggles.autoplanters then
+			disableall()
+			collectplanters()
+			enableall()
+		end
 		if kocmoc.toggles.honeystorm then
 			disableall()
 			game.ReplicatedStorage.Events.ToyEvent:FireServer("Honeystorm")
