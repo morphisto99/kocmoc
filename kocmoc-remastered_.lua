@@ -1857,7 +1857,7 @@ task.spawn(function() while task.wait() do
                         temptable.started.mondo = false
 						task.wait(1)
 						print('Loaded Dice=' .. GetItemListWithValue()["LoadedDice"])
-						if GetItemListWithValue()["LoadedDice"] = 25 then
+						if GetItemListWithValue()["LoadedDice"] == 25 then
 							print("Mondo Chick Killed. Activate Loaded Dice for boosting..")
 							game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "LoadedDice"})
 						end	
