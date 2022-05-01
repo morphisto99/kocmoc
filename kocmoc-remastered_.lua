@@ -1861,9 +1861,10 @@ task.spawn(function() while task.wait() do
                         api.tween(2, fieldpos) 
                         temptable.started.mondo = false
 						task.wait(1)
-						if GetItemListWithValue()["LoadedDice"] = 25 then
-							game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "LoadedDice"})
-						end						
+						print(GetItemListWithValue()["Loaded Dice"])
+						--if GetItemListWithValue()["LoadedDice"] = 25 then
+							--game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "LoadedDice"})
+						--end						
                     end
                 end
 
