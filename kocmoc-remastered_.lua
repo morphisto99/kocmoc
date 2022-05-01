@@ -863,7 +863,12 @@ function checkquestcooldown()
 		makequests()
 		temptable.started.quests = false
 		if kocmoc.toggles.autoplanters then collectplanters() end
-		if kocmoc.toggles.honeystorm then game.ReplicatedStorage.Events.ToyEvent:FireServer("Honeystorm") end
+		if kocmoc.toggles.honeystorm then
+			disableall()
+			game.ReplicatedStorage.Events.ToyEvent:FireServer("Honeystorm")
+			task.wait(15)
+			enableall()
+		end
 	end
 end
 -- Morphisto
@@ -1639,7 +1644,6 @@ task.spawn(function() while task.wait() do
 		if kocmoc.toggles.autodoquest and game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.Menus.Children.Quests.Content:FindFirstChild("Frame") then
             for i,v in next, game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.Menus.Children.Quests:GetDescendants() do
                 if v.Name == "Description" then
-					print(v.Parent.Parent.TitleBar.Text)
                     if string.match(v.Parent.Parent.TitleBar.Text, kocmoc.vars.npcprefer) or kocmoc.vars.npcprefer == "All Quests" and not string.find(v.Text, "Puffshroom") then
                         pollentypes = {'White Pollen', "Red Pollen", "Blue Pollen", "Blue Flowers", "Red Flowers", "White Flowers"}
                         text = v.Text
@@ -1719,9 +1723,6 @@ task.spawn(function() while task.wait() do
                                 break
                             end
                         end
-						if string.find(text, "Ants.") then -- Morphisto
-							print("fount Ants text2")
-						end
                     end
                 end
             end
