@@ -212,17 +212,6 @@ local buffTable = {
     ["Glitter"]={b=false,DecalID="2542899798"};
     ["Tropical Drink"]={b=false,DecalID="3835877932"};
 }
--- Morphisto
-local puffbuffTable = {
-	["Oil"]={b=false,DecalID="2545746569"}; --?
-    ["Blue Extract"]={b=false,DecalID="2495936060"};
-    ["Red Extract"]={b=false,DecalID="2495935291"};
-    ["Cloud Vial"]={b=false,DecalID="3030569073"};
-    ["Glue"]={b=false,DecalID="2504978518"};
-    ["Glitter"]={b=false,DecalID="2542899798"};
-    ["Tropical Drink"]={b=false,DecalID="3835877932"};
-}
--- Morphisto
 local AccessoryTypes = require(game:GetService("ReplicatedStorage").Accessories).GetTypes()
 local MasksTable = {}
 for i,v in pairs(AccessoryTypes) do
@@ -1920,19 +1909,19 @@ task.spawn(function() while task.wait() do
             end
             if kocmoc.vars.resetbeeenergy then
             --rconsoleprint("Act2:-"..tostring(temptable.act2))
-            if temptable.act2 >= kocmoc.vars.resettimer then
-                temptable.started.monsters = true
-                temptable.act2 = 0
-                repeat wait() until workspace:FindFirstChild(game.Players.LocalPlayer.Name) and workspace:FindFirstChild(game.Players.LocalPlayer.Name):FindFirstChild("Humanoid") and workspace:FindFirstChild(game.Players.LocalPlayer.Name):FindFirstChild("Humanoid").Health > 0
-                workspace:FindFirstChild(game.Players.LocalPlayer.Name):BreakJoints()
-                wait(6.5)
-                repeat wait() until workspace:FindFirstChild(game.Players.LocalPlayer.Name)
-                workspace:FindFirstChild(game.Players.LocalPlayer.Name):BreakJoints()
-                wait(6.5)
-                repeat wait() until workspace:FindFirstChild(game.Players.LocalPlayer.Name)
-                temptable.started.monsters = false
-            end
-        end
+				if temptable.act2 >= kocmoc.vars.resettimer then
+					temptable.started.monsters = true
+					temptable.act2 = 0
+					repeat wait() until workspace:FindFirstChild(game.Players.LocalPlayer.Name) and workspace:FindFirstChild(game.Players.LocalPlayer.Name):FindFirstChild("Humanoid") and workspace:FindFirstChild(game.Players.LocalPlayer.Name):FindFirstChild("Humanoid").Health > 0
+					workspace:FindFirstChild(game.Players.LocalPlayer.Name):BreakJoints()
+					task.wait(6.5)
+					repeat wait() until workspace:FindFirstChild(game.Players.LocalPlayer.Name)
+					workspace:FindFirstChild(game.Players.LocalPlayer.Name):BreakJoints()
+					task.wait(6.5)
+					repeat wait() until workspace:FindFirstChild(game.Players.LocalPlayer.Name)
+					temptable.started.monsters = false
+				end
+			end
         end
     end
 end end end end)
