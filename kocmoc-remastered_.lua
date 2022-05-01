@@ -1819,7 +1819,6 @@ task.spawn(function() while task.wait() do
                 temptable.tokensfarm = true
                 if kocmoc.toggles.autosprinkler then makesprinklers() end
             else
-
                 if kocmoc.toggles.killmondo then
                     while kocmoc.toggles.killmondo and game.Workspace.Monsters:FindFirstChild("Mondo Chick (Lvl 8)") and not temptable.started.vicious and not temptable.started.monsters do
                         temptable.started.mondo = true
@@ -1857,13 +1856,16 @@ task.spawn(function() while task.wait() do
                         api.tween(2, fieldpos) 
                         temptable.started.mondo = false
 						task.wait(1)
-						print(GetItemListWithValue()["Loaded Dice"])
-						if GetItemListWithValue()["LoadedDice"] = 25 then
+						print(GetItemListWithValue()["LoadedDice"])
+						if GetItemListWithValue()["LoadedDice"] > 0 then
 							game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "LoadedDice"})
-						end						
+						end	
                     end
                 end
-
+                if kocmoc.toggles.killcrab then KillCoconutCrab() end -- Morphisto
+				if kocmoc.toggles.killtunnelbear then KillTunnelBear() end -- Morphisto
+				if kocmoc.toggles.killkingbeetle then KillKingBeetle() end -- Morphisto
+				if kocmoc.toggles.killstumpsnail then KillStumpSnail() end -- Morphisto
 				if (fieldposition-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
                     api.tween(2, fieldpos) -- Morphisto
                     task.wait(1)
@@ -1874,10 +1876,6 @@ task.spawn(function() while task.wait() do
 					end
                 end
                 getprioritytokens()
-				if kocmoc.toggles.killcrab then KillCoconutCrab() end -- Morphisto
-				if kocmoc.toggles.killtunnelbear then KillTunnelBear() end -- Morphisto
-				if kocmoc.toggles.killkingbeetle then KillKingBeetle() end -- Morphisto
-				if kocmoc.toggles.killstumpsnail then KillStumpSnail() end -- Morphisto
                 if kocmoc.toggles.avoidmobs then avoidmob() end
                 if kocmoc.toggles.farmclosestleaf then closestleaf() end
                 if kocmoc.toggles.farmbubbles then getbubble() end
