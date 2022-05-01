@@ -89,6 +89,7 @@ getgenv().temptable = {
         coords
     },
     cache = {
+		boostaftermondo = false, -- Morphisto
 		autoant = false, -- Morphisto
 		farmpuffshrooms = false, -- Morphisto
 		farmrares = false, -- Morphisto
@@ -1855,12 +1856,7 @@ task.spawn(function() while task.wait() do
                         enableall() 
                         api.tween(2, fieldpos) 
                         temptable.started.mondo = false
-						task.wait(1)
-						print('Loaded Dice=' .. GetItemListWithValue()["LoadedDice"])
-						if GetItemListWithValue()["LoadedDice"] == 25 then
-							print("Mondo Chick Killed. Activate Loaded Dice for boosting..")
-							game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "LoadedDice"})
-						end	
+						boostaftermondo = true
                     end
                 end
                 if kocmoc.toggles.killcrab then KillCoconutCrab() end -- Morphisto
@@ -1874,9 +1870,11 @@ task.spawn(function() while task.wait() do
 					if currentMask ~= kocmoc.vars.defmask then
 						game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"})
 					end
-					if GetItemListWithValue()["LoadedDice"] == 25 then
-						print("Activate Loaded Dice for boosting..")
-					end	
+					if boostaftermondo and GetItemListWithValue()["LoadedDice"] == 25 then
+						print("Mondo Chick Killed. Activate Loaded Dice for boosting..")
+						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "LoadedDice"})
+						boostaftermondo = false
+					end
                 end
                 getprioritytokens()
                 if kocmoc.toggles.avoidmobs then avoidmob() end
