@@ -2618,48 +2618,9 @@ function KillStumpSnail()
 end
 -- Morphisto
 
-local function fetchBuffTable2(stats)
-    local stTab = {}
-    if game:GetService("Players").LocalPlayer then
-        if game:GetService("Players").LocalPlayer.PlayerGui then
-            if game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui then
-                for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui:GetChildren()) do
-                    if v.Name == "TileGrid" then
-                        for p,l in pairs(v:GetChildren()) do
-                            if l:FindFirstChild("BG") then
-                                if l:FindFirstChild("BG"):FindFirstChild("Icon") then
-                                    local ic = l:FindFirstChild("BG"):FindFirstChild("Icon")
-									if ic.Parent:FindFirstChild("Text") then
-										if ic.Parent:FindFirstChild("Text").Text ~= "" then
-											local thing = ""
-											thing = string.gsub(ic.Parent:FindFirstChild("Text").Text,"x","")
-											print('thing=' .. thing)
-											stTab[field]=tonumber( thing + 1 )
-										end
-									end
-                                end
-                            end
-                        end
-                    end
-                end
-            end
-        end
-    end
-    return stTab
-end
-
-
 function KillTest()
-	local buffs = fetchBuffTable2(buffTable)
-	for i,v in pairs(buffTable) do
-		local inuse = false
-		for k,p in pairs(buffs) do
-			print('k=' .. k .. ' i=' .. i)
-			if k == i then inuse = true end
-		end
-		if inuse == false then
-			--game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"]=i})
-		end
+	for i, v in pairs(game.Players:GetChildren()) do
+		print(v.Name)
 	end
 end
 
