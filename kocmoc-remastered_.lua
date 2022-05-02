@@ -2629,20 +2629,14 @@ local function fetchBuffTable2(stats)
                             if l:FindFirstChild("BG") then
                                 if l:FindFirstChild("BG"):FindFirstChild("Icon") then
                                     local ic = l:FindFirstChild("BG"):FindFirstChild("Icon")
-                                    for field,fdata in pairs(stats) do
-                                        if fdata["DecalID"]~= nil then
-                                            if string.find(ic.Image,fdata["DecalID"]) then
-                                                if ic.Parent:FindFirstChild("Text") then
-                                                    if ic.Parent:FindFirstChild("Text").Text ~= "" then
-                                                        local thing = ""
-                                                        thing = string.gsub(ic.Parent:FindFirstChild("Text").Text,"x","")
-														print('thing=' .. thing)
-                                                        stTab[field]=tonumber( thing + 1 )
-                                                    end
-                                                end
-                                            end
-                                        end
-                                    end
+									if ic.Parent:FindFirstChild("Text") then
+										if ic.Parent:FindFirstChild("Text").Text ~= "" then
+											local thing = ""
+											thing = string.gsub(ic.Parent:FindFirstChild("Text").Text,"x","")
+											print('thing=' .. thing)
+											stTab[field]=tonumber( thing + 1 )
+										end
+									end
                                 end
                             end
                         end
