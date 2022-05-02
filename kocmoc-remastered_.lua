@@ -2618,7 +2618,7 @@ function KillStumpSnail()
 end
 -- Morphisto
 
-local function fetchBuffTable2()
+local function fetchBuffTable2(stats)
     local stTab = {}
     if game:GetService("Players").LocalPlayer then
         if game:GetService("Players").LocalPlayer.PlayerGui then
@@ -2629,14 +2629,22 @@ local function fetchBuffTable2()
                             if l:FindFirstChild("BG") then
                                 if l:FindFirstChild("BG"):FindFirstChild("Icon") then
                                     local ic = l:FindFirstChild("BG"):FindFirstChild("Icon")
-									--print(ic)
-									if ic.Parent:FindFirstChild("Text") then
-										if ic.Parent:FindFirstChild("Text").Text ~= "" then
-											print(ic.Parent:FindFirstChild("Text").Text)
-											thing = string.gsub(ic.Parent:FindFirstChild("Text").Text,"x","")
-											print('thing=' .. thing)
-										end
-									end
+                                    for field,fdata in pairs(stats) do
+                                        if fdata["DecalID"]~= nil then
+                                            if string.find(ic.Image,fdata["DecalID"]) then
+                                                if ic.Parent:FindFirstChild("Text") then
+                                                    if ic.Parent:FindFirstChild("Text").Text == "" then
+                                                        stTab[field]=1
+                                                    else
+                                                        local thing = ""
+                                                        thing = string.gsub(ic.Parent:FindFirstChild("Text").Text,"x","")
+														print('thing=' .. thing)
+                                                        stTab[field]=tonumber( thing + 1 )
+                                                    end
+                                                end
+                                            end
+                                        end
+                                    end
                                 end
                             end
                         end
@@ -2645,11 +2653,24 @@ local function fetchBuffTable2()
             end
         end
     end
+    return stTab
 end
 
 
 function KillTest()
-	fetchBuffTable2()
+	local buffs = fetchBuffTable(buffTable)
+	for i,v in pairs(buffTable) do
+		if v["b"] == true then
+			local inuse = false
+			for k,p in pairs(buffs) do
+				print('k=' .. k .. ' i=' .. i)
+				if k == i then inuse = true end
+			end
+			if inuse == false then
+				--game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"]=i})
+			end
+		end
+	end
 end
 
 for _, part in next, workspace:FindFirstChild("FieldDecos"):GetDescendants() do if part:IsA("BasePart") then part.CanCollide = false part.Transparency = part.Transparency < 0.5 and 0.5 or part.Transparency task.wait() end end
