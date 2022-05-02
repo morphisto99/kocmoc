@@ -2658,17 +2658,15 @@ end
 
 
 function KillTest()
-	local buffs = fetchBuffTable(buffTable)
+	local buffs = fetchBuffTable2(buffTable)
 	for i,v in pairs(buffTable) do
-		if v["b"] == true then
-			local inuse = false
-			for k,p in pairs(buffs) do
-				print('k=' .. k .. ' i=' .. i)
-				if k == i then inuse = true end
-			end
-			if inuse == false then
-				--game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"]=i})
-			end
+		local inuse = false
+		for k,p in pairs(buffs) do
+			print('k=' .. k .. ' i=' .. i)
+			if k == i then inuse = true end
+		end
+		if inuse == false then
+			--game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"]=i})
 		end
 	end
 end
