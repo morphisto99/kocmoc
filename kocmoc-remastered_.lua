@@ -1873,8 +1873,8 @@ task.spawn(function() while task.wait() do
 					end
 					if boostaftermondo and GetItemListWithValue()["LoadedDice"] == 25 then
 						print("Mondo Chick Killed. Activate Loaded Dice for boosting..")
+						task.wait(2)
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Loaded Dice"})
-						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "LoadedDice"})
 						task.wait(1)
 						boostaftermondo = false
 					end
