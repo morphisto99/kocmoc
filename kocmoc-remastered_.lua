@@ -1618,22 +1618,23 @@ task.spawn(function() while task.wait() do
         local pollencount = game.Players.LocalPlayer.CoreStats.Pollen.Value
         pollenpercentage = pollencount/maxpollen*100
         fieldselected = game:GetService("Workspace").FlowerZones[kocmoc.vars.field]
-        
+        -- Morphisto
         if kocmoc.toggles.autouseconvertors == true then
-        if tonumber(pollenpercentage) >= (kocmoc.vars.convertat - (kocmoc.vars.autoconvertWaitTime)) then
-                if not temptable.consideringautoconverting then
-                temptable.consideringautoconverting = true
-                spawn(function()
-                    wait(kocmoc.vars.autoconvertWaitTime)
-                    if tonumber(pollenpercentage) >= (kocmoc.vars.convertat - (kocmoc.vars.autoconvertWaitTime)) then
-                        useConvertors()
-                    end
-                    temptable.consideringautoconverting = false
-                end)
-                end
-            end
+			--if tonumber(pollenpercentage) >= (kocmoc.vars.convertat - (kocmoc.vars.autoconvertWaitTime)) then
+			if not temptable.consideringautoconverting then
+				temptable.consideringautoconverting = true
+				--spawn(function()
+				--wait(kocmoc.vars.autoconvertWaitTime)
+				print(tonumber(pollenpercentage) .. '>=' .. (kocmoc.vars.convertat - (kocmoc.vars.autoconvertWaitTime))) -- Morphisto
+				if tonumber(pollenpercentage) >= (kocmoc.vars.convertat - (kocmoc.vars.autoconvertWaitTime)) then
+					useConvertors()
+				end
+				temptable.consideringautoconverting = false
+				--end)
+			end
+			--end
         end
-        
+        -- Morphisto
         if kocmoc.toggles.autofarm then
         if kocmoc.toggles.autoquest then checkquestcooldown() end -- Morphisto
 		if kocmoc.toggles.autodoquest and game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.Menus.Children.Quests.Content:FindFirstChild("Frame") then
