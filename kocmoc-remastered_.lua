@@ -1867,14 +1867,18 @@ task.spawn(function() while task.wait() do
                     api.tween(2, fieldpos) -- Morphisto
                     task.wait(1)
                     if kocmoc.toggles.autosprinkler then makesprinklers() end
+					-- Morphisto
 					if currentMask ~= kocmoc.vars.defmask then
 						game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"})
 					end
 					if boostaftermondo and GetItemListWithValue()["LoadedDice"] == 25 then
 						print("Mondo Chick Killed. Activate Loaded Dice for boosting..")
+						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Loaded Dice"})
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "LoadedDice"})
+						task.wait(1)
 						boostaftermondo = false
 					end
+					-- Morphisto
                 end
                 getprioritytokens()
                 if kocmoc.toggles.avoidmobs then avoidmob() end
