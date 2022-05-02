@@ -2629,15 +2629,14 @@ local function fetchBuffTable2()
                             if l:FindFirstChild("BG") then
                                 if l:FindFirstChild("BG"):FindFirstChild("Icon") then
                                     local ic = l:FindFirstChild("BG"):FindFirstChild("Icon")
-										--print(ic)
-										if ic.Parent:FindFirstChild("Text") then
-											if not ic.Parent:FindFirstChild("Text").Text == "" then
-												print(ic.Parent:FindFirstChild("Text").Text)
-												thing = string.gsub(ic.Parent:FindFirstChild("Text").Text,"x","")
-												print('thing=' .. thing)
-											end
+									--print(ic)
+									if ic.Parent:FindFirstChild("Text") then
+										if ic.Parent:FindFirstChild("Text").Text ~= "" then
+											print(ic.Parent:FindFirstChild("Text").Text)
+											thing = string.gsub(ic.Parent:FindFirstChild("Text").Text,"x","")
+											print('thing=' .. thing)
 										end
-                                    end
+									end
                                 end
                             end
                         end
@@ -2646,8 +2645,6 @@ local function fetchBuffTable2()
             end
         end
     end
-    
-    return stTab
 end
 
 
