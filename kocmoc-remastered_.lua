@@ -963,12 +963,13 @@ local function useConvertors()
     end
     if GetItemListWithValue()["Micro-Converter"] > 0 and string.find(kocmoc.vars.autouseMode,"Micro") or string.find(kocmoc.vars.autouseMode,"All") then -- Morphisto
 		game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Micro-Converter"}) -- Morphisto
+		pollenpercentage = 0 -- Morphisto
 	elseif GetItemListWithValue()["Snowflake"] > 0 and string.find(kocmoc.vars.autouseMode,"Snowflak") or string.find(kocmoc.vars.autouseMode,"All") then
         game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Snowflake"})
     end
-        if GetItemListWithValue()["Coconut"] > 0 and string.find(kocmoc.vars.autouseMode,"Coconut") or string.find(kocmoc.vars.autouseMode,"All") then
+    if GetItemListWithValue()["Coconut"] > 0 and string.find(kocmoc.vars.autouseMode,"Coconut") or string.find(kocmoc.vars.autouseMode,"All") then
         game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Coconut"})
-        end
+    end
 end
 
 local function fetchBuffTable(stats)
@@ -1620,19 +1621,13 @@ task.spawn(function() while task.wait() do
         fieldselected = game:GetService("Workspace").FlowerZones[kocmoc.vars.field]
         -- Morphisto
         if kocmoc.toggles.autouseconvertors == true then
-			--if tonumber(pollenpercentage) >= (kocmoc.vars.convertat - (kocmoc.vars.autoconvertWaitTime)) then
-			if not temptable.consideringautoconverting then
-				temptable.consideringautoconverting = true
-				--spawn(function()
-				--wait(kocmoc.vars.autoconvertWaitTime)
-				print(tonumber(pollenpercentage) .. '>=' .. (kocmoc.vars.convertat - (kocmoc.vars.autoconvertWaitTime))) -- Morphisto
-				if tonumber(pollenpercentage) >= (kocmoc.vars.convertat - (kocmoc.vars.autoconvertWaitTime)) then
+			if tonumber(pollenpercentage) >= (kocmoc.vars.convertat - (kocmoc.vars.autoconvertWaitTime)) then
+				if not temptable.consideringautoconverting then
+					temptable.consideringautoconverting = true
 					useConvertors()
+					temptable.consideringautoconverting = false
 				end
-				temptable.consideringautoconverting = false
-				--end)
 			end
-			--end
         end
         -- Morphisto
         if kocmoc.toggles.autofarm then
