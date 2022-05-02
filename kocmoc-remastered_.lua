@@ -2618,19 +2618,41 @@ function KillStumpSnail()
 end
 -- Morphisto
 
+local function fetchBuffTable2()
+    local stTab = {}
+    if game:GetService("Players").LocalPlayer then
+        if game:GetService("Players").LocalPlayer.PlayerGui then
+            if game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui then
+                for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui:GetChildren()) do
+                    if v.Name == "TileGrid" then
+                        for p,l in pairs(v:GetChildren()) do
+                            if l:FindFirstChild("BG") then
+                                if l:FindFirstChild("BG"):FindFirstChild("Icon") then
+                                    local ic = l:FindFirstChild("BG"):FindFirstChild("Icon")
+										--print(ic)
+										if ic.Parent:FindFirstChild("Text") then
+											if not ic.Parent:FindFirstChild("Text").Text == "" then
+												print(ic.Parent:FindFirstChild("Text").Text)
+												thing = string.gsub(ic.Parent:FindFirstChild("Text").Text,"x","")
+												print('thing=' .. thing)
+											end
+										end
+                                    end
+                                end
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    end
+    
+    return stTab
+end
+
+
 function KillTest()
-	--[[
-	for i,v in next, game:GetService("Workspace").MonsterSpawners:GetDescendants() do
-		print('Descendants: ' .. v.Name)
-		if v.Name == "TimerAttachment" then
-			v.Name = "Attachment"
-		end
-	end
-	]]--
-	for i,v in pairs(getupvalues(require(game:GetService("Workspace").MonsterSpawners.MonsterLevel).GeLevel)) do
-		print(v)
-	end	
-	
+	fetchBuffTable2()
 end
 
 for _, part in next, workspace:FindFirstChild("FieldDecos"):GetDescendants() do if part:IsA("BasePart") then part.CanCollide = false part.Transparency = part.Transparency < 0.5 and 0.5 or part.Transparency task.wait() end end
