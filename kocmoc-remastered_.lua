@@ -2633,9 +2633,7 @@ local function fetchBuffTable2(stats)
                                         if fdata["DecalID"]~= nil then
                                             if string.find(ic.Image,fdata["DecalID"]) then
                                                 if ic.Parent:FindFirstChild("Text") then
-                                                    if ic.Parent:FindFirstChild("Text").Text == "" then
-                                                        stTab[field]=1
-                                                    else
+                                                    if ic.Parent:FindFirstChild("Text").Text ~= "" then
                                                         local thing = ""
                                                         thing = string.gsub(ic.Parent:FindFirstChild("Text").Text,"x","")
 														print('thing=' .. thing)
