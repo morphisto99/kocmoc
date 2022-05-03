@@ -2615,9 +2615,24 @@ end
 -- Morphisto
 
 function KillTest()
+	--[[
+	-- get player names
 	for i, v in pairs(game.Players:GetChildren()) do
 		print(v.Name)
 	end
+	]]--
+	for i,v in next, game.Workspace.Happenings.Puffshrooms:GetDescendants() do
+		print(v.Name)
+	end
+	--[[
+	--game.Workspace.Happenings.Puffshrooms:FindFirstChildOfClass("Model")
+	if game.Players.LocalPlayer.Character:FindFirstChild("ProgressLabel",true) then
+		local pollenprglbl = game.Players.LocalPlayer.Character:FindFirstChild("ProgressLabel",true)
+		maxpollen = tonumber(pollenprglbl.Text:match("%d+$"))
+		local pollencount = game.Players.LocalPlayer.CoreStats.Pollen.Value
+		pollenpercentage = pollencount/maxpollen*100
+	end
+	]]--	
 end
 
 for _, part in next, workspace:FindFirstChild("FieldDecos"):GetDescendants() do if part:IsA("BasePart") then part.CanCollide = false part.Transparency = part.Transparency < 0.5 and 0.5 or part.Transparency task.wait() end end
