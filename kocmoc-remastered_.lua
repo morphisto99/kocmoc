@@ -2636,7 +2636,7 @@ function KillTest()
 		end
 	end
 
-	for i,v in next, game.Workspace.Happenings.Puffshrooms:GetDescendants()) do
+	for i,v in next, game.Workspace.Happenings.Puffshrooms:GetDescendants() do
 		if v.Name == "TextLabel" then
 			print(v.Text)
 		end
