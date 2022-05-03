@@ -2643,16 +2643,14 @@ function KillTest()
 	for i,v in next, game.Workspace.Happenings.Puffshrooms:GetDescendants() do
 		if v.Name == "TextLabel" then
 			print(v.Text)
-			if v.Text == 'Puffshroom (Lvl 5)' then
-				print('Level 5 Puffshrrom found!')
-				fieldpos1 = game.Workspace.Happenings.Puffshrooms:FindFirstChild("Puffball Stem")
+			if game.Workspace.Happenings.Puffshrooms:FindFirstChildOfClass("Model") then
+				fieldpos1 = getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
 				fieldposition1 = fieldpos1.Position
 				print('position=' .. fieldposition1)
 			end
-
 		end
 	end
-	
+
 	--[[
 	for i,v in pairs(game.Workspace.Happenings.Puffshrooms:GetDescendants()) do
 		if (v.ClassName == tostring("TextLabel")) then
@@ -2661,6 +2659,23 @@ function KillTest()
 	end
 	]]--
 	
+end
+
+function getbiggestmodel(path)
+	local part
+	for i,v in next, path:GetChildren() do
+		if v:IsA("Model") then
+			if part == nil then
+				part = v
+			end
+			if v:GetExtentsSize().Y >= part:GetExtentsSize().Y then
+				--print(v:GetExtentsSize().Y.." >= "..part:GetExtentsSize().Y)
+				part = v
+				break
+			end
+		end
+	end
+	return part
 end
 
 for _, part in next, workspace:FindFirstChild("FieldDecos"):GetDescendants() do if part:IsA("BasePart") then part.CanCollide = false part.Transparency = part.Transparency < 0.5 and 0.5 or part.Transparency task.wait() end end
