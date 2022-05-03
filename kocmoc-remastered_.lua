@@ -2629,6 +2629,12 @@ function KillTest()
 	--puffName2 = game.Workspace.Happenings.Puffshrooms:FindFirstChild("TextLabel")
 	--print('puffName2=' .. puffName2)
 
+	local children = game.Workspace.Happenings.Puffshrooms.TextLabel:GetChildren()
+	for i = 1, #children do
+		local child = children[i]
+		print(child.Name .. " is child number " .. i)
+	end
+	
     for i,v in pairs(game.Workspace.Happenings.Puffshrooms:GetChildren()) do
         local mobText = nil
         mobText = fetchVisualMonsterString(v)
@@ -2648,7 +2654,8 @@ function KillTest()
     for i,v in next, game.Workspace.Happenings.Puffshrooms.TextLabel:GetChildren() do
         print(v.Name)
     end	
-	
+
+
 	--if game.Workspace.Happenings.Puffshrooms:FindFirstChildOfClass("TextLabel") then
 		
 	
