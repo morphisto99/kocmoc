@@ -2624,7 +2624,7 @@ function KillTest()
 		--print(v.Name)
 	--end
 
-	print('test1')
+	print('test2')
 	--[[
 	for i, obj in pairs(game.workspace.Happenings.Puffshrooms:GetChildren()) do -- get all obj in the workspace
 		if obj:IsA("TextLabel") then -- verify if the current obj is a TextLabel
@@ -2645,7 +2645,7 @@ function KillTest()
 			print(v.Text)
 			if v.Text == 'Puffshroom (Lvl 5)' then
 				print('Level 5 Puffshrrom found!')
-				fieldpos1 = game.Workspace.Happenings.Puffshrooms:FindFirstChild("Puffball Stem").CFrame
+				fieldpos1 = game.Workspace.Happenings.Puffshrooms:FindFirstChild("Puffball Stem")
 				fieldposition1 = fieldpos1.Position
 				print('position=' .. fieldposition1)
 			end
