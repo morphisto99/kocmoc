@@ -2629,7 +2629,7 @@ function KillTest()
 	--puffName2 = game.Workspace.Happenings.Puffshrooms:FindFirstChild("TextLabel")
 	--print('puffName2=' .. puffName2)
 
-
+	print('test1')
 	for i, obj in pairs(game.workspace.Happenings.Puffshrooms:GetChildren()) do -- get all obj in the workspace
 		if obj:IsA("TextLabel") then -- verify if the current obj is a TextLabel
 			print(obj.Name)
