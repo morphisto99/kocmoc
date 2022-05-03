@@ -2630,34 +2630,23 @@ function KillTest()
 	--print('puffName2=' .. puffName2)
 
 
-	
-    for i,v in pairs(game.Workspace.Happenings.Puffshrooms:GetChildren()) do
-        local mobText = nil
-        mobText = fetchVisualMonsterString(v)
-        if mobText ~= nil then
-			print('mobText=' .. mobText)
-        end
-    end
-
-    for i,v in pairs(game.Workspace.Happenings.Puffshrooms.TextLabel:GetChildren()) do
-		print(v.Name)
-        local mobText = nil
-        mobText1 = fetchVisualMonsterString(v)
-        if mobText1 ~= nil then
-			print('mobText1=' .. mobText1)
-        end
-    end
-
-    for i,v in next, game.Workspace.Happenings.Puffshrooms.TextLabel:GetChildren() do
-        print(v.Name)
-    end	
-
-	local children = game.Workspace.Happenings.Puffshrooms.TextLabel:GetChildren()
-	for i = 1, #children do
-		local child = children[i]
-		print(child.Name .. " is child number " .. i)
+	for i, obj in pairs(game.workspace.Happenings.Puffshrooms:GetChildren()) do -- get all obj in the workspace
+		if obj:IsA("TextLabel") then -- verify if the current obj is a TextLabel
+			print(obj.Name)
+		end
 	end
-	
+
+	for i,v in next, game.Workspace.Happenings.Puffshrooms:GetDescendants()) do
+		if v.Name == "TextLabel" then
+			print(v.Text)
+		end
+	end
+
+	for i,v in pairs(game.Workspace.Happenings.Puffshrooms:GetDescendants()) do
+		if (v.ClassName == tostring("TextLabel")) then
+			print(v.Text)
+		end
+	end
 	
 	--if game.Workspace.Happenings.Puffshrooms:FindFirstChildOfClass("TextLabel") then
 		
