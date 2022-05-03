@@ -1179,7 +1179,7 @@ misco:CreateDropdown("Equip Collectors", collectorstable, function(Option) local
 misco:CreateDropdown("Generate Amulet", {"Supreme Star Amulet", "Diamond Star Amulet", "Gold Star Amulet","Silver Star Amulet","Bronze Star Amulet","Moon Amulet"}, function(Option) local A_1 = Option.." Generator" local Event = game:GetService("ReplicatedStorage").Events.ToyEvent Event:FireServer(A_1) end)
 misco:CreateButton("Export Stats Table [📜]", function() local StatCache = require(game.ReplicatedStorage.ClientStatCache)writefile("Stats_"..api.nickname..".json", StatCache:Encode()) end)
 
-if string.find(string.upper(identifyexecutor()),"SYN") or string.find(string.upper(identifyexecutor()),"SCRIP") then
+
 local visu = misctab:CreateSection("Visual")
 local alertText = "☢️ A nuke is incoming! ☢️"
 local alertDesign = "Purple"
@@ -1399,7 +1399,7 @@ for i,v in pairs(Orb:GetTouchingParts()) do
 end
 until Orb == nil end
 end)
-end
+
 
 local autofeed = itemstab:CreateSection("Auto Feed")
 
@@ -2623,19 +2623,17 @@ function KillTest()
 	--for i,v in next, game.Workspace.Happenings.Puffshrooms:GetDescendants() do
 		--print(v.Name)
 	--end
-	--puffName1 = game.Workspace.Happenings.Puffshrooms:FindFirstChild("Puffball Stem")
-	--print('puffName1=' .. puffName1)
 
-	--puffName2 = game.Workspace.Happenings.Puffshrooms:FindFirstChild("TextLabel")
-	--print('puffName2=' .. puffName2)
-
-	print('test1')
+	print('test2')
 	for i, obj in pairs(game.workspace.Happenings.Puffshrooms:GetChildren()) do -- get all obj in the workspace
 		if obj:IsA("TextLabel") then -- verify if the current obj is a TextLabel
 			print(obj.Name)
+			if obj.Name == 'Puffshroom (Lvl 5)' then
+				print("Level 5 Puffshrrom found!')
+			end
 		end
 	end
-
+	--[[
 	for i,v in next, game.Workspace.Happenings.Puffshrooms:GetDescendants() do
 		if v.Name == "TextLabel" then
 			print(v.Text)
@@ -2647,23 +2645,8 @@ function KillTest()
 			print(v.Text)
 		end
 	end
+	]]--
 	
-	--if game.Workspace.Happenings.Puffshrooms:FindFirstChildOfClass("TextLabel") then
-		
-	
-	--end
-
-
-
-	--[[
-	--game.Workspace.Happenings.Puffshrooms:FindFirstChildOfClass("Model")
-	if game.Players.LocalPlayer.Character:FindFirstChild("ProgressLabel",true) then
-		local pollenprglbl = game.Players.LocalPlayer.Character:FindFirstChild("ProgressLabel",true)
-		maxpollen = tonumber(pollenprglbl.Text:match("%d+$"))
-		local pollencount = game.Players.LocalPlayer.CoreStats.Pollen.Value
-		pollenpercentage = pollencount/maxpollen*100
-	end
-	]]--	
 end
 
 for _, part in next, workspace:FindFirstChild("FieldDecos"):GetDescendants() do if part:IsA("BasePart") then part.CanCollide = false part.Transparency = part.Transparency < 0.5 and 0.5 or part.Transparency task.wait() end end
