@@ -2623,11 +2623,11 @@ function KillTest()
 	--for i,v in next, game.Workspace.Happenings.Puffshrooms:GetDescendants() do
 		--print(v.Name)
 	--end
-	puffName1 = game.Workspace.Happenings.Puffshrooms:FindFirstChild("Puffball Stem")
-	print('puffName1=' .. puffName1)
+	--puffName1 = game.Workspace.Happenings.Puffshrooms:FindFirstChild("Puffball Stem")
+	--print('puffName1=' .. puffName1)
 
-	puffName2 = game.Workspace.Happenings.Puffshrooms:FindFirstChild("TextLabel")
-	print('puffName2=' .. puffName2)
+	--puffName2 = game.Workspace.Happenings.Puffshrooms:FindFirstChild("TextLabel")
+	--print('puffName2=' .. puffName2)
 
     for i,v in pairs(game.Workspace.Happenings.Puffshrooms:GetChildren()) do
         local mobText = nil
