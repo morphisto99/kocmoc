@@ -2629,7 +2629,7 @@ function KillTest()
 		if obj:IsA("TextLabel") then -- verify if the current obj is a TextLabel
 			print(obj.Name)
 			if obj.Name == 'Puffshroom (Lvl 5)' then
-				print("Level 5 Puffshrrom found!')
+				print('Level 5 Puffshrrom found!')
 			end
 		end
 	end
