@@ -1694,7 +1694,6 @@ task.spawn(function() while task.wait() do
 							end
 							break
 						elseif string.find(text, "Ants") then -- Morphisto
-							print("fount Ants text")
 							if not game:GetService("Workspace").Toys["Ant Challenge"].Busy.Value and rtsg().Eggs.AntPass > 0 then farmant() end -- Morphisto
 							break
 						-- Morphisto
@@ -2621,9 +2620,20 @@ function KillTest()
 		print(v.Name)
 	end
 	]]--
-	for i,v in next, game.Workspace.Happenings.Puffshrooms:GetDescendants() do
-		print(v.Name)
-	end
+	--for i,v in next, game.Workspace.Happenings.Puffshrooms:GetDescendants() do
+		--print(v.Name)
+	--end
+	puffName1 = game.Workspace.Happenings.Puffshrooms:FindFirstChild("Puffball Stem")
+	print('puffName1=' .. puffName1)
+
+    for i,v in pairs(game.Workspace.Happenings.Puffshrooms:GetChildren()) do
+        local mobText = nil
+        mobText = fetchVisualMonsterString(v)
+        if mobText ~= nil then
+			print('mobText=' .. mobText)
+        end
+    end
+
 	--[[
 	--game.Workspace.Happenings.Puffshrooms:FindFirstChildOfClass("Model")
 	if game.Players.LocalPlayer.Character:FindFirstChild("ProgressLabel",true) then
