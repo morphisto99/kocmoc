@@ -1179,7 +1179,7 @@ misco:CreateDropdown("Equip Collectors", collectorstable, function(Option) local
 misco:CreateDropdown("Generate Amulet", {"Supreme Star Amulet", "Diamond Star Amulet", "Gold Star Amulet","Silver Star Amulet","Bronze Star Amulet","Moon Amulet"}, function(Option) local A_1 = Option.." Generator" local Event = game:GetService("ReplicatedStorage").Events.ToyEvent Event:FireServer(A_1) end)
 misco:CreateButton("Export Stats Table [📜]", function() local StatCache = require(game.ReplicatedStorage.ClientStatCache)writefile("Stats_"..api.nickname..".json", StatCache:Encode()) end)
 
-
+if string.find(string.upper(identifyexecutor()),"SYN") or string.find(string.upper(identifyexecutor()),"SCRIP") then
 local visu = misctab:CreateSection("Visual")
 local alertText = "☢️ A nuke is incoming! ☢️"
 local alertDesign = "Purple"
@@ -1399,7 +1399,7 @@ for i,v in pairs(Orb:GetTouchingParts()) do
 end
 until Orb == nil end
 end)
-
+end
 
 local autofeed = itemstab:CreateSection("Auto Feed")
 
@@ -2630,9 +2630,16 @@ function KillTest()
 			print(obj.Name)
 			if obj.Name == 'Puffshroom (Lvl 5)' then
 				print('Level 5 Puffshrrom found!')
+				puffposition1 = game.workspace.Happenings.Puffshrooms:FindFirstChild("Puffshroom (Lvl 5)").Position
+				puffposition2 = game.workspace.Happenings.Puffshrooms:FindFirstChild("Puffshroom (Lvl 5)").Head.Position
+				print('puffposition1=' .. puffposition1)
+				print('puffposition2=' .. puffposition2)
 			end
 		end
 	end
+	
+	
+	
 	--[[
 	for i,v in next, game.Workspace.Happenings.Puffshrooms:GetDescendants() do
 		if v.Name == "TextLabel" then
