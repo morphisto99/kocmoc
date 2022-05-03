@@ -2645,10 +2645,9 @@ function KillTest()
 			print(v.Text)
 			if v.Text == 'Puffshroom (Lvl 5)' then
 				print('Level 5 Puffshrrom found!')
-				--puffposition1 = game.workspace.Happenings.Puffshrooms:FindFirstChild("Puffshroom (Lvl 5)").Position
-				puffposition2 = game.workspace.Happenings.Puffshrooms:FindFirstChild("Puffshroom (Lvl 5)").Head.Position
-				--print('puffposition1=' .. puffposition1)
-				print('puffposition2=' .. puffposition2)
+				fieldpos1 = game.Workspace.Happenings.Puffshrooms:FindFirstChild("Puffball Stem").CFrame
+				fieldposition1 = fieldpos1.Position
+				print('position=' .. fieldposition1)
 			end
 
 		end
