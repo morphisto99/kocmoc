@@ -2624,7 +2624,8 @@ function KillTest()
 		--print(v.Name)
 	--end
 
-	print('test1')
+	print('test2')
+	--[[
 	for i, obj in pairs(game.workspace.Happenings.Puffshrooms:GetChildren()) do -- get all obj in the workspace
 		if obj:IsA("TextLabel") then -- verify if the current obj is a TextLabel
 			print(obj.Name)
@@ -2637,16 +2638,23 @@ function KillTest()
 			end
 		end
 	end
+	]]--
 	
-	
-	
-	--[[
 	for i,v in next, game.Workspace.Happenings.Puffshrooms:GetDescendants() do
 		if v.Name == "TextLabel" then
 			print(v.Text)
+			if v.Text == 'Puffshroom (Lvl 5)' then
+				print('Level 5 Puffshrrom found!')
+				puffposition1 = game.workspace.Happenings.Puffshrooms:FindFirstChild("Puffshroom (Lvl 5)").Position
+				puffposition2 = game.workspace.Happenings.Puffshrooms:FindFirstChild("Puffshroom (Lvl 5)").Head.Position
+				print('puffposition1=' .. puffposition1)
+				print('puffposition2=' .. puffposition2)
+			end
+
 		end
 	end
-
+	
+	--[[
 	for i,v in pairs(game.Workspace.Happenings.Puffshrooms:GetDescendants()) do
 		if (v.ClassName == tostring("TextLabel")) then
 			print(v.Text)
