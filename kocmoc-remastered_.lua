@@ -2627,9 +2627,16 @@ function KillTest()
 	print('test2')
 	
 	temptable.magnitude = 25
+	local plevel
 	for i,v in next, game.Workspace.Happenings.Puffshrooms:GetDescendants() do
 		if v.Name == "TextLabel" then
 			--print(v.Text)
+			pufflevel = string.match(v.Text, "%d+")
+			
+			if plevel == nil then
+				plevel = pufflevel
+			end
+			print('pufflevel=' .. pufflevel .. ', plevel=' .. plevel)
 			if v.Text == "Puffshroom (Lvl 6)" then
 				if game.Workspace.Happenings.Puffshrooms:FindFirstChildOfClass("Model") then
 					fieldpos1 = getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
