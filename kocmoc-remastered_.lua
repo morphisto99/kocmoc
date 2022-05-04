@@ -2624,7 +2624,7 @@ function KillTest()
 		--print(v.Name)
 	--end
 
-	print('test1')
+	print('test3')
 	--[[
 	for i, obj in pairs(game.workspace.Happenings.Puffshrooms:GetChildren()) do -- get all obj in the workspace
 		if obj:IsA("TextLabel") then -- verify if the current obj is a TextLabel
@@ -2639,7 +2639,7 @@ function KillTest()
 		end
 	end
 	]]--
-	
+	temptable.magnitude = 25
 	for i,v in next, game.Workspace.Happenings.Puffshrooms:GetDescendants() do
 		if v.Name == "TextLabel" then
 			print(v.Text)
