@@ -2624,7 +2624,7 @@ function KillTest()
 		--print(v.Name)
 	--end
 
-	print('test2')
+	print('test1')
 	--[[
 	for i, obj in pairs(game.workspace.Happenings.Puffshrooms:GetChildren()) do -- get all obj in the workspace
 		if obj:IsA("TextLabel") then -- verify if the current obj is a TextLabel
@@ -2643,11 +2643,18 @@ function KillTest()
 	for i,v in next, game.Workspace.Happenings.Puffshrooms:GetDescendants() do
 		if v.Name == "TextLabel" then
 			print(v.Text)
-			if game.Workspace.Happenings.Puffshrooms:FindFirstChildOfClass("Model") then
-				fieldpos1 = getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
-				print(fieldpos1)
-				fieldposition1 = fieldpos1.Position
-				print('position=' .. fieldposition1)
+			if v.Text == "Puffshroom (Lvl 6)" then
+				if game.Workspace.Happenings.Puffshrooms:FindFirstChildOfClass("Model") then
+					fieldpos1 = getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
+					--print(fieldpos1)
+					fieldposition1 = fieldpos1.Position
+					if (fieldposition1-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
+						print('teleporting to ' .. v.Text)
+						api.tween(1, fieldpos1) -- Morphisto
+						task.wait(1)
+						if kocmoc.toggles.autosprinkler then makesprinklers() end
+					end
+				end
 			end
 		end
 	end
