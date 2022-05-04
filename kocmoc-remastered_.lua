@@ -2624,27 +2624,32 @@ function KillTest()
 		--print(v.Name)
 	--end
 
-	print('test3')
-	--[[
+	print('test1')
+	
 	for i, obj in pairs(game.workspace.Happenings.Puffshrooms:GetChildren()) do -- get all obj in the workspace
 		if obj:IsA("TextLabel") then -- verify if the current obj is a TextLabel
 			print(obj.Name)
 			if obj.Name == 'Puffshroom (Lvl 5)' then
-				print('Level 5 Puffshrrom found!')
-				puffposition1 = game.workspace.Happenings.Puffshrooms:FindFirstChild("Puffshroom (Lvl 5)").Position
-				puffposition2 = game.workspace.Happenings.Puffshrooms:FindFirstChild("Puffshroom (Lvl 5)").Head.Position
-				print('puffposition1=' .. puffposition1)
-				print('puffposition2=' .. puffposition2)
+				print('Level 5 Puffshroom found!')
+				puffposition1 = game.workspace.Happenings.Puffshrooms:FindFirstChild("Puffshroom (Lvl 5)").CFrame
+				api.tween(1, puffposition1)
+				task.wait(1)
+			end
+			if obj.Name == 'Puffshroom (Lvl 10)' then
+				print('Level 10 Puffshroom found!')
+				puffposition1 = game.workspace.Happenings.Puffshrooms:FindFirstChild("Puffshroom (Lvl 10)").CFrame
+				api.tween(1, puffposition1)
+				task.wait(1)
 			end
 		end
 	end
-	]]--
 	
 	
+	--[[
 	temptable.magnitude = 25
 	for i,v in next, game.Workspace.Happenings.Puffshrooms:GetDescendants() do
 		if v.Name == "TextLabel" then
-			print(v.Text)
+			--print(v.Text)
 			if v.Text == "Puffshroom (Lvl 6)" then
 				if game.Workspace.Happenings.Puffshrooms:FindFirstChildOfClass("Model") then
 					fieldpos1 = getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
@@ -2660,8 +2665,9 @@ function KillTest()
 			end
 		end
 	end
-
-	--for i,v in next, game.Workspace.Happenings.Puffshrooms.TextLabel:GetChildren()	do
+	]]--
+	--for i,v in next, game.Workspace.Happenings.Puffshrooms.GetChildren() do
+		--v.TextLabel
 		--print(v.Name)
 		
 		--[[
@@ -2687,7 +2693,7 @@ function getbiggestmodel(path)
 			if part == nil then
 				part = v
 			end
-			print(v.Name)
+			print(v.Text)
 			if v:GetExtentsSize().Y >= part:GetExtentsSize().Y then
 				print(v:GetExtentsSize().Y.." >= "..part:GetExtentsSize().Y)
 				part = v
