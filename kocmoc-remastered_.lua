@@ -2624,7 +2624,7 @@ function KillTest()
 		--print(v.Name)
 	--end
 
-	print('test2')
+	print('test1')
 	
 	temptable.magnitude = 25
 	local plevel
@@ -2637,10 +2637,10 @@ function KillTest()
 				plevel = pufflevel
 			end
 			print('pufflevel=' .. pufflevel .. ', plevel=' .. plevel)
-			if v.Text == "Puffshroom (Lvl 6)" then
+			if pufflevel > plevel then
+				plevel = pufflevel
 				if game.Workspace.Happenings.Puffshrooms:FindFirstChildOfClass("Model") then
 					fieldpos1 = getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
-					--print(fieldpos1)
 					fieldposition1 = fieldpos1.Position
 					if (fieldposition1-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
 						print('teleporting to ' .. v.Text)
@@ -2648,14 +2648,14 @@ function KillTest()
 						task.wait(1)
 						if kocmoc.toggles.autosprinkler then makesprinklers() end
 					end
-				end
+				end				
 			end
 		end
 	end
 
-	local rankgui = game.Workspace.Happenings.Puffshrooms:FindFirstChild("Gui")
-	local text = rankgui.TextLabel
-	print('text123=' .. text)
+	--local rankgui = game.Workspace.Happenings.Puffshrooms:FindFirstChild("Gui")
+	--local text = rankgui.TextLabel
+	--print('text123=' .. text)
 	
 	--for i,v in next, game.Workspace.Happenings.Puffshrooms.GetChildren() do
 		--v.TextLabel
