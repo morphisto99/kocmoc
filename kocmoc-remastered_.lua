@@ -2641,7 +2641,6 @@ function KillTest()
 	]]--
 	
 	
-	--[[
 	temptable.magnitude = 25
 	for i,v in next, game.Workspace.Happenings.Puffshrooms:GetDescendants() do
 		if v.Name == "TextLabel" then
@@ -2661,7 +2660,6 @@ function KillTest()
 			end
 		end
 	end
-	]]--
 
 	for i,v in next, game.Workspace.Happenings.Puffshrooms.TextLabel:GetChildren()	do
 		print(v.Name)
@@ -2689,6 +2687,7 @@ function getbiggestmodel(path)
 			if part == nil then
 				part = v
 			end
+			print(v.Name)
 			if v:GetExtentsSize().Y >= part:GetExtentsSize().Y then
 				print(v:GetExtentsSize().Y.." >= "..part:GetExtentsSize().Y)
 				part = v
