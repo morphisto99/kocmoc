@@ -2636,8 +2636,9 @@ function KillTest()
 			if plevel == nil then
 				plevel = pufflevel
 			end
-			print('pufflevel=' .. pufflevel .. ', plevel=' .. plevel)
+			
 			if pufflevel > plevel then
+				print('pufflevel=' .. pufflevel .. ' > plevel=' .. plevel)
 				plevel = pufflevel
 				if game.Workspace.Happenings.Puffshrooms:FindFirstChildOfClass("Model") then
 					fieldpos1 = getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
@@ -2648,7 +2649,8 @@ function KillTest()
 						task.wait(1)
 						if kocmoc.toggles.autosprinkler then makesprinklers() end
 					end
-				end				
+				end
+				break
 			end
 		end
 	end
