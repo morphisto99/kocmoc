@@ -1719,9 +1719,9 @@ task.spawn(function() while task.wait() do
         else
 			fieldselected = game:GetService("Workspace").FlowerZones[kocmoc.vars.field] -- Autofarm field
 			-- Morphisto
-			if kocmoc.toggles.swapmaskonfield and currentMask ~= kocmoc.vars.defmask then
-				game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"})
-			end
+			--if kocmoc.toggles.swapmaskonfield and currentMask ~= kocmoc.vars.defmask then
+				--game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"})
+			--end
 			-- Morphisto
         end
         fieldpos = CFrame.new(fieldselected.Position.X, fieldselected.Position.Y+3, fieldselected.Position.Z)
