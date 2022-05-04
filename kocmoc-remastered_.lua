@@ -2639,6 +2639,9 @@ function KillTest()
 		end
 	end
 	]]--
+	
+	
+	--[[
 	temptable.magnitude = 25
 	for i,v in next, game.Workspace.Happenings.Puffshrooms:GetDescendants() do
 		if v.Name == "TextLabel" then
@@ -2658,14 +2661,11 @@ function KillTest()
 			end
 		end
 	end
-
-	--[[
-	for i,v in pairs(game.Workspace.Happenings.Puffshrooms:GetDescendants()) do
-		if (v.ClassName == tostring("TextLabel")) then
-			print(v.Text)
-		end
-	end
 	]]--
+	
+	for i,v in next, game.Workspace.Monsters:GetDescendants() do
+		print(v.Name)
+	end
 	
 end
 
