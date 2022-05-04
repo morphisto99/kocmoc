@@ -2662,25 +2662,19 @@ function KillTest()
 		end
 	end
 	]]--
-	
-	--local vichumanoid = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-	for i,v in next, game.workspace.Particles:GetChildren() do
-		for x in string.gmatch(v.Name, "Chick") do
-			if string.find(v.Name, "Chick") then
-				api.tween(1,CFrame.new(v.Position.x, v.Position.y, v.Position.z)) task.wait(1)
-				api.tween(0.5, CFrame.new(v.Position.x, v.Position.y, v.Position.z)) task.wait(.5)
-			end
-		end
-	end
-	
-	for i,v in next, game.workspace.Particles:GetChildren() do
+
+	for i,v in next, game.Workspace.Happenings.Puffshrooms.TextLabel:GetChildren()	do
+		print(v.Name)
+		
+		--[[
 		for x in string.gmatch(v.Name, "Puffshroom") do
 			if string.find(v.Name, "Puffshroom") then
 				api.tween(1,CFrame.new(v.Position.x, v.Position.y, v.Position.z)) task.wait(1)
 				api.tween(0.5, CFrame.new(v.Position.x, v.Position.y, v.Position.z)) task.wait(.5)
 			end
 		end
-	end				
+		]]--
+	end			
 	
 	--for i,v in next, game.Workspace.Monsters:GetDescendants("Commando Chick (Lvl 13") do
 		--print(v.Name)
