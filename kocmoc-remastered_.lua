@@ -2624,7 +2624,7 @@ function KillTest()
 		--print(v.Name)
 	--end
 
-	print('test1')
+	print('test2')
 	
 	temptable.magnitude = 25
 	for i,v in next, game.Workspace.Happenings.Puffshrooms:GetDescendants() do
@@ -2646,6 +2646,10 @@ function KillTest()
 		end
 	end
 
+	local rankgui = game.Workspace.Happenings.Puffshrooms:FindFirstChild("Gui")
+	local text = rankgui.TextLabel
+	print('text123=' .. text)
+	
 	--for i,v in next, game.Workspace.Happenings.Puffshrooms.GetChildren() do
 		--v.TextLabel
 		--print(v.Name)
