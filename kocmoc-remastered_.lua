@@ -2661,8 +2661,8 @@ function KillTest()
 		end
 	end
 
-	for i,v in next, game.Workspace.Happenings.Puffshrooms.TextLabel:GetChildren()	do
-		print(v.Name)
+	--for i,v in next, game.Workspace.Happenings.Puffshrooms.TextLabel:GetChildren()	do
+		--print(v.Name)
 		
 		--[[
 		for x in string.gmatch(v.Name, "Puffshroom") do
@@ -2672,7 +2672,7 @@ function KillTest()
 			end
 		end
 		]]--
-	end			
+	--end			
 	
 	--for i,v in next, game.Workspace.Monsters:GetDescendants("Commando Chick (Lvl 13") do
 		--print(v.Name)
