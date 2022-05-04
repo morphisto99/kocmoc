@@ -2645,8 +2645,9 @@ function KillTest()
 			print(v.Text)
 			if game.Workspace.Happenings.Puffshrooms:FindFirstChildOfClass("Model") then
 				fieldpos1 = getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
-				fieldposition1 = fieldpos1.Position
-				print('position=' .. fieldposition1)
+				print(fieldpos1)
+				--fieldposition1 = fieldpos1.Position
+				--print('position=' .. fieldposition1)
 			end
 		end
 	end
@@ -2669,9 +2670,9 @@ function getbiggestmodel(path)
 				part = v
 			end
 			if v:GetExtentsSize().Y >= part:GetExtentsSize().Y then
-				--print(v:GetExtentsSize().Y.." >= "..part:GetExtentsSize().Y)
+				print(v:GetExtentsSize().Y.." >= "..part:GetExtentsSize().Y)
 				part = v
-				break
+				--break
 			end
 		end
 	end
