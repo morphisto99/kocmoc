@@ -2685,7 +2685,11 @@ function KillTest()
 		end
 		--print('PuffballMushroomModelCommon=' .. v.Name)
 	end
-	
+
+	for i,v in next, game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelCommon.Attachment:GetDescendants() do
+		print(v.Name)
+	end
+	--[[
 	temptable.magnitude = 25
 	local plevel
 	for i,v in next, game.Workspace.Happenings.Puffshrooms:GetDescendants() do
@@ -2714,7 +2718,7 @@ function KillTest()
 			end
 		end
 	end
-
+	]]--
 	--for i,v in next, game.Workspace.MonsterSpawners:GetDescendants() do
 		--print('MonsterSprawners=' .. v.Name)
 	--end
