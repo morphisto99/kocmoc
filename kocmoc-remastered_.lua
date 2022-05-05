@@ -1824,10 +1824,10 @@ task.spawn(function() while task.wait() do
 						--game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Glitter"})
 					end
             else
-				KillTest()
-                --temptable.magnitude = 25 
-                --fieldpos = api.getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
-                --fieldposition = fieldpos.Position
+				--KillTest()
+                temptable.magnitude = 25 
+                fieldpos = api.getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
+                fieldposition = fieldpos.Position
             end
 		elseif kocmoc.toggles.farmpuffshrooms and temptable.puffshroomboosted then
 			temptable.puffshroomdetected = false
@@ -2674,11 +2674,6 @@ function KillTest()
 						api.tween(1, fieldpos1) -- Morphisto
 						task.wait(1)
 						if kocmoc.toggles.autosprinkler then makesprinklers() end
-						while game.Workspace.Happenings.Puffshrooms:FindFirstChild(v.Text) do
-							print('inside of ' .. v.Text)
-							task.wait(1)
-						end
-						
 					end
 				end
 				--break
@@ -2715,6 +2710,7 @@ function getbiggestmodel(path)
 	for i,v in next, path:GetChildren() do
 		if v:IsA("Model") then
 			if part == nil then
+				print('part is nil')
 				part = v
 			end
 			--print('v.Name=' .. v.Name)
@@ -2723,9 +2719,6 @@ function getbiggestmodel(path)
 				part = v
 				--break
 			end
-		end
-		if v:IsA("TextLabel") then
-			print('v.Name=' .. v.Name)
 		end
 	end
 	return part
