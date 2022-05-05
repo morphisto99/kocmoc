@@ -2683,7 +2683,7 @@ function KillTest()
 		--print('PuffballMushroomModelCommon=' .. v.Name)
 	end
 
-	for i,v in next, game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelCommon.Attachment:GetDescendants() do
+	for i,v in next, game.Workspace.Happenings.Puffshrooms.Attachment:GetDescendants() do
 		print(v.Name)
 	end
 	--[[
