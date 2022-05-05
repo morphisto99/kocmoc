@@ -2652,7 +2652,7 @@ function KillTest()
 
 	print('test1')
 	for i,v in next, game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelCommon:GetDescendants() do
-		print(v.Name)
+		print('PuffballMushroomModelCommon=' .. v.Name)
 	end
 	
 	temptable.magnitude = 25
@@ -2683,6 +2683,24 @@ function KillTest()
 			end
 		end
 	end
+
+	for i,v in next, game.Workspace.MonsterSpawners:GetDescendants() do
+		print('MonsterSprawners=' .. v.Name)
+	end
+	--[[
+    for i,v in pairs(game:GetService("Workspace").MonsterSpawners:GetChildren()) do
+        if not string.find(v.Name,"CaveMonster") then
+			local mobText = nil
+			mobText = fetchVisualMonsterString(v)
+			if mobText ~= nil then
+				local mob = panel:CreateButton(mobText,function()
+					api.tween(1,CFrame.new(getNearestField(v)))
+				end)
+				table.insert(statusTable,{mob,v})
+			end
+        end
+    end
+	]]--
 
 	--local rankgui = game.Workspace.Happenings.Puffshrooms:FindFirstChild("Gui")
 	--local text = rankgui.TextLabel
