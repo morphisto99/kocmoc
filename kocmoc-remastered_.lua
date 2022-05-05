@@ -1748,6 +1748,7 @@ task.spawn(function() while task.wait() do
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "JellyBeans"})
 					end
 					if GetItemListWithValue()["CloudVial"] > 0 then
+						print('inside of Cloudvial')
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "CloudVial"})
 					end
 					if GetItemListWithValue()["BlueExtract"] > 0 then
@@ -1802,10 +1803,31 @@ task.spawn(function() while task.wait() do
                 temptable.magnitude = 25 
                 fieldpos = api.partwithnamepart("Epic", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
                 fieldposition = fieldpos.Position
+					if GetItemListWithValue()["CloudVial"] > 0 then
+						print('inside of Cloudvial')
+						--game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "CloudVial"})
+					end
+					if GetItemListWithValue()["BlueExtract"] > 0 then
+						print('inside of BlueExtract')
+						--game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "BlueExtract"})
+					end
+					if GetItemListWithValue()["RedExtract"] > 0 then
+						print('inside of RedExtract')
+						--game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "RedExtract"})
+					end
+					if GetItemListWithValue()["TropicalDrink"] > 0 then
+						print('inside of TropicalDrink')
+						--game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "TropicalDrink"})
+					end
+					if GetItemListWithValue()["Glitter"] > 0 then
+						print('inside of Glitter')
+						--game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Glitter"})
+					end
             else
-                temptable.magnitude = 25 
-                fieldpos = api.getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
-                fieldposition = fieldpos.Position
+				KillTest()
+                --temptable.magnitude = 25 
+                --fieldpos = api.getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
+                --fieldposition = fieldpos.Position
             end
 		elseif kocmoc.toggles.farmpuffshrooms and temptable.puffshroomboosted then
 			temptable.puffshroomdetected = false
@@ -2641,8 +2663,8 @@ function KillTest()
 				plevel = pufflevel
 			end
 			
-			if pufflevel > plevel then
-				print('pufflevel=' .. pufflevel .. ' > plevel=' .. plevel)
+			print('pufflevel=' .. pufflevel .. ' > plevel=' .. plevel)
+			if pufflevel >= plevel then
 				plevel = pufflevel
 				if game.Workspace.Happenings.Puffshrooms:FindFirstChildOfClass("Model") then
 					fieldpos1 = getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
@@ -2690,7 +2712,7 @@ function getbiggestmodel(path)
 			if part == nil then
 				part = v
 			end
-			--print(v.Text)
+			print('v.Name=' .. v.Name)
 			if v:GetExtentsSize().Y >= part:GetExtentsSize().Y then
 				print(v:GetExtentsSize().Y.." >= "..part:GetExtentsSize().Y)
 				part = v
