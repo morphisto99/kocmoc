@@ -2651,7 +2651,26 @@ function KillTest()
 	--end
 
 	print('test1')
-	for i,v in next, game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelCommon:GetDescendants() do
+	for i,v in next, game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelCommon.Attachment:GetDescendants() do
+		--[[
+		if v:FindFirstChild("Attachment") then
+			if v:FindFirstChild("Attachment"):FindFirstChild("Gui") then
+				if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("BarRow") then
+					if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("BarRow"):FindFirstChild("Bar") then
+						if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("BarRow"):FindFirstChild("Bar"):FindFirstChild("FillBar" then
+							if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("BarRow"):FindFirstChild("Bar"):FindFirstChild("FillBar"):FindFirstChild("NumberLabel") then
+								if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("BarRow"):FindFirstChild("Bar"):FindFirstChild("FillBar"):FindFirstChild("NumberLabel"):FindFirstChild("NameRow") then
+									if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("BarRow"):FindFirstChild("Bar"):FindFirstChild("FillBar"):FindFirstChild("NumberLabel"):FindFirstChild("NameRow"):FindFirstChild("TextLabel") then
+									
+									end			
+								end
+							end
+						end
+					end
+				end
+			end
+		end
+		]]--
 		print('PuffballMushroomModelCommon=' .. v.Name)
 	end
 	
@@ -2684,9 +2703,9 @@ function KillTest()
 		end
 	end
 
-	for i,v in next, game.Workspace.MonsterSpawners:GetDescendants() do
-		print('MonsterSprawners=' .. v.Name)
-	end
+	--for i,v in next, game.Workspace.MonsterSpawners:GetDescendants() do
+		--print('MonsterSprawners=' .. v.Name)
+	--end
 	--[[
     for i,v in pairs(game:GetService("Workspace").MonsterSpawners:GetChildren()) do
         if not string.find(v.Name,"CaveMonster") then
