@@ -2674,6 +2674,11 @@ function KillTest()
 						api.tween(1, fieldpos1) -- Morphisto
 						task.wait(1)
 						if kocmoc.toggles.autosprinkler then makesprinklers() end
+						while game.Workspace.Happenings.Puffshrooms:FindFirstChild(v.Text) do
+							print('inside of ' .. v.Text)
+							task.wait(1)
+						end
+						
 					end
 				end
 				--break
