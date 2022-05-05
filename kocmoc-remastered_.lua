@@ -2651,17 +2651,25 @@ function KillTest()
 	--end
 
 	print('test1')
-	for i,v in next, game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelCommon.Attachment:GetDescendants() do
-		--[[
+	for i,v in next, game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelCommon:GetChildren() do
 		if v:FindFirstChild("Attachment") then
+			print('nameText1')
 			if v:FindFirstChild("Attachment"):FindFirstChild("Gui") then
+				print('nameText2')
 				if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("BarRow") then
+					print('nameText3')
 					if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("BarRow"):FindFirstChild("Bar") then
+						print('nameText4')
 						if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("BarRow"):FindFirstChild("Bar"):FindFirstChild("FillBar" then
+							print('nameText5')
 							if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("BarRow"):FindFirstChild("Bar"):FindFirstChild("FillBar"):FindFirstChild("NumberLabel") then
+								print('nameText6')
 								if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("BarRow"):FindFirstChild("Bar"):FindFirstChild("FillBar"):FindFirstChild("NumberLabel"):FindFirstChild("NameRow") then
+									print('nameText7')
 									if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("BarRow"):FindFirstChild("Bar"):FindFirstChild("FillBar"):FindFirstChild("NumberLabel"):FindFirstChild("NameRow"):FindFirstChild("TextLabel") then
-									
+										print('nameText8')
+										local nameText = v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("BarRow"):FindFirstChild("Bar"):FindFirstChild("FillBar"):FindFirstChild("NumberLabel"):FindFirstChild("NameRow"):FindFirstChild("TextLabel").Text
+										print('nameText=' .. nameText)
 									end			
 								end
 							end
@@ -2670,8 +2678,7 @@ function KillTest()
 				end
 			end
 		end
-		]]--
-		print('PuffballMushroomModelCommon=' .. v.Name)
+		--print('PuffballMushroomModelCommon=' .. v.Name)
 	end
 	
 	temptable.magnitude = 25
