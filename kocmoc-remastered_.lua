@@ -2676,7 +2676,7 @@ function KillTest()
 						if kocmoc.toggles.autosprinkler then makesprinklers() end
 					end
 				end
-				break
+				--break
 			end
 		end
 	end
@@ -2712,12 +2712,15 @@ function getbiggestmodel(path)
 			if part == nil then
 				part = v
 			end
-			print('v.Name=' .. v.Name)
+			print('v.Text=' .. v.Text)
 			if v:GetExtentsSize().Y >= part:GetExtentsSize().Y then
 				print(v:GetExtentsSize().Y.." >= "..part:GetExtentsSize().Y)
 				part = v
 				--break
 			end
+		end
+		if v:IsA("TextLabel") then
+			print('v.Name=' .. v.Name)
 		end
 	end
 	return part
