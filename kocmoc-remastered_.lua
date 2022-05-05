@@ -2717,7 +2717,7 @@ function getbiggestmodel(path)
 			if part == nil then
 				part = v
 			end
-			print('v.Text=' .. v.Text)
+			--print('v.Name=' .. v.Name)
 			if v:GetExtentsSize().Y >= part:GetExtentsSize().Y then
 				print(v:GetExtentsSize().Y.." >= "..part:GetExtentsSize().Y)
 				part = v
