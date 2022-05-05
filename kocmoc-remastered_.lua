@@ -2651,6 +2651,9 @@ function KillTest()
 	--end
 
 	print('test1')
+	for i,v in next, game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelCommon:GetDescendants() do
+		print(v.Name)
+	end
 	
 	temptable.magnitude = 25
 	local plevel
@@ -2710,7 +2713,7 @@ function getbiggestmodel(path)
 	for i,v in next, path:GetChildren() do
 		if v:IsA("Model") then
 			if part == nil then
-				print('part is nil')
+				--print('part is nil')
 				part = v
 			end
 			--print('v.Name=' .. v.Name)
