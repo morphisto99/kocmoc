@@ -2638,7 +2638,7 @@ function KillTest()
 		if v:FindFirstChild("NumberLabel") then
 			print('nameText2')
 		end
-		if v::FindFirstChild("NameRow") then
+		if v:FindFirstChild("NameRow") then
 			print('nameText3')
 		end
 			--[[
