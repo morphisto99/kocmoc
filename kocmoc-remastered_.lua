@@ -2632,48 +2632,11 @@ function KillTest()
 
 	print('test0')
 	for i,v in pairs(game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelCommon:GetChildren()) do
-		print('v.Name=' .. v.Name)
-		if v.Name == "TextLabel" then
-			print('v.Text=' .. v.Text)
-		end
-		if v:FindFirstChild("TextLabel") then
-			print('test1')
-		end
-		if v:FindFirstChild("Attachment") then
-			if v:FindFirstChild("Attachment"):FindFirstChild("TextLabel") then
-				print('test2')
-			end
-			if v:FindFirstChild("Attachment"):FindFirstChild("NumberLabel") then
-				print('test3')
-			end
+		if v:FindFirstChild("Attachment")
 			if v:FindFirstChild("Attachment"):FindFirstChild("Gui") then
-				print('test4')
-				if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("TextLabel") then
-					print('test5')
+				if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("NameRow") then
+					print('nameText2')
 				end
-				if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("NumberLabel") then
-					print('test6')
-				end
-				if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("BarRow") then
-					if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("BarRow"):FindFirstChild("TextLabel") then
-						print('test7')
-					end
-					if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("BarRow"):FindFirstChild("NumberLabel") then
-						print('test8')
-					end
-				end
-				if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("Bar") then
-					print('test9')
-					if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("Bar"):FindFirstChild("NumberLabel") then
-						print('test10')
-					end
-				end
-			end
-			
-		end
-			--[[
-			if v:FindFirstChild("Attachment"):FindFirstChild("Gui") then
-				
 				if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("BarRow") then
 					print('nameText3')
 					if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("BarRow"):FindFirstChild("Bar") then
@@ -2696,29 +2659,12 @@ function KillTest()
 				end
 				
 			end
-			]]--
-		--print('PuffballMushroomModelCommon=' .. v.Name)
-	end
-	
-	if game.Workspace.Happenings.Puffshrooms:FindFirstChild("PuffballMushroomModelCommon") then
-		if game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelCommon:FindFirstChild("TextLabel") then
-			print('found1')
 		end
-		if game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelCommon:FindFirstChild("Gui") then
-			print('found2')
-			if game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelCommon.Gui:FindFirstChild("TextLabel") then
-				print('found3')
-			end
-		end	
 	end
 	
-	for _, part in next, game.Workspace.Happenings.Puffshrooms:FindFirstChild("PuffballMushroomModelCommon"):GetDescendants() do 
-		print('partname=' .. part.Name)
-	end
-	
-	for _, part in next, game.Workspace.Happenings.Puffshrooms:FindFirstChild("Attachment"):GetDescendants() do 
-		print('attachname=' .. part.Name)
-	end	
+	--for _, part in next, game.Workspace.Happenings.Puffshrooms:FindFirstChild("PuffballMushroomModelCommon"):GetDescendants() do 
+		--print('partname=' .. part.Name)
+	--end
 
 	for _, part in next, game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelCommon:FindFirstChild("Puffball Top"):GetDescendants() do 
 		print('part=' .. part.Name)
