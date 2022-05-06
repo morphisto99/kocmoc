@@ -2700,6 +2700,22 @@ function KillTest()
 		--print('PuffballMushroomModelCommon=' .. v.Name)
 	end
 
+	puffname = game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelCommon:FindFirstChild("TextLabel")
+	print('puffname-' .. puffname)
+	print('pufftext=' .. puffname.Text)
+	
+	if game.Workspace.Happenings.Puffshrooms:FindFirstChild("PuffballMushroomModelCommon") then
+		if game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelCommon:FindFirstChild("TextLabel") then
+			print('found1')
+		end
+		if game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelCommon:FindFirstChild("Gui") then
+			print('found2')
+			if game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelCommon.Gui:FindFirstChild("TextLabel") then
+				print('found3')
+			end
+		end	
+	end
+	
 	--for i,v in next, game.Workspace.Happenings.Puffshrooms.Attachment:GetDescendants() do
 		--print(v.Name)
 	--end
