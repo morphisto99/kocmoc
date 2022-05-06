@@ -2631,7 +2631,7 @@ function KillTest()
 	--end
 
 	print('test2')
-	for i,v in pairs(game.Workspace.Happenings.Puffshrooms:GetChildren()) do
+	for i,v in pairs(game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelCommon:GetChildren()) do
 		print('v.Name=' .. v.Name)
 		if v.Name == "TextLabel" then
 			print('v.Text=' .. v.Text)
