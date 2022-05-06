@@ -2640,9 +2640,9 @@ function KillTest()
 			end
 			
 			if v:FindFirstChild("Attachment"):FindFirstChild("Gui") then
-				print('nameText2')
+				print('nameText3')
 				if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("TextLabel") then
-					print('nameText3')
+					print('nameText4')
 				end
 				--[[
 				if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("BarRow") then
