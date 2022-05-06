@@ -1745,20 +1745,20 @@ task.spawn(function() while task.wait() do
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Oil"})
 					end
 					if GetItemListWithValue()["JellyBeans"] > 0 then
-						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "JellyBeans"})
+						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Jelly Beans"})
 					end
 					if GetItemListWithValue()["CloudVial"] > 0 then
 						print('inside of Cloudvial')
-						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "CloudVial"})
+						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Cloud Vial"})
 					end
 					if GetItemListWithValue()["BlueExtract"] > 0 then
-						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "BlueExtract"})
+						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Blue Extract"})
 					end
 					if GetItemListWithValue()["RedExtract"] > 0 then
-						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "RedExtract"})
+						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Red Extract"})
 					end
 					if GetItemListWithValue()["TropicalDrink"] > 0 then
-						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "TropicalDrink"})
+						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Tropical Drink"})
 					end
 					if GetItemListWithValue()["Glitter"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Glitter"})
@@ -1777,19 +1777,19 @@ task.spawn(function() while task.wait() do
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Oil"})
 					end
 					if GetItemListWithValue()["JellyBeans"] > 0 then
-						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "JellyBeans"})
+						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Jelly Beans"})
 					end
 					if GetItemListWithValue()["CloudVial"] > 0 then
-						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "CloudVial"})
+						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Cloud Vial"})
 					end
 					if GetItemListWithValue()["BlueExtract"] > 0 then
-						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "BlueExtract"})
+						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Blue Extract"})
 					end
 					if GetItemListWithValue()["RedExtract"] > 0 then
-						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "RedExtract"})
+						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Red Extract"})
 					end
 					if GetItemListWithValue()["TropicalDrink"] > 0 then
-						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "TropicalDrink"})
+						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Tropical Drink"})
 					end
 					if GetItemListWithValue()["Glitter"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Glitter"})
@@ -1803,26 +1803,6 @@ task.spawn(function() while task.wait() do
                 temptable.magnitude = 25 
                 fieldpos = api.partwithnamepart("Epic", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
                 fieldposition = fieldpos.Position
-					if GetItemListWithValue()["CloudVial"] > 0 then
-						print('inside of Cloudvial')
-						--game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "CloudVial"})
-					end
-					if GetItemListWithValue()["BlueExtract"] > 0 then
-						print('inside of BlueExtract')
-						--game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "BlueExtract"})
-					end
-					if GetItemListWithValue()["RedExtract"] > 0 then
-						print('inside of RedExtract')
-						--game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "RedExtract"})
-					end
-					if GetItemListWithValue()["TropicalDrink"] > 0 then
-						print('inside of TropicalDrink')
-						--game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "TropicalDrink"})
-					end
-					if GetItemListWithValue()["Glitter"] > 0 then
-						print('inside of Glitter')
-						--game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Glitter"})
-					end
             else
 				--KillTest()
                 temptable.magnitude = 25 
@@ -2652,11 +2632,19 @@ function KillTest()
 
 	print('test2')
 	for i,v in next, game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelCommon:GetChildren() do
-		if v:FindFirstChild("TextLabel") then
+		if v:FindFirstChild("Attachment") then
 			print('nameText1')
-			--[[
+			if v:FindFirstChild("Attachment"):FindFirstChild("TextLabel") then 
+				print('nameText2')
+				
+			end
+			
 			if v:FindFirstChild("Attachment"):FindFirstChild("Gui") then
 				print('nameText2')
+				if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("TextLabel") then
+					print('nameText3')
+				end
+				--[[
 				if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("BarRow") then
 					print('nameText3')
 					if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("BarRow"):FindFirstChild("Bar") then
@@ -2677,15 +2665,15 @@ function KillTest()
 						end
 					end
 				end
+				]]--
 			end
-			]]--
 		end
 		--print('PuffballMushroomModelCommon=' .. v.Name)
 	end
 
-	for i,v in next, game.Workspace.Happenings.Puffshrooms.Attachment:GetDescendants() do
-		print(v.Name)
-	end
+	--for i,v in next, game.Workspace.Happenings.Puffshrooms.Attachment:GetDescendants() do
+		--print(v.Name)
+	--end
 	--[[
 	temptable.magnitude = 25
 	local plevel
