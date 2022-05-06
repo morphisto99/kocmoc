@@ -2632,14 +2632,8 @@ function KillTest()
 
 	print('test2')
 	for i,v in next, game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelCommon:GetChildren() do
-		if v:FindFirstChild("TextLabel") then
-			print('nameText1')
-		end
-		if v:FindFirstChild("NumberLabel") then
-			print('nameText2')
-		end
-		if v:FindFirstChild("NameRow") then
-			print('nameText3')
+		if v.Name == "TextLabel" then
+			print(v.Text)
 		end
 			--[[
 			if v:FindFirstChild("Attachment"):FindFirstChild("Gui") then
