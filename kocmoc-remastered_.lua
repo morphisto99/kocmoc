@@ -2719,6 +2719,10 @@ function KillTest()
 	for _, part in next, game.Workspace.Happenings.Puffshrooms:FindFirstChild("Attachment"):GetDescendants() do 
 		print('attachname=' .. part.Name)
 	end	
+
+	for _, part in next, game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelCommon:FindFirstChild("Puffball Top"):GetDescendants() do 
+		print('part=' .. part.Name)
+	end
 	
 	--for i,v in next, game.Workspace.Happenings.Puffshrooms.Attachment:GetDescendants() do
 		--print(v.Name)
