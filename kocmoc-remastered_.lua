@@ -2630,7 +2630,7 @@ function KillTest()
 		--print(v.Name)
 	--end
 
-	print('test2')
+	print('test0')
 	for i,v in pairs(game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelCommon:GetChildren()) do
 		print('v.Name=' .. v.Name)
 		if v.Name == "TextLabel" then
@@ -2699,10 +2699,6 @@ function KillTest()
 			]]--
 		--print('PuffballMushroomModelCommon=' .. v.Name)
 	end
-
-	puffname = game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelCommon:FindFirstChild("TextLabel")
-	print('puffname-' .. puffname)
-	print('pufftext=' .. puffname.Text)
 	
 	if game.Workspace.Happenings.Puffshrooms:FindFirstChild("PuffballMushroomModelCommon") then
 		if game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelCommon:FindFirstChild("TextLabel") then
