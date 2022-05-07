@@ -2636,19 +2636,29 @@ function KillTest()
 	
 	for i,v in pairs(game.Workspace.Happenings.Puffshrooms:GetChildren()) do
 		print('v.Name=' .. v.Name)
-		fieldpos1 = api.partwithnamepart("Rare", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
+		fieldpos1 = api.partwithnamepart("Rare", v).CFrame
 		print('Found Rare pos:' .. fieldpos1)
-		if v:FindFirstChild("Attachment") then
-			if v:FindFirstChild("Attachment"):FindFirstChild("Gui") then
-				if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("NameRow") then
-					print('nameText2')
-					if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("NameRow"):FindFirstChild("TextLabel") then
-						print('nameText2.1')
-						local nameText = v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("NameRow"):FindFirstChild("TextLabel").Text
-						print('nameText2=' .. nameText)
+		if string.match(v.Name, "Common") then
+			print("Common is found!")
+			if v:FindFirstChild("Attachment") then
+				if v:FindFirstChild("Attachment"):FindFirstChild("Gui") then
+					if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("NameRow") then
+						print('nameText2')
+						if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("NameRow"):FindFirstChild("TextLabel") then
+							print('nameText2.1')
+							local nameText = v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("NameRow"):FindFirstChild("TextLabel").Text
+							print('nameText2=' .. nameText)
+						end
 					end
 				end
-				
+			end
+		end
+		if string.match(v.Name, "Rare") then
+			print("Rare is found!")
+		end
+
+	end
+
 				--[[
 				if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("BarRow") then
 					print('nameText3')
@@ -2671,10 +2681,7 @@ function KillTest()
 					end
 				end
 				]]--
-				
-			end
-		end
-	end
+
 	
 	--for _, part in next, game.Workspace.Happenings.Puffshrooms:FindFirstChild("PuffballMushroomModelCommon"):GetDescendants() do -- works
 		--print('partname=' .. part.Name)
