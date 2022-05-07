@@ -2634,7 +2634,7 @@ function KillTest()
 	print('test0')
 	-- for i,v in pairs(game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelCommon:GetChildren()) do
 	
-	for i,v in pairs(game.Workspace.Happenings.Puffshrooms:GetChildren()) do
+	for i,v in pairs(game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelCommon:GetChildren()) do
 		print('v.Name=' .. v.Name)
 		local puffText = nil
         puffText = fetchVisualPuffshroomString(v)
