@@ -2633,7 +2633,7 @@ function KillTest()
 
 	print('test1')
 	-- for i,v in pairs(game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelCommon:GetChildren()) do
-	
+	--[[
 	if game.Workspace.Happenings.Puffshrooms:FindFirstChildOfClass("Model") then
 		--fieldpos1 = getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
 		fieldpos1 = getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem")
@@ -2652,7 +2652,7 @@ function KillTest()
 			--if kocmoc.toggles.autosprinkler then makesprinklers() end
 		--end
 	end
-	
+	]]--
 	--[[
 	for i,v in pairs(game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelCommon:GetChildren()) do
 		print('v.Name=' .. v.Name)
