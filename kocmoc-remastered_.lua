@@ -2630,7 +2630,30 @@ function KillTest()
 		--print(v.Name)
 	--end
 
-	print('test0')
+	print('test1')
+	
+	for i,v in pairs(game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelCommon:GetChildren()) do
+		print('v.Name=' .. v.Name)
+		local puffText = nil
+        puffText = fetchVisualPuffshroomString(v)
+        if puffText ~= nil then
+			print(puffText)
+			--api.tween(1,CFrame.new(getNearestField(v)))
+		end
+		--local path
+		--fieldpos1 = api.partwithnamepart("Rare", v).CFrame
+		--print('Found Rare pos:' .. fieldpos1)
+		if string.match(v.Name, "Mythic") then
+			print("Mythic is found!")
+		elseif string.match(v.Name, "Legendary") then
+		elseif string.match(v.Name, "Epic") then
+		elseif string.match(v.Name, "Rare") then
+			print("Rare is found!")
+		else
+			print("Common is found!")
+		end
+	end
+	--[[
 	if game.Workspace.Happenings.Puffshrooms:FindFirstChildOfClass("Model") then
 		--fieldpos1 = getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
 		fieldpos1 = getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
@@ -2663,7 +2686,7 @@ function KillTest()
 			]]--
 		end
 	end	
-	
+	]]--
 	--for i,v in pairs(game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelCommon:GetChildren()) do
 
 	--end
@@ -2753,7 +2776,7 @@ end
 
 function fetchVisualPuffshroomString(v)
     local puffText = nil
-	print('v=' .. v.Name)
+	--print('v=' .. v.Name)
 	if v:FindFirstChild("Attachment") then
 		if v:FindFirstChild("Attachment"):FindFirstChild("Gui") then
 			if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("NameRow") then
@@ -2798,6 +2821,7 @@ function getbiggestmodel(path)
 				end
 			else
 				print("Common is found!")
+				--[[
 				for j,k in pairs(game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelCommon:GetChildren()) do
 					print('k.NameCommon=' .. k.Name)
 					local puffText1 = nil
@@ -2806,6 +2830,7 @@ function getbiggestmodel(path)
 						print('puffText1Common=' .. puffText1)
 					end
 				end
+				]]--
 			end
 
 		end
