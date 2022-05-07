@@ -2652,10 +2652,10 @@ function KillTest()
 					print("Rare is found!")
 				else
 					print("Common is found!")
-					local mobText = nil
-					puffText = fetchVisualPuffshroomString(v)
-					if puffText ~= nil then
-						print('puffText=' .. puffText)
+					local puffText1 = nil
+					puffText1 = fetchVisualPuffshroomString(v)
+					if puffText1 ~= nil then
+						print('puffText1=' .. puffText1)
 					end	
 				end
 			end
@@ -2756,6 +2756,7 @@ function fetchVisualPuffshroomString(v)
 		if v:FindFirstChild("Attachment"):FindFirstChild("Gui") then
 			if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("NameRow") then
 				if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("NameRow"):FindFirstChild("TextLabel") then
+					print('Puffname is found!')
 					local nameText = v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("NameRow"):FindFirstChild("TextLabel").Text
 					puffText = v.Name .. ': ' .. nameText
 				end
