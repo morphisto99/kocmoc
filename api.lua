@@ -347,6 +347,18 @@ local xlp = {
     ['partwithnamepart'] = function(name, path)
         for i,v in next, path:GetChildren() do
             if (v.Name:match(name)) then
+				if v:FindFirstChild("Attachment") then
+					if v:FindFirstChild("Attachment"):FindFirstChild("Gui") then
+						if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("NameRow") then
+							print('nameText2')
+							if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("NameRow"):FindFirstChild("TextLabel") then
+								local nameText = v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("NameRow"):FindFirstChild("TextLabel").Text
+								print('nameText2=' .. nameText)
+							end
+						end
+					end
+				end
+				--print(v.Name:match(name))
                 return v
             end
         end
@@ -357,12 +369,11 @@ local xlp = {
             if v:IsA("Model") then
                 if part == nil then
                     part = v
-		    --print("part is nil")
                 end
-                if v:GetExtentsSize().Y > part:GetExtentsSize().Y then
-		    --print(v:GetExtentsSize().Y.." > "..part:GetExtentsSize().Y)
+                if v:GetExtentsSize().Y >= part:GetExtentsSize().Y then
+					--print(v:GetExtentsSize().Y.." >= "..part:GetExtentsSize().Y)
                     part = v
-		    --print(part)
+					break
                 end
             end
         end
