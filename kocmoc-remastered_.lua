@@ -2638,7 +2638,7 @@ function KillTest()
 		--print('fieldpos1=' .. fieldpos1)
 		
 		if (fieldposition1-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
-			print('teleporting to ' .. v.Text)
+			--print('teleporting to ' .. v.Text)
 			api.tween(1, fieldpos1) -- Morphisto
 			task.wait(1)
 			if kocmoc.toggles.autosprinkler then makesprinklers() end
