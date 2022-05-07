@@ -2633,6 +2633,7 @@ function KillTest()
 
 	print('test0')
 	-- for i,v in pairs(game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelCommon:GetChildren()) do
+	
 	for i,v in pairs(game.Workspace.Happenings.Puffshrooms:GetChildren()) do
 		print('v.Name=' .. v.Name)
 		fieldpos1 = api.partwithnamepart("Rare", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
