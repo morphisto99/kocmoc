@@ -2631,33 +2631,23 @@ function KillTest()
 		--print(v.Name)
 	--end
 
-	print('test0')
+	print('test1')
 	-- for i,v in pairs(game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelCommon:GetChildren()) do
 	
-	for i,v in pairs(game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelCommon:GetChildren()) do
-		print('v.Name=' .. v.Name)
-		local puffText = nil
-        puffText = fetchVisualPuffshroomString(v)
-        if puffText ~= nil then
-			print(puffText)
-			api.tween(1,CFrame.new(getNearestField(v)))
-		end
-		--local path
-		--fieldpos1 = api.partwithnamepart("Rare", v).CFrame
-		--print('Found Rare pos:' .. fieldpos1)
-		--[[
-		if string.match(v.Name, "Mythic") then
-			print("Mythic is found!")
-		elseif string.match(v.Name, "Legendary") then
-		elseif string.match(v.Name, "Epic") then
-		elseif string.match(v.Name, "Rare") then
-			print("Rare is found!")
-		else
-			print("Common is found!")
-		end
-		]]--
+	if game.Workspace.Happenings.Puffshrooms:FindFirstChildOfClass("Model") then
+		fieldpos1 = getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
+		fieldposition1 = fieldpos1.Position
+		print('fieldpos1=' .. fieldpos1)
+		--if (fieldposition1-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
+			--print('teleporting to ' .. v.Text)
+			--api.tween(1, fieldpos1) -- Morphisto
+			--task.wait(1)
+			--if kocmoc.toggles.autosprinkler then makesprinklers() end
+		--end
 	end
-	for i,v in pairs(game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelRare:GetChildren()) do
+	
+	--[[
+	for i,v in pairs(game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelCommon:GetChildren()) do
 		print('v.Name=' .. v.Name)
 		local puffText = nil
         puffText = fetchVisualPuffshroomString(v)
@@ -2681,6 +2671,7 @@ function KillTest()
 		]]--
 
 	end
+	]]--
 
 				--[[
 				if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("BarRow") then
@@ -2820,6 +2811,12 @@ function getbiggestmodel(path)
 				--break
 			end
 		end
+	end
+	local puffText = nil
+	puffText = fetchVisualPuffshroomString(part)
+	if puffText ~= nil then
+		print(puffText)
+		api.tween(1,CFrame.new(getNearestField(part)))
 	end
 	return part
 end
