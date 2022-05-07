@@ -2636,11 +2636,23 @@ function KillTest()
 	
 	for i,v in pairs(game.Workspace.Happenings.Puffshrooms:GetChildren()) do
 		print('v.Name=' .. v.Name)
+		local path
 		--fieldpos1 = api.partwithnamepart("Rare", v).CFrame
 		--print('Found Rare pos:' .. fieldpos1)
-		--if string.match(v.Name, "Common") then
-			--print("Common is found!")
-		local path = game.Workspace.Happenings.Puffshrooms. .. v.Name .. :GetChildren()
+		if string.match(v.Name, "Mythic") then
+			print("Mythic is found!")
+			path = game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelMythic:GetChildren()
+		elseif string.match(v.Name, "Legendary") then
+			path = game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelLegendary:GetChildren()
+		elseif string.match(v.Name, "Epic") then
+			path = game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelEpic:GetChildren()
+		elseif string.match(v.Name, "Rare") then
+			print("Rare is found!")
+			path = game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelRare:GetChildren()
+		else
+			print("Common is found!")
+			path = game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelCommon:GetChildren()
+		end
 		for _,p in pairs(path) do
 			print('nameText1')
 			if p:FindFirstChild("Attachment") then
