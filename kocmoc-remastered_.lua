@@ -1867,8 +1867,8 @@ task.spawn(function() while task.wait() do
 				if kocmoc.toggles.killstumpsnail then KillStumpSnail() end -- Morphisto
 				if (fieldposition-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
                     api.tween(2, fieldpos) -- Morphisto
-                    task.wait(1)
                     if kocmoc.toggles.autosprinkler then makesprinklers() end
+					
 					-- Morphisto
 					if currentMask ~= kocmoc.vars.defmask then
 						game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"})
