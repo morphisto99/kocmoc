@@ -367,6 +367,17 @@ local xlp = {
         local part
         for i,v in next, path:GetChildren() do
             if v:IsA("Model") then
+				if v:FindFirstChild("Attachment") then
+					if v:FindFirstChild("Attachment"):FindFirstChild("Gui") then
+						if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("NameRow") then
+							print('nameText2')
+							if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("NameRow"):FindFirstChild("TextLabel") then
+								local nameText = v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("NameRow"):FindFirstChild("TextLabel").Text
+								print('nameText2=' .. nameText)
+							end
+						end
+					end
+				end
                 if part == nil then
                     part = v
                 end
