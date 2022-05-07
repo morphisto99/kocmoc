@@ -2636,44 +2636,26 @@ function KillTest()
 	
 	for i,v in pairs(game.Workspace.Happenings.Puffshrooms:GetChildren()) do
 		print('v.Name=' .. v.Name)
-		local path
+		local puffText = nil
+        puffText = fetchVisualPuffshroomString(v)
+        if puffText ~= nil then
+			print(puffText)
+			--api.tween(1,CFrame.new(getNearestField(v)))
+		end
+		--local path
 		--fieldpos1 = api.partwithnamepart("Rare", v).CFrame
 		--print('Found Rare pos:' .. fieldpos1)
+		--[[
 		if string.match(v.Name, "Mythic") then
 			print("Mythic is found!")
-			path = game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelMythic:GetChildren()
 		elseif string.match(v.Name, "Legendary") then
-			path = game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelLegendary:GetChildren()
 		elseif string.match(v.Name, "Epic") then
-			path = game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelEpic:GetChildren()
 		elseif string.match(v.Name, "Rare") then
 			print("Rare is found!")
-			path = game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelRare:GetChildren()
 		else
 			print("Common is found!")
-			path = game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelCommon:GetChildren()
 		end
-		for _,p in pairs(game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelCommon:GetChildren()) do
-			print('nameText1')
-			if p:FindFirstChild("Attachment") then
-				print('nameText1.1')
-				if p:FindFirstChild("Attachment"):FindFirstChild("Gui") then
-					print('nameText1.2')
-					if p:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("NameRow") then
-						print('nameText2')
-						if p:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("NameRow"):FindFirstChild("TextLabel") then
-							local nameText = p:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("NameRow"):FindFirstChild("TextLabel").Text
-							print('nameText2=' .. nameText)
-						end
-					end
-				end
-			end
-		end
-		--end	
-		
-		--if string.match(v.Name, "Rare") then
-			--print("Rare is found!")
-		--end
+		]]--
 
 	end
 
@@ -2783,6 +2765,22 @@ function KillTest()
 	--end
 	
 end
+
+function fetchVisualPuffshroomString(v)
+    local puffText = nil
+	if v:FindFirstChild("Attachment") then
+		if v:FindFirstChild("Attachment"):FindFirstChild("Gui") then
+			if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("NameRow") then
+				if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("NameRow"):FindFirstChild("TextLabel") then
+					local nameText = v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("NameRow"):FindFirstChild("TextLabel").Text
+					puffText = v.Name .. ': ' .. nameText
+				end
+			end
+		end
+	end
+    return puffText
+end
+
 
 function getbiggestmodel(path)
 	local part
