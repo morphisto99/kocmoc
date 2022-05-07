@@ -2762,10 +2762,10 @@ function getbiggestmodel(path)
 			end
 		end
 	end
-	local puffText = nil
-	puffText = fetchVisualPuffshroomString(part)
-	if puffText ~= nil then
-		print(puffText)
+	local puffText1 = nil
+	puffText1 = fetchVisualPuffshroomString(part)
+	if puffText1 ~= nil then
+		print(puffText1)
 		--api.tween(1,CFrame.new(getNearestField(part))
 	end	
 	return part
