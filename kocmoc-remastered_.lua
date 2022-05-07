@@ -2643,7 +2643,7 @@ function KillTest()
 			task.wait(1)
 			if kocmoc.toggles.autosprinkler then makesprinklers() end
 			
-			for i,v in next, game.Workspace.Happenings.Puffshrooms.GetChildren() do
+			for i,v in next, game.Workspace.Happenings.Puffshrooms:GetChildren() do
 				if string.match(v.Name, "Mythic") then
 					print("Mythic is found!")
 				elseif string.match(v.Name, "Legendary") then
