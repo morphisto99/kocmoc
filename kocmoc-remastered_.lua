@@ -2653,7 +2653,7 @@ function KillTest()
 			print("Common is found!")
 			path = game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelCommon:GetChildren()
 		end
-		for _,p in pairs(path) do
+		for _,p in pairs(game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelCommon:GetChildren()) do
 			print('nameText1')
 			if p:FindFirstChild("Attachment") then
 				print('nameText1.1')
