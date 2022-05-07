@@ -2640,7 +2640,7 @@ function KillTest()
 		--print('Found Rare pos:' .. fieldpos1)
 		--if string.match(v.Name, "Common") then
 			--print("Common is found!")
-		local path = 'game.Workspace.Happenings.Puffshrooms.' .. v.Name .. ':GetChildren()'
+		local path = game.Workspace.Happenings.Puffshrooms. .. v.Name .. :GetChildren()
 		for _,p in pairs(path) do
 			print('nameText1')
 			if p:FindFirstChild("Attachment") then
