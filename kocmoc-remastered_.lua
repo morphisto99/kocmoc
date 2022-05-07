@@ -2766,7 +2766,7 @@ function getbiggestmodel(path)
 	puffText1 = fetchVisualPuffshroomString(part)
 	if puffText1 ~= nil then
 		print(puffText1)
-		api.tween(1,CFrame.new(getNearestField(part))
+		--api.tween(1,CFrame.new(getNearestField(part))
 	end	
 	return part
 end
