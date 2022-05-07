@@ -2636,8 +2636,8 @@ function KillTest()
 	
 	for i,v in pairs(game.Workspace.Happenings.Puffshrooms:GetChildren()) do
 		print('v.Name=' .. v.Name)
-		fieldpos1 = api.partwithnamepart("Rare", v).CFrame
-		print('Found Rare pos:' .. fieldpos1)
+		--fieldpos1 = api.partwithnamepart("Rare", v).CFrame
+		--print('Found Rare pos:' .. fieldpos1)
 		if string.match(v.Name, "Common") then
 			print("Common is found!")
 			if v:FindFirstChild("Attachment") then
