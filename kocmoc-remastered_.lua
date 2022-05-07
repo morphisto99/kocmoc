@@ -2640,7 +2640,7 @@ function KillTest()
         puffText = fetchVisualPuffshroomString(v)
         if puffText ~= nil then
 			print(puffText)
-			--api.tween(1,CFrame.new(getNearestField(v)))
+			api.tween(1,CFrame.new(getNearestField(v)))
 		end
 		--local path
 		--fieldpos1 = api.partwithnamepart("Rare", v).CFrame
@@ -2663,7 +2663,7 @@ function KillTest()
         puffText = fetchVisualPuffshroomString(v)
         if puffText ~= nil then
 			print(puffText)
-			--api.tween(1,CFrame.new(getNearestField(v)))
+			api.tween(1,CFrame.new(getNearestField(v)))
 		end
 		--local path
 		--fieldpos1 = api.partwithnamepart("Rare", v).CFrame
