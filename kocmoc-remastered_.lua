@@ -2633,15 +2633,9 @@ function KillTest()
 	print('test1')
 	if game.Workspace.Happenings.Puffshrooms:FindFirstChildOfClass("Model") then
 		--fieldpos1 = getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
-		fieldpos1 = getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem")
-		local puffText = nil
-		puffText = fetchVisualPuffshroomString(fieldpos1)
-		if puffText ~= nil then
-			print(puffText)
-			api.tween(1,CFrame.new(getNearestField(fieldpos1.CFrame)))
-		end	
+		fieldpos1 = getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
 		fieldposition1 = fieldpos1.Position
-		print('fieldpos1=' .. fieldpos1.CFrame)
+		--print('fieldpos1=' .. fieldpos1.CFrame)
 		--if (fieldposition1-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
 			--print('teleporting to ' .. v.Text)
 			--api.tween(1, fieldpos1) -- Morphisto
@@ -2768,6 +2762,12 @@ function getbiggestmodel(path)
 			end
 		end
 	end
+	local puffText = nil
+	puffText = fetchVisualPuffshroomString(part)
+	if puffText ~= nil then
+		print(puffText)
+		api.tween(1,CFrame.new(getNearestField(part))
+	end	
 	return part
 end
 
