@@ -2638,26 +2638,26 @@ function KillTest()
 		print('v.Name=' .. v.Name)
 		--fieldpos1 = api.partwithnamepart("Rare", v).CFrame
 		--print('Found Rare pos:' .. fieldpos1)
-		if string.match(v.Name, "Common") then
-			print("Common is found!")
-			local path = 'game.Workspace.Happenings.Puffshrooms.' .. v.Name .. ':GetChildren()'
-			for _,p in pairs(path) do
-				print('nameText1')
-				if p:FindFirstChild("Attachment") then
-					print('nameText1.1')
-					if p:FindFirstChild("Attachment"):FindFirstChild("Gui") then
-						print('nameText1.2')
-						if p:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("NameRow") then
-							print('nameText2')
-							if p:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("NameRow"):FindFirstChild("TextLabel") then
-								local nameText = p:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("NameRow"):FindFirstChild("TextLabel").Text
-								print('nameText2=' .. nameText)
-							end
+		--if string.match(v.Name, "Common") then
+			--print("Common is found!")
+		local path = 'game.Workspace.Happenings.Puffshrooms.' .. v.Name .. ':GetChildren()'
+		for _,p in pairs(path) do
+			print('nameText1')
+			if p:FindFirstChild("Attachment") then
+				print('nameText1.1')
+				if p:FindFirstChild("Attachment"):FindFirstChild("Gui") then
+					print('nameText1.2')
+					if p:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("NameRow") then
+						print('nameText2')
+						if p:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("NameRow"):FindFirstChild("TextLabel") then
+							local nameText = p:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("NameRow"):FindFirstChild("TextLabel").Text
+							print('nameText2=' .. nameText)
 						end
 					end
 				end
 			end
-		end	
+		end
+		--end	
 		
 		--if string.match(v.Name, "Rare") then
 			--print("Rare is found!")
