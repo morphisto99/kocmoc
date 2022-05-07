@@ -2635,15 +2635,27 @@ function KillTest()
 		--fieldpos1 = getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
 		fieldpos1 = getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
 		fieldposition1 = fieldpos1.Position
-		print('fieldpos1=' .. fieldpos1)
+		--print('fieldpos1=' .. fieldpos1)
 		
-		
-		--if (fieldposition1-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
-			--print('teleporting to ' .. v.Text)
-			--api.tween(1, fieldpos1) -- Morphisto
-			--task.wait(1)
-			--if kocmoc.toggles.autosprinkler then makesprinklers() end
-		--end
+		if (fieldposition1-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
+			print('teleporting to ' .. v.Text)
+			api.tween(1, fieldpos1) -- Morphisto
+			task.wait(1)
+			if kocmoc.toggles.autosprinkler then makesprinklers() end
+			
+			for i,v in next, game.Workspace.Happenings.Puffshrooms.GetChildren() do
+				if string.match(v.Name, "Mythic") then
+					print("Mythic is found!")
+				elseif string.match(v.Name, "Legendary") then
+				elseif string.match(v.Name, "Epic") then
+				elseif string.match(v.Name, "Rare") then
+					print("Rare is found!")
+				else
+					print("Common is found!")
+					
+				end
+			end
+		end
 	end	
 	
 	--for i,v in pairs(game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelCommon:GetChildren()) do
@@ -2735,6 +2747,7 @@ end
 
 function fetchVisualPuffshroomString(v)
     local puffText = nil
+	print('v=' .. v.Name)
 	if v:FindFirstChild("Attachment") then
 		if v:FindFirstChild("Attachment"):FindFirstChild("Gui") then
 			if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("NameRow") then
@@ -2757,12 +2770,6 @@ function getbiggestmodel(path)
 				part = v
 			end
 			print('v.Name=' .. v.Name)
-			local puffText1 = nil
-			puffText1 = fetchVisualPuffshroomString(v)
-			if puffText1 ~= nil then
-				print(puffText1)
-				--api.tween(1,CFrame.new(getNearestField(part))
-			end
 			if v:GetExtentsSize().Y >= part:GetExtentsSize().Y then
 				print(v:GetExtentsSize().Y.." >= "..part:GetExtentsSize().Y)
 				part = v
