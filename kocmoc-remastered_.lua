@@ -2652,7 +2652,11 @@ function KillTest()
 					print("Rare is found!")
 				else
 					print("Common is found!")
-					
+					local mobText = nil
+					puffText = fetchVisualPuffshroomString(v)
+					if puffText ~= nil then
+						print('puffText=' .. puffText)
+					end	
 				end
 			end
 		end
