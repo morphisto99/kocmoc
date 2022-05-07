@@ -2656,6 +2656,29 @@ function KillTest()
 			print("Common is found!")
 		end
 		]]--
+	end
+	for i,v in pairs(game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelRare:GetChildren()) do
+		print('v.Name=' .. v.Name)
+		local puffText = nil
+        puffText = fetchVisualPuffshroomString(v)
+        if puffText ~= nil then
+			print(puffText)
+			--api.tween(1,CFrame.new(getNearestField(v)))
+		end
+		--local path
+		--fieldpos1 = api.partwithnamepart("Rare", v).CFrame
+		--print('Found Rare pos:' .. fieldpos1)
+		--[[
+		if string.match(v.Name, "Mythic") then
+			print("Mythic is found!")
+		elseif string.match(v.Name, "Legendary") then
+		elseif string.match(v.Name, "Epic") then
+		elseif string.match(v.Name, "Rare") then
+			print("Rare is found!")
+		else
+			print("Common is found!")
+		end
+		]]--
 
 	end
 
