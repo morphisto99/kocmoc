@@ -5,7 +5,8 @@ getgenv().ExploitSpecific = "📜"
 -- API CALLS
 
 local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Boxking776/kocmoc/main/library.lua"))()
-getgenv().api = loadstring(game:HttpGet("https://raw.githubusercontent.com/Boxking776/kocmoc/main/api.lua"))()
+--getgenv().api = loadstring(game:HttpGet("https://raw.githubusercontent.com/Boxking776/kocmoc/main/api.lua"))()
+getgenv().api = loadstring(game:HttpGet("https://raw.githubusercontent.com/morphisto99/kocmoc/main/api.lua"))()
 local bssapi = loadstring(game:HttpGet("https://raw.githubusercontent.com/Boxking776/kocmoc/main/bssapi.lua"))()
 if not isfolder("kocmoc") then makefolder("kocmoc") end
 if not isfolder("kocmoc/premium") then makefolder("kocmoc/premium") end
@@ -1808,7 +1809,7 @@ task.spawn(function() while task.wait() do
                 temptable.magnitude = 25 
                 fieldpos = api.getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
                 fieldposition = fieldpos.Position
-            end
+			end
 		elseif kocmoc.toggles.farmpuffshrooms and temptable.puffshroomboosted then
 			temptable.puffshroomdetected = false
 			temptable.puffshroomboosted = false
@@ -2643,6 +2644,7 @@ function KillTest()
 					end
 				end
 				
+				--[[
 				if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("BarRow") then
 					print('nameText3')
 					if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("BarRow"):FindFirstChild("Bar") then
@@ -2663,6 +2665,7 @@ function KillTest()
 						end
 					end
 				end
+				]]--
 				
 			end
 		end
