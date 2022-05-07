@@ -2640,22 +2640,43 @@ function KillTest()
 		--print('Found Rare pos:' .. fieldpos1)
 		if string.match(v.Name, "Common") then
 			print("Common is found!")
-			if v:FindFirstChild("Attachment") then
-				if v:FindFirstChild("Attachment"):FindFirstChild("Gui") then
-					if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("NameRow") then
-						print('nameText2')
-						if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("NameRow"):FindFirstChild("TextLabel") then
-							print('nameText2.1')
-							local nameText = v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("NameRow"):FindFirstChild("TextLabel").Text
-							print('nameText2=' .. nameText)
+			if v:FindFirstChild("PuffballMushroomModelCommon") then
+				print('nameText1')
+				if v:FindFirstChild("PuffballMushroomModelCommon"):FindFirstChild("Attachment") then
+					print('nameText1.1')
+					if v:FindFirstChild("PuffballMushroomModelCommon"):FindFirstChild("Attachment"):FindFirstChild("Gui") then
+						print('nameText1.2')
+						if v:FindFirstChild("PuffballMushroomModelCommon"):FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("NameRow") then
+							print('nameText2')
+							if v:FindFirstChild("PuffballMushroomModelCommon"):FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("NameRow"):FindFirstChild("TextLabel") then
+								local nameText = v:FindFirstChild("PuffballMushroomModelCommon"):FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("NameRow"):FindFirstChild("TextLabel").Text
+								print('nameText2=' .. nameText)
+							end
 						end
 					end
 				end
 			end
 		end
-		if string.match(v.Name, "Rare") then
-			print("Rare is found!")
-		end
+		if v:FindFirstChild(v.Name) then
+			print('_nameText1')
+			if v:FindFirstChild(v.Name):FindFirstChild("Attachment") then
+				print('_nameText1.1')
+				if v:FindFirstChild(v.Name):FindFirstChild("Attachment"):FindFirstChild("Gui") then
+					print('_nameText1.2')
+					if v:FindFirstChild(v.Name):FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("NameRow") then
+						print('_nameText2')
+						if v:FindFirstChild(v.Name):FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("NameRow"):FindFirstChild("TextLabel") then
+							local _nameText = v:FindFirstChild(v.Name):FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("NameRow"):FindFirstChild("TextLabel").Text
+							print('_nameText2=' .. _nameText)
+						end
+					end
+				end
+			end
+		end		
+		
+		--if string.match(v.Name, "Rare") then
+			--print("Rare is found!")
+		--end
 
 	end
 
