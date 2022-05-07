@@ -2643,6 +2643,7 @@ function KillTest()
 			task.wait(1)
 			if kocmoc.toggles.autosprinkler then makesprinklers() end
 			
+			--[[
 			for i,v in next, game.Workspace.Happenings.Puffshrooms:GetChildren() do
 				if string.match(v.Name, "Mythic") then
 					print("Mythic is found!")
@@ -2659,6 +2660,7 @@ function KillTest()
 					end	
 				end
 			end
+			]]--
 		end
 	end	
 	
@@ -2779,7 +2781,33 @@ function getbiggestmodel(path)
 				print(v:GetExtentsSize().Y.." >= "..part:GetExtentsSize().Y)
 				part = v
 				--break
+			end		
+			if string.match(v.Name, "Mythic") then
+				print("Mythic is found!")
+			elseif string.match(v.Name, "Legendary") then
+			elseif string.match(v.Name, "Epic") then
+			elseif string.match(v.Name, "Rare") then
+				print("Rare is found!")
+				for j,k in pairs(game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelRare:GetChildren()) do
+					print('k.NameRare=' .. k.Name)
+					local puffText1 = nil
+					puffText1 = fetchVisualPuffshroomString(k)
+					if puffText1 ~= nil then
+						print('puffText1Rare=' .. puffText1)
+					end
+				end
+			else
+				print("Common is found!")
+				for j,k in pairs(game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelCommon:GetChildren()) do
+					print('k.NameCommon=' .. k.Name)
+					local puffText1 = nil
+					puffText1 = fetchVisualPuffshroomString(k)
+					if puffText1 ~= nil then
+						print('puffText1Common=' .. puffText1)
+					end
+				end
 			end
+
 		end
 	end	
 	return part
