@@ -2630,7 +2630,7 @@ function KillTest()
 		--print(v.Name)
 	--end
 
-	print('test0')
+	print('test1')
 	if game.Workspace.Happenings.Puffshrooms:FindFirstChildOfClass("Model") then
 		--fieldpos1 = getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
 		fieldpos1 = getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem")
