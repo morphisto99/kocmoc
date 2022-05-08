@@ -2691,11 +2691,11 @@ function KillTest()
 			else
 				print("Common is found!")
 			end
-			if v:FindFirstChild("TextLabel", true).Visible then
-				print('TextLabel is Visable')
-			end
-		end
 
+		end
+		if v:FindFirstChild("TextLabel", true).Visible then
+			print('TextLabel is Visable')
+		end
 
 	end
 
