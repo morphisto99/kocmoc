@@ -2638,7 +2638,7 @@ function KillTest2()
 			print('0cutidudz0: x=' .. charpos.X .. ' y=' .. charpos.Y .. ' z=' .. charpos.Z .. ' m=' .. charpos.magnitude)
 			print('magnitude=' .. temptable.magnitude)
 			--if (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
-			if (playerpos2-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < temptable.magnitude then
+			if (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 80 then
 				print('User is close by')
 			end
 		end
