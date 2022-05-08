@@ -2688,7 +2688,7 @@ function KillTest()
 			end
 		end
 		if v:FindFirstChild("TextLabel", true).Visible then
-			print('TextLabel is Visable for ' .. v.Text)
+			print('TextLabel is Visable')
 		end
 
 	end
