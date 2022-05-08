@@ -2655,15 +2655,18 @@ function KillTest()
 	]]--
 
 	for i,v in pairs(game.Workspace.Happenings.Puffshrooms:GetDescendants()) do
-		if v.Name == "TextLabel" then
-			print('v.Name=' .. v.Name)
-			print('v.Text=' .. v.Text)
+		print('v.Name=' .. v.Name)
+		if v:IsA("Model") then
+			print('Is a Model')
 			local puffText = nil
 			puffText = fetchVisualPuffshroomString(v)
 			if puffText ~= nil then
 				print('puffText=' .. puffText)
 				api.tween(1,CFrame.new(getNearestField(v)))
 			end
+		end
+		if v.Name == "TextLabel" then
+			print('v.Text=' .. v.Text)
 			--local path
 			--fieldpos1 = api.partwithnamepart("Rare", v).CFrame
 			--print('Found Rare pos:' .. fieldpos1)
