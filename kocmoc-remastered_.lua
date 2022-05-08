@@ -2624,12 +2624,11 @@ end
 function KillTest2()
 	-- get player names
 	for i, v in pairs(game.Players:GetChildren()) do
-		print('Player=' .. v.Name)
-		if v.Name == '0cutidudz0' then
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace[v.Name].HumanoidRootPart.CFrame
-			local playerpos = game.Workspace:FindFirstChild("0cutidudz0").HumanoidRootPart.Position
-			print('playerpos: x=' .. playerpos.X .. ' y=' .. playerpos.Y .. ' z=' .. playerpos.Z)
-		end
+		--print('Player=' .. v.Name)
+		--game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace[v.Name].HumanoidRootPart.CFrame
+		local playerpos = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.Position
+		print(v.Name .. ': x=' .. playerpos.X .. ' y=' .. playerpos.Y .. ' z=' .. playerpos.Z)
+		print(game.Players.LocalPlayer.Character.HumanoidRootPart.Position)
 	end
 end
 
