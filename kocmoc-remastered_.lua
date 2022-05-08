@@ -2627,6 +2627,12 @@ function KillTest2()
 	for i, v in pairs(game.Players:GetChildren()) do
 		--print('Player=' .. v.Name)
 		--game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace[v.Name].HumanoidRootPart.CFrame - teleport to player
+		
+		if api.tablefind(kocmoc.wlplayers, v.Name) then
+			print(v.Name)
+		else
+		
+		--[[
 		for j,k in next, kocmoc.wlplayers do
 			print('k=' .. k .. ' v.Name=' .. v.Name)
 			if tostring(k) ~= tostring(v.Name) then
@@ -2638,6 +2644,7 @@ function KillTest2()
 			end
 
 		end
+		]]--
 		
 	end
 end
