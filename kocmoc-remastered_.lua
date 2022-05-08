@@ -2634,11 +2634,12 @@ function KillTest2()
 			local playerpos2 = playerpos1.Position
 			--game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
 			print(v.Name .. ': x=' .. playerpos.X .. ' y=' .. playerpos.Y .. ' z=' .. playerpos.Z .. ' m=' .. playerpos.magnitude)
+			print(v.Name .. ': x=' .. playerpos2.X .. ' y=' .. playerpos2.Y .. ' z=' .. playerpos2.Z .. ' m=' .. playerpos2.magnitude)
 			local charpos = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
 			print('0cutidudz0: x=' .. charpos.X .. ' y=' .. charpos.Y .. ' z=' .. charpos.Z .. ' m=' .. charpos.magnitude)
-			print('magnitude=' .. temptable.magnitude)
+			print('magnitude=' .. (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude)
 			--if (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
-			if (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 80 then
+			if (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 120 then
 				print('User is close by')
 			end
 		end
