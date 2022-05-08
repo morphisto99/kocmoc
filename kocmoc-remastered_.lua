@@ -2624,14 +2624,17 @@ end
 function KillTest2()
 	-- get player names
 	for i, v in pairs(game.Players:GetChildren()) do
-		--print('Player=' .. v.Name)
+		print('Player=' .. v.Name)
 		--game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace[v.Name].HumanoidRootPart.CFrame - teleport to player
 		for j,k in next, kocmoc.wlplayers do
-			if k ~= v.Name then
-				local playerpos = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.Position
-				print(v.Name .. ': x=' .. playerpos.X .. ' y=' .. playerpos.Y .. ' z=' .. playerpos.Z)
-				print(game.Players.LocalPlayer.Character.HumanoidRootPart.Position)
+			print('k=' .. k .. ' v.Name=' .. v.Name)
+			if k == v.Name then
+				print('inside of k vs k.Name')
+				--local playerpos = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.Position
+				--print(v.Name .. ': x=' .. playerpos.X .. ' y=' .. playerpos.Y .. ' z=' .. playerpos.Z)
+				--print(game.Players.LocalPlayer.Character.HumanoidRootPart.Position)
 			end
+
 		end
 		
 	end
