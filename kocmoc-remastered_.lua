@@ -2630,7 +2630,7 @@ function KillTest2()
 		
 		if not api.tablefind(kocmoc.wlplayers, v.Name) then
 			local playerpos = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.Position
-			print(v.Name .. ': x=' .. playerpos.X .. ' y=' .. playerpos.Y .. ' z=' .. playerpos.Z)
+			print(v.Name .. ': x=' .. playerpos.X .. ' y=' .. playerpos.Y .. ' z=' .. playerpos.Z .. ' m=' .. playerpos.magnitude)
 			print(game.Players.LocalPlayer.Character.HumanoidRootPart.Position)
 		end
 		
