@@ -2634,10 +2634,10 @@ function KillTest()
 	
 	for i,v in pairs(game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelCommon:GetChildren()) do
 		print('v.Name=' .. v.Name)
-		local puffText = nil
-        puffText = fetchVisualPuffshroomString(v)
-        if puffText ~= nil then
-			print(puffText)
+		local puffText1 = nil
+        puffText1 = fetchVisualPuffshroomString(v)
+        if puffText1 ~= nil then
+			print(puffText1)
 			--api.tween(1,CFrame.new(getNearestField(v)))
 		end
 		--local path
