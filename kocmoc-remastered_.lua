@@ -2624,7 +2624,8 @@ function KillTest()
 	
 	-- get player names
 	for i, v in pairs(game.Players:GetChildren()) do
-		print(v.Name .. ':' .. v.Position)
+		local plypos = workspace[v.Name].HumanoidRootPart.CFrame
+		print(v.Name .. ':' .. plypos)
 	end
 	
 	--for i,v in next, game.Workspace.Happenings.Puffshrooms:GetDescendants() do
