@@ -6,6 +6,7 @@ getgenv().ExploitSpecific = "📜"
 
 local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Boxking776/kocmoc/main/library.lua"))()
 getgenv().api = loadstring(game:HttpGet("https://raw.githubusercontent.com/Boxking776/kocmoc/main/api.lua"))()
+--getgenv().api = loadstring(game:HttpGet("https://raw.githubusercontent.com/morphisto99/kocmoc/main/api.lua"))()
 local bssapi = loadstring(game:HttpGet("https://raw.githubusercontent.com/Boxking776/kocmoc/main/bssapi.lua"))()
 if not isfolder("kocmoc") then makefolder("kocmoc") end
 if not isfolder("kocmoc/premium") then makefolder("kocmoc/premium") end
@@ -1808,7 +1809,7 @@ task.spawn(function() while task.wait() do
                 temptable.magnitude = 25 
                 fieldpos = api.getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
                 fieldposition = fieldpos.Position
-            end
+			end
 		elseif kocmoc.toggles.farmpuffshrooms and temptable.puffshroomboosted then
 			temptable.puffshroomdetected = false
 			temptable.puffshroomboosted = false
@@ -1866,8 +1867,8 @@ task.spawn(function() while task.wait() do
 				if kocmoc.toggles.killstumpsnail then KillStumpSnail() end -- Morphisto
 				if (fieldposition-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
                     api.tween(2, fieldpos) -- Morphisto
-                    task.wait(1)
                     if kocmoc.toggles.autosprinkler then makesprinklers() end
+					
 					-- Morphisto
 					if currentMask ~= kocmoc.vars.defmask then
 						game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"})
@@ -2631,18 +2632,40 @@ function KillTest()
 	--end
 
 	print('test1')
-	
+	-- for i,v in pairs(game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelCommon:GetChildren()) do
+	--[[
+	if game.Workspace.Happenings.Puffshrooms:FindFirstChildOfClass("Model") then
+		--fieldpos1 = getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
+		fieldpos1 = getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem")
+		local puffText = nil
+		puffText = fetchVisualPuffshroomString(fieldpos1)
+		if puffText ~= nil then
+			print(puffText)
+			api.tween(1,CFrame.new(getNearestField(fieldpos1.CFrame)))
+		end	
+		fieldposition1 = fieldpos1.Position
+		print('fieldpos1=' .. fieldpos1.CFrame)
+		--if (fieldposition1-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
+			--print('teleporting to ' .. v.Text)
+			--api.tween(1, fieldpos1) -- Morphisto
+			--task.wait(1)
+			--if kocmoc.toggles.autosprinkler then makesprinklers() end
+		--end
+	end
+	]]--
+
 	for i,v in pairs(game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelCommon:GetChildren()) do
 		print('v.Name=' .. v.Name)
-		local puffText1 = nil
-        puffText1 = fetchVisualPuffshroomString(v)
-        if puffText1 ~= nil then
-			print(puffText1)
-			--api.tween(1,CFrame.new(getNearestField(v)))
+		local puffText = nil
+        puffText = fetchVisualPuffshroomString(v)
+        if puffText ~= nil then
+			print(puffText)
+			api.tween(1,CFrame.new(getNearestField(v)))
 		end
 		--local path
 		--fieldpos1 = api.partwithnamepart("Rare", v).CFrame
 		--print('Found Rare pos:' .. fieldpos1)
+		--[[
 		if string.match(v.Name, "Mythic") then
 			print("Mythic is found!")
 		elseif string.match(v.Name, "Legendary") then
@@ -2652,44 +2675,34 @@ function KillTest()
 		else
 			print("Common is found!")
 		end
-	end
-	--[[
-	if game.Workspace.Happenings.Puffshrooms:FindFirstChildOfClass("Model") then
-		--fieldpos1 = getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
-		fieldpos1 = getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
-		fieldposition1 = fieldpos1.Position
-		--print('fieldpos1=' .. fieldpos1)
-		
-		if (fieldposition1-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
-			--print('teleporting to ' .. v.Text)
-			api.tween(1, fieldpos1) -- Morphisto
-			task.wait(1)
-			if kocmoc.toggles.autosprinkler then makesprinklers() end
-			
-			--[[
-			for i,v in next, game.Workspace.Happenings.Puffshrooms:GetChildren() do
-				if string.match(v.Name, "Mythic") then
-					print("Mythic is found!")
-				elseif string.match(v.Name, "Legendary") then
-				elseif string.match(v.Name, "Epic") then
-				elseif string.match(v.Name, "Rare") then
-					print("Rare is found!")
-				else
-					print("Common is found!")
-					local puffText1 = nil
-					puffText1 = fetchVisualPuffshroomString(v)
-					if puffText1 ~= nil then
-						print('puffText1=' .. puffText1)
-					end	
-				end
-			end
-			]]--
-		end
-	end	
-	]]--
-	--for i,v in pairs(game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelCommon:GetChildren()) do
+		]]--
 
-	--end
+	end
+
+
+				--[[
+				if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("BarRow") then
+					print('nameText3')
+					if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("BarRow"):FindFirstChild("Bar") then
+						print('nameText4')
+						if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("BarRow"):FindFirstChild("Bar"):FindFirstChild("FillBar") then
+							print('nameText5') -- works up to here
+							if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("BarRow"):FindFirstChild("Bar"):FindFirstChild("FillBar"):FindFirstChild("NumberLabel") then
+								print('nameText6')
+								if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("BarRow"):FindFirstChild("Bar"):FindFirstChild("FillBar"):FindFirstChild("NumberLabel"):FindFirstChild("NameRow") then
+									print('nameText7')
+									if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("BarRow"):FindFirstChild("Bar"):FindFirstChild("FillBar"):FindFirstChild("NumberLabel"):FindFirstChild("NameRow"):FindFirstChild("TextLabel") then
+										print('nameText8')
+										local nameText = v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("BarRow"):FindFirstChild("Bar"):FindFirstChild("FillBar"):FindFirstChild("NumberLabel"):FindFirstChild("NameRow"):FindFirstChild("TextLabel").Text
+										print('nameText=' .. nameText)
+									end			
+								end
+							end
+						end
+					end
+				end
+				]]--
+
 	
 	--for _, part in next, game.Workspace.Happenings.Puffshrooms:FindFirstChild("PuffballMushroomModelCommon"):GetDescendants() do -- works
 		--print('partname=' .. part.Name)
@@ -2776,12 +2789,10 @@ end
 
 function fetchVisualPuffshroomString(v)
     local puffText = nil
-	--print('v=' .. v.Name)
 	if v:FindFirstChild("Attachment") then
 		if v:FindFirstChild("Attachment"):FindFirstChild("Gui") then
 			if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("NameRow") then
 				if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("NameRow"):FindFirstChild("TextLabel") then
-					print('Puffname is found!')
 					local nameText = v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("NameRow"):FindFirstChild("TextLabel").Text
 					puffText = v.Name .. ': ' .. nameText
 				end
@@ -2791,6 +2802,7 @@ function fetchVisualPuffshroomString(v)
     return puffText
 end
 
+
 function getbiggestmodel(path)
 	local part
 	for i,v in next, path:GetChildren() do
@@ -2799,44 +2811,14 @@ function getbiggestmodel(path)
 				--print('part is nil')
 				part = v
 			end
-			print('v.Name=' .. v.Name)
+			--print('v.Name=' .. v.Name)
 			if v:GetExtentsSize().Y >= part:GetExtentsSize().Y then
 				print(v:GetExtentsSize().Y.." >= "..part:GetExtentsSize().Y)
 				part = v
 				--break
 			end
-			--[[
-			if string.match(v.Name, "Mythic") then
-				print("Mythic is found!")
-			elseif string.match(v.Name, "Legendary") then
-			elseif string.match(v.Name, "Epic") then
-			elseif string.match(v.Name, "Rare") then
-				print("Rare is found!")
-				for j,k in pairs(game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelRare:GetChildren()) do
-					print('k.NameRare=' .. k.Name)
-					local puffText1 = nil
-					puffText1 = fetchVisualPuffshroomString(k)
-					if puffText1 ~= nil then
-						print('puffText1Rare=' .. puffText1)
-					end
-				end
-			else
-				print("Common is found!")
-				
-				for j,k in pairs(game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelCommon:GetChildren()) do
-					print('k.NameCommon=' .. k.Name)
-					local puffText1 = nil
-					puffText1 = fetchVisualPuffshroomString(k)
-					if puffText1 ~= nil then
-						print('puffText1Common=' .. puffText1)
-					end
-				end
-				
-			end
-			]]--
-
 		end
-	end	
+	end
 	return part
 end
 
