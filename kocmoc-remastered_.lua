@@ -2656,7 +2656,7 @@ function KillTest()
 	local part
 	for i,v in pairs(game.Workspace.Happenings.Puffshrooms:GetDescendants()) do
 		--print('v.Name=' .. v.Name)
-		if v:IsA("Model") then
+		if v:IsA("Model") and v.Name == "TextLabel" then
 			print('Is a Model')
 			if part == nil then
 				--print('part is nil')
@@ -2668,9 +2668,24 @@ function KillTest()
 				part = v
 				--break
 			end
-			print('partName1=' .. part.Parent.Name)
+			print('v.Text=' .. v.Text)
+			--local path
+			--fieldpos1 = api.partwithnamepart("Rare", v).CFrame
+			--print('Found Rare pos:' .. fieldpos1)
+
+			if string.match(v.Text, "Mythic") then
+				print("Mythic is found!")
+			elseif string.match(v.Text, "Legendary") then
+			elseif string.match(v.Text, "Epic") then
+			elseif string.match(v.Text, "Rare") then
+				print("Rare is found!")
+			else
+				print("Common is found!")
+			end			
+			
 		end
-		if v.Name == "TextLabel" then
+		--[[
+		if v.Name == "TextLabel" and v:IsA("Model") then
 			print('v.Text=' .. v.Text)
 			--local path
 			--fieldpos1 = api.partwithnamepart("Rare", v).CFrame
@@ -2686,6 +2701,7 @@ function KillTest()
 				print("Common is found!")
 			end
 		end
+		]]--
 
 	end
 
