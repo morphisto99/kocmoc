@@ -2804,7 +2804,8 @@ function getbiggestmodel(path)
 				print(v:GetExtentsSize().Y.." >= "..part:GetExtentsSize().Y)
 				part = v
 				--break
-			end		
+			end
+			--[[
 			if string.match(v.Name, "Mythic") then
 				print("Mythic is found!")
 			elseif string.match(v.Name, "Legendary") then
@@ -2821,7 +2822,7 @@ function getbiggestmodel(path)
 				end
 			else
 				print("Common is found!")
-				--[[
+				
 				for j,k in pairs(game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelCommon:GetChildren()) do
 					print('k.NameCommon=' .. k.Name)
 					local puffText1 = nil
@@ -2830,8 +2831,9 @@ function getbiggestmodel(path)
 						print('puffText1Common=' .. puffText1)
 					end
 				end
-				]]--
+				
 			end
+			]]--
 
 		end
 	end	
