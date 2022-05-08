@@ -2819,8 +2819,10 @@ function getbiggestmodel(path)
 				part = v
 				--break
 			end
+			print('partName1=' .. part.Parent.Name)
 		end
 	end
+	print('partName2=' .. part.Parent.Name)
 	return part
 end
 
