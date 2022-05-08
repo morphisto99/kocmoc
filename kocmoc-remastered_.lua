@@ -2630,10 +2630,14 @@ function KillTest2()
 		
 		if not api.tablefind(kocmoc.wlplayers, v.Name) then
 			local playerpos = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.Position
+			local playerpos1 = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame
+			--game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
 			print(v.Name .. ': x=' .. playerpos.X .. ' y=' .. playerpos.Y .. ' z=' .. playerpos.Z .. ' m=' .. playerpos.magnitude)
-			print(game.Players.LocalPlayer.Character.HumanoidRootPart.Position)
+			local charpos = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+			print('0cutidudz0' .. ': x=' .. charpos.X .. ' y=' .. charpos.Y .. ' z=' .. charpos.Z .. ' m=' .. charpos.magnitude))
 			print('magnitude=' .. temptable.magnitude)
-			if (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
+			--if (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
+			if (playerpos1-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < temptable.magnitude then
 				print('User is close by')
 			end
 		end
