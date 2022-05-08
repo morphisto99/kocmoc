@@ -2630,7 +2630,7 @@ function KillTest2()
 		
 		if api.tablefind(kocmoc.wlplayers, v.Name) then
 			print(v.Name)
-		else
+		end
 		
 		--[[
 		for j,k in next, kocmoc.wlplayers do
