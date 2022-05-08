@@ -2653,17 +2653,22 @@ function KillTest()
 		--end
 	end
 	]]--
-
+	local part
 	for i,v in pairs(game.Workspace.Happenings.Puffshrooms:GetDescendants()) do
-		print('v.Name=' .. v.Name)
+		--print('v.Name=' .. v.Name)
 		if v:IsA("Model") then
 			print('Is a Model')
-			local puffText = nil
-			puffText = fetchVisualPuffshroomString(v)
-			if puffText ~= nil then
-				print('puffText=' .. puffText)
-				api.tween(1,CFrame.new(getNearestField(v)))
+			if part == nil then
+				--print('part is nil')
+				part = v
 			end
+			--print('v.Name=' .. v.Name)
+			if v:GetExtentsSize().Y >= part:GetExtentsSize().Y then
+				print(v:GetExtentsSize().Y.." >= "..part:GetExtentsSize().Y)
+				part = v
+				--break
+			end
+			print('partName1=' .. part.Parent.Name)
 		end
 		if v.Name == "TextLabel" then
 			print('v.Text=' .. v.Text)
