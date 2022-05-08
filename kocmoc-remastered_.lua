@@ -2634,7 +2634,7 @@ function KillTest2()
 			--game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
 			print(v.Name .. ': x=' .. playerpos.X .. ' y=' .. playerpos.Y .. ' z=' .. playerpos.Z .. ' m=' .. playerpos.magnitude)
 			local charpos = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
-			print('0cutidudz0' .. ': x=' .. charpos.X .. ' y=' .. charpos.Y .. ' z=' .. charpos.Z .. ' m=' .. charpos.magnitude))
+			print('0cutidudz0: x=' .. charpos.X .. ' y=' .. charpos.Y .. ' z=' .. charpos.Z .. ' m=' .. charpos.magnitude)
 			print('magnitude=' .. temptable.magnitude)
 			--if (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
 			if (playerpos1-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < temptable.magnitude then
