@@ -2631,7 +2631,7 @@ function KillTest()
 		--print(v.Name)
 	--end
 
-	print('test1')
+	print('test0')
 	-- for i,v in pairs(game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelCommon:GetChildren()) do
 	--[[
 	if game.Workspace.Happenings.Puffshrooms:FindFirstChildOfClass("Model") then
@@ -2665,7 +2665,7 @@ function KillTest()
 		--local path
 		--fieldpos1 = api.partwithnamepart("Rare", v).CFrame
 		--print('Found Rare pos:' .. fieldpos1)
-		--[[
+
 		if string.match(v.Name, "Mythic") then
 			print("Mythic is found!")
 		elseif string.match(v.Name, "Legendary") then
@@ -2675,7 +2675,6 @@ function KillTest()
 		else
 			print("Common is found!")
 		end
-		]]--
 
 	end
 
