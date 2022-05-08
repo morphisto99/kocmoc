@@ -2621,12 +2621,12 @@ end
 -- Morphisto
 
 function KillTest()
-	--[[
+	
 	-- get player names
 	for i, v in pairs(game.Players:GetChildren()) do
-		print(v.Name)
+		print(v.Name .. ':' .. v.Position)
 	end
-	]]--
+	
 	--for i,v in next, game.Workspace.Happenings.Puffshrooms:GetDescendants() do
 		--print(v.Name)
 	--end
