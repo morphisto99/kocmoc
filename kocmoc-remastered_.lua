@@ -2628,7 +2628,7 @@ function KillTest2()
 		if v.Name == '0cutidudz0' then
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace[v.Name].HumanoidRootPart.CFrame
 			local playerpos = game.Workspace:FindFirstChild("0cutidudz0").HumanoidRootPart.Position
-			print('payerpos=' .. playerpos)
+			print('playerpos: x=' .. playerpos.X .. ' y=' .. playerpos.Y .. ' z=' .. playerpos.Z)
 		end
 	end
 end
