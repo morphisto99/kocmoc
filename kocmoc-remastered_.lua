@@ -2627,7 +2627,8 @@ function KillTest2()
 		print('Player=' .. v.Name)
 		if v.Name == '0cutidudz0' then
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace[v.Name].HumanoidRootPart.CFrame
-			--game.Workspace:FindFirstChild(game.Players.LocalPlayer.Name).HumanoidRootPart.CFrame
+			local playerpos = game.Workspace:FindFirstChild("0cutidudz0").HumanoidRootPart.Position
+			print('payerpos=' .. playerpos)
 		end
 	end
 end
@@ -2681,9 +2682,7 @@ function KillTest()
 			--local path
 			--fieldpos1 = api.partwithnamepart("Rare", v).CFrame
 			--print('Found Rare pos:' .. fieldpos1)
-			if v.Visible then
-				print('Visable=' .. v.Text)
-			end
+
 			if string.match(v.Text, "Mythic") then
 				print("Mythic is found!")
 			elseif string.match(v.Text, "Legendary") then
@@ -2693,10 +2692,11 @@ function KillTest()
 			else
 				print("Common is found!")
 			end
+			if v:FindFirstChild("TextLabel", true).Visible then
+				print('TextLabel is Visable')
+			end
 		end
-		if v:FindFirstChild("TextLabel", true).Visible then
-			print('TextLabel is Visable')
-		end
+
 
 	end
 
