@@ -2625,10 +2625,15 @@ function KillTest2()
 	-- get player names
 	for i, v in pairs(game.Players:GetChildren()) do
 		--print('Player=' .. v.Name)
-		--game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace[v.Name].HumanoidRootPart.CFrame
-		local playerpos = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.Position
-		print(v.Name .. ': x=' .. playerpos.X .. ' y=' .. playerpos.Y .. ' z=' .. playerpos.Z)
-		print(game.Players.LocalPlayer.Character.HumanoidRootPart.Position)
+		--game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace[v.Name].HumanoidRootPart.CFrame - teleport to player
+		for j,k in next, kocmoc.wlplayers do
+			if k ~= v.Name then
+				local playerpos = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.Position
+				print(v.Name .. ': x=' .. playerpos.X .. ' y=' .. playerpos.Y .. ' z=' .. playerpos.Z)
+				print(game.Players.LocalPlayer.Character.HumanoidRootPart.Position)
+			end
+		end
+		
 	end
 end
 
@@ -2692,9 +2697,6 @@ function KillTest()
 				print("Common is found!")
 			end
 
-		end
-		if v:FindFirstChild("TextLabel", true).Visible then
-			print('TextLabel is Visable')
 		end
 
 	end
