@@ -2656,22 +2656,23 @@ function KillTest()
 
 	for i,v in pairs(game.Workspace.Happenings.Puffshrooms:GetDescendants()) do
 		if v.Name == "TextLabel" then
+			print('v.Name=' .. v.Name)
 			print('v.Text=' .. v.Text)
 			local puffText = nil
 			puffText = fetchVisualPuffshroomString(v)
 			if puffText ~= nil then
-				print(puffText)
+				print('puffText=' .. puffText)
 				api.tween(1,CFrame.new(getNearestField(v)))
 			end
 			--local path
 			--fieldpos1 = api.partwithnamepart("Rare", v).CFrame
 			--print('Found Rare pos:' .. fieldpos1)
 
-			if string.match(v.Name, "Mythic") then
+			if string.match(v.Text, "Mythic") then
 				print("Mythic is found!")
-			elseif string.match(v.Name, "Legendary") then
-			elseif string.match(v.Name, "Epic") then
-			elseif string.match(v.Name, "Rare") then
+			elseif string.match(v.Text, "Legendary") then
+			elseif string.match(v.Text, "Epic") then
+			elseif string.match(v.Text, "Rare") then
 				print("Rare is found!")
 			else
 				print("Common is found!")
