@@ -2632,6 +2632,10 @@ function KillTest2()
 			local playerpos = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.Position
 			print(v.Name .. ': x=' .. playerpos.X .. ' y=' .. playerpos.Y .. ' z=' .. playerpos.Z .. ' m=' .. playerpos.magnitude)
 			print(game.Players.LocalPlayer.Character.HumanoidRootPart.Position)
+			print('magnitude=' .. temptable.magnitude)
+			if (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
+				print('User is close by')
+			end
 		end
 		
 		--[[
