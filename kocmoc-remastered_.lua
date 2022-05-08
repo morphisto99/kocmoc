@@ -2629,7 +2629,7 @@ function KillTest2()
 		--game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace[v.Name].HumanoidRootPart.CFrame - teleport to player
 		for j,k in next, kocmoc.wlplayers do
 			print('k=' .. k .. ' v.Name=' .. v.Name)
-			if k ~= tostring(v.Name) then
+			if tostring(k) ~= tostring(v.Name) then
 				--allwlplayer = true
 				local playerpos = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.Position
 				print(v.Name .. ': x=' .. playerpos.X .. ' y=' .. playerpos.Y .. ' z=' .. playerpos.Z)
