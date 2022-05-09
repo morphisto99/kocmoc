@@ -2634,8 +2634,10 @@ end
 -- Morphisto
 
 function KillTest2()
+	wlplayers:Destroy()
+	
 	-- get player names
-	--allwlplayer = false
+	--[[
 	for i, v in pairs(game.Players:GetChildren()) do
 		--print('Player=' .. v.Name)
 		--game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace[v.Name].HumanoidRootPart.CFrame - teleport to player
@@ -2668,6 +2670,7 @@ function KillTest2()
 		]]--
 		
 	end
+	]]--
 end
 
 function KillTest()
