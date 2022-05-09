@@ -2633,8 +2633,8 @@ end
 
 function KillTest2()
 	for _, v in pairs(game:GetService("CoreGui"):GetDescendants()) do
-		if v:IsA("TextLabel") then
-			print(v.Text)
+		if v:IsA("TextLabel") and string.find(v.Text,"Player") then
+			v.Parent.Parent:Destroy()
 		end
 		
 		--game:GetService("CoreGui"):FindFirstChild(_G.windowname).Main:FindFirstChild("Rares List D",true):Destroy()
