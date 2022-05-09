@@ -2325,8 +2325,7 @@ task.spawn(function()
 		--print('Player' .. i .. ': ' .. v.Name)
 		uiwlplayers:CreateButton('Player' .. i .. ': ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)
 	end
-		--local playerpos = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.Position
-		--game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace[v.Name].HumanoidRootPart.CFrame
+
     local mob2 = panel:CreateButton("Mondo Chick: 00:00",function() api.tween(1,game:GetService("Workspace").FlowerZones["Mountain Top Field"].CFrame) end)
     local panel2 = hometab:CreateSection("Utility Panel")
     local windUpd = panel2:CreateButton("Wind Shrine: 00:00",function() api.tween(1,CFrame.new(game:GetService("Workspace").NPCs["Wind Shrine"].Circle.Position + Vector3.new(0,5,0))) end)
@@ -2634,7 +2633,7 @@ end
 -- Morphisto
 
 function KillTest2()
-	uiwlplayersothers:Destroy()
+	uiwlplayers:Destroy()
 end
 
 function KillTest()
