@@ -2630,17 +2630,14 @@ function KillTest2()
 		
 		if not api.tablefind(kocmoc.wlplayers, v.Name) then
 			local playerpos = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.Position
-			local playerpos1 = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame
-			local playerpos2 = playerpos1.Position
 			--game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-			print(v.Name .. ': x=' .. playerpos.X .. ' y=' .. playerpos.Y .. ' z=' .. playerpos.Z .. ' m=' .. playerpos.magnitude)
-			print(v.Name .. ': x=' .. playerpos2.X .. ' y=' .. playerpos2.Y .. ' z=' .. playerpos2.Z .. ' m=' .. playerpos2.magnitude)
-			local charpos = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
-			print('0cutidudz0: x=' .. charpos.X .. ' y=' .. charpos.Y .. ' z=' .. charpos.Z .. ' m=' .. charpos.magnitude)
-			print('magnitude=' .. (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude)
+			--print(v.Name .. ': x=' .. playerpos.X .. ' y=' .. playerpos.Y .. ' z=' .. playerpos.Z .. ' m=' .. playerpos.magnitude)
+			--local charpos = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+			--print('0cutidudz0: x=' .. charpos.X .. ' y=' .. charpos.Y .. ' z=' .. charpos.Z .. ' m=' .. charpos.magnitude)
 			--if (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
-			if (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 120 then
+			if (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 150 then
 				print('User is close by')
+				break
 			end
 		end
 		
