@@ -2634,7 +2634,6 @@ end
 -- Morphisto
 
 function KillTest2()
-	uiwlplayers:Remove()
 	uiwlplayersothers:Destroy()
 end
 
