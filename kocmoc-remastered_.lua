@@ -1156,6 +1156,10 @@ wayp:CreateButton("Test", function() KillTest() end) -- Morphisto
 wayp:CreateButton("Test2", function() KillTest2() end) -- Morphisto
 wayp:CreateDropdown("NPC Teleports", {"Black Bear","Brown Bear","Bucko Bee","Honey Bee","Panda Bear","Polar Bear","Riley Bee","Science Bear","Spirit Bear","Science Bear","Mother Bear","Sun Bear","Stick Bug","Onett","Gummy Lair","Bubble Bee Man","Meteor Shower","Demon Mask","Diamond Mask"}, function(Option) game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = npctable[Option] end) -- Morphisto
 
+local wlplayers = misctab:CreateSection("Players") -- Morphisto
+uiwlplayersothers = wlplayers:CreateToggle("Disable when non white-list players near", nil, function(State) kocmoc.toggles.wlplayersothers = State end) -- Morphisto
+
+
 local useitems = itemstab:CreateSection("Use Items")
 
 useitems:CreateButton("Use All Buffs [⚠️]",function() for i,v in pairs(buffTable) do  game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"]=i}) end end)
@@ -2426,6 +2430,7 @@ if kocmoc.toggles.killcrab then uikillcrab:SetState(true) end -- Morphisto
 if kocmoc.toggles.killtunnelbear then uikilltunnelbear:SetState(true) end -- Morphisto
 if kocmoc.toggles.killkingbeetle then uikillkingbeetle:SetState(true) end -- Morphisto
 if kocmoc.toggles.killstumpsnail then uikillstumpsnail:SetState(true) end -- Morphisto
+if kocmoc.toggles.wlplayersothers then uiwlplayersothers.SetState(true) end -- Morphisto
 if kocmoc.vars.defmask ~= "" then game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"}) end -- Morphisto
 
 -- Morphisto
