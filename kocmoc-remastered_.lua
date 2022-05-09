@@ -1159,6 +1159,10 @@ wayp:CreateButton("print location", function() print(game.Players.LocalPlayer.Ch
 wayp:CreateButton("Test", function() KillTest() end) -- Morphisto
 wayp:CreateButton("Test2", function() KillTest2() end) -- Morphisto
 wayp:CreateDropdown("NPC Teleports", {"Black Bear","Brown Bear","Bucko Bee","Honey Bee","Panda Bear","Polar Bear","Riley Bee","Science Bear","Spirit Bear","Science Bear","Mother Bear","Sun Bear","Stick Bug","Onett","Gummy Lair","Bubble Bee Man","Meteor Shower","Demon Mask","Diamond Mask"}, function(Option) game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = npctable[Option] end) -- Morphisto
+for i, v in pairs(game.Players:GetChildren()) do
+	--print('Player' .. i .. ': ' .. v.Name)
+	wayp:CreateButton('Player' .. i .. ': ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)
+end
 
 local useitems = itemstab:CreateSection("Use Items")
 
@@ -2320,11 +2324,6 @@ task.spawn(function()
         end
         end
     end
-	
-	for i, v in pairs(game.Players:GetChildren()) do
-		--print('Player' .. i .. ': ' .. v.Name)
-		uiwlplayers:CreateButton('Player' .. i .. ': ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)
-	end
 
     local mob2 = panel:CreateButton("Mondo Chick: 00:00",function() api.tween(1,game:GetService("Workspace").FlowerZones["Mountain Top Field"].CFrame) end)
     local panel2 = hometab:CreateSection("Utility Panel")
@@ -2637,6 +2636,9 @@ function KillTest2()
 		if v:IsA("TextLabel") then
 			print(v.Text)
 		end
+		
+		--game:GetService("CoreGui"):FindFirstChild(_G.windowname).Main:FindFirstChild("Rares List D",true):Destroy()
+		
 		--[[
 		if v:IsA("TextLabel") and string.find(v.Text,"Disable") then
 			v.Parent.Parent:Destroy()
