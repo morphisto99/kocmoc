@@ -358,6 +358,7 @@ getgenv().kocmoc = {
 		killtunnelbear = false, -- Morphisto
 		killcrab = false, -- Morphisto
 		swapmaskonfield = false, -- Morphisto
+		wlplayersothers = false, -- Morphisto
         resetbeeenergy = false
     },
     vars = {
@@ -1136,10 +1137,6 @@ mobkill:CreateToggle("Auto Kill Mobs", nil, function(State) kocmoc.toggles.autok
 mobkill:CreateToggle("Avoid Mobs", nil, function(State) kocmoc.toggles.avoidmobs = State end)
 uiautoant = mobkill:CreateToggle("Auto Ant", nil, function(State) kocmoc.toggles.autoant = State end) -- Morphisto
 
-local wlplayers = combtab:CreateSection("Players") -- Morphisto
-uiwlplayersothers = wlplayers:CreateToggle("Disable when non white-list players near", nil, function(State) kocmoc.toggles.wlplayersothers = State end) -- Morphisto
-
-
 local serverhopkill = combtab:CreateSection("Serverhopping Combat")
 serverhopkill:CreateButton("Vicious Bee Serverhopper [⚠️][📜]",function() loadstring(game:HttpGet("https://raw.githubusercontent.com/Boxking776/kocmoc/main/functions/viciousbeeserverhop.lua"))() end):AddToolTip("Serverhops for rouge vicious bees")
 serverhopkill:CreateLabel("")
@@ -1149,6 +1146,9 @@ serverhopkill:CreateLabel("")
 local amks = combtab:CreateSection("Auto Kill Mobs Settings")
 amks:CreateTextBox('Kill Mobs After x Convertions', 'default = 3', true, function(Value) kocmoc.vars.monstertimer = tonumber(Value) end)
 
+local wlplayers = combtab:CreateSection("Players") -- Morphisto
+uiwlplayersothers = wlplayers:CreateToggle("Disable when other players near", nil, function(State) kocmoc.toggles.wlplayersothers = State end) -- Morphisto
+uiwlplayers = wlplayers:CreateDropdown("Players", players, function() end)
 
 local wayp = misctab:CreateSection("Waypoints")
 wayp:CreateDropdown("Field Teleports", fieldstable, function(Option) game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").FlowerZones:FindFirstChild(Option).CFrame end)
