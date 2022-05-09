@@ -2632,11 +2632,15 @@ end
 -- Morphisto
 
 function KillTest2()
+	local count = 1
 	for _, v in pairs(game:GetService("CoreGui"):GetDescendants()) do
-		if v:IsA("TextLabel") and string.find(v.Text,"Player") then
+		if v:IsA("TextLabel") and string.find(v.Text,"Player" .. count) then
 			--v.Parent.Parent:Destroy()
 			print(v.Text)
 			v:Destroy()
+			if count < 7 then
+				count += 1
+			end
 		end
 		
 		--game:GetService("CoreGui"):FindFirstChild(_G.windowname).Main:FindFirstChild("Rares List D",true):Destroy()
