@@ -291,7 +291,6 @@ quest_time = time() -- Morphisto
 
 getgenv().kocmoc = {
     rares = {},
-	wlplayers = {}, -- Morphisto
     priority = {},
     bestfields = {
         red = "Pepper Patch",
