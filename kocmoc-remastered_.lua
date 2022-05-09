@@ -2635,13 +2635,9 @@ end
 function KillTest2()
 	
     for i,v in pairs(game.CoreGui:GetDescendants()) do
-		print(v.Name)
-		--[[
-        if v.Name == "Startup S" then
-            v.Parent.Parent.RightSide["Information S"].Parent = v.Parent
+        if v.Name == "Players" then
             v:Destroy()
         end
-		]]--
     end
 end
 
