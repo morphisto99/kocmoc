@@ -2633,7 +2633,16 @@ end
 -- Morphisto
 
 function KillTest2()
-	uiwlplayers:Destroy()
+	
+    for i,v in pairs(game.CoreGui:GetDescendants()) do
+		print(v.Name)
+		--[[
+        if v.Name == "Startup S" then
+            v.Parent.Parent.RightSide["Information S"].Parent = v.Parent
+            v:Destroy()
+        end
+		]]--
+    end
 end
 
 function KillTest()
