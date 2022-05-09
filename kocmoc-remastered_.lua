@@ -1146,8 +1146,8 @@ serverhopkill:CreateLabel("")
 local amks = combtab:CreateSection("Auto Kill Mobs Settings")
 amks:CreateTextBox('Kill Mobs After x Convertions', 'default = 3', true, function(Value) kocmoc.vars.monstertimer = tonumber(Value) end)
 
-local wlplayers = combtab:CreateSection("Players") -- Morphisto
-uiwlplayersothers = wlplayers:CreateToggle("Disable when other players near", nil, function(State) kocmoc.toggles.wlplayersothers = State end) -- Morphisto
+uiwlplayers = combtab:CreateSection("Players") -- Morphisto
+uiwlplayersothers = uiwlplayers:CreateToggle("Disable when other players near", nil, function(State) kocmoc.toggles.wlplayersothers = State end) -- Morphisto
 --uiwlplayers = wlplayers:CreateDropdown("Players", wlplayers, function() end)
 
 local wayp = misctab:CreateSection("Waypoints")
@@ -2323,7 +2323,7 @@ task.spawn(function()
 	
 	for i, v in pairs(game.Players:GetChildren()) do
 		--print('Player' .. i .. ': ' .. v.Name)
-		wlplayers:CreateButton('Player' .. i .. ': ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)
+		uiwlplayers:CreateButton('Player' .. i .. ': ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)
 	end
 		--local playerpos = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.Position
 		--game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace[v.Name].HumanoidRootPart.CFrame
@@ -2634,43 +2634,8 @@ end
 -- Morphisto
 
 function KillTest2()
-	wlplayers:Destroy()
-	
-	-- get player names
-	--[[
-	for i, v in pairs(game.Players:GetChildren()) do
-		--print('Player=' .. v.Name)
-		--game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace[v.Name].HumanoidRootPart.CFrame - teleport to player
-		
-		if not api.tablefind(kocmoc.wlplayers, v.Name) then
-			local playerpos = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.Position
-			--game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-			--print(v.Name .. ': x=' .. playerpos.X .. ' y=' .. playerpos.Y .. ' z=' .. playerpos.Z .. ' m=' .. playerpos.magnitude)
-			--local charpos = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
-			--print('0cutidudz0: x=' .. charpos.X .. ' y=' .. charpos.Y .. ' z=' .. charpos.Z .. ' m=' .. charpos.magnitude)
-			--if (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
-			if (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 150 then
-				print(v.Name .. ' is close by')
-				break
-			end
-		end
-		
-		--[[
-		for j,k in next, kocmoc.wlplayers do
-			print('k=' .. k .. ' v.Name=' .. v.Name)
-			if tostring(k) ~= tostring(v.Name) then
-				--allwlplayer = true
-				local playerpos = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.Position
-				print(v.Name .. ': x=' .. playerpos.X .. ' y=' .. playerpos.Y .. ' z=' .. playerpos.Z)
-				print(game.Players.LocalPlayer.Character.HumanoidRootPart.Position)
-				break
-			end
-
-		end
-		]]--
-		
-	end
-	]]--
+	uiwlplayers:Remove()
+	uiwlplayersothers:Destroy()
 end
 
 function KillTest()
