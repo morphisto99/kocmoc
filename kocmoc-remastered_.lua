@@ -2322,7 +2322,7 @@ task.spawn(function()
     end
 	
 	for i, v in pairs(game.Players:GetChildren()) do
-		wlplayers:CreateButton('Player' .. i .. ': ' .. v, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace[v].HumanoidRootPart.CFrame end)
+		wlplayers:CreateButton('Player' .. i .. ': ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace[v.Name].HumanoidRootPart.CFrame end)
 	end
 		
     local mob2 = panel:CreateButton("Mondo Chick: 00:00",function() api.tween(1,game:GetService("Workspace").FlowerZones["Mountain Top Field"].CFrame) end)
