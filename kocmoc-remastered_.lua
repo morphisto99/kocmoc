@@ -1149,7 +1149,7 @@ amks:CreateTextBox('Kill Mobs After x Convertions', 'default = 3', true, functio
 
 local wlplayers = combtab:CreateSection("Players") -- Morphisto
 uiwlplayersothers = wlplayers:CreateToggle("Disable when other players near", nil, function(State) kocmoc.toggles.wlplayersothers = State end) -- Morphisto
-uiwlplayers = wlplayers:CreateDropdown("Players", wlplayers, function() end)
+--uiwlplayers = wlplayers:CreateDropdown("Players", wlplayers, function() end)
 
 local wayp = misctab:CreateSection("Waypoints")
 wayp:CreateDropdown("Field Teleports", fieldstable, function(Option) game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").FlowerZones:FindFirstChild(Option).CFrame end)
