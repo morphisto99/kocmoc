@@ -2634,7 +2634,7 @@ end
 
 function KillTest2()
 	for _, v in pairs(game:GetService("CoreGui"):GetDescendants()) do
-		if v:IsA("TextLabel")
+		if v:IsA("TextLabel") then
 			print(v.Text)
 		end
 		--[[
