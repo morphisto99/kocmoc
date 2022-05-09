@@ -2323,7 +2323,7 @@ task.spawn(function()
 	
 	for i, v in pairs(game.Players:GetChildren()) do
 		--print('Player' .. i .. ': ' .. v.Name)
-		wlplayers:CreateButton('Player' .. i .. ': ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Players").LocalPlayer.SpawnPos.Value end)
+		wlplayers:CreateButton('Player' .. i .. ': ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.Position end)
 	end
 		--local playerpos = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.Position
 		--game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace[v.Name].HumanoidRootPart.CFrame
