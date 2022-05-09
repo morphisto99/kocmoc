@@ -1136,6 +1136,10 @@ mobkill:CreateToggle("Auto Kill Mobs", nil, function(State) kocmoc.toggles.autok
 mobkill:CreateToggle("Avoid Mobs", nil, function(State) kocmoc.toggles.avoidmobs = State end)
 uiautoant = mobkill:CreateToggle("Auto Ant", nil, function(State) kocmoc.toggles.autoant = State end) -- Morphisto
 
+local wlplayers = combtab:CreateSection("Players") -- Morphisto
+uiwlplayersothers = wlplayers:CreateToggle("Disable when non white-list players near", nil, function(State) kocmoc.toggles.wlplayersothers = State end) -- Morphisto
+
+
 local serverhopkill = combtab:CreateSection("Serverhopping Combat")
 serverhopkill:CreateButton("Vicious Bee Serverhopper [⚠️][📜]",function() loadstring(game:HttpGet("https://raw.githubusercontent.com/Boxking776/kocmoc/main/functions/viciousbeeserverhop.lua"))() end):AddToolTip("Serverhops for rouge vicious bees")
 serverhopkill:CreateLabel("")
@@ -1155,10 +1159,6 @@ wayp:CreateButton("print location", function() print(game.Players.LocalPlayer.Ch
 wayp:CreateButton("Test", function() KillTest() end) -- Morphisto
 wayp:CreateButton("Test2", function() KillTest2() end) -- Morphisto
 wayp:CreateDropdown("NPC Teleports", {"Black Bear","Brown Bear","Bucko Bee","Honey Bee","Panda Bear","Polar Bear","Riley Bee","Science Bear","Spirit Bear","Science Bear","Mother Bear","Sun Bear","Stick Bug","Onett","Gummy Lair","Bubble Bee Man","Meteor Shower","Demon Mask","Diamond Mask"}, function(Option) game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = npctable[Option] end) -- Morphisto
-
-local wlplayers = misctab:CreateSection("Players") -- Morphisto
-uiwlplayersothers = wlplayers:CreateToggle("Disable when non white-list players near", nil, function(State) kocmoc.toggles.wlplayersothers = State end) -- Morphisto
-
 
 local useitems = itemstab:CreateSection("Use Items")
 
