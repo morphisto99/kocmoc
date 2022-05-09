@@ -2320,6 +2320,11 @@ task.spawn(function()
         end
         end
     end
+	
+	for i,v in next, kocmoc.wlplayers do
+		wlplayers:CreateButton('Player' .. i .. ': ' .. v, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace[k].HumanoidRootPart.CFrame end)
+	end
+		
     local mob2 = panel:CreateButton("Mondo Chick: 00:00",function() api.tween(1,game:GetService("Workspace").FlowerZones["Mountain Top Field"].CFrame) end)
     local panel2 = hometab:CreateSection("Utility Panel")
     local windUpd = panel2:CreateButton("Wind Shrine: 00:00",function() api.tween(1,CFrame.new(game:GetService("Workspace").NPCs["Wind Shrine"].Circle.Position + Vector3.new(0,5,0))) end)
@@ -2641,7 +2646,7 @@ function KillTest2()
 			--print('0cutidudz0: x=' .. charpos.X .. ' y=' .. charpos.Y .. ' z=' .. charpos.Z .. ' m=' .. charpos.magnitude)
 			--if (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
 			if (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 150 then
-				print('User is close by')
+				print(v.Name .. ' is close by')
 				break
 			end
 		end
