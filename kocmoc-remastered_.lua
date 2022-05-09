@@ -2633,12 +2633,24 @@ end
 -- Morphisto
 
 function KillTest2()
+	for _, v in pairs(game:GetService("CoreGui"):GetDescendants()) do
+		if v:IsA("TextLabel")
+			print(v.Text)
+		end
+		--[[
+		if v:IsA("TextLabel") and string.find(v.Text,"Disable") then
+			v.Parent.Parent:Destroy()
+		end
+		]]--
+	end
 	
+	--[[
     for i,v in pairs(game.CoreGui:GetDescendants()) do
         if v.Name == "Players" then
             v:Destroy()
         end
     end
+	]]--
 end
 
 function KillTest()
