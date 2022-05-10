@@ -1149,8 +1149,8 @@ amks:CreateTextBox('Kill Mobs After x Convertions', 'default = 3', true, functio
 
 uiwlplayers = combtab:CreateSection("Players") -- Morphisto
 for i, v in pairs(game.Players:GetChildren()) do
-	table.insert(temptable.players, v.Name)
-	uiwlplayers:CreateButton('Player' .. i .. ': ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)
+	--table.insert(temptable.players, v.Name)
+	uiwlplayers:CreateButton('Player-' .. i .. ': ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)
 end
 
 uiplayersinrange = combtab:CreateSection("Other Players in Range") -- Morphisto
@@ -2641,27 +2641,28 @@ end
 function KillTest2()
 	
 	local count = 1
-	for i, v in pairs(game:GetService("CoreGui"):GetDescendants()) do	
-		if v:IsA("TextLabel") and string.find(v.Text,"Player" .. count) then
+	for i, v in pairs(game:GetService("CoreGui"):GetDescendants()) do
+		--if v:IsA("TextLabel") and string.find(v.Text,"Player" .. count) then
+		if v:IsA("TextLabel") and string.find(v.Text,"Player-") then
 			v.Parent:Destroy()
-			if count > 6 then
-				break
-			else
-				count += 1
-			end
+			--if count > 6 then
+				--break
+			--else
+				--count += 1
+			--end
 		end
 	end
 	--temptable.players = {}
 	for i, v in pairs(game.Players:GetChildren()) do
 		--table.insert(temptable.players, v.Name)
 		if not api.tablefind(kocmoc.wlplayers, v.Name) then
-			uiwlplayers:CreateButton('Player' .. i .. '- ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)
+			uiwlplayers:CreateButton('Player-' .. i .. '- ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)
 			local playerpos = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.Position
 			if (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 150 then
-				uiplayersinrange:CreateLabel('Player' .. i .. ': ' .. v.Name .. ' in range!')
+				uiplayersinrange:CreateLabel('Player-' .. i .. ': ' .. v.Name .. ' in range!')
 			end
 		else
-			uiwlplayers:CreateButton('Player' .. i .. ': ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)
+			uiwlplayers:CreateButton('Player-' .. i .. ': ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)
 		end
 	end
 
