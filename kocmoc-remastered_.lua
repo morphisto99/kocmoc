@@ -2637,7 +2637,7 @@ function KillTest2()
 		if v:IsA("TextLabel") and string.find(v.Text,"Player" .. count) then
 			--v.Parent.Parent:Destroy()
 			print(v.Text)
-			v:Destroy()
+			v.Parent.Parent:Destroy()
 			if count < 7 then
 				count += 1
 			end
