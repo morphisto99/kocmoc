@@ -354,12 +354,12 @@ getgenv().kocmoc = {
         autodonate = false,
         autouseconvertors = false,
         honeymaskconv = false,
+		wlplayersothers = false, -- Morphisto
 		killstumpsnail = false, -- Morphisto
 		killkingbeetle = false, -- Morphisto
 		killtunnelbear = false, -- Morphisto
 		killcrab = false, -- Morphisto
 		swapmaskonfield = false, -- Morphisto
-		wlplayersothers = false, -- Morphisto
         resetbeeenergy = false
     },
     vars = {
@@ -2644,10 +2644,17 @@ function KillTest2()
 			end
 		end
 	end
+	temptable.players = {}
 	for i, v in pairs(game.Players:GetChildren()) do
 		table.insert(temptable.players, v.Name)
-		uiwlplayers:CreateButton('Player' .. i .. ': ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)
+		if not api.tablefind(kocmoc.wlplayers, v.Name) then
+			uiwlplayers:CreateButton('Player' .. i .. ': ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end).TextColor3 = Color3.new(1, 0, 0)
+		else
+			uiwlplayers:CreateButton('Player' .. i .. ': ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)
+		end
 	end
+	
+	-- search and get other players not in white list
 	
 	
 	--[[
