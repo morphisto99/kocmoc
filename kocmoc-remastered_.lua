@@ -2641,7 +2641,6 @@ end
 function KillTest2()
 	
 	local count = 1
-	local count2 = 1
 	for i, v in pairs(game:GetService("CoreGui"):GetDescendants()) do
 		if v:IsA("TextLabel") and string.find(v.Text,"Player" .. count) then
 			v.Parent:Destroy()
@@ -2650,15 +2649,7 @@ function KillTest2()
 			else
 				count += 1
 			end
-		end
-		if v:IsA("TextLabel") and string.find(v.Text,"Player" .. count2) then
-			v.Parent:Destroy()
-			if count2 > 6 then
-				break
-			else
-				count2 += 1
-			end
-		end		
+		end	
 	end
 	--temptable.players = {}
 	for i, v in pairs(game.Players:GetChildren()) do
