@@ -39,6 +39,7 @@ end
 getgenv().temptable = {
     version = "3.2.9-1",
     blackfield = "Sunflower Field",
+	players = {}, -- Morphisto
     redfields = {},
     bluefields = {},
     whitefields = {},
@@ -1148,7 +1149,10 @@ amks:CreateTextBox('Kill Mobs After x Convertions', 'default = 3', true, functio
 
 uiwlplayers = combtab:CreateSection("Players") -- Morphisto
 uiwlplayersothers = uiwlplayers:CreateToggle("Disable when other players near", nil, function(State) kocmoc.toggles.wlplayersothers = State end) -- Morphisto
-
+for i, v in pairs(game.Players:GetChildren()) do
+	uiwlplayers:CreateButton('Player' .. i .. ': ' .. v.Name, function() table.insert(temptable.players, v.Name) game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)
+end
+	
 local wayp = misctab:CreateSection("Waypoints")
 wayp:CreateDropdown("Field Teleports", fieldstable, function(Option) game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").FlowerZones:FindFirstChild(Option).CFrame end)
 wayp:CreateDropdown("Monster Teleports", spawnerstable, function(Option) d = game:GetService("Workspace").MonsterSpawners:FindFirstChild(Option) game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(d.Position.X, d.Position.Y+3, d.Position.Z) end)
@@ -2319,20 +2323,7 @@ task.spawn(function()
         end
         end
     end
-	-- Morphisto
-	local count = 1
-	for i, v in pairs(game:GetService("CoreGui"):GetDescendants()) do
-		if v:IsA("TextLabel") and string.find(v.Text,"Player" .. count) then
-			v.Parent:Destroy()
-			if count < 7 then
-				count += 1
-			end
-		end
-	end
-	for i, v in pairs(game.Players:GetChildren()) do
-		uiwlplayers:CreateButton('Player' .. i .. ': ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)
-	end
-	-- Morphisto
+
     local mob2 = panel:CreateButton("Mondo Chick: 00:00",function() api.tween(1,game:GetService("Workspace").FlowerZones["Mountain Top Field"].CFrame) end)
     local panel2 = hometab:CreateSection("Utility Panel")
     local windUpd = panel2:CreateButton("Wind Shrine: 00:00",function() api.tween(1,CFrame.new(game:GetService("Workspace").NPCs["Wind Shrine"].Circle.Position + Vector3.new(0,5,0))) end)
@@ -2640,9 +2631,15 @@ end
 -- Morphisto
 
 function KillTest2()
+
 	local count = 1
+	for i,v in next, temptable.players do
+		print('temp_players=' .. v)
+	end
+
 	for _, v in pairs(game:GetService("CoreGui"):GetDescendants()) do
 		if v:IsA("TextLabel") and string.find(v.Text,"Player" .. count) then
+			print(v.Text)
 			v.Parent:Destroy()
 			if count < 7 then
 				count += 1
@@ -2651,11 +2648,18 @@ function KillTest2()
 	end
 	
 	--[[
-    for i,v in pairs(game.CoreGui:GetDescendants()) do
-        if v.Name == "Players" then
-            v:Destroy()
-        end
-    end
+	if not api.tablefind(kocmoc.wlplayers, v.Name) then
+		local playerpos = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.Position
+		--game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+		--print(v.Name .. ': x=' .. playerpos.X .. ' y=' .. playerpos.Y .. ' z=' .. playerpos.Z .. ' m=' .. playerpos.magnitude)
+		--local charpos = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+		--print('0cutidudz0: x=' .. charpos.X .. ' y=' .. charpos.Y .. ' z=' .. charpos.Z .. ' m=' .. charpos.magnitude)
+		--if (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
+		if (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 150 then
+			print('User is close by')
+			break
+		end
+	end
 	]]--
 end
 
