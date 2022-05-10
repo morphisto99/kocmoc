@@ -2632,23 +2632,32 @@ end
 -- Morphisto
 
 function KillTest2()
-
+	print(kocmoc.toggles.wlplayersothers)
 	local count = 1
-	for i,v in next, temptable.players do
-		print('temp_players=' .. v)
-	end
-
-	for _, v in pairs(game:GetService("CoreGui"):GetDescendants()) do
+	for i, v in pairs(game:GetService("CoreGui"):GetDescendants()) do	
 		if v:IsA("TextLabel") and string.find(v.Text,"Player" .. count) then
-			print(v.Text)
 			v.Parent:Destroy()
-			if count < 7 then
+			if count > 6 then
+				break
+			else
 				count += 1
 			end
 		end
 	end
+	for i, v in pairs(game.Players:GetChildren()) do
+		table.insert(temptable.players, v.Name)
+		uiwlplayers:CreateButton('Player' .. i .. ': ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)
+	end
+	
 	
 	--[[
+
+	for i, v in pairs(game.Players:GetChildren()) do
+		table.insert(temptable.players, v.Name)
+		uiwlplayers:CreateButton('Player' .. i .. ': ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)
+	end
+
+
 	if not api.tablefind(kocmoc.wlplayers, v.Name) then
 		local playerpos = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.Position
 		--game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
