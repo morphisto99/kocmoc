@@ -2642,7 +2642,8 @@ function KillTest2()
 	
 	local count = 1
 	for i, v in pairs(game:GetService("CoreGui"):GetDescendants()) do
-		if v:IsA("TextLabel") and string.find(v.Text,"Player" .. count) then
+		if v:IsA("TextLabel") and string.find(v.Text,"Player" .. count) or string.find(v.Text,"Player_" .. count) then
+			print(v.Name)
 			v.Parent:Destroy()
 			if count > 6 then
 				break
@@ -2658,8 +2659,8 @@ function KillTest2()
 			uiwlplayers:CreateButton('Player' .. i .. '- ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)
 			local playerpos = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.Position
 			if (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 150 then
-				uiplayersinrange:CreateLabel('Player' .. i .. ': ' .. v.Name .. ' in range!')
-				print('Player' .. i .. ': ' .. v.Name .. ' in range!')
+				uiplayersinrange:CreateLabel('Player_' .. i .. ': ' .. v.Name .. ' in range!')
+				print('Player_' .. i .. ': ' .. v.Name .. ' in range!')
 			end
 		else
 			uiwlplayers:CreateButton('Player' .. i .. ': ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)
