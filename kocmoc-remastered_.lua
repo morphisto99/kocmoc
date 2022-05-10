@@ -2658,7 +2658,7 @@ function KillTest2()
 			uiwlplayers:CreateButton('Player' .. i .. '- ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)
 			local playerpos = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.Position
 			if (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 150 then
-				uiplayersinrange:CreateLabel('Player ' .. i .. ': ' .. v.Name .. ' in range!')
+				uiplayersinrange:CreateLabel('Player' .. i .. ': ' .. v.Name .. ' in range!')
 			end
 		else
 			uiwlplayers:CreateButton('Player' .. i .. ': ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)
