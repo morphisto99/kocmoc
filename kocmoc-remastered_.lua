@@ -1149,6 +1149,9 @@ amks:CreateTextBox('Kill Mobs After x Convertions', 'default = 3', true, functio
 uiwlplayers = combtab:CreateSection("Players") -- Morphisto
 uiwlplayersothers = uiwlplayers:CreateToggle("Disable when other players near", nil, function(State) kocmoc.toggles.wlplayersothers = State end) -- Morphisto
 --uiwlplayers = wlplayers:CreateDropdown("Players", wlplayers, function() end)
+for i, v in pairs(game.Players:GetChildren()) do
+	uiwlplayers:CreateButton('Player' .. i .. ': ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)
+end
 
 local wayp = misctab:CreateSection("Waypoints")
 wayp:CreateDropdown("Field Teleports", fieldstable, function(Option) game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").FlowerZones:FindFirstChild(Option).CFrame end)
@@ -1159,10 +1162,6 @@ wayp:CreateButton("print location", function() print(game.Players.LocalPlayer.Ch
 wayp:CreateButton("Test", function() KillTest() end) -- Morphisto
 wayp:CreateButton("Test2", function() KillTest2() end) -- Morphisto
 wayp:CreateDropdown("NPC Teleports", {"Black Bear","Brown Bear","Bucko Bee","Honey Bee","Panda Bear","Polar Bear","Riley Bee","Science Bear","Spirit Bear","Science Bear","Mother Bear","Sun Bear","Stick Bug","Onett","Gummy Lair","Bubble Bee Man","Meteor Shower","Demon Mask","Diamond Mask"}, function(Option) game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = npctable[Option] end) -- Morphisto
-for i, v in pairs(game.Players:GetChildren()) do
-	--print('Player' .. i .. ': ' .. v.Name)
-	wayp:CreateButton('Player' .. i .. ': ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)
-end
 
 local useitems = itemstab:CreateSection("Use Items")
 
