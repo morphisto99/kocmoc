@@ -2632,7 +2632,7 @@ end
 -- Morphisto
 
 function KillTest2()
-	print(kocmoc.toggles.wlplayersothers)
+	
 	local count = 1
 	for i, v in pairs(game:GetService("CoreGui"):GetDescendants()) do	
 		if v:IsA("TextLabel") and string.find(v.Text,"Player" .. count) then
@@ -2648,12 +2648,13 @@ function KillTest2()
 	for i, v in pairs(game.Players:GetChildren()) do
 		table.insert(temptable.players, v.Name)
 		if not api.tablefind(kocmoc.wlplayers, v.Name) then
-			uiwlplayers:CreateButton('Player' .. i .. ': ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end).TextColor3 = Color3.new(1, 0, 0)
+			local otherplayers = uiwlplayers:CreateButton('Player' .. i .. ': ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)
+			otherplayers.TextColor3 = Color3.new(1, 0, 0)
 		else
 			uiwlplayers:CreateButton('Player' .. i .. ': ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)
 		end
 	end
-	
+	print(kocmoc.toggles.wlplayersothers)
 	-- search and get other players not in white list
 	
 	
