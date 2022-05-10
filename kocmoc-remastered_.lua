@@ -2300,83 +2300,87 @@ end
 
 task.spawn(function()
     pcall(function()
-    loadingInfo:CreateLabel("")
-    loadingInfo:CreateLabel("Script loaded!")
-    wait(2)
-    pcall(function()
-    for i,v in pairs(game.CoreGui:GetDescendants()) do
-        if v.Name == "Startup S" then
-            v.Parent.Parent.RightSide["Information S"].Parent = v.Parent
-            v:Destroy()
-        end
-    end
-    end)
-    local panel = hometab:CreateSection("Mob Panel")
-    local statusTable = {}
-    for i,v in pairs(game:GetService("Workspace").MonsterSpawners:GetChildren()) do
-        if not string.find(v.Name,"CaveMonster") then
-        local mobText = nil
-        mobText = fetchVisualMonsterString(v)
-        if mobText ~= nil then
-            local mob = panel:CreateButton(mobText,function()
-                api.tween(1,CFrame.new(getNearestField(v)))
-            end)
-            table.insert(statusTable,{mob,v})
-        end
-        end
-    end
-
-    local mob2 = panel:CreateButton("Mondo Chick: 00:00",function() api.tween(1,game:GetService("Workspace").FlowerZones["Mountain Top Field"].CFrame) end)
-    local panel2 = hometab:CreateSection("Utility Panel")
-    local windUpd = panel2:CreateButton("Wind Shrine: 00:00",function() api.tween(1,CFrame.new(game:GetService("Workspace").NPCs["Wind Shrine"].Circle.Position + Vector3.new(0,5,0))) end)
-    local rfbUpd = panel2:CreateButton("Red Field Booster: 00:00",function() api.tween(1,CFrame.new(game:GetService("Workspace").Toys["Red Field Booster"].Platform.Position + Vector3.new(0,5,0))) end)
-    local bfbUpd = panel2:CreateButton("Blue Field Booster: 00:00",function() api.tween(1,CFrame.new(game:GetService("Workspace").Toys["Blue Field Booster"].Platform.Position + Vector3.new(0,5,0))) end)
-    local wfbUpd = panel2:CreateButton("White Field Booster: 00:00",function() api.tween(1,CFrame.new(game:GetService("Workspace").Toys["Field Booster"].Platform.Position + Vector3.new(0,5,0))) end)
-    local cocoDispUpd = panel2:CreateButton("Coconut Dispenser: 00:00",function() api.tween(1,CFrame.new(game:GetService("Workspace").Toys["Coconut Dispenser"].Platform.Position + Vector3.new(0,5,0))) end)
-    local ic1 = panel2:CreateButton("Instant Converter A: 00:00",function() api.tween(1,CFrame.new(game:GetService("Workspace").Toys["Instant Converter"].Platform.Position + Vector3.new(0,5,0))) end)
-    local ic2 = panel2:CreateButton("Instant Converter B: 00:00",function() api.tween(1,CFrame.new(game:GetService("Workspace").Toys["Instant Converter B"].Platform.Position + Vector3.new(0,5,0))) end)
-    local ic3 = panel2:CreateButton("Instant Converter C: 00:00",function() api.tween(1,CFrame.new(game:GetService("Workspace").Toys["Instant Converter C"].Platform.Position + Vector3.new(0,5,0))) end)
-    local utilities = {
-        ["Red Field Booster"]=rfbUpd;
-        ["Blue Field Booster"]=bfbUpd;
-        ["Field Booster"]=wfbUpd;
-        ["Coconut Dispenser"]=cocoDispUpd;
-        ["Instant Converter"]=ic1;
-        ["Instant Converter B"]=ic2;
-        ["Instant Converter C"]=ic3;
-    }
-    while wait(1) do
-        for i,v in pairs(statusTable) do
-            if v[1] and v[2] then
-                v[1]:UpdateText(
-                fetchVisualMonsterString(
-                v[2]
-                ))
-            end
-        end
-        if workspace:FindFirstChild("Clock") then if workspace.Clock:FindFirstChild("SurfaceGui") then if workspace.Clock.SurfaceGui:FindFirstChild("TextLabel") then
-            if workspace.Clock.SurfaceGui:FindFirstChild("TextLabel").Text == "! ! !" then
-                mob2:UpdateText("Mondo Chick: Ready")
-            else
-                mob2:UpdateText("Mondo Chick: " .. string.gsub(
-                string.gsub(workspace.Clock.SurfaceGui:FindFirstChild("TextLabel").Text,"\n","")
-                ,"Mondo Chick: ",""))
-            end
-        end 
-        end end
-        local cooldown = require(game.ReplicatedStorage.TimeString)(3600 - (require(game.ReplicatedStorage.OsTime)() - (require(game.ReplicatedStorage.StatTools).GetLastCooldownTime(v1, "WindShrine") or 0)))
-        if cooldown == "" then windUpd:UpdateText("Wind Shrine: Ready") else windUpd:UpdateText("Wind Shrine: " .. cooldown) end
-        for i,v in pairs(utilities) do
-            local cooldown,isUsable = getToyCooldown(i)
-            if cooldown ~= nil and isUsable ~= nil then
-                if isUsable then
-                    v:UpdateText(i..": Ready")
-                else
-                    v:UpdateText(i..": "..require(game.ReplicatedStorage.TimeString)(cooldown))
-                end
-            end
-        end
-    end
+		loadingInfo:CreateLabel("")
+		loadingInfo:CreateLabel("Script loaded!")
+		wait(2)
+		pcall(function()
+			for i,v in pairs(game.CoreGui:GetDescendants()) do
+				if v.Name == "Startup S" then
+					v.Parent.Parent.RightSide["Information S"].Parent = v.Parent
+					v:Destroy()
+				end
+			end
+		end)
+		local panel = hometab:CreateSection("Mob Panel")
+		local statusTable = {}
+		for i,v in pairs(game:GetService("Workspace").MonsterSpawners:GetChildren()) do
+			if not string.find(v.Name,"CaveMonster") then
+				local mobText = nil
+				mobText = fetchVisualMonsterString(v)
+				if mobText ~= nil then
+					local mob = panel:CreateButton(mobText,function() api.tween(1,CFrame.new(getNearestField(v))) end)
+					table.insert(statusTable,{mob,v})
+				end
+			end
+		end
+		local mob2 = panel:CreateButton("Mondo Chick: 00:00",function() api.tween(1,game:GetService("Workspace").FlowerZones["Mountain Top Field"].CFrame) end)
+		local panel2 = hometab:CreateSection("Utility Panel")
+		local windUpd = panel2:CreateButton("Wind Shrine: 00:00",function() api.tween(1,CFrame.new(game:GetService("Workspace").NPCs["Wind Shrine"].Circle.Position + Vector3.new(0,5,0))) end)
+		local rfbUpd = panel2:CreateButton("Red Field Booster: 00:00",function() api.tween(1,CFrame.new(game:GetService("Workspace").Toys["Red Field Booster"].Platform.Position + Vector3.new(0,5,0))) end)
+		local bfbUpd = panel2:CreateButton("Blue Field Booster: 00:00",function() api.tween(1,CFrame.new(game:GetService("Workspace").Toys["Blue Field Booster"].Platform.Position + Vector3.new(0,5,0))) end)
+		local wfbUpd = panel2:CreateButton("White Field Booster: 00:00",function() api.tween(1,CFrame.new(game:GetService("Workspace").Toys["Field Booster"].Platform.Position + Vector3.new(0,5,0))) end)
+		local cocoDispUpd = panel2:CreateButton("Coconut Dispenser: 00:00",function() api.tween(1,CFrame.new(game:GetService("Workspace").Toys["Coconut Dispenser"].Platform.Position + Vector3.new(0,5,0))) end)
+		local ic1 = panel2:CreateButton("Instant Converter A: 00:00",function() api.tween(1,CFrame.new(game:GetService("Workspace").Toys["Instant Converter"].Platform.Position + Vector3.new(0,5,0))) end)
+		local ic2 = panel2:CreateButton("Instant Converter B: 00:00",function() api.tween(1,CFrame.new(game:GetService("Workspace").Toys["Instant Converter B"].Platform.Position + Vector3.new(0,5,0))) end)
+		local ic3 = panel2:CreateButton("Instant Converter C: 00:00",function() api.tween(1,CFrame.new(game:GetService("Workspace").Toys["Instant Converter C"].Platform.Position + Vector3.new(0,5,0))) end)
+		local utilities = {
+			["Red Field Booster"]=rfbUpd;
+			["Blue Field Booster"]=bfbUpd;
+			["Field Booster"]=wfbUpd;
+			["Coconut Dispenser"]=cocoDispUpd;
+			["Instant Converter"]=ic1;
+			["Instant Converter B"]=ic2;
+			["Instant Converter C"]=ic3;
+		}
+		while wait(1) do
+			for i,v in pairs(statusTable) do
+				if v[1] and v[2] then
+					v[1]:UpdateText(
+					fetchVisualMonsterString(
+					v[2]
+					))
+				end
+			end
+			if workspace:FindFirstChild("Clock") then
+				if workspace.Clock:FindFirstChild("SurfaceGui") then
+					if workspace.Clock.SurfaceGui:FindFirstChild("TextLabel") then
+						if workspace.Clock.SurfaceGui:FindFirstChild("TextLabel").Text == "! ! !" then
+							mob2:UpdateText("Mondo Chick: Ready")
+						else
+							mob2:UpdateText("Mondo Chick: " .. string.gsub(
+							string.gsub(workspace.Clock.SurfaceGui:FindFirstChild("TextLabel").Text,"\n","")
+							,"Mondo Chick: ",""))
+						end
+					end
+				end
+			end
+			local cooldown = require(game.ReplicatedStorage.TimeString)(3600 - (require(game.ReplicatedStorage.OsTime)() - (require(game.ReplicatedStorage.StatTools).GetLastCooldownTime(v1, "WindShrine") or 0)))
+			if cooldown == "" then
+				windUpd:UpdateText("Wind Shrine: Ready")
+			else
+				windUpd:UpdateText("Wind Shrine: " .. cooldown)
+			end
+			for i,v in pairs(utilities) do
+				local cooldown,isUsable = getToyCooldown(i)
+				if cooldown ~= nil and isUsable ~= nil then
+					if isUsable then
+						v:UpdateText(i..": Ready")
+					else
+						v:UpdateText(i..": "..require(game.ReplicatedStorage.TimeString)(cooldown))
+					end
+				end
+			end
+		end
     end)
 end)
 
