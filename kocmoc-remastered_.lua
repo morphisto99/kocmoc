@@ -354,7 +354,7 @@ getgenv().kocmoc = {
         autodonate = false,
         autouseconvertors = false,
         honeymaskconv = false,
-		wlplayersothers = false, -- Morphisto
+		disableinrange = false, -- Morphisto
 		killstumpsnail = false, -- Morphisto
 		killkingbeetle = false, -- Morphisto
 		killtunnelbear = false, -- Morphisto
@@ -1148,12 +1148,14 @@ local amks = combtab:CreateSection("Auto Kill Mobs Settings")
 amks:CreateTextBox('Kill Mobs After x Convertions', 'default = 3', true, function(Value) kocmoc.vars.monstertimer = tonumber(Value) end)
 
 uiwlplayers = combtab:CreateSection("Players") -- Morphisto
-uiwlplayersothers = uiwlplayers:CreateToggle("Disable when other players near", nil, function(State) kocmoc.toggles.wlplayersothers = State end) -- Morphisto
 for i, v in pairs(game.Players:GetChildren()) do
 	table.insert(temptable.players, v.Name)
 	uiwlplayers:CreateButton('Player' .. i .. ': ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)
 end
-	
+
+uiplayersinrange = combtab:CreateSection("Other Players in Range") -- Morphisto
+uidisableinrange = uiplayersinrange:CreateToggle("Disable when other players near", nil, function(State) kocmoc.toggles.disableinrange = State end) -- Morphisto
+
 local wayp = misctab:CreateSection("Waypoints")
 wayp:CreateDropdown("Field Teleports", fieldstable, function(Option) game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").FlowerZones:FindFirstChild(Option).CFrame end)
 wayp:CreateDropdown("Monster Teleports", spawnerstable, function(Option) d = game:GetService("Workspace").MonsterSpawners:FindFirstChild(Option) game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(d.Position.X, d.Position.Y+3, d.Position.Z) end)
@@ -2440,7 +2442,7 @@ if kocmoc.toggles.killcrab then uikillcrab:SetState(true) end -- Morphisto
 if kocmoc.toggles.killtunnelbear then uikilltunnelbear:SetState(true) end -- Morphisto
 if kocmoc.toggles.killkingbeetle then uikillkingbeetle:SetState(true) end -- Morphisto
 if kocmoc.toggles.killstumpsnail then uikillstumpsnail:SetState(true) end -- Morphisto
-if kocmoc.toggles.wlplayersothers then uiwlplayersothers.SetState(true) end -- Morphisto
+if kocmoc.toggles.disableinrange then uidisableinrange.SetState(true) end -- Morphisto
 if kocmoc.vars.defmask ~= "" then game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"}) end -- Morphisto
 
 -- Morphisto
@@ -2649,17 +2651,20 @@ function KillTest2()
 			end
 		end
 	end
-	temptable.players = {}
+	--temptable.players = {}
 	for i, v in pairs(game.Players:GetChildren()) do
-		table.insert(temptable.players, v.Name)
+		--table.insert(temptable.players, v.Name)
 		if not api.tablefind(kocmoc.wlplayers, v.Name) then
-			local otherplayers = uiwlplayers:CreateButton('Player' .. i .. ': ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)
-			otherplayers.TextColor3 = Color3.new(1, 0, 0)
+			uiwlplayers:CreateButton('Player' .. i .. '- ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)
+			local playerpos = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.Position
+			if (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 150 then
+				uiplayersinrange:CreateLabel('Player ' .. v.Name .. ' is near!')
+			end
 		else
 			uiwlplayers:CreateButton('Player' .. i .. ': ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)
 		end
 	end
-	print(kocmoc.toggles.wlplayersothers)
+
 	-- search and get other players not in white list
 	
 	
