@@ -2626,7 +2626,7 @@ end
 
 function KillTest2()
 
-	local event = game.ReplicatedStorage.Events.SelectNPCOption:InvokeServer()
+	local event = game.ReplicatedStorage.Events:FindFirstChild("SelectNPCOption")
 	if event then
 		event:FireServer("StartFreeStickBugEvent")
 		wait(0.5)
