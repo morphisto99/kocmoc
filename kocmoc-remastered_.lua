@@ -2642,7 +2642,7 @@ function KillTest2()
 	
 	local count = 1
 	for i, v in pairs(game:GetService("CoreGui"):GetDescendants()) do
-		if v:IsA("TextLabel") and string.find(v.Text,"Player" .. count) or string.find(v.Text,"Player_" .. count) then
+		if v:IsA("TextLabel") and string.find(v.Text,"Player" .. count) or v:IsA("TextLabel") and string.find(v.Text,"Player_" .. count) then
 			print(v.Text)
 			v.Parent:Destroy()
 			if count > 6 then
