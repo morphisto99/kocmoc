@@ -2651,6 +2651,7 @@ function KillTest2()
 		if v:IsA("TextLabel") and string.find(v.Text,"Player_") then
 			print(v.Text)
 			v.Parent.Parent:Destroy()
+			uiplayersinrange = combtab:CreateSection("Other Players in Range") -- Morphisto
 		end		
 		
 	end
@@ -2659,11 +2660,10 @@ function KillTest2()
 	for i, v in pairs(game.Players:GetChildren()) do
 		if not api.tablefind(kocmoc.wlplayers, v.Name) then
 			uiwlplayers:CreateButton('Player' .. i .. '- ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)
+			temptable.cache.disableinrange = true
 			local playerpos = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.Position
 			if (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 150 then
-				uiplayersinrange = combtab:CreateSection("Other Players in Range") -- Morphisto
 				uiplayersinrange:CreateLabel('Player_' .. i .. ': ' .. v.Name .. ' in range. magnitude=' .. playerpos.magnitude)
-				temptable.cache.disableinrange = true
 			end
 		else
 			uiwlplayers:CreateButton('Player' .. i .. ': ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)	
