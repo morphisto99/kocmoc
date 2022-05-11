@@ -2653,7 +2653,7 @@ function KillTest2()
 		end
 		if v:IsA("TextLabel") and string.find(v.Text,"Player_") then
 			print(v.Text)
-			v.Parent:Destroy()
+			v.Parent.Parent:Destroy()
 		end		
 		
 	end
