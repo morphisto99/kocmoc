@@ -2380,6 +2380,7 @@ task.spawn(function()
 					end
 				end
 			end
+			CheckPlayers() -- Morphisto
 		end
     end)
 end)
@@ -2577,8 +2578,8 @@ function KillStumpSnail()
 end
 -- Morphisto
 
-function KillTest2()
-	
+-- Morphisto
+function CheckPlayers()
 	local count = 1
 	for i, v in pairs(game:GetService("CoreGui"):GetDescendants()) do
 		if v:IsA("TextLabel") and string.find(v.Text,"Player" .. count) then
@@ -2621,31 +2622,14 @@ function KillTest2()
 			kocmoc.toggles.killwindy = true -- enable Windy Bee when no other players in game
 		end
 	end
+end
+
+function KillTest2()
+	
+
 
 	-- search and get other players not in white list
-	
-	
-	--[[
 
-	for i, v in pairs(game.Players:GetChildren()) do
-		table.insert(temptable.players, v.Name)
-		uiwlplayers:CreateButton('Player' .. i .. ': ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)
-	end
-
-
-	if not api.tablefind(kocmoc.wlplayers, v.Name) then
-		local playerpos = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.Position
-		--game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-		--print(v.Name .. ': x=' .. playerpos.X .. ' y=' .. playerpos.Y .. ' z=' .. playerpos.Z .. ' m=' .. playerpos.magnitude)
-		--local charpos = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
-		--print('0cutidudz0: x=' .. charpos.X .. ' y=' .. charpos.Y .. ' z=' .. charpos.Z .. ' m=' .. charpos.magnitude)
-		--if (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
-		if (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 150 then
-			print('User is close by')
-			break
-		end
-	end
-	]]--
 end
 
 function KillTest()
