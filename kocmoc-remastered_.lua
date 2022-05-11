@@ -39,7 +39,6 @@ end
 getgenv().temptable = {
     version = "3.2.9-1",
     blackfield = "Sunflower Field",
-	players = {}, -- Morphisto
     redfields = {},
     bluefields = {},
     whitefields = {},
@@ -91,6 +90,7 @@ getgenv().temptable = {
         coords
     },
     cache = {
+		disableinrange = false, -- Morphisto
 		boostaftermondo = false, -- Morphisto
 		autoant = false, -- Morphisto
 		farmpuffshrooms = false, -- Morphisto
@@ -1150,7 +1150,6 @@ amks:CreateTextBox('Kill Mobs After x Convertions', 'default = 3', true, functio
 uiwlplayers = combtab:CreateSection("Players") -- Morphisto
 uidisableinrange = uiwlplayers:CreateToggle("Disableall-other players in range", nil, function(State) kocmoc.toggles.disableinrange = State end) -- Morphisto
 for i, v in pairs(game.Players:GetChildren()) do
-	table.insert(temptable.players, v.Name)
 	uiwlplayers:CreateButton('Player' .. i .. ': ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)
 end
 
@@ -2655,19 +2654,31 @@ function KillTest2()
 		end		
 		
 	end
-	--temptable.players = {}
+	
+	temptable.cache.disableinrange = false
 	for i, v in pairs(game.Players:GetChildren()) do
-		--table.insert(temptable.players, v.Name)
 		if not api.tablefind(kocmoc.wlplayers, v.Name) then
 			uiwlplayers:CreateButton('Player' .. i .. '- ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)
 			local playerpos = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.Position
 			if (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 150 then
 				uiplayersinrange = combtab:CreateSection("Other Players in Range") -- Morphisto
-				uiplayersinrange:CreateLabel('Player_' .. i .. ': ' .. v.Name .. ' in range!')
-				--print('Player_' .. i .. ': ' .. v.Name .. ' in range!')
+				uiplayersinrange:CreateLabel('Player_' .. i .. ': ' .. v.Name .. ' in range. magnitude=' .. playerpos.magnitude)
+				temptable.cache.disableinrange = true
 			end
 		else
-			uiwlplayers:CreateButton('Player' .. i .. ': ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)
+			uiwlplayers:CreateButton('Player' .. i .. ': ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)	
+		end
+	end
+	
+	if temptable.cache.disableinrange then
+		if kocmoc.toggles.killwindy then
+			uikillwindy:SetState(false)
+			kocmoc.toggles.killwindy = false
+		end
+	else
+		if not kocmoc.toggles.killwindy then
+			uikillwindy:SetState(true)
+			kocmoc.toggles.killwindy = true
 		end
 	end
 
