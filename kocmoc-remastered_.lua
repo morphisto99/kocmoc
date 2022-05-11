@@ -1148,13 +1148,11 @@ local amks = combtab:CreateSection("Auto Kill Mobs Settings")
 amks:CreateTextBox('Kill Mobs After x Convertions', 'default = 3', true, function(Value) kocmoc.vars.monstertimer = tonumber(Value) end)
 
 uiwlplayers = combtab:CreateSection("Players") -- Morphisto
+uidisableinrange = uiwlplayers:CreateToggle("Disableall-other players in range", nil, function(State) kocmoc.toggles.disableinrange = State end) -- Morphisto
 for i, v in pairs(game.Players:GetChildren()) do
 	table.insert(temptable.players, v.Name)
 	uiwlplayers:CreateButton('Player' .. i .. ': ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)
 end
-
-uiplayersinrange = combtab:CreateSection("Other Players in Range") -- Morphisto
-uidisableinrange = uiplayersinrange:CreateToggle("Disableall-other players in range", nil, function(State) kocmoc.toggles.disableinrange = State end) -- Morphisto
 
 local wayp = misctab:CreateSection("Waypoints")
 wayp:CreateDropdown("Field Teleports", fieldstable, function(Option) game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").FlowerZones:FindFirstChild(Option).CFrame end)
@@ -2664,8 +2662,9 @@ function KillTest2()
 			uiwlplayers:CreateButton('Player' .. i .. '- ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)
 			local playerpos = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.Position
 			if (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 150 then
+				uiplayersinrange = combtab:CreateSection("Other Players in Range") -- Morphisto
 				uiplayersinrange:CreateLabel('Player_' .. i .. ': ' .. v.Name .. ' in range!')
-				print('Player_' .. i .. ': ' .. v.Name .. ' in range!')
+				--print('Player_' .. i .. ': ' .. v.Name .. ' in range!')
 			end
 		else
 			uiwlplayers:CreateButton('Player' .. i .. ': ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)
