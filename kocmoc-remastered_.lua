@@ -2384,65 +2384,6 @@ task.spawn(function()
     end)
 end)
 
-if _G.autoload then if isfile("kocmoc/BSS_".._G.autoload..".json") then kocmoc = game:service'HttpService':JSONDecode(readfile("kocmoc/BSS_".._G.autoload..".json")) end end
-if kocmoc.vars.field ~= "" then fielddropdown:SetOption(kocmoc.vars.field) end -- Morphisto
-if kocmoc.toggles.autofarm then autofarmtoggle:SetState(true) end -- Morphisto
-if kocmoc.toggles.autodig then uiautodig:SetState(true) end -- Morphisto
-if kocmoc.toggles.swapmaskonfield then uimaskonfield:SetState(true) end -- Morphisto
-if kocmoc.vars.autodigmode ~= "" then uiautodigmode:SetOption(kocmoc.vars.autodigmode) end -- Morphisto
-if kocmoc.toggles.disableconversion then uidisableconvert:SetState(true) end -- Morphisto
-if kocmoc.toggles.autouseconvertors then uiautouseconverters:SetState(true) end -- Morphisto
-if kocmoc.vars.autouseMode ~= "" then uiautouseMode:SetOption(kocmoc.vars.autouseMode) end -- Morphisto
-if kocmoc.toggles.autosprinkler then uiautosprinkler:SetState(true) end -- Morphisto
-if kocmoc.toggles.farmbubbles then uifarmbubbles:SetState(true) end -- Morphisto
-if kocmoc.toggles.farmflame then uifarmflame:SetState(true) end -- Morphisto
-if kocmoc.toggles.farmcoco then uifarmcoco:SetState(true) end -- Morphisto
-if kocmoc.toggles.collectcrosshairs then uicollectcrosshair:SetState(true) end -- Morphisto
-if kocmoc.toggles.farmfuzzy then uifarmfuzzy:SetState(true) end -- Morphisto
-if kocmoc.toggles.farmunderballoons then uifarmunderballoons:SetState(true) end -- Morphisto
-if kocmoc.toggles.farmclouds then uifarmclouds:SetState(true) end -- Morphisto
-if kocmoc.toggles.honeymaskconv then uihoneymaskconv:SetState(true) end -- Morphisto
-if kocmoc.vars.defmask ~= "" then uidefmask:SetOption(kocmoc.vars.defmask) end -- Morphisto
-if kocmoc.toggles.autodispense then uiautodispense:SetState(true) end -- Morphisto
-if kocmoc.toggles.autoboosters then uiautoboosters:SetState(true) end -- Morphisto
-if kocmoc.toggles.clock then uiclock:SetState(true) end -- Morphisto
-if kocmoc.toggles.autoplanters then uiautoplanters:SetState(true) end -- Morphisto
-if kocmoc.toggles.freeantpass then uifreeantpass:SetState(true) end -- Morphisto
-if kocmoc.toggles.farmsprouts then uifarmsprouts:SetState(true) end -- Morphisto
-if kocmoc.toggles.farmpuffshrooms then uifarmpuffshrooms:SetState(true) end -- Morphisto
-if kocmoc.toggles.farmrares then uifarmrares:SetState(true) end -- Morphisto
-if kocmoc.toggles.autoquest then uiautoquest:SetState(true) end -- Morphisto
-if kocmoc.toggles.autodoquest then uiautodoquest:SetState(true) end -- Morphisto
-if kocmoc.toggles.honeystorm then uihoneystorm:SetState(true) end -- Morphisto
-if kocmoc.vars.resetbeeenergy then uiresetbeeenergy:SetState(true) end -- Morphisto
-if kocmoc.toggles.killmondo then uikillmondo:SetState(true) end -- Morphisto
-if kocmoc.toggles.killvicious then uikillvicious:SetState(true) end -- Morphisto
-if kocmoc.toggles.killwindy then uikillwindy:SetState(true) end -- Morphisto
-if kocmoc.toggles.autoant then uiautoant:SetState(true) end -- Morphisto
-if kocmoc.toggles.loopspeed then wstoggle:SetState(true) end -- Morphisto
-if kocmoc.toggles.loopjump then jptoggle:SetState(true) end -- Morphisto
-if kocmoc.toggles.convertballoons then uiconvertballoons:SetState(true) end -- Morphisto
-if kocmoc.dispensesettings.rj then uirj:SetState(true) end -- Morphisto
-if kocmoc.dispensesettings.blub then uiblub:SetState(true) end -- Morphisto
-if kocmoc.dispensesettings.straw then uistraw:SetState(true) end -- Morphisto
-if kocmoc.dispensesettings.treat then uitreat:SetState(true) end -- Morphisto
-if kocmoc.dispensesettings.coconut then uicoconut:SetState(true) end -- Morphisto
-if kocmoc.dispensesettings.glue then uiglue:SetState(true) end -- Morphisto
-if kocmoc.dispensesettings.white then uiwhite:SetState(true) end -- Morphisto
-if kocmoc.dispensesettings.blue then uiblue:SetState(true) end -- Morphisto
-if kocmoc.dispensesettings.red then uired:SetState(true) end -- Morphisto
-if kocmoc.bestfields.white ~= "" then uibestwhite:SetOption(kocmoc.bestfields.white) end -- Morphisto
-if kocmoc.bestfields.red ~= "" then uibestred:SetOption(kocmoc.bestfields.red) end -- Morphisto
-if kocmoc.bestfields.blue ~= "" then uibestblue:SetOption(kocmoc.bestfields.blue) end -- Morphisto
-if kocmoc.vars.npcprefer ~= "" then uinpcprefer:SetOption(kocmoc.vars.npcprefer) end -- Morphisto
-if kocmoc.toggles.tptonpc then uitptonpc:SetState(true) end -- Morphisto
-if kocmoc.toggles.killcrab then uikillcrab:SetState(true) end -- Morphisto
-if kocmoc.toggles.killtunnelbear then uikilltunnelbear:SetState(true) end -- Morphisto
-if kocmoc.toggles.killkingbeetle then uikillkingbeetle:SetState(true) end -- Morphisto
-if kocmoc.toggles.killstumpsnail then uikillstumpsnail:SetState(true) end -- Morphisto
-if kocmoc.toggles.disableinrange then uidisableinrange.SetState(true) end -- Morphisto
-if kocmoc.vars.defmask ~= "" then game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"}) end -- Morphisto
-
 -- Morphisto
 function KillCoconutCrab()
 	local crabisready = false
@@ -2641,7 +2582,6 @@ function KillTest2()
 	local count = 1
 	for i, v in pairs(game:GetService("CoreGui"):GetDescendants()) do
 		if v:IsA("TextLabel") and string.find(v.Text,"Player" .. count) then
-			print(v.Text)
 			v.Parent:Destroy()
 			if count > 6 then
 				break
@@ -2650,7 +2590,6 @@ function KillTest2()
 			end
 		end
 		if v:IsA("TextLabel") and string.find(v.Text,"Player_") then
-			print(v.Text)
 			v.Parent.Parent:Destroy()
 			uiplayersinrange = combtab:CreateSection("Other Players in Range") -- Morphisto
 		end		
@@ -2679,7 +2618,7 @@ function KillTest2()
 	else
 		if not kocmoc.toggles.killwindy then
 			uikillwindy:SetState(true)
-			kocmoc.toggles.killwindy = true
+			kocmoc.toggles.killwindy = true -- enable Windy Bee when no other players in game
 		end
 	end
 
@@ -2917,6 +2856,65 @@ function getbiggestmodel(path)
 	print('partName2=' .. part.Parent.Name)
 	return part
 end
+
+if _G.autoload then if isfile("kocmoc/BSS_".._G.autoload..".json") then kocmoc = game:service'HttpService':JSONDecode(readfile("kocmoc/BSS_".._G.autoload..".json")) end end
+if kocmoc.vars.field ~= "" then fielddropdown:SetOption(kocmoc.vars.field) end -- Morphisto
+if kocmoc.toggles.autofarm then autofarmtoggle:SetState(true) end -- Morphisto
+if kocmoc.toggles.autodig then uiautodig:SetState(true) end -- Morphisto
+if kocmoc.toggles.swapmaskonfield then uimaskonfield:SetState(true) end -- Morphisto
+if kocmoc.vars.autodigmode ~= "" then uiautodigmode:SetOption(kocmoc.vars.autodigmode) end -- Morphisto
+if kocmoc.toggles.disableconversion then uidisableconvert:SetState(true) end -- Morphisto
+if kocmoc.toggles.autouseconvertors then uiautouseconverters:SetState(true) end -- Morphisto
+if kocmoc.vars.autouseMode ~= "" then uiautouseMode:SetOption(kocmoc.vars.autouseMode) end -- Morphisto
+if kocmoc.toggles.autosprinkler then uiautosprinkler:SetState(true) end -- Morphisto
+if kocmoc.toggles.farmbubbles then uifarmbubbles:SetState(true) end -- Morphisto
+if kocmoc.toggles.farmflame then uifarmflame:SetState(true) end -- Morphisto
+if kocmoc.toggles.farmcoco then uifarmcoco:SetState(true) end -- Morphisto
+if kocmoc.toggles.collectcrosshairs then uicollectcrosshair:SetState(true) end -- Morphisto
+if kocmoc.toggles.farmfuzzy then uifarmfuzzy:SetState(true) end -- Morphisto
+if kocmoc.toggles.farmunderballoons then uifarmunderballoons:SetState(true) end -- Morphisto
+if kocmoc.toggles.farmclouds then uifarmclouds:SetState(true) end -- Morphisto
+if kocmoc.toggles.honeymaskconv then uihoneymaskconv:SetState(true) end -- Morphisto
+if kocmoc.vars.defmask ~= "" then uidefmask:SetOption(kocmoc.vars.defmask) end -- Morphisto
+if kocmoc.toggles.autodispense then uiautodispense:SetState(true) end -- Morphisto
+if kocmoc.toggles.autoboosters then uiautoboosters:SetState(true) end -- Morphisto
+if kocmoc.toggles.clock then uiclock:SetState(true) end -- Morphisto
+if kocmoc.toggles.autoplanters then uiautoplanters:SetState(true) end -- Morphisto
+if kocmoc.toggles.freeantpass then uifreeantpass:SetState(true) end -- Morphisto
+if kocmoc.toggles.farmsprouts then uifarmsprouts:SetState(true) end -- Morphisto
+if kocmoc.toggles.farmpuffshrooms then uifarmpuffshrooms:SetState(true) end -- Morphisto
+if kocmoc.toggles.farmrares then uifarmrares:SetState(true) end -- Morphisto
+if kocmoc.toggles.autoquest then uiautoquest:SetState(true) end -- Morphisto
+if kocmoc.toggles.autodoquest then uiautodoquest:SetState(true) end -- Morphisto
+if kocmoc.toggles.honeystorm then uihoneystorm:SetState(true) end -- Morphisto
+if kocmoc.vars.resetbeeenergy then uiresetbeeenergy:SetState(true) end -- Morphisto
+if kocmoc.toggles.killmondo then uikillmondo:SetState(true) end -- Morphisto
+if kocmoc.toggles.killvicious then uikillvicious:SetState(true) end -- Morphisto
+if kocmoc.toggles.killwindy then uikillwindy:SetState(true) end -- Morphisto
+if kocmoc.toggles.autoant then uiautoant:SetState(true) end -- Morphisto
+if kocmoc.toggles.loopspeed then wstoggle:SetState(true) end -- Morphisto
+if kocmoc.toggles.loopjump then jptoggle:SetState(true) end -- Morphisto
+if kocmoc.toggles.convertballoons then uiconvertballoons:SetState(true) end -- Morphisto
+if kocmoc.dispensesettings.rj then uirj:SetState(true) end -- Morphisto
+if kocmoc.dispensesettings.blub then uiblub:SetState(true) end -- Morphisto
+if kocmoc.dispensesettings.straw then uistraw:SetState(true) end -- Morphisto
+if kocmoc.dispensesettings.treat then uitreat:SetState(true) end -- Morphisto
+if kocmoc.dispensesettings.coconut then uicoconut:SetState(true) end -- Morphisto
+if kocmoc.dispensesettings.glue then uiglue:SetState(true) end -- Morphisto
+if kocmoc.dispensesettings.white then uiwhite:SetState(true) end -- Morphisto
+if kocmoc.dispensesettings.blue then uiblue:SetState(true) end -- Morphisto
+if kocmoc.dispensesettings.red then uired:SetState(true) end -- Morphisto
+if kocmoc.bestfields.white ~= "" then uibestwhite:SetOption(kocmoc.bestfields.white) end -- Morphisto
+if kocmoc.bestfields.red ~= "" then uibestred:SetOption(kocmoc.bestfields.red) end -- Morphisto
+if kocmoc.bestfields.blue ~= "" then uibestblue:SetOption(kocmoc.bestfields.blue) end -- Morphisto
+if kocmoc.vars.npcprefer ~= "" then uinpcprefer:SetOption(kocmoc.vars.npcprefer) end -- Morphisto
+if kocmoc.toggles.tptonpc then uitptonpc:SetState(true) end -- Morphisto
+if kocmoc.toggles.killcrab then uikillcrab:SetState(true) end -- Morphisto
+if kocmoc.toggles.killtunnelbear then uikilltunnelbear:SetState(true) end -- Morphisto
+if kocmoc.toggles.killkingbeetle then uikillkingbeetle:SetState(true) end -- Morphisto
+if kocmoc.toggles.killstumpsnail then uikillstumpsnail:SetState(true) end -- Morphisto
+if kocmoc.toggles.disableinrange then uidisableinrange.SetState(true) end -- Morphisto
+if kocmoc.vars.defmask ~= "" then game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"}) end -- Morphisto
 
 for _, part in next, workspace:FindFirstChild("FieldDecos"):GetDescendants() do if part:IsA("BasePart") then part.CanCollide = false part.Transparency = part.Transparency < 0.5 and 0.5 or part.Transparency task.wait() end end
 for _, part in next, workspace:FindFirstChild("Decorations"):GetDescendants() do if part:IsA("BasePart") and (part.Parent.Name == "Bush" or part.Parent.Name == "Blue Flower") then part.CanCollide = false part.Transparency = part.Transparency < 0.5 and 0.5 or part.Transparency task.wait() end end
