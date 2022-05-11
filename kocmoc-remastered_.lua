@@ -2625,11 +2625,28 @@ function CheckPlayers()
 end
 
 function KillTest2()
+
+	local event = game.ReplicatedStorage.Events.SelectNPCOption:InvokeServer()
+	if event then
+		event:FireServer("StartFreeStickBugEvent")
+		wait(0.5)
+		if event then
+			event:FireServer("StartPaidStickBugEvent")
+		end
+	end
 	
-
-
-	-- search and get other players not in white list
-
+	--[[
+	shared.PepsiSwarm.gui.info:Button("Summon Stick Bug", Pepsi.fcall(function()
+		local event = Pepsi.Obj(ReplicatedStorage, "Events", "SelectNPCOption")
+		if event then
+			event:FireServer("StartFreeStickBugEvent")
+			wait(0.5)
+			if event then
+				event:FireServer("StartPaidStickBugEvent")
+			end
+		end
+	end))
+	]]--
 end
 
 function KillTest()
@@ -2897,7 +2914,9 @@ if kocmoc.toggles.killcrab then uikillcrab:SetState(true) end -- Morphisto
 if kocmoc.toggles.killtunnelbear then uikilltunnelbear:SetState(true) end -- Morphisto
 if kocmoc.toggles.killkingbeetle then uikillkingbeetle:SetState(true) end -- Morphisto
 if kocmoc.toggles.killstumpsnail then uikillstumpsnail:SetState(true) end -- Morphisto
-if kocmoc.toggles.disableinrange then uidisableinrange.SetState(true) end -- Morphisto
+if not kocmoc.toggles.disableinrange then
+	uidisableinrange.SetState(true)
+end
 if kocmoc.vars.defmask ~= "" then game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"}) end -- Morphisto
 
 for _, part in next, workspace:FindFirstChild("FieldDecos"):GetDescendants() do if part:IsA("BasePart") then part.CanCollide = false part.Transparency = part.Transparency < 0.5 and 0.5 or part.Transparency task.wait() end end
