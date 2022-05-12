@@ -2645,8 +2645,10 @@ function KillTest2()
 	--end
 	
 
-	for i,v in next, game:GetService("Players").LocalPlayer.PlayerGui.Frame:GetChildren() do
-		print('1=' .. v.Name)
+	for i,v in next, game:GetService("Players").LocalPlayer.PlayerGui:GetChildren() do
+		if v.Name == 'Frame' then
+			print('1=' .. v.Name)
+		end
 	end
 
 	for i,v in next, game:GetService("Chat").ChatWindow:GetChildren() do
