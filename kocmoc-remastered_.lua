@@ -2644,11 +2644,11 @@ function KillTest2()
 		--end
 	--end
 	
-	for i,v in next, game:GetService("Players").LocalPlayer.PlayerGui:GetDescendants() do
+	for i,v in next, game:GetService("Players").LocalPlayer.PlayerGui:Frame:GetDescendants() do
 		print('1=' .. v.Name)
 	end
 
-	for i,v in next, game:GetService("Players").LocalPlayer.PlayerGui.Framework:GetDescendants() do
+	for i,v in next, game:GetService("Players").LocalPlayer.PlayerGui.UI:GetDescendants() do
 		print('2=' .. v.Name)
 	end
 	
