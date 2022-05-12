@@ -2630,14 +2630,25 @@ end
 
 function KillTest2()
 
-	for i,v in next, game.workspace.Particles:GetChildren() do	
-		print('1:' .. v.Name)
-	end
+	--for i,v in next, game.workspace.Particles:GetChildren() do	
+		--print('1:' .. v.Name)
+	--end
 
-	for i,v in next, game.Workspace.Toys:GetChildren() do	
-		print('2:' .. v.Name)
+	--for i,v in next, game.Workspace.Toys:GetChildren() do	
+		--print('2:' .. v.Name)
+	--end
+	
+	--for _, v in pairs(game:GetService("CoreGui"):GetDescendants()) do
+		--if v:IsA("TextLabel") then
+			--print(v.Text)
+		--end
+	--end
+	
+	for i,v in next, game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.Menus:GetDescendants() do
+		print(v.Name)
 	end
 	
+	--[[
 	for i,v in next, game.Workspace.Flowers:GetChildren() do
 		print('3:' .. v.Name)
 	end
@@ -2657,7 +2668,7 @@ function KillTest2()
 	for i,v in next, game.Workspace.MonsterSpawners:GetChildren() do
 		print('7:' .. v.Name)
 	end
-	
+	]]--
 	--[[
 	for i,v in pairs(workspace.Monsters:GetChildren()) do
 		print(v.Name)
