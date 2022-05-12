@@ -2644,20 +2644,12 @@ function KillTest2()
 		--end
 	--end
 	
-	for i,v in next, game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.MessageBox:GetDescendants() do
+	for i,v in next, game:GetService("Players").LocalPlayer.PlayerGui:GetDescendants() do
 		print('1=' .. v.Name)
 	end
 
-	for i,v in next, game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.MessageBox:GetChildren() do
+	for i,v in next, game:GetService("Players").LocalPlayer.PlayerGui.Framework:GetDescendants() do
 		print('2=' .. v.Name)
-	end
-
-	for i,v in next, game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.TextBox:GetDescendants() do
-		print('3=' .. v.Name)
-	end
-
-	for i,v in next, game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.TextBox:GetChildren() do
-		print('4=' .. v.Name)
 	end
 	
 	--[[
