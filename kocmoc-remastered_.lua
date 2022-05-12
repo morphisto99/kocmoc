@@ -2644,7 +2644,7 @@ function KillTest2()
 		--end
 	--end
 	
-	for i,v in next, game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.Menus:GetDescendants() do
+	for i,v in next, game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui:GetDescendants() do
 		print(v.Name)
 	end
 	
