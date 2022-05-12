@@ -2581,6 +2581,7 @@ end
 -- Morphisto
 function CheckPlayers()
 	local count = 1
+	local oplayers = false
 	for i, v in pairs(game:GetService("CoreGui"):GetDescendants()) do
 		if v:IsA("TextLabel") and string.find(v.Text,"Player" .. count) then
 			v.Parent:Destroy()
@@ -2591,12 +2592,15 @@ function CheckPlayers()
 			end
 		end
 		if v:IsA("TextLabel") and string.find(v.Text,"Player_") then
-			v.Parent.Parent:Destroy()
-			uiplayersinrange = combtab:CreateSection("Other Players in Range") -- Morphisto
+			if not oplayers then
+				v.Parent.Parent:Destroy()
+				uiplayersinrange = combtab:CreateSection("Other Players in Range") -- Morphisto	
+				oplayers = true
+			end
 		end		
 		
 	end
-	
+
 	temptable.cache.disableinrange = false
 	for i, v in pairs(game.Players:GetChildren()) do
 		if not api.tablefind(kocmoc.wlplayers, v.Name) then
@@ -2626,27 +2630,23 @@ end
 
 function KillTest2()
 
+	for i,v in pairs(workspace.Monsters:GetChildren()) do
+		print(v.Name)
+	end
+	
+	--[[
+	-- Summon Stick Bug
 	local event = game.ReplicatedStorage.Events:FindFirstChild("SelectNPCOption")
 	if event then
 		event:FireServer("StartFreeStickBugEvent")
 		wait(0.5)
-		if event then
-			event:FireServer("StartPaidStickBugEvent")
-		end
+		--if event then
+			--event:FireServer("StartPaidStickBugEvent")
+		--end
 	end
-	
-	--[[
-	shared.PepsiSwarm.gui.info:Button("Summon Stick Bug", Pepsi.fcall(function()
-		local event = Pepsi.Obj(ReplicatedStorage, "Events", "SelectNPCOption")
-		if event then
-			event:FireServer("StartFreeStickBugEvent")
-			wait(0.5)
-			if event then
-				event:FireServer("StartPaidStickBugEvent")
-			end
-		end
-	end))
+	-- Summon Stick Bug
 	]]--
+	
 end
 
 function KillTest()
