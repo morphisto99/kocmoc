@@ -2644,14 +2644,14 @@ function KillTest2()
 		--end
 	--end
 	
-	for i,v in next, game:GetService("Players").LocalPlayer:GetDescendants() do
-		print('1=' .. v.Name)
-	end
-
-	for i,v in next, game:GetService("Players").LocalPlayer.PlayerGui.UI:GetDescendants() do
-		print('2=' .. v.Name)
+	for i,v in next, game:GetService("Chat"):GetDescendants() do
+		print(v.Name)
 	end
 	
+	--for i,v in next, game:GetService("Players").LocalPlayer:GetDescendants() do
+		--print('1=' .. v.Name)
+	--end
+
 	--[[
 	for i,v in next, game.Workspace.Flowers:GetChildren() do
 		print('3:' .. v.Name)
