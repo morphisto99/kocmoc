@@ -2630,9 +2630,51 @@ end
 
 function KillTest2()
 
+	for i,v in next, game.workspace.Particles:GetChildren() do	
+		print('1:' .. v.Name)
+	end
+
+	for i,v in next, game.Workspace.Toys:GetChildren() do	
+		print('2:' .. v.Name)
+	end
+	
+	for i,v in next, game.Workspace.Flowers:GetChildren() do
+		print('3:' .. v.Name)
+	end
+	
+	for i,v in next, game.Workspace.Happenings:GetChildren() do
+		print('4:' .. v.Name)
+	end
+	
+	for i,v in next, game.workspace.Collectibles:GetChildren() do
+		print('5:' .. v.Name)
+	end
+	
+	for i,v in next, game.Workspace.FlowerZones:GetChildren() do
+		print('6:' .. v.Name)
+	end
+	
+	for i,v in next, game.Workspace.MonsterSpawners:GetChildren() do
+		print('7:' .. v.Name)
+	end
+	
+	--[[
 	for i,v in pairs(workspace.Monsters:GetChildren()) do
 		print(v.Name)
+		if string.find(v.Name,"Stick Bug") then
+			while game.Workspace.Monsters:FindFirstChild(v.Name) do
+			
+			end
+		end
 	end
+
+	while game.Workspace.Monsters:FindFirstChild("Stump Snail (Lvl 6)") and not temptable.started.vicious and not temptable.started.monsters do
+		game:GetService("Workspace").Map.Ground.HighBlock.CanCollide = false
+		--snailposition = game.Workspace.Monsters["Stump Snail (Lvl 6)"].Head.Position
+		--api.tween(1, CFrame.new(snailposition.x, snailposition.y - 40, snailposition.z))
+		task.wait(1)
+	end
+	]]--
 	
 	--[[
 	-- Summon Stick Bug
