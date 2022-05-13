@@ -2643,10 +2643,13 @@ function KillTest2()
 			--print(v.Text)
 		--end
 	--end
-	for i,v in next, game.Players.LocalPlayer.PlayerScripts.ChatScript.ChatMain.ChatChannel:GetDescendants() do
+	--for i,v in next, game.Players.LocalPlayer.PlayerScripts.ChatScript.ChatMain:GetDescendants() do
+		--print(v.Name)
+	--end
+
+	for i,v in next, game.Players.LocalPlayer.PlayerScripts.ChatScript.ChatMain.ChatChannel:GetChildren() do
 		print(v.Name)
-	end
-	
+	end	
 	
 	--[[
 	local text1 = require(game.Players.LocalPlayer.PlayerScripts.ChatScript.ChatMain).MessagePosted
