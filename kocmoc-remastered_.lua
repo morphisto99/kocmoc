@@ -2647,10 +2647,19 @@ function KillTest2()
 		--print(v.Name)
 	--end
 
-	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("hmm", "All")
-	local asdf = require(game.Players.LocalPlayer.PlayerScripts.ChatScript.ChatMain)
-	asdf.MessagePosted:fire("hmm");
+	local Players = game:GetService("Players")
+    local Chat = game:GetService("Chat")
 
+    Players.PlayerAdded:Connect(function(player)
+    		Player.Chatted:Connect(function(message)
+			print(message)
+    		if message == "hmm" then
+    			player.PlayerGui:WaitForChild("ScreenGui")
+    			player.PlayerGui.ScreenGui.Frame.Visible = true
+				print('Test123')
+    		end
+    	end)
+    end)
 
 	
 	--[[
