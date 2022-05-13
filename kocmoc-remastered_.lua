@@ -2645,7 +2645,11 @@ function KillTest2()
 	--end
 
 	local text1 = require(game.Players.LocalPlayer.PlayerScripts.ChatScript.ChatMain).MessagePosted
-	for index, data in ipairs(text1) do
+	for k, v in pairs(text1) do
+		print(k, v)
+	end
+
+	for index, data in pairs(text1) do
 		print(index)
 
 		for key, value in pairs(data) do
