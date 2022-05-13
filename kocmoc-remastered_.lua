@@ -2647,9 +2647,11 @@ function KillTest2()
 		--print(v.Name)
 	--end
 
-	for i,v in next, game.Players.LocalPlayer.PlayerScripts.ChatScript.ChatMain.ChatChannel:GetChildren() do
-		print(v.Name)
-	end	
+	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("hmm", "All")
+	local asdf = require(game.Players.LocalPlayer.PlayerScripts.ChatScript.ChatMain)
+	asdf.MessagePosted:fire("hmm");
+
+
 	
 	--[[
 	local text1 = require(game.Players.LocalPlayer.PlayerScripts.ChatScript.ChatMain).MessagePosted
