@@ -2649,11 +2649,15 @@ function KillTest2()
 
 	
 	--local ChatBar = game:GetService('Players').LocalPlayer:WaitForChild('PlayerGui'):WaitForChild('Chat'):WaitForChild('Frame'):WaitForChild('ChatBarParentFrame'):WaitForChild('Frame'):WaitForChild('BoxFrame'):WaitForChild('Frame'):FindFirstChildOfClass('TextBox')
-	for i,v in next, game:GetService("Players").LocalPlayer.PlayerGui.Chat.Frame.ChatChannelParentFrame.Frame_MessageLogDisplay.Scroller:GetChildren() do
+	for i,v in next, game:GetService("Players").LocalPlayer.PlayerGui.Chat.Frame.ChatChannelParentFrame.Frame_MessageLogDisplay.Scroller.Frame:GetChildren() do
 		--if v:FindFirstChild("Attachment") then
 		print(v.Name)
 	end
-	
+
+	--local PlayerGui = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+	--you may need to wait for any of the objects in the path
+	--local messages = PlayerGui.Chat.Frame.ChatChannelParentFrame.Frame_MessageLogDisplay.Scroller
+
 	--[[
 	local text1 = require(game.Players.LocalPlayer.PlayerScripts.ChatScript.ChatMain).MessagePosted
 	for k, v in pairs(text1) do
