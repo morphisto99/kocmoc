@@ -2645,7 +2645,9 @@ function KillTest2()
 	--end
 
 	local text1 = require(game.Players.LocalPlayer.PlayerScripts.ChatScript.ChatMain).MessagePosted
-	print(text1)
+	for i,v in next, text1 do
+		print(v)
+	end
 
 	--[[
 	for i,v in next, game:GetService("Players").LocalPlayer.PlayerGui:GetChildren() do
