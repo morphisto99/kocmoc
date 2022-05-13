@@ -2643,8 +2643,11 @@ function KillTest2()
 			--print(v.Text)
 		--end
 	--end
-	
 
+	local text1 = require(game.Players.LocalPlayer.PlayerScripts.ChatScript.ChatMain).MessagePosted
+	print(text1)
+
+	--[[
 	for i,v in next, game:GetService("Players").LocalPlayer.PlayerGui:GetChildren() do
 		if v.Name == 'Frame' then
 			print('1=' .. v.Text)
@@ -2656,7 +2659,7 @@ function KillTest2()
 			print(v.Text)
 		end
 	end
-	
+	]]--
 	
 	--[[
 	for i,v in next, game.Workspace.Flowers:GetChildren() do
