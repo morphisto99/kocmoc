@@ -2649,7 +2649,14 @@ function KillTest2()
 
 	for i,v in next, game.ReplicatedStorage:GetDescendants() do
 		print(v.Name)
+		if v.Name == 'OnNewMessage' then
+			print(v.Text)
+		end
 	end
+	
+	--local ChatBar = game:GetService('Players').LocalPlayer:WaitForChild('PlayerGui'):WaitForChild('Chat'):WaitForChild('Frame'):WaitForChild('ChatBarParentFrame'):WaitForChild('Frame'):WaitForChild('BoxFrame'):WaitForChild('Frame'):FindFirstChildOfClass('TextBox')
+
+	
 	--[[
 	local text1 = require(game.Players.LocalPlayer.PlayerScripts.ChatScript.ChatMain).MessagePosted
 	for k, v in pairs(text1) do
