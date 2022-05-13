@@ -2647,15 +2647,12 @@ function KillTest2()
 		--print(v.Name)
 	--end
 
-	for i,v in next, game.ReplicatedStorage:GetDescendants() do
-		print(v.Name)
-		if v.Name == 'OnNewMessage' then
-			print(v.Text)
-		end
-	end
 	
 	--local ChatBar = game:GetService('Players').LocalPlayer:WaitForChild('PlayerGui'):WaitForChild('Chat'):WaitForChild('Frame'):WaitForChild('ChatBarParentFrame'):WaitForChild('Frame'):WaitForChild('BoxFrame'):WaitForChild('Frame'):FindFirstChildOfClass('TextBox')
-
+	for i,v in next, game:GetService("Players").LocalPlayer.PlayerGui.Chat:GetDescendants() do
+		--if v:FindFirstChild("Attachment") then
+		print(v.Name)
+	end
 	
 	--[[
 	local text1 = require(game.Players.LocalPlayer.PlayerScripts.ChatScript.ChatMain).MessagePosted
