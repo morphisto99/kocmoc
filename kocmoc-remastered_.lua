@@ -2628,55 +2628,57 @@ function CheckPlayers()
 	end
 end
 
+--chat messages have a huge amount of spaces at the start(for some reason)
+function removeSpaces(message) 
+	local result = message 
+	local length = message:len()
+	for i = 1, length do 
+		if result:sub(1, 1) == " " then 
+			result = result:sub(2, length)
+		else 
+			break 
+		end
+	end
+	return result 
+end
+
 function KillTest2()
 
-	--for i,v in next, game.workspace.Particles:GetChildren() do	
-		--print('1:' .. v.Name)
-	--end
-
-	--for i,v in next, game.Workspace.Toys:GetChildren() do	
-		--print('2:' .. v.Name)
-	--end
-	
-	--for _, v in pairs(game:GetService("CoreGui"):GetDescendants()) do
-		--if v:IsA("TextLabel") then
-			--print(v.Text)
-		--end
-	--end
-	--for i,v in next, game.Players.LocalPlayer.PlayerScripts.ChatScript.ChatMain:GetDescendants() do
-		--print(v.Name)
-	--end
-
-	
-	--local ChatBar = game:GetService('Players').LocalPlayer:WaitForChild('PlayerGui'):WaitForChild('Chat'):WaitForChild('Frame'):WaitForChild('ChatBarParentFrame'):WaitForChild('Frame'):WaitForChild('BoxFrame'):WaitForChild('Frame'):FindFirstChildOfClass('TextBox')
-	for i,v in next, game:GetService("Players").LocalPlayer.PlayerGui.Chat.Frame.ChatChannelParentFrame.Frame_MessageLogDisplay.Scroller.Frame:GetChildren() do
+	--[[
+	-- Works
+	for i,v in next, game:GetService("Players").LocalPlayer.PlayerGui.Chat.Frame.ChatChannelParentFrame.Frame_MessageLogDisplay.Scroller.Frame.TextLabel:GetChildren() do
 		--if v:FindFirstChild("Attachment") then
 		print(v.Name)
 	end
-
-	--local PlayerGui = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+	]]--
+	
+	local PlayerGui = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 	--you may need to wait for any of the objects in the path
-	--local messages = PlayerGui.Chat.Frame.ChatChannelParentFrame.Frame_MessageLogDisplay.Scroller
+	local messages = PlayerGui.Chat.Frame.ChatChannelParentFrame.Frame_MessageLogDisplay.Scroller
 
-	--[[
-	local text1 = require(game.Players.LocalPlayer.PlayerScripts.ChatScript.ChatMain).MessagePosted
-	for k, v in pairs(text1) do
-		print(k, v)
-	end
-	]]--
-	--[[
-	for i,v in next, game:GetService("Players").LocalPlayer.PlayerGui:GetChildren() do
-		if v.Name == 'Frame' then
-			print('1=' .. v.Text)
-		end
+	for i, message in pairs(messages:GetChildren()) do --loop through current messages
+		print(message)
+		if not message:IsA("Frame") then continue end
+		if not message:FindFirstChild("TextLabel") then continue end 
+		
+		local Button = message.TextLabel:FindFirstChild("TextButton")
+		if Button then 
+			print("actual chat message")
+			local text = Button.Text
+			local username = text:sub(2, text:len()-2) --cut out "[" and "]:
+			print("user:", username)
+		else 
+			print("Probably a system message")
+		end 
+
+		local messageText = removeSpaces(message.TextLabel.Text)
+		print("the message:", messageText)
+		
+		--actually "delete" the message(it will be done client-side other users will still be able to see it)
+		message:Destroy() 
 	end
 
-	for i,v in next, game:GetService("Chat"):GetChildren() do
-		if v.Name == 'ChatWindow' then
-			print(v.Text)
-		end
-	end
-	]]--
+
 	
 	--[[
 	for i,v in next, game.Workspace.Flowers:GetChildren() do
