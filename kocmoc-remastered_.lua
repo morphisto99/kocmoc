@@ -2643,20 +2643,17 @@ function KillTest2()
 			--print(v.Text)
 		--end
 	--end
-
+	for i,v in next, game.Players.LocalPlayer.PlayerScripts.ChatScript.ChatMain:GetDescendants() do
+		print(v.Name)
+	end
+	
+	
+	--[[
 	local text1 = require(game.Players.LocalPlayer.PlayerScripts.ChatScript.ChatMain).MessagePosted
 	for k, v in pairs(text1) do
 		print(k, v)
 	end
-
-	for index, data in pairs(text1) do
-		print(index)
-
-		for key, value in pairs(data) do
-			print('\t', key, value)
-		end
-	end
-
+	]]--
 	--[[
 	for i,v in next, game:GetService("Players").LocalPlayer.PlayerGui:GetChildren() do
 		if v.Name == 'Frame' then
