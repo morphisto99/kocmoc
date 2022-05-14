@@ -2644,20 +2644,16 @@ end
 
 function KillTest2()
 
-	--[[
-	-- Works
-	for i,v in next, game:GetService("Players").LocalPlayer.PlayerGui.Chat.Frame.ChatChannelParentFrame.Frame_MessageLogDisplay.Scroller.Frame.TextLabel:GetChildren() do
-		--if v:FindFirstChild("Attachment") then
-		print(v.Name)
+	if game.Workspace.FindFirstChild("Defense Totem") then
+		print('Defense Totem found!')
 	end
-	]]--
 	
+	--[[
 	local PlayerGui = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 	--you may need to wait for any of the objects in the path
 	local messages = PlayerGui.Chat.Frame.ChatChannelParentFrame.Frame_MessageLogDisplay.Scroller
 
 	for i, message in pairs(messages:GetChildren()) do --loop through current messages
-		print(message)
 		if not message:IsA("Frame") then continue end
 		if not message:FindFirstChild("TextLabel") then continue end 
 		
@@ -2675,9 +2671,10 @@ function KillTest2()
 		print("the message:", messageText)
 		
 		--actually "delete" the message(it will be done client-side other users will still be able to see it)
-		message:Destroy() 
+		--message:Destroy() 
+		-- Stick Bug build a Defense Totem in the Pine Tree Forest!
 	end
-
+	]]--
 
 	
 	--[[
