@@ -3025,6 +3025,10 @@ function getbiggestmodel(path)
 end
 
 function cleardevconsole()
+	for i,v in next, game.CoreGui.DevConsoleMaster.DevConsoleWindow.DevConsoleUI.GetChildren() do
+		print('DevConsole=' .. v.Name)
+	end
+	--[[
 	local Check = false
 
 	if game.CoreGui:FindFirstChild("DevConsoleMaster") then
@@ -3045,6 +3049,7 @@ function cleardevconsole()
 			end
 		end
 	end
+	]]--
 end
 
 if _G.autoload then if isfile("kocmoc/BSS_".._G.autoload..".json") then kocmoc = game:service'HttpService':JSONDecode(readfile("kocmoc/BSS_".._G.autoload..".json")) end end
