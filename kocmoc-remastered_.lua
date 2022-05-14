@@ -2002,7 +2002,12 @@ task.spawn(function() while task.wait() do
                     end
                 end
             end
-            if not awb then api.tween(1,temptable.gacf(temptable.windy, 5)) task.wait(1) awb = true end
+            if not awb then
+				api.tween(1,temptable.gacf(temptable.windy, 5)) -- tries to bump Windy Bee in Cloud -- Morphisto
+				api.tween(1,temptable.gacf(temptable.windy, 4)) -- tries to bump Windy Bee in Cloud -- Morphisto
+				task.wait(1)
+				awb = true
+			end
             if awb and temptable.windy.Name == "Windy" then
                 api.humanoidrootpart().CFrame = temptable.gacf(temptable.windy, 25) temptable.float = true task.wait()
             end
@@ -2684,9 +2689,12 @@ end
 
 function KillTest3()
 	--KillStickBug()
-	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.TileGrid.IconTile.BG.Icon:GetChildren()) do
-		print('KillTest1=' .. v)
+	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.TileGrid.IconTile.BG:GetChildren()) do
+		print('KillTest1=' .. v.Name)
 		print('KillTest2=' .. v.Text)
+		if v:FindFirstChild("Text") then
+			print('Text=' .. v:FindFirstChild("Text").Text)
+		end
 	end
 end
 
