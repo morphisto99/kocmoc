@@ -2691,7 +2691,9 @@ function KillTest3()
 	--KillStickBug()
 	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.TileGrid.IconTile.BG:GetChildren()) do
 		print('KillTest1=' .. v.Name)
-		print('KillTest2=' .. v.Text)
+		if v.Name == "Text" then
+			print('KillTest2=' .. v.Text)
+		end
 		if v:FindFirstChild("Text") then
 			print('Text=' .. v:FindFirstChild("Text").Text)
 		end
