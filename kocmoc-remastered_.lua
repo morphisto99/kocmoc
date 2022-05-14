@@ -2664,8 +2664,10 @@ function KillTest4()
 	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui:GetChildren()) do
 		if v.Name == "TileGrid" then
 			for p,l in pairs(v:GetChildren()) do
+				print('l.Name=' .. l.Name)
 				if l:FindFirstChild("BG") then
 					if l:FindFirstChild("BG"):FindFirstChild("Icon") then
+						print('l.Name2=' .. l.Name)
 						local ic = l:FindFirstChild("BG"):FindFirstChild("Icon")
 					end
 				end
@@ -2676,6 +2678,9 @@ end
 
 function KillTest3()
 	KillStickBug()
+	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.TileGrid.BG.Icon:GetChildren()) do
+		print('KillTest3=' .. v.Name)
+	end
 end
 
 function KillTest2()
