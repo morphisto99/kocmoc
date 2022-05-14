@@ -2667,8 +2667,8 @@ function removeSpaces(message)
 end
 
 function KillTest4()
+	print('Begin')
 	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui:GetChildren()) do
-		print('v.Name=' .. v.Name)
 		if v.Name == "TileGrid" then
 			for p,l in pairs(v:GetChildren()) do
 				print('l.Name=' .. l.Name)
@@ -2687,6 +2687,7 @@ function KillTest4()
 			end
 		end
 	end
+	print('End')
 end
 
 function KillTest3()
