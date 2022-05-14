@@ -2645,17 +2645,21 @@ end
 function KillTest2()
 	
 
-	if game.Workspace:FindFirstChild("Defense Totem") then
-		print('Defense Totem found!')
+	for i,v in pairs(game.workspace:GetChildren()) do
+		if v:IsA("Part") then
+			print(v)
+			print(v.Name)
+			--v.Parent = workspace.BasePlate;
+		end
 	end
 
-	for i,v in next, game.Workspace.Happenings:GetDescendants() do
-		print('4:' .. v.Name)
-	end
+	--for i,v in next, game.Workspace.Happenings:GetDescendants() do
+		--print('4:' .. v.Name)
+	--end
 	
-	for i,v in next, game.Workspace.MonsterSpawners:GetDescendants() do
-		print('7:' .. v.Name)
-	end
+	--for i,v in next, game.Workspace.MonsterSpawners:GetDescendants() do
+		--print('7:' .. v.Name)
+	--end
 	
 	--for i,v in next, game.Workspace:GetDescendants() do
 		--print('3:' .. v.Name)
