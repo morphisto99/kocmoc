@@ -2662,6 +2662,7 @@ end
 
 function KillTest4()
 	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui:GetChildren()) do
+		print('v.Name=' .. v.Name)
 		if v:FindFirstChild("TileGrid") then
 			print('test1')
 			if v:FindFirstChild("TileGrid"):FindFirstChild("IconTile") then
@@ -2700,7 +2701,7 @@ function KillTest2()
 		print('killmobs1():' .. v.Name)
         if v:FindFirstChild("Territory") then
 			local Terr = v:FindFirstChild("Territory")
-			print('killmobs2():' .. Terr.Name)
+			print('killmobs2():' .. Terr.Text)
 		end
 	end
 
