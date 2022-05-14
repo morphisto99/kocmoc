@@ -2624,10 +2624,10 @@ function CheckPlayers()
 		if not api.tablefind(kocmoc.wlplayers, v.Name) then
 			uiwlplayers:CreateButton('Player' .. i .. '- ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)
 			temptable.cache.disableinrange = true
-			local playerpos = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.Position
-			if (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 150 then
-				uiplayersinrange:CreateLabel('Player_' .. i .. ': ' .. v.Name .. ' in range!')
-			end
+			--local playerpos = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.Position
+			--if (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 150 then
+				--uiplayersinrange:CreateLabel('Player_' .. i .. ': ' .. v.Name .. ' in range!')
+			--end
 		else
 			uiwlplayers:CreateButton('Player' .. i .. ': ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)	
 		end
