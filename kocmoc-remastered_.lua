@@ -2657,9 +2657,9 @@ function KillTest2()
 		print('7:' .. v.Name)
 	end
 	
-	for i,v in next, game.Workspace:GetDescendants() do
-		print('3:' .. v.Name)
-	end	
+	--for i,v in next, game.Workspace:GetDescendants() do
+		--print('3:' .. v.Name)
+	--end	
 	
 	--[[
 	local PlayerGui = game.Players.LocalPlayer:WaitForChild("PlayerGui")
