@@ -2684,7 +2684,7 @@ end
 
 function KillTest3()
 	--KillStickBug()
-	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.TileGrid.IconTile.BG.Bar:GetChildren()) do
+	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.TileGrid:GetChildren()) do
 		print('KillTest1=' .. v.Name)
 		--print('KillTest2=' .. v.Text)
 	end
@@ -2701,7 +2701,7 @@ function KillTest2()
 		print('killmobs1():' .. v.Name)
         if v:FindFirstChild("Territory") then
 			local Terr = v:FindFirstChild("Territory")
-			print('killmobs2():' .. Terr.Text)
+			--print('killmobs2():' .. Terr.Name)
 		end
 	end
 
