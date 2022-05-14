@@ -2684,7 +2684,7 @@ end
 
 function KillTest3()
 	--KillStickBug()
-	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.TileGrid.IconTile.BG:GetChildren()) do
+	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.TileGrid.IconTile.BG.Icon:GetChildren()) do
 		print('KillTest1=' .. v.Name)
 		--print('KillTest2=' .. v.Text)
 	end
