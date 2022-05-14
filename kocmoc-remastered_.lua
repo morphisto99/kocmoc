@@ -1161,8 +1161,9 @@ wayp:CreateDropdown("Toys Teleports", toystable, function(Option) d = game:GetSe
 wayp:CreateButton("Teleport to hive", function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Players").LocalPlayer.SpawnPos.Value end)
 wayp:CreateButton("print location", function() print(game.Players.LocalPlayer.Character.HumanoidRootPart.Position) end) -- Morphisto
 wayp:CreateButton("Test", function() KillTest() end) -- Morphisto
-test2 = wayp:CreateButton("Test2", function() KillTest2() end) -- Morphisto
-test2.TextColor3 = Color3.new(1, 0, 0)
+test2 = wayp:CreateButton("Check Defense Totem", function() KillTest2() end) -- Morphisto
+test3 = wayp:CreateButton("Kill Stickbug", function() KillTest3() end) -- Morphisto
+test4 = wayp:CreateButton("Check for Buffs", function() KillTest4() end) -- Morphisto
 wayp:CreateDropdown("NPC Teleports", {"Black Bear","Brown Bear","Bucko Bee","Honey Bee","Panda Bear","Polar Bear","Riley Bee","Science Bear","Spirit Bear","Science Bear","Mother Bear","Sun Bear","Stick Bug","Onett","Gummy Lair","Bubble Bee Man","Meteor Shower","Demon Mask","Diamond Mask"}, function(Option) game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = npctable[Option] end) -- Morphisto
 
 local useitems = itemstab:CreateSection("Use Items")
@@ -2579,6 +2580,22 @@ end
 -- Morphisto
 
 -- Morphisto
+function KillStickBug()
+	for i,v in pairs(workspace.Monsters:GetChildren()) do
+		if string.find(v.Name,"Stick Bug") then
+			while game.Workspace.Monsters:FindFirstChild(v.Name) do
+				--game:GetService("Workspace").Map.Ground.HighBlock.CanCollide = false
+				stickbugposition = game.Workspace.Monsters[v.Name].Head.Position
+				api.tween(1, CFrame.new(stickbugposition.x, stickbugposition.y + 30, stickbugposition.z))
+				task.wait(1)
+			end
+			for i = 1, 4 do gettoken(stickbugposition) end
+		end
+	end
+
+end
+
+-- Morphisto
 function CheckPlayers()
 	local count = 1
 	local oplayers = false
@@ -2591,6 +2608,7 @@ function CheckPlayers()
 				count += 1
 			end
 		end
+		--[[
 		if v:IsA("TextLabel") and string.find(v.Text,"Player_") then
 			if not oplayers then
 				v.Parent.Parent:Destroy()
@@ -2598,7 +2616,7 @@ function CheckPlayers()
 				oplayers = true
 			end
 		end		
-		
+		]]--
 	end
 
 	temptable.cache.disableinrange = false
@@ -2642,16 +2660,41 @@ function removeSpaces(message)
 	return result 
 end
 
+function KillTest4()
+	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui:GetChildren()) do
+		if v.Name == "TileGrid" then
+			for p,l in pairs(v:GetChildren()) do
+				if l:FindFirstChild("BG") then
+					if l:FindFirstChild("BG"):FindFirstChild("Icon") then
+						local ic = l:FindFirstChild("BG"):FindFirstChild("Icon")
+					end
+				end
+			end
+		end
+	end
+end
+
+function KillTest3()
+	KillStickBug()
+end
+
 function KillTest2()
 	
-
 	for i,v in pairs(game.workspace:GetChildren()) do
 		if v:IsA("Part") then
-			print(v)
-			print(v.Name)
+			print('Part=' .. v.Name)
+			print('Part2=' .. v.Text)
 			--v.Parent = workspace.BasePlate;
 		end
 	end
+
+    for i,v in pairs(game:GetService("Workspace").MonsterSpawners:GetChildren()) do
+		print('killmobs1():' .. v.Name)
+        if v:FindFirstChild("Territory") then
+			print('killmobs2():' .. v.Name)
+		end
+	end
+
 
 	--for i,v in next, game.Workspace.Happenings:GetDescendants() do
 		--print('4:' .. v.Name)
