@@ -2004,6 +2004,7 @@ task.spawn(function() while task.wait() do
             end
             if not awb then
 				api.tween(1,temptable.gacf(temptable.windy, 5)) -- tries to bump Windy Bee in Cloud -- Morphisto
+				task.wait(1)
 				api.tween(1,temptable.gacf(temptable.windy, 4)) -- tries to bump Windy Bee in Cloud -- Morphisto
 				task.wait(1)
 				awb = true
@@ -2668,17 +2669,19 @@ end
 function KillTest4()
 	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui:GetChildren()) do
 		print('v.Name=' .. v.Name)
-		if v:FindFirstChild("TileGrid") then
-			print('test1')
-			if v:FindFirstChild("TileGrid"):FindFirstChild("IconTile") then
-				print('test2')
-				if v:FindFirstChild("TileGrid"):FindFirstChild("IconTile"):FindFirstChild("BG") then
-					print('test3')
-					if v:FindFirstChild("TileGrid"):FindFirstChild("IconTile"):FindFirstChild("BG"):FindFirstChild("Bar") then
-						print('test4')
-						if v:FindFirstChild("TileGrid"):FindFirstChild("IconTile"):FindFirstChild("BG"):FindFirstChild("Bar"):FindFirstChild("Icon") then
-							local Icon = v:FindFirstChild("TileGrid"):FindFirstChild("IconTile"):FindFirstChild("BG"):FindFirstChild("Bar"):FindFirstChild("Icon")
-							print('Icon.Text=' .. Icon.Text)
+		if v.Name == "TileGrid" then
+			for p,l in pairs(v:GetChildren()) do
+				print('l.Name=' .. l.Name)
+				if l:FindFirstChild("BG") then
+					if l:FindFirstChild("BG"):FindFirstChild("Icon") then
+						local ic = l:FindFirstChild("BG"):FindFirstChild("Icon")
+						print('ic.image=' .. ic.image)
+						if ic.Parent:FindFirstChild("Text") ~= "" then
+							local icontext = ic.Parent:FindFirstChild("Text")
+							print('text=' .. icontext)
+							print('text1=' .. icontext.Text)
+							local thing = ""
+							thing = string.gsub(ic.Parent:FindFirstChild("Text").Text,"x","")
 						end
 					end
 				end
