@@ -2678,7 +2678,6 @@ function KillTest4()
 						print('ic.image=' .. ic.image)
 						if ic.Parent:FindFirstChild("Text") ~= "" then
 							local icontext = ic.Parent:FindFirstChild("Text")
-							print('text=' .. icontext)
 							print('text1=' .. icontext.Text)
 							local thing = ""
 							thing = string.gsub(ic.Parent:FindFirstChild("Text").Text,"x","")
