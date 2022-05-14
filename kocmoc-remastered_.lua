@@ -2662,12 +2662,17 @@ end
 
 function KillTest4()
 	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui:GetChildren()) do
-		if v.Name == "TileGrid" then
-			for p,l in pairs(v:GetChildren()) do
-				if l:FindFirstChild("BG") then
-					if l:FindFirstChild("BG"):FindFirstChild("Icon") then
-						if l:FindFirstChild("BG"):FindFirstChild("Icon"):FindFirstChild("IconTile") then
-							print('l.Name2=' .. l.Name)
+		if v:FindFirstChild("TileGrid") then
+			print('test1')
+			if v:FindFirstChild("TileGrid"):FindFirstChild("IconTile") then
+				print('test2')
+				if v:FindFirstChild("TileGrid"):FindFirstChild("IconTile"):FindFirstChild("BG") then
+					print('test3')
+					if v:FindFirstChild("TileGrid"):FindFirstChild("IconTile"):FindFirstChild("BG"):FindFirstChild("Bar") then
+						print('test4')
+						if v:FindFirstChild("TileGrid"):FindFirstChild("IconTile"):FindFirstChild("BG"):FindFirstChild("Bar"):FindFirstChild("Icon") then
+							local Icon = v:FindFirstChild("TileGrid"):FindFirstChild("IconTile"):FindFirstChild("BG"):FindFirstChild("Bar"):FindFirstChild("Icon")
+							print('Icon.Text=' .. Icon.Text)
 						end
 					end
 				end
@@ -2678,21 +2683,24 @@ end
 
 function KillTest3()
 	KillStickBug()
-	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.TileGrid:GetDescendants()) do
-		print('KillTest3=' .. v.Name)
+	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.TileGrid.IconTile.BG.Bar.Icon:GetChildren()) do
+		print('KillTest1=' .. v.Name)
+		print('KillTest2=' .. v.Text)
 	end
 end
 
 function KillTest2()
 	
-	for i,v in pairs(game.workspace.Part:GetDescendants()) do
-		print('Part=' .. v.Name)
+	for i,v in pairs(game.workspace.Part:GetChildren()) do
+		print('v=' .. v)
+		print('Part.Name=' .. v.Name)
 	end
 
     for i,v in pairs(game:GetService("Workspace").MonsterSpawners:GetChildren()) do
 		print('killmobs1():' .. v.Name)
         if v:FindFirstChild("Territory") then
-			print('killmobs2():' .. v.Name)
+			local Terr = v:FindFirstChild("Territory")
+			print('killmobs2():' .. Terr.Name)
 		end
 	end
 
