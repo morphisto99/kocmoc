@@ -2645,7 +2645,7 @@ end
 function KillTest2()
 	
 
-	if game.Workspace.FindFirstChild("Defense Totem") then
+	if game.Workspace:FindFirstChild("Defense Totem") then
 		print('Defense Totem found!')
 	end
 
