@@ -2643,10 +2643,23 @@ function removeSpaces(message)
 end
 
 function KillTest2()
+	
 
 	if game.Workspace.FindFirstChild("Defense Totem") then
 		print('Defense Totem found!')
 	end
+
+	for i,v in next, game.Workspace.Happenings:GetDescendants() do
+		print('4:' .. v.Name)
+	end
+	
+	for i,v in next, game.Workspace.MonsterSpawners:GetDescendants() do
+		print('7:' .. v.Name)
+	end
+	
+	for i,v in next, game.Workspace:GetDescendants() do
+		print('3:' .. v.Name)
+	end	
 	
 	--[[
 	local PlayerGui = game.Players.LocalPlayer:WaitForChild("PlayerGui")
@@ -2698,6 +2711,7 @@ function KillTest2()
 		print('7:' .. v.Name)
 	end
 	]]--
+	
 	--[[
 	for i,v in pairs(workspace.Monsters:GetChildren()) do
 		print(v.Name)
