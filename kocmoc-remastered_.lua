@@ -2664,11 +2664,11 @@ function KillTest4()
 	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui:GetChildren()) do
 		if v.Name == "TileGrid" then
 			for p,l in pairs(v:GetChildren()) do
-				print('l.Name=' .. l.Name)
 				if l:FindFirstChild("BG") then
 					if l:FindFirstChild("BG"):FindFirstChild("Icon") then
-						print('l.Name2=' .. l.Name)
-						local ic = l:FindFirstChild("BG"):FindFirstChild("Icon")
+						if l:FindFirstChild("BG"):FindFirstChild("Icon"):FindFirstChild("IconTile") then
+							print('l.Name2=' .. l.Name)
+						end
 					end
 				end
 			end
@@ -2678,19 +2678,15 @@ end
 
 function KillTest3()
 	KillStickBug()
-	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.TileGrid.BG.Icon:GetChildren()) do
+	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.TileGrid:GetDescendants()) do
 		print('KillTest3=' .. v.Name)
 	end
 end
 
 function KillTest2()
 	
-	for i,v in pairs(game.workspace:GetChildren()) do
-		if v:IsA("Part") then
-			print('Part=' .. v.Name)
-			print('Part2=' .. v.Text)
-			--v.Parent = workspace.BasePlate;
-		end
+	for i,v in pairs(game.workspace.Part:GetDescendants()) do
+		print('Part=' .. v.Name)
 	end
 
     for i,v in pairs(game:GetService("Workspace").MonsterSpawners:GetChildren()) do
