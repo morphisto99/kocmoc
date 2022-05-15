@@ -2731,13 +2731,13 @@ function KillTest2()
 	print('Getting NPCBees')
 	for i,v in pairs(game:GetService("Workspace").NPCBees:GetChildren()) do
 		print('NPCBees=' .. v.Name)
-	end)
+	end
 
 	print(' ')
 	print('Getting NPCs')
 	for i,v in pairs(game:GetService("Workspace").NPCs:GetChildren()) do
 		print('NPCs=' .. v.Name)
-	end)
+	end
 	
 	--for i,v in next, game.Workspace.Happenings:GetDescendants() do
 		--print('4:' .. v.Name)
