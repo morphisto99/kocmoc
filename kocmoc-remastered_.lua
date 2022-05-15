@@ -2627,21 +2627,15 @@ function CheckPlayers()
 			else
 				count += 1
 			end
-		end		
-	end
-	--[[
-	count = 1
-	for i, v in pairs(game:GetService("CoreGui"):GetDescendants()) do
-		if v:IsA("TextLabel") and string.find(v.Text,"Player_" .. count) then
-			v.Parent:Destroy()
-			if count > 6 then
-				break
-			else
-				count += 1
+		elseif v:IsA("TextLabel") and string.find(v.Text,"Player_") then
+			if not oplayers then
+				v.Parent.Parent:Destroy()
+				oplayers = true
 			end
 		end		
 	end
-	]]--
+	
+	oplayers = false
 	temptable.cache.disableinrange = false
 	for i, v in pairs(game.Players:GetChildren()) do
 		if not api.tablefind(kocmoc.wlplayers, v.Name) then
@@ -2649,6 +2643,10 @@ function CheckPlayers()
 			temptable.cache.disableinrange = true
 			local playerpos = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.Position
 			if (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 150 then
+				if not oplayers then
+					local uiplayersinrange = combtab:CreateSection("Other Players in Range") -- Morphisto
+					oplayers = true
+				end
 				uiplayersinrange:CreateLabel('Player_' .. i .. ': ' .. v.Name .. ' in range!')
 			end
 		else
