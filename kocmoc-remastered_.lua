@@ -2632,12 +2632,12 @@ function CheckPlayers()
 		elseif v:IsA("TextLabel") and string.find(v.Text,"Player_") then
 			if not oplayers then
 				v.Parent.Parent:Destroy()
-				local uiplayersinrange = combtab:CreateSection("Other Players in Range") -- Morphisto
 				oplayers = true
 			end
 		end		
 	end
-
+	
+	oplayers = false
 	temptable.cache.disableinrange = false
 	for i, v in pairs(game.Players:GetChildren()) do
 		if not api.tablefind(kocmoc.wlplayers, v.Name) then
@@ -2645,6 +2645,10 @@ function CheckPlayers()
 			temptable.cache.disableinrange = true
 			local playerpos = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.Position
 			if (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 150 then
+				if not oplayers then
+					local uiplayersinrange = combtab:CreateSection("Other Players in Range") -- Morphisto
+					oplayers = true
+				end
 				uiplayersinrange:CreateLabel('Player_' .. i .. ': ' .. v.Name .. ' in range!')
 			end
 		else
