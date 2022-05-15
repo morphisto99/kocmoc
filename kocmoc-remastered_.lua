@@ -2631,8 +2631,8 @@ function CheckPlayers()
 			end
 		elseif v:IsA("TextLabel") and string.find(v.Text,"Player_") then
 			if not oplayers then
-				v.Parent:Destroy()
-				--local uiplayersinrange = combtab:CreateSection("Other Players in Range") -- Morphisto	
+				v.Parent.Parent:Destroy()
+				local uiplayersinrange = combtab:CreateSection("Other Players in Range") -- Morphisto	
 				oplayers = true
 			end
 		end		
