@@ -354,6 +354,7 @@ getgenv().kocmoc = {
         autodonate = false,
         autouseconvertors = false,
         honeymaskconv = false,
+		farmboostedfield = false, -- Morphisto
 		disableinrange = false, -- Morphisto
 		killstumpsnail = false, -- Morphisto
 		killkingbeetle = false, -- Morphisto
@@ -1096,6 +1097,8 @@ farmo:CreateLabel("")
 uihoneymaskconv = farmo:CreateToggle("Auto Honey Mask",nil,function(bool)
     kocmoc.toggles.honeymaskconv = bool
 end)
+uifarmboostedfield = farmo:CreateToggle("Farm Boosted field on Default Mask",nil,function(State) kocmoc.toggles.farmboostedfield = State end) -- Morphisto
+
 uidefmask = farmo:CreateDropdown("Default Mask",MasksTable,function(val)
     kocmoc.vars.defmask = val
 end)
@@ -1138,6 +1141,8 @@ mobkill:CreateToggle("Auto Kill Mobs", nil, function(State) kocmoc.toggles.autok
 mobkill:CreateToggle("Avoid Mobs", nil, function(State) kocmoc.toggles.avoidmobs = State end)
 uiautoant = mobkill:CreateToggle("Auto Ant", nil, function(State) kocmoc.toggles.autoant = State end) -- Morphisto
 
+local uiplayersinrange = combtab:CreateSection("Other Players in Range") -- Morphisto
+
 local serverhopkill = combtab:CreateSection("Serverhopping Combat")
 serverhopkill:CreateButton("Vicious Bee Serverhopper [⚠️][📜]",function() loadstring(game:HttpGet("https://raw.githubusercontent.com/Boxking776/kocmoc/main/functions/viciousbeeserverhop.lua"))() end):AddToolTip("Serverhops for rouge vicious bees")
 serverhopkill:CreateLabel("")
@@ -1147,12 +1152,12 @@ serverhopkill:CreateLabel("")
 local amks = combtab:CreateSection("Auto Kill Mobs Settings")
 amks:CreateTextBox('Kill Mobs After x Convertions', 'default = 3', true, function(Value) kocmoc.vars.monstertimer = tonumber(Value) end)
 
-uiwlplayers = combtab:CreateSection("Players") -- Morphisto
-uidisableinrange = uiwlplayers:CreateToggle("Disableall-other players in range", nil, function(State) kocmoc.toggles.disableinrange = State end) -- Morphisto
+local uiwlplayers = combtab:CreateSection("Players") -- Morphisto
+uidisableinrange = uiwlplayers:CreateToggle("Stop autofarm if * players in range", nil, function(State) kocmoc.toggles.disableinrange = State end) -- Morphisto
+
 for i, v in pairs(game.Players:GetChildren()) do
 	uiwlplayers:CreateButton('Player' .. i .. ': ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)
 end
-uiplayersinrange = combtab:CreateSection("Other Players in Range") -- Morphisto
 
 local wayp = misctab:CreateSection("Waypoints")
 wayp:CreateDropdown("Field Teleports", fieldstable, function(Option) game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").FlowerZones:FindFirstChild(Option).CFrame end)
@@ -2623,27 +2628,24 @@ function CheckPlayers()
 			else
 				count += 1
 			end
-		end
-		--[[
-		if v:IsA("TextLabel") and string.find(v.Text,"Player_") then
+		elseif v:IsA("TextLabel") and string.find(v.Text,"Player_") then
 			if not oplayers then
 				v.Parent.Parent:Destroy()
 				uiplayersinrange = combtab:CreateSection("Other Players in Range") -- Morphisto	
 				oplayers = true
 			end
 		end		
-		]]--
 	end
 
 	temptable.cache.disableinrange = false
 	for i, v in pairs(game.Players:GetChildren()) do
 		if not api.tablefind(kocmoc.wlplayers, v.Name) then
-			uiwlplayers:CreateButton('Player' .. i .. '- ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)
+			uiwlplayers:CreateButton('Player' .. i .. '* ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)
 			temptable.cache.disableinrange = true
-			--local playerpos = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.Position
-			--if (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 150 then
-				--uiplayersinrange:CreateLabel('Player_' .. i .. ': ' .. v.Name .. ' in range!')
-			--end
+			local playerpos = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.Position
+			if (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 150 then
+				uiplayersinrange:CreateLabel('Player_' .. i .. ': ' .. v.Name .. ' in range!')
+			end
 		else
 			uiwlplayers:CreateButton('Player' .. i .. ': ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)	
 		end
@@ -3104,10 +3106,8 @@ if kocmoc.toggles.killcrab then uikillcrab:SetState(true) end -- Morphisto
 if kocmoc.toggles.killtunnelbear then uikilltunnelbear:SetState(true) end -- Morphisto
 if kocmoc.toggles.killkingbeetle then uikillkingbeetle:SetState(true) end -- Morphisto
 if kocmoc.toggles.killstumpsnail then uikillstumpsnail:SetState(true) end -- Morphisto
-if kocmoc.toggles.disableinrange ~= true then
-	kocmoc.toggles.disableinrange = true
-	uidisableinrange.SetState(true)
-end
+if kocmoc.toggles.disableinrange then uidisableinrange:SetState(true) end -- Morphisto
+if kocmoc.toggles.farmboostedfield then uifarmboostedfield:SetState(true) end -- Morphisto
 if kocmoc.vars.defmask ~= "" then game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"}) end -- Morphisto
 
 for _, part in next, workspace:FindFirstChild("FieldDecos"):GetDescendants() do if part:IsA("BasePart") then part.CanCollide = false part.Transparency = part.Transparency < 0.5 and 0.5 or part.Transparency task.wait() end end
