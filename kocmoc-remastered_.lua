@@ -1141,8 +1141,6 @@ mobkill:CreateToggle("Auto Kill Mobs", nil, function(State) kocmoc.toggles.autok
 mobkill:CreateToggle("Avoid Mobs", nil, function(State) kocmoc.toggles.avoidmobs = State end)
 uiautoant = mobkill:CreateToggle("Auto Ant", nil, function(State) kocmoc.toggles.autoant = State end) -- Morphisto
 
-local uiplayersinrange = combtab:CreateSection("Other Players in Range") -- Morphisto
-
 local serverhopkill = combtab:CreateSection("Serverhopping Combat")
 serverhopkill:CreateButton("Vicious Bee Serverhopper [⚠️][📜]",function() loadstring(game:HttpGet("https://raw.githubusercontent.com/Boxking776/kocmoc/main/functions/viciousbeeserverhop.lua"))() end):AddToolTip("Serverhops for rouge vicious bees")
 serverhopkill:CreateLabel("")
@@ -1158,6 +1156,8 @@ uidisableinrange = uiwlplayers:CreateToggle("Stop autofarm if * players in range
 for i, v in pairs(game.Players:GetChildren()) do
 	uiwlplayers:CreateButton('Player' .. i .. ': ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)
 end
+
+local uiplayersinrange = combtab:CreateSection("Other Players in Range") -- Morphisto
 
 local wayp = misctab:CreateSection("Waypoints")
 wayp:CreateDropdown("Field Teleports", fieldstable, function(Option) game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").FlowerZones:FindFirstChild(Option).CFrame end)
