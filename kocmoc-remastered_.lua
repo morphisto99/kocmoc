@@ -2629,6 +2629,7 @@ function CheckPlayers()
 			end
 		end		
 	end
+	--[[
 	count = 1
 	for i, v in pairs(game:GetService("CoreGui"):GetDescendants()) do
 		if v:IsA("TextLabel") and string.find(v.Text,"Player_" .. count) then
@@ -2640,7 +2641,7 @@ function CheckPlayers()
 			end
 		end		
 	end
-	
+	]]--
 	temptable.cache.disableinrange = false
 	for i, v in pairs(game.Players:GetChildren()) do
 		if not api.tablefind(kocmoc.wlplayers, v.Name) then
