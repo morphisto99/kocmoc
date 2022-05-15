@@ -1759,8 +1759,9 @@ task.spawn(function() while task.wait() do
 					if GetItemListWithValue()["JellyBeans"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Jelly Beans"})
 					end
-					if GetItemListWithValue()["CloudVial"] > 0 then
+					if GetItemListWithValue()["CloudVial"] > 1 then
 						print('inside of Cloudvial')
+						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Cloud Vial"})
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Cloud Vial"})
 					end
 					if GetItemListWithValue()["BlueExtract"] > 0 then
@@ -1791,7 +1792,8 @@ task.spawn(function() while task.wait() do
 					if GetItemListWithValue()["JellyBeans"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Jelly Beans"})
 					end
-					if GetItemListWithValue()["CloudVial"] > 0 then
+					if GetItemListWithValue()["CloudVial"] > 1 then
+						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Cloud Vial"})
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Cloud Vial"})
 					end
 					if GetItemListWithValue()["BlueExtract"] > 0 then
@@ -1815,6 +1817,14 @@ task.spawn(function() while task.wait() do
                 temptable.magnitude = 25 
                 fieldpos = api.partwithnamepart("Epic", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
                 fieldposition = fieldpos.Position
+				if temptable.puffshroomdetected and not temptable.puffshroomboosted then
+					if GetItemListWithValue()["JellyBeans"] > 0 then
+						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Jelly Beans"})
+					end
+					if GetItemListWithValue()["CloudVial"] > 1 then
+						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Cloud Vial"})
+					end
+				end
             else
 				--KillTest()
                 temptable.magnitude = 25 
@@ -2705,7 +2715,7 @@ end
 
 function KillTest2()
 	
-	for i,v in pairs(game.workspace.Part:GetChildren()) do
+	for i,v in pairs(game:GetService("Workspace").Part:GetChildren()) do
 		print('v=' .. v)
 		print('Part.Name=' .. v.Name)
 	end
@@ -2717,8 +2727,18 @@ function KillTest2()
 			--print('killmobs2():' .. Terr.Name)
 		end
 	end
+	
+	print('Getting NPCBees')
+	for i,v in pairs(game:GetService("Workspace").NPCBees:GetChildren()) do
+		print('NPCBees=' .. v.Name)
+	end)
 
-
+	print(' ')
+	print('Getting NPCs')
+	for i,v in pairs(game:GetService("Workspace").NPCs:GetChildren()) do
+		print('NPCs=' .. v.Name)
+	end)
+	
 	--for i,v in next, game.Workspace.Happenings:GetDescendants() do
 		--print('4:' .. v.Name)
 	--end
