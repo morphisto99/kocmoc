@@ -2632,12 +2632,13 @@ function CheckPlayers()
 		elseif v:IsA("TextLabel") and string.find(v.Text,"Player_") then
 			if not oplayers then
 				v.Parent.Parent:Destroy()
-				local uiplayersinrange = combtab:CreateSection("Other Players in Range") -- Morphisto	
+				--local uiplayersinrange = combtab:CreateSection("Other Players in Range") -- Morphisto	
 				oplayers = true
 			end
 		end		
 	end
 
+	local uiplayersinrange = combtab:CreateSection("Other Players in Range") -- Morphisto	
 	temptable.cache.disableinrange = false
 	for i, v in pairs(game.Players:GetChildren()) do
 		if not api.tablefind(kocmoc.wlplayers, v.Name) then
