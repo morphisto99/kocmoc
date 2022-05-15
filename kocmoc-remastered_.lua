@@ -1710,7 +1710,7 @@ task.spawn(function() while task.wait() do
 								makequests()
 							end
 							break
-						elseif string.find(text, "Ants") then -- Morphisto
+						elseif string.find(text, "Ants") and not string.find(v.Text, 'Complete!') then -- Morphisto
 							if not game:GetService("Workspace").Toys["Ant Challenge"].Busy.Value and rtsg().Eggs.AntPass > 0 then farmant() end -- Morphisto
 							break
 						-- Morphisto
