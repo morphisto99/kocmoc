@@ -1094,6 +1094,8 @@ uifarmfuzzy = farmo:CreateToggle("Farm Fuzzy Bombs", nil, function(State) kocmoc
 uifarmunderballoons = farmo:CreateToggle("Farm Under Balloons", nil, function(State) kocmoc.toggles.farmunderballoons = State end)
 uifarmclouds = farmo:CreateToggle("Farm Under Clouds", nil, function(State) kocmoc.toggles.farmclouds = State end)
 farmo:CreateLabel("")
+uidisableinrange = farmo:CreateToggle("Stop autofarm if * players in range", nil, function(State) kocmoc.toggles.disableinrange = State end) -- Morphisto
+farmo:CreateLabel("")
 uihoneymaskconv = farmo:CreateToggle("Auto Honey Mask",nil,function(bool)
     kocmoc.toggles.honeymaskconv = bool
 end)
@@ -1149,16 +1151,6 @@ serverhopkill:CreateLabel("")
 
 local amks = combtab:CreateSection("Auto Kill Mobs Settings")
 amks:CreateTextBox('Kill Mobs After x Convertions', 'default = 3', true, function(Value) kocmoc.vars.monstertimer = tonumber(Value) end)
-
-local uiplayersinrange = combtab:CreateSection("Other Players in Range") -- Morphisto
-uidisableinrange = uiplayersinrange:CreateToggle("Stop autofarm if * players in range", nil, function(State) kocmoc.toggles.disableinrange = State end) -- Morphisto
-
-local uiwlplayers = combtab:CreateSection("Players") -- Morphisto
-for i, v in pairs(game.Players:GetChildren()) do
-	uiwlplayers:CreateButton('Player' .. i .. ': ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)
-end
-
-
 
 local wayp = misctab:CreateSection("Waypoints")
 wayp:CreateDropdown("Field Teleports", fieldstable, function(Option) game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").FlowerZones:FindFirstChild(Option).CFrame end)
@@ -2620,24 +2612,30 @@ end
 -- Morphisto
 function CheckPlayers()
 	local count = 1
-	local oplayers = false
+	local oplayers1 = false
+	local oplayers2 = false
 	for i, v in pairs(game:GetService("CoreGui"):GetDescendants()) do
 		if v:IsA("TextLabel") and string.find(v.Text,"Player" .. count) then
-			v.Parent:Destroy()
-			if count > 6 then
-				break
-			else
-				count += 1
-			end
-		elseif v:IsA("TextLabel") and string.find(v.Text,"Player_") then
-			if not oplayers then
+			if not oplayers1 then
 				v.Parent.Parent:Destroy()
-				oplayers = true
+				oplayers1 = true
+			end
+			--if count > 6 then
+				--break
+			--else
+				--count += 1
+			--end
+		elseif v:IsA("TextLabel") and string.find(v.Text,"Player_") then
+			if not oplayers2 then
+				v.Parent.Parent:Destroy()
+				oplayers2 = true
 			end
 		end		
+		
 	end
 	
-	oplayers = false
+	oplayers1 = false
+	oplayers2 = false
 	temptable.cache.disableinrange = false
 	for i, v in pairs(game.Players:GetChildren()) do
 		if not api.tablefind(kocmoc.wlplayers, v.Name) then
@@ -2645,16 +2643,30 @@ function CheckPlayers()
 			temptable.cache.disableinrange = true
 			local playerpos = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.Position
 			if (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 150 then
-				if not oplayers then
+				if not oplayers1 then
 					local uiplayersinrange = combtab:CreateSection("Other Players in Range") -- Morphisto
-					oplayers = true
+					oplayers2 = true
 				end
 				uiplayersinrange:CreateLabel('Player_' .. i .. ': ' .. v.Name .. ' in range!')
 			end
 		else
+			if not oplayers2 then
+				local uiwlplayers = combtab:CreateSection("Players") -- Morphisto
+				oplayers2 = true
+			end
 			uiwlplayers:CreateButton('Player' .. i .. ': ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)	
 		end
 	end
+
+
+local uiplayersinrange = combtab:CreateSection("Other Players in Range") -- Morphisto
+
+local uiwlplayers = combtab:CreateSection("Players") -- Morphisto
+for i, v in pairs(game.Players:GetChildren()) do
+	uiwlplayers:CreateButton('Player' .. i .. ': ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)
+end
+
+
 	
 	if temptable.cache.disableinrange then
 		if kocmoc.toggles.killwindy then
