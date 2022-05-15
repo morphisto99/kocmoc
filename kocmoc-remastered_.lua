@@ -2677,7 +2677,7 @@ function removeSpaces(message)
 end
 
 function KillTest4()
-	cleardevconsole()
+	print(' ')
 	print('Begin')
 	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui:GetChildren()) do
 		if v.Name == "TileGrid" then
@@ -2701,6 +2701,8 @@ function KillTest4()
 end
 
 function KillTest3()
+	print(' ')
+	print('Begin')
 	--KillStickBug()
 	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.TileGrid.IconTile.BG:GetChildren()) do
 		print('KillTest1=' .. v.Name)
@@ -2711,10 +2713,12 @@ function KillTest3()
 			print('Text=' .. v:FindFirstChild("Text").Text)
 		end
 	end
+	print('End')
 end
 
 function KillTest2()
-	
+	print(' ')
+	print('Begin')
 	for i,v in pairs(game:GetService("Workspace").Part:GetChildren()) do
 		print('v=' .. v)
 		print('Part.Name=' .. v.Name)
@@ -2832,7 +2836,7 @@ function KillTest2()
 	end
 	-- Summon Stick Bug
 	]]--
-	
+	print('End')
 end
 
 function KillTest()
@@ -3042,34 +3046,6 @@ function getbiggestmodel(path)
 	end
 	print('partName2=' .. part.Parent.Name)
 	return part
-end
-
-function cleardevconsole()
-	for i,v in next, game.CoreGui.DevConsoleMaster.DevConsoleWindow.DevConsoleUI.GetChildren() do
-		print('DevConsole=' .. v.Name)
-	end
-	--[[
-	local Check = false
-
-	if game.CoreGui:FindFirstChild("DevConsoleMaster") then
-		Check = true
-	else
-		Check = false
-	end
-
-	if Check == true then
-		local Console = game.CoreGui.DevConsoleMaster
-		local Log = Console.DevConsoleWindow.DevConsoleUI.MainView.ClientLog
-		for i,v in pairs(Log:GetChildren()) do
-			if v:IsA("Frame") then
-				if v.Name == "WindowingPadding" then
-				else
-					v:Destroy()
-				end
-			end
-		end
-	end
-	]]--
 end
 
 if _G.autoload then if isfile("kocmoc/BSS_".._G.autoload..".json") then kocmoc = game:service'HttpService':JSONDecode(readfile("kocmoc/BSS_".._G.autoload..".json")) end end
