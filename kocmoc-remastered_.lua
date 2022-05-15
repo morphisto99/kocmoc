@@ -1094,6 +1094,8 @@ uifarmfuzzy = farmo:CreateToggle("Farm Fuzzy Bombs", nil, function(State) kocmoc
 uifarmunderballoons = farmo:CreateToggle("Farm Under Balloons", nil, function(State) kocmoc.toggles.farmunderballoons = State end)
 uifarmclouds = farmo:CreateToggle("Farm Under Clouds", nil, function(State) kocmoc.toggles.farmclouds = State end)
 farmo:CreateLabel("")
+uidisableinrange = uiplayersinrange:CreateToggle("Stop autofarm if * players in range", nil, function(State) kocmoc.toggles.disableinrange = State end) -- Morphisto
+farmo:CreateLabel("")
 uihoneymaskconv = farmo:CreateToggle("Auto Honey Mask",nil,function(bool)
     kocmoc.toggles.honeymaskconv = bool
 end)
@@ -1150,15 +1152,11 @@ serverhopkill:CreateLabel("")
 local amks = combtab:CreateSection("Auto Kill Mobs Settings")
 amks:CreateTextBox('Kill Mobs After x Convertions', 'default = 3', true, function(Value) kocmoc.vars.monstertimer = tonumber(Value) end)
 
-local uiplayersinrange = combtab:CreateSection("Other Players in Range") -- Morphisto
-uidisableinrange = uiplayersinrange:CreateToggle("Stop autofarm if * players in range", nil, function(State) kocmoc.toggles.disableinrange = State end) -- Morphisto
-
 local uiwlplayers = combtab:CreateSection("Players") -- Morphisto
 for i, v in pairs(game.Players:GetChildren()) do
 	uiwlplayers:CreateButton('Player' .. i .. ': ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)
 end
-
-
+local uiplayersinrange = combtab:CreateSection("Other Players in Range") -- Morphisto
 
 local wayp = misctab:CreateSection("Waypoints")
 wayp:CreateDropdown("Field Teleports", fieldstable, function(Option) game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").FlowerZones:FindFirstChild(Option).CFrame end)
