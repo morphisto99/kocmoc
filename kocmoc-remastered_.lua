@@ -1150,14 +1150,15 @@ serverhopkill:CreateLabel("")
 local amks = combtab:CreateSection("Auto Kill Mobs Settings")
 amks:CreateTextBox('Kill Mobs After x Convertions', 'default = 3', true, function(Value) kocmoc.vars.monstertimer = tonumber(Value) end)
 
-local uiwlplayers = combtab:CreateSection("Players") -- Morphisto
-uidisableinrange = uiwlplayers:CreateToggle("Stop autofarm if * players in range", nil, function(State) kocmoc.toggles.disableinrange = State end) -- Morphisto
+local uiplayersinrange = combtab:CreateSection("Other Players in Range") -- Morphisto
+uidisableinrange = uiplayersinrange:CreateToggle("Stop autofarm if * players in range", nil, function(State) kocmoc.toggles.disableinrange = State end) -- Morphisto
 
+local uiwlplayers = combtab:CreateSection("Players") -- Morphisto
 for i, v in pairs(game.Players:GetChildren()) do
 	uiwlplayers:CreateButton('Player' .. i .. ': ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)
 end
 
-local uiplayersinrange = combtab:CreateSection("Other Players in Range") -- Morphisto
+
 
 local wayp = misctab:CreateSection("Waypoints")
 wayp:CreateDropdown("Field Teleports", fieldstable, function(Option) game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").FlowerZones:FindFirstChild(Option).CFrame end)
@@ -2630,8 +2631,8 @@ function CheckPlayers()
 			end
 		elseif v:IsA("TextLabel") and string.find(v.Text,"Player_") then
 			if not oplayers then
-				v.Parent.Parent:Destroy()
-				uiplayersinrange = combtab:CreateSection("Other Players in Range") -- Morphisto	
+				v.Parent:Destroy()
+				--local uiplayersinrange = combtab:CreateSection("Other Players in Range") -- Morphisto	
 				oplayers = true
 			end
 		end		
