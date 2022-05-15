@@ -2658,16 +2658,6 @@ function CheckPlayers()
 		end
 	end
 
-
-local uiplayersinrange = combtab:CreateSection("Other Players in Range") -- Morphisto
-
-local uiwlplayers = combtab:CreateSection("Players") -- Morphisto
-for i, v in pairs(game.Players:GetChildren()) do
-	uiwlplayers:CreateButton('Player' .. i .. ': ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)
-end
-
-
-	
 	if temptable.cache.disableinrange then
 		if kocmoc.toggles.killwindy then
 			uikillwindy:SetState(false)
