@@ -2631,7 +2631,6 @@ function CheckPlayers()
 	temptable.players = playerschanged
 	for i,v in pairs(game:GetService("CoreGui"):GetDescendants()) do
 		if v:IsA("TextLabel") and string.find(v.Text,"Player" .. count) then
-			print('removing ' .. v.Name)
 			v.Parent:Destroy()
 			if count > 6 then
 				break
