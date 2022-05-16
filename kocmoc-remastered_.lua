@@ -55,6 +55,7 @@ getgenv().temptable = {
     configname = "",
     tokenpath = game:GetService("Workspace").Collectibles,
     started = {
+		fieldboost = false, -- Morphisto
 		crab = false, -- Morphisto
 		tunnelbear = false, -- Morphisto
 		kingbeetle = false, -- Morphisto
@@ -2748,20 +2749,33 @@ function KillTest4()
 	print(' ')
 	print('Begin')
 	
-	local buffs = fetchfieldboostTable(fieldboostTable)
-	for k,p in pairs(buffs) do
-		print(k,p)
+	local boostedfields = fetchfieldboostTable(fieldboostTable)
+	if boostedfields = nil then
+		print('boostedfields=' .. boostedfields)
+		temptable.started.fieldboost = false
+	else
+		for field,lvl in pairs(boostedfields) do
+			print(field,lvl)
+			if kocmoc.vars.defmask == "Gummy Mask" then
+				if api.tablefind(temptable.whitefields, field) then
+					--kocmoc.vars.field
+					fielddropdown:SetOption(field)
+					temptable.started.fieldboost = true
+				end
+			elseif kocmoc.vars.defmask == "Demon Mask" then
+				if api.tablefind(temptable.redfields, field) then
+					fielddropdown:SetOption(field)
+					temptable.started.fieldboost = true
+				end
+				
+			elseif kocmoc.vars.defmask == "Diamond Mask" then
+				if api.tablefind(temptable.bluefields, field) then
+					fielddropdown:SetOption(field)
+					temptable.started.fieldboost = true
+				end
+			end
+		end
 	end
-	
-	for i,v in next, temptable.whitefields do
-		print('white=' .. v)
-	end
-	for i,v in next, temptable.redfields do
-		print('red=' .. v)
-	end
-	for i,v in next, temptable.bluefields do
-		print('blue=' .. v)
-	end	
 	--[[
 	for i,v in pairs(fieldboostTable) do
 		if v["b"] == true then
