@@ -2714,6 +2714,7 @@ end
 function KillTest2()
 	print(' ')
 	print('Begin')
+	uiwlplayers:Destroy()
 	for i,v in pairs(game:GetService("Workspace").Part:GetChildren()) do
 		print('v=' .. v)
 		print('Part.Name=' .. v.Name)
