@@ -2729,7 +2729,7 @@ function fetchfieldboostTable(stats)
 										else
 											local thing = ""
 											thing = string.gsub(ic.Parent:FindFirstChild("Text").Text,"x","")
-											stTab[field]=tonumber( thing + 1 )
+											stTab[field]=tonumber(thing)
 										end
 									end
 								end
@@ -2751,6 +2751,16 @@ function KillTest4()
 	local buffs = fetchfieldboostTable(fieldboostTable)
 	for k,p in pairs(buffs) do
 		print(k,p)
+	end
+	
+	for i,v in next, temptable.whitefields do
+		print('white=' .. v)
+	end
+	for i,v in next, temptable.redfields do
+		print('red=' .. v)
+	end
+	for i,v in next, temptable.bluefields do
+		print('blue=' .. v)
 	end	
 	--[[
 	for i,v in pairs(fieldboostTable) do
