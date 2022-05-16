@@ -216,6 +216,27 @@ local buffTable = {
     ["Glitter"]={b=false,DecalID="2542899798"};
     ["Tropical Drink"]={b=false,DecalID="3835877932"};
 }
+-- Morphisto
+local fieldboostTable = {
+    ["Mushroom Field"]={b=false,DecalID="2908769124"};
+    ["Pineapple Patch"]={b=false,DecalID="2908769153"};
+    ["Blue Flower Field"]={b=false,DecalID="2908768899"};
+    ["Sunflower Field"]={b=false,DecalID="2908769405"};
+    ["Bamboo Field"]={b=false,DecalID="2908768829"};
+    ["Spider Field"]={b=false,DecalID="2908769301"};
+    ["Stump Field"]={b=false,DecalID="2908769372"};
+    ["Mountain Top Field"]={b=false,DecalID="2908769086"};
+    ["Pine Tree Forest"]={b=false,DecalID="2908769190"};
+    ["Rose Field"]={b=false,DecalID="2908818982"};
+    ["Pepper Patch"]={b=false,DecalID="3835712489"};
+    ["Cactus Field"]={b=false,DecalID="2908768937"};
+    ["Coconut Field"]={b=false,DecalID="2908769010"};
+	["Clover Field"]={b=false,DecalID="2908768973"};
+    ["Strawberry Field"]={b=false,DecalID="2908769330"};
+	["Pumpkin Patcht"]={b=false,DecalID="2908769220"};
+}
+-- Morphisto
+
 local AccessoryTypes = require(game:GetService("ReplicatedStorage").Accessories).GetTypes()
 local MasksTable = {}
 for i,v in pairs(AccessoryTypes) do
@@ -1096,7 +1117,6 @@ uifarmunderballoons = farmo:CreateToggle("Farm Under Balloons", nil, function(St
 uifarmclouds = farmo:CreateToggle("Farm Under Clouds", nil, function(State) kocmoc.toggles.farmclouds = State end)
 farmo:CreateLabel("")
 uidisableinrange = farmo:CreateToggle("Stop autofarm if @ players in range", nil, function(State) kocmoc.toggles.disableinrange = State end) -- Morphisto
-farmo:CreateLabel("")
 uihoneymaskconv = farmo:CreateToggle("Auto Honey Mask",nil,function(bool)
     kocmoc.toggles.honeymaskconv = bool
 end)
@@ -2656,16 +2676,25 @@ function CheckPlayers()
 		end
 	end
 	
-	if temptable.cache.disableinrange then
+	if temptable.cache.disableinrange then -- disable when other player sin range
 		if kocmoc.toggles.killwindy then
 			uikillwindy:SetState(false)
 			kocmoc.toggles.killwindy = false
+		end
+		if kocmoc.toggles.farmsprouts then
+			uifarmsprouts:SetState(false) 
+			kocmoc.toggles.farmsprouts = false
 		end
 	else
 		if not kocmoc.toggles.killwindy then
 			uikillwindy:SetState(true)
 			kocmoc.toggles.killwindy = true -- enable Windy Bee when no other players in game
 		end
+		if not kocmoc.toggles.farmsprouts then
+			uifarmsprouts:SetState(true) 
+			kocmoc.toggles.farmsprouts = true
+		end	
+		
 	end
 end
 
@@ -2683,9 +2712,60 @@ function removeSpaces(message)
 	return result 
 end
 
+function fetchfieldboostTable(stats)
+	local stTab = {}
+	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui:GetChildren()) do
+		if v.Name == "TileGrid" then
+			for p,l in pairs(v:GetChildren()) do
+				if l:FindFirstChild("BG") then
+					if l:FindFirstChild("BG"):FindFirstChild("Icon") then
+						local ic = l:FindFirstChild("BG"):FindFirstChild("Icon")
+						for field,fdata in pairs(stats) do
+							if fdata["DecalID"]~= nil then
+								if string.find(ic.Image,fdata["DecalID"]) then
+									if ic.Parent:FindFirstChild("Text") then
+										if ic.Parent:FindFirstChild("Text").Text == "" then
+											stTab[field]=1
+										else
+											local thing = ""
+											thing = string.gsub(ic.Parent:FindFirstChild("Text").Text,"x","")
+											stTab[field]=tonumber( thing + 1 )
+										end
+									end
+								end
+							end
+						end
+					end
+				end
+			end
+		end
+	end
+	return stTab
+end
+
+
 function KillTest4()
 	print(' ')
 	print('Begin')
+	
+	local buffs = fetchfieldboostTable(fieldboostTable)
+	for k,p in pairs(buffs) do
+		print(k,p)
+	end	
+	--[[
+	for i,v in pairs(fieldboostTable) do
+		if v["b"] == true then
+			local inuse = false
+			for k,p in pairs(buffs) do
+				if k == i then inuse = true end
+			end
+			if inuse == false then
+				game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"]=i})
+			end
+		end
+	end
+	]]--
+	--[[
 	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui:GetChildren()) do
 		if v.Name == "TileGrid" then
 			for p,l in pairs(v:GetChildren()) do
@@ -2704,6 +2784,7 @@ function KillTest4()
 			end
 		end
 	end
+	]]--
 	print('End')
 end
 
@@ -2726,7 +2807,6 @@ end
 function KillTest2()
 	print(' ')
 	print('Begin')
-	uiwlplayers:Destroy()
 	for i,v in pairs(game:GetService("Workspace").Part:GetChildren()) do
 		print('v=' .. v)
 		print('Part.Name=' .. v.Name)
