@@ -1094,7 +1094,7 @@ uifarmfuzzy = farmo:CreateToggle("Farm Fuzzy Bombs", nil, function(State) kocmoc
 uifarmunderballoons = farmo:CreateToggle("Farm Under Balloons", nil, function(State) kocmoc.toggles.farmunderballoons = State end)
 uifarmclouds = farmo:CreateToggle("Farm Under Clouds", nil, function(State) kocmoc.toggles.farmclouds = State end)
 farmo:CreateLabel("")
-uidisableinrange = farmo:CreateToggle("Stop autofarm if * players in range", nil, function(State) kocmoc.toggles.disableinrange = State end) -- Morphisto
+uidisableinrange = farmo:CreateToggle("Stop autofarm if @ players in range", nil, function(State) kocmoc.toggles.disableinrange = State end) -- Morphisto
 farmo:CreateLabel("")
 uihoneymaskconv = farmo:CreateToggle("Auto Honey Mask",nil,function(bool)
     kocmoc.toggles.honeymaskconv = bool
@@ -2620,7 +2620,6 @@ function CheckPlayers()
 	local oplayers = false
 	for i, v in pairs(game:GetService("CoreGui"):GetDescendants()) do
 		if v:IsA("TextLabel") and string.find(v.Text,"Player" .. count) then
-			print('removing ' .. v.Text)
 			v.Parent:Destroy()
 			if count > 6 then
 				break
@@ -2636,7 +2635,7 @@ function CheckPlayers()
 			temptable.cache.disableinrange = true
 			local playerpos = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.Position
 			if (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 150 then
-				uiwlplayers:CreateButton('Player' .. i .. '*: ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)
+				uiwlplayers:CreateButton('Player' .. i .. '@: ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)
 			else
 				uiwlplayers:CreateButton('Player' .. i .. ': ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)
 			end
