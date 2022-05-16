@@ -2632,6 +2632,7 @@ function CheckPlayers()
 		temptable.players = playerschanged
 		for i,v in pairs(game:GetService("CoreGui"):GetDescendants()) do
 			if v:IsA("TextLabel") and string.find(v.Text,"Player" .. count) then
+				print('removing ' .. v.Name)
 				v.Parent:Destroy()
 				if count > 6 then
 					break
@@ -2645,16 +2646,16 @@ function CheckPlayers()
 	temptable.cache.disableinrange = false
 	
 	for i,v in next, temptable.players do
-		if not api.tablefind(kocmoc.wlplayers, v.Name) then
+		if not api.tablefind(kocmoc.wlplayers, v) then
 			temptable.cache.disableinrange = true
-			local playerpos = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.Position
+			local playerpos = game.Workspace:FindFirstChild(v).HumanoidRootPart.Position
 			if (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 150 then
-				uiwlplayers:CreateButton('Player' .. i .. '@: ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)
+				uiwlplayers:CreateButton('Player' .. i .. '@: ' .. v, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v).HumanoidRootPart.CFrame end)
 			else
-				uiwlplayers:CreateButton('Player' .. i .. ': ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)
+				uiwlplayers:CreateButton('Player' .. i .. ': ' .. v, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v).HumanoidRootPart.CFrame end)
 			end
 		else
-			uiwlplayers:CreateButton('Player' .. i .. ': ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)	
+			uiwlplayers:CreateButton('Player' .. i .. ': ' .. v, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v).HumanoidRootPart.CFrame end)	
 		end
 	end
 	
