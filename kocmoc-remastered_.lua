@@ -46,6 +46,7 @@ getgenv().temptable = {
     balloondetected = false,
     puffshroomdetected = false,
 	puffshroomboosted = false,
+	players = {}, -- Morphisto
     magnitude = 60,
     blacklist = {
         ""
@@ -1154,7 +1155,7 @@ amks:CreateTextBox('Kill Mobs After x Convertions', 'default = 3', true, functio
 
 local uiwlplayers = combtab:CreateSection("Players") -- Morphisto
 for i, v in pairs(game.Players:GetChildren()) do
-	uiwlplayers:CreateButton('Player' .. i .. ': ' .. v.Name, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)
+	uiwlplayers:CreateButton('Player' .. i .. ': ' .. v.Name, function() table.insert(temptable.players, v.Name) game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)
 end
 
 local wayp = misctab:CreateSection("Waypoints")
@@ -2617,20 +2618,33 @@ end
 -- Morphisto
 function CheckPlayers()
 	local count = 1
-	local oplayers = false
-	for i, v in pairs(game:GetService("CoreGui"):GetDescendants()) do
-		if v:IsA("TextLabel") and string.find(v.Text,"Player" .. count) then
-			v.Parent:Destroy()
-			if count > 6 then
-				break
-			else
-				count += 1
-			end
-		end		
+	local newplayers = false
+	local playerschanged = {}
+	
+	for i,v in pairs(game.Players:GetChildren()) do
+		if not api.tablefind(temptable.players, v.Name) then
+			newplayers = true
+		end
+		table.insert(playerschanged, v.Name)
+	end	
+	
+	if newplayers then
+		temptable.players = playerschanged
+		for i,v in pairs(game:GetService("CoreGui"):GetDescendants()) do
+			if v:IsA("TextLabel") and string.find(v.Text,"Player" .. count) then
+				v.Parent:Destroy()
+				if count > 6 then
+					break
+				else
+					count += 1
+				end
+			end		
+		end
 	end
-
+	
 	temptable.cache.disableinrange = false
-	for i, v in pairs(game.Players:GetChildren()) do
+	
+	for i,v in next, temptable.players do
 		if not api.tablefind(kocmoc.wlplayers, v.Name) then
 			temptable.cache.disableinrange = true
 			local playerpos = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.Position
