@@ -2750,7 +2750,7 @@ function KillTest4()
 	print('Begin')
 	
 	local boostedfields = fetchfieldboostTable(fieldboostTable)
-	if boostedfields = nil then
+	if boostedfields == nil then
 		print('boostedfields=' .. boostedfields)
 		temptable.started.fieldboost = false
 	else
