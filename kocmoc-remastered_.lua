@@ -2752,7 +2752,7 @@ function KillTest4()
 	
 	local boostedfields = fetchfieldboostTable(fieldboostTable)
 	if next(boostedfields) == nil then
-		print('boostedfields=' .. boostedfields)
+		print('boostedfields=')
 		if temptable.started.fieldboost then
 			fielddropdown:SetOption(kocmoc.vars.field)
 			temptable.started.fieldboost = false
