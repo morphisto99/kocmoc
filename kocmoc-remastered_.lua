@@ -39,6 +39,7 @@ end
 getgenv().temptable = {
     version = "3.2.9-1",
     blackfield = "Sunflower Field",
+	boostedfield = "", -- Morphisto 
     redfields = {},
     bluefields = {},
     whitefields = {},
@@ -2749,28 +2750,28 @@ function farmboostedfield()
 	local boostedfields = fetchfieldboostTable(fieldboostTable)
 	if next(boostedfields) == nil then
 		if temptable.started.fieldboost then
-			fielddropdown:SetOption(kocmoc.vars.field)
+			fielddropdown:SetOption(temptable.boostedfield)
 			temptable.started.fieldboost = false
 		end
 	else
-		for field,lvl in pairs(boostedfields) do
-			if kocmoc.vars.defmask == "Gummy Mask" then
-				if api.tablefind(temptable.whitefields, field) then
-					fielddropdown:SetOption(field)
-					temptable.started.fieldboost = true
-				end
-			elseif kocmoc.vars.defmask == "Demon Mask" then
-				if api.tablefind(temptable.redfields, field) then
-					fielddropdown:SetOption(field)
-					temptable.started.fieldboost = true
-				end
-				
-			elseif kocmoc.vars.defmask == "Diamond Mask" then
-				if api.tablefind(temptable.bluefields, field) then
-					fielddropdown:SetOption(field)
-					temptable.started.fieldboost = true
+		if not temptable.started.fieldboost then 
+			temptable.boostedfield = kocmoc.vars.field
+			for field,lvl in pairs(boostedfields) do
+				if kocmoc.vars.defmask == "Gummy Mask" then
+					if api.tablefind(temptable.whitefields, field) then
+						fielddropdown:SetOption(field)
+					end
+				elseif kocmoc.vars.defmask == "Demon Mask" then
+					if api.tablefind(temptable.redfields, field) then
+						fielddropdown:SetOption(field)
+					end
+				elseif kocmoc.vars.defmask == "Diamond Mask" then
+					if api.tablefind(temptable.bluefields, field) then
+						fielddropdown:SetOption(field)
+					end
 				end
 			end
+			temptable.started.fieldboost = true
 		end
 	end
 end
@@ -2791,7 +2792,7 @@ function KillTest4()
 				print(field,lvl)
 				if kocmoc.vars.defmask == "Gummy Mask" then
 					if api.tablefind(temptable.whitefields, field) then
-						--kocmoc.vars.field
+						temptable.boostedfield = kocmoc.vars.field
 						fielddropdown:SetOption(field)
 						temptable.started.fieldboost = true
 					end
