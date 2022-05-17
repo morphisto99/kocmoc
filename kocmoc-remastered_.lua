@@ -2754,10 +2754,8 @@ function farmboostedfield()
 		end
 	else
 		for field,lvl in pairs(boostedfields) do
-			print(field,lvl)
 			if kocmoc.vars.defmask == "Gummy Mask" then
 				if api.tablefind(temptable.whitefields, field) then
-					--kocmoc.vars.field
 					fielddropdown:SetOption(field)
 					temptable.started.fieldboost = true
 				end
