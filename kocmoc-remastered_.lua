@@ -2270,8 +2270,9 @@ game:GetService('RunService').Heartbeat:connect(function()
     if kocmoc.toggles.autoquest then firesignal(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.ButtonOverlay.MouseButton1Click) end
     if kocmoc.toggles.loopspeed then
 		local Humanoid = game.Players.LocalPlayer.Character.Humanoid
-		print('Humanoid=' .. Humanoid.WalkSpeed)
-		Humanoid.WalkSpeed = kocmoc.vars.walkspeed
+		if Humanoid.WalkSpeed ~= kocmoc.vars.walkspeed then
+			Humanoid.WalkSpeed = kocmoc.vars.walkspeed
+		end
 	end
     if kocmoc.toggles.loopjump then game.Players.LocalPlayer.Character.Humanoid.JumpPower = kocmoc.vars.jumppower end
 end)
