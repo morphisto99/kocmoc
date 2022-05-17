@@ -1000,6 +1000,71 @@ local function useConvertors()
     end
 end
 
+-- Morphisto
+function fetchfieldboostTable(stats)
+	local stTab = {}
+	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui:GetChildren()) do
+		if v.Name == "TileGrid" then
+			for p,l in pairs(v:GetChildren()) do
+				if l:FindFirstChild("BG") then
+					if l:FindFirstChild("BG"):FindFirstChild("Icon") then
+						local ic = l:FindFirstChild("BG"):FindFirstChild("Icon")
+						for field,fdata in pairs(stats) do
+							if fdata["DecalID"]~= nil then
+								if string.find(ic.Image,fdata["DecalID"]) then
+									if ic.Parent:FindFirstChild("Text") then
+										if ic.Parent:FindFirstChild("Text").Text == "" then
+											stTab[field]=1
+										else
+											local thing = ""
+											thing = string.gsub(ic.Parent:FindFirstChild("Text").Text,"x","")
+											stTab[field]=tonumber(thing)
+										end
+									end
+								end
+							end
+						end
+					end
+				end
+			end
+		end
+	end
+	return stTab
+end
+-- Morphisto
+
+-- Morphisto
+function farmboostedfield()
+	local boostedfields = fetchfieldboostTable(fieldboostTable)
+	if next(boostedfields) == nil then
+		if temptable.started.fieldboost then
+			fielddropdown:SetOption(temptable.boostedfield)
+			temptable.started.fieldboost = false
+		end
+	else
+		if not temptable.started.fieldboost then
+			temptable.boostedfield = kocmoc.vars.field
+			for field,lvl in pairs(boostedfields) do
+				if kocmoc.vars.defmask == "Gummy Mask" then
+					if api.tablefind(temptable.whitefields, field) then
+						fielddropdown:SetOption(field)
+					end
+				elseif kocmoc.vars.defmask == "Demon Mask" then
+					if api.tablefind(temptable.redfields, field) then
+						fielddropdown:SetOption(field)
+					end
+				elseif kocmoc.vars.defmask == "Diamond Mask" then
+					if api.tablefind(temptable.bluefields, field) then
+						fielddropdown:SetOption(field)
+					end
+				end
+			end
+			temptable.started.fieldboost = true
+		end
+	end
+end
+-- Morphisto
+
 local function fetchBuffTable(stats)
     local stTab = {}
     if game:GetService("Players").LocalPlayer then
@@ -2715,102 +2780,10 @@ function removeSpaces(message)
 	return result 
 end
 
-function fetchfieldboostTable(stats)
-	local stTab = {}
-	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui:GetChildren()) do
-		if v.Name == "TileGrid" then
-			for p,l in pairs(v:GetChildren()) do
-				if l:FindFirstChild("BG") then
-					if l:FindFirstChild("BG"):FindFirstChild("Icon") then
-						local ic = l:FindFirstChild("BG"):FindFirstChild("Icon")
-						for field,fdata in pairs(stats) do
-							if fdata["DecalID"]~= nil then
-								if string.find(ic.Image,fdata["DecalID"]) then
-									if ic.Parent:FindFirstChild("Text") then
-										if ic.Parent:FindFirstChild("Text").Text == "" then
-											stTab[field]=1
-										else
-											local thing = ""
-											thing = string.gsub(ic.Parent:FindFirstChild("Text").Text,"x","")
-											stTab[field]=tonumber(thing)
-										end
-									end
-								end
-							end
-						end
-					end
-				end
-			end
-		end
-	end
-	return stTab
-end
-
-function farmboostedfield()
-	local boostedfields = fetchfieldboostTable(fieldboostTable)
-	if next(boostedfields) == nil then
-		if temptable.started.fieldboost then
-			fielddropdown:SetOption(temptable.boostedfield)
-			temptable.started.fieldboost = false
-		end
-	else
-		if not temptable.started.fieldboost then 
-			temptable.boostedfield = kocmoc.vars.field
-			for field,lvl in pairs(boostedfields) do
-				if kocmoc.vars.defmask == "Gummy Mask" then
-					if api.tablefind(temptable.whitefields, field) then
-						fielddropdown:SetOption(field)
-					end
-				elseif kocmoc.vars.defmask == "Demon Mask" then
-					if api.tablefind(temptable.redfields, field) then
-						fielddropdown:SetOption(field)
-					end
-				elseif kocmoc.vars.defmask == "Diamond Mask" then
-					if api.tablefind(temptable.bluefields, field) then
-						fielddropdown:SetOption(field)
-					end
-				end
-			end
-			temptable.started.fieldboost = true
-		end
-	end
-end
-
 function KillTest4()
 	print(' ')
 	print('Begin')
 	
-	if kocmoc.toggles.farmboostedfield then
-		local boostedfields = fetchfieldboostTable(fieldboostTable)
-		if next(boostedfields) == nil then
-			if temptable.started.fieldboost then
-				fielddropdown:SetOption(kocmoc.vars.field)
-				temptable.started.fieldboost = false
-			end
-		else
-			for field,lvl in pairs(boostedfields) do
-				print(field,lvl)
-				if kocmoc.vars.defmask == "Gummy Mask" then
-					if api.tablefind(temptable.whitefields, field) then
-						temptable.boostedfield = kocmoc.vars.field
-						fielddropdown:SetOption(field)
-						temptable.started.fieldboost = true
-					end
-				elseif kocmoc.vars.defmask == "Demon Mask" then
-					if api.tablefind(temptable.redfields, field) then
-						fielddropdown:SetOption(field)
-						temptable.started.fieldboost = true
-					end
-					
-				elseif kocmoc.vars.defmask == "Diamond Mask" then
-					if api.tablefind(temptable.bluefields, field) then
-						fielddropdown:SetOption(field)
-						temptable.started.fieldboost = true
-					end
-				end
-			end
-		end
-	end
 	--[[
 	for i,v in pairs(fieldboostTable) do
 		if v["b"] == true then
