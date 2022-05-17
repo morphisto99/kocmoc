@@ -1911,6 +1911,7 @@ task.spawn(function() while task.wait() do
 				if kocmoc.toggles.killtunnelbear then KillTunnelBear() end -- Morphisto
 				if kocmoc.toggles.killkingbeetle then KillKingBeetle() end -- Morphisto
 				if kocmoc.toggles.killstumpsnail then KillStumpSnail() end -- Morphisto
+				if kocmoc.toggles.farmboostedfield then farmboostedfield() end -- Morphisto
 				if (fieldposition-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
                     api.tween(2, fieldpos) -- Morphisto
                     if kocmoc.toggles.autosprinkler then makesprinklers() end
@@ -2744,15 +2745,9 @@ function fetchfieldboostTable(stats)
 	return stTab
 end
 
-
-function KillTest4()
-	print(' ')
-	print('Begin')
-	
-	
+function farmboostedfield()
 	local boostedfields = fetchfieldboostTable(fieldboostTable)
 	if next(boostedfields) == nil then
-		print('boostedfields=')
 		if temptable.started.fieldboost then
 			fielddropdown:SetOption(kocmoc.vars.field)
 			temptable.started.fieldboost = false
@@ -2776,6 +2771,43 @@ function KillTest4()
 				if api.tablefind(temptable.bluefields, field) then
 					fielddropdown:SetOption(field)
 					temptable.started.fieldboost = true
+				end
+			end
+		end
+	end
+end
+
+function KillTest4()
+	print(' ')
+	print('Begin')
+	
+	if kocmoc.toggles.farmboostedfield then
+		local boostedfields = fetchfieldboostTable(fieldboostTable)
+		if next(boostedfields) == nil then
+			if temptable.started.fieldboost then
+				fielddropdown:SetOption(kocmoc.vars.field)
+				temptable.started.fieldboost = false
+			end
+		else
+			for field,lvl in pairs(boostedfields) do
+				print(field,lvl)
+				if kocmoc.vars.defmask == "Gummy Mask" then
+					if api.tablefind(temptable.whitefields, field) then
+						--kocmoc.vars.field
+						fielddropdown:SetOption(field)
+						temptable.started.fieldboost = true
+					end
+				elseif kocmoc.vars.defmask == "Demon Mask" then
+					if api.tablefind(temptable.redfields, field) then
+						fielddropdown:SetOption(field)
+						temptable.started.fieldboost = true
+					end
+					
+				elseif kocmoc.vars.defmask == "Diamond Mask" then
+					if api.tablefind(temptable.bluefields, field) then
+						fielddropdown:SetOption(field)
+						temptable.started.fieldboost = true
+					end
 				end
 			end
 		end
