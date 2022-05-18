@@ -2274,7 +2274,12 @@ game:GetService('RunService').Heartbeat:connect(function()
 			Humanoid.WalkSpeed = kocmoc.vars.walkspeed
 		end
 	end
-    if kocmoc.toggles.loopjump then game.Players.LocalPlayer.Character.Humanoid.JumpPower = kocmoc.vars.jumppower end
+    if kocmoc.toggles.loopjump then
+		local Humanoid = game.Players.LocalPlayer.Character.Humanoid
+		if Humanoid.JumpPower ~= kocmoc.vars.jumppower then
+			Humanoid.JumpPower = kocmoc.vars.jumppower
+		end		
+	end
 end)
 
 game:GetService('RunService').Heartbeat:connect(function()
