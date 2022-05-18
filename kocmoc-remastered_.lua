@@ -2752,9 +2752,9 @@ function CheckPlayers()
 	for i,v in next, temptable.players do
 		if not api.tablefind(kocmoc.wlplayers, v) then
 			temptable.cache.disableinrange = true
-			for i,v in pairs(game:GetService("CoreGui"):GetDescendants()) do
-				if v:IsA("TextLabel") and string.find(v.Text,"This player") then
-					v.Parent:Destroy()
+			for j,k in pairs(game:GetService("CoreGui"):GetDescendants()) do
+				if k:IsA("TextLabel") and string.find(k.Text,"This player") then
+					k.Parent:Destroy()
 				end
 			end
 			local playerpos = game.Workspace:FindFirstChild(v).HumanoidRootPart.Position
@@ -2848,11 +2848,10 @@ function KillTest4()
 		if not api.tablefind(kocmoc.wlplayers, v) then
 			print('test7')
 			temptable.cache.disableinrange = true
-			for i,v in pairs(game:GetService("CoreGui"):GetDescendants()) do
-				print('test8')
-				if v:IsA("TextLabel") and string.find(v.Text,"This player") then
+			for j,k in pairs(game:GetService("CoreGui"):GetDescendants()) do
+				if k:IsA("TextLabel") and string.find(k.Text,"This player") then
 					print('test9')
-					v.Parent:Destroy()
+					k.Parent:Destroy()
 				end
 			end
 			local playerpos = game.Workspace:FindFirstChild(v).HumanoidRootPart.Position
