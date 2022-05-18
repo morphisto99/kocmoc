@@ -1062,6 +1062,17 @@ function farmboostedfield()
 			temptable.started.fieldboost = true
 		end
 	end
+	if temptable.started.fieldboost then
+		if not kocmoc.toggles.autouseconvertors then
+			uiautouseconverters:SetState(true)
+			kocmoc.toggles.autouseconvertors = true
+		end
+	elseif not temptable.started.fieldboost then
+		if kocmoc.toggles.autouseconvertors then
+			uiautouseconverters:SetState(false)
+			kocmoc.toggles.autouseconvertors = false
+		end
+	end
 end
 -- Morphisto
 
@@ -2725,9 +2736,8 @@ function CheckPlayers()
 		end
 		table.insert(playerschanged, v.Name)
 	end
-
+	temptable.players = playerschanged
 	if newplayers then
-		temptable.players = playerschanged
 		for i,v in pairs(game:GetService("CoreGui"):GetDescendants()) do
 			if v:IsA("TextLabel") and string.find(v.Text,"Player" .. count) then
 				v.Parent:Destroy()
@@ -2816,10 +2826,9 @@ function KillTest4()
 		end
 		table.insert(playerschanged, v.Name)
 	end
-
+	temptable.players = playerschanged
 	if newplayers then
 		print('test3')
-		temptable.players = playerschanged
 		for i,v in pairs(game:GetService("CoreGui"):GetDescendants()) do
 			if v:IsA("TextLabel") and string.find(v.Text,"Player" .. count) then
 				print('test4=' .. count)
