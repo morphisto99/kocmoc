@@ -2724,8 +2724,8 @@ function CheckPlayers()
 			newplayers = true
 		end
 		table.insert(playerschanged, v.Name)
-	end	
-	
+	end
+
 	if newplayers then
 		temptable.players = playerschanged
 		for i,v in pairs(game:GetService("CoreGui"):GetDescendants()) do
@@ -2804,39 +2804,86 @@ function KillTest4()
 	print(' ')
 	print('Begin')
 	
-	--[[
-	for i,v in pairs(fieldboostTable) do
-		if v["b"] == true then
-			local inuse = false
-			for k,p in pairs(buffs) do
-				if k == i then inuse = true end
-			end
-			if inuse == false then
-				game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"]=i})
-			end
+	local count = 1
+	local newplayers = false
+	local playerschanged = {}
+	
+	for i,v in pairs(game.Players:GetChildren()) do
+		print('test1')
+		if not api.tablefind(temptable.players, v.Name) then
+			print('test2')
+			newplayers = true
+		end
+		table.insert(playerschanged, v.Name)
+	end
+
+	if newplayers then
+		print('test3')
+		temptable.players = playerschanged
+		for i,v in pairs(game:GetService("CoreGui"):GetDescendants()) do
+			if v:IsA("TextLabel") and string.find(v.Text,"Player" .. count) then
+				print('test4=' .. count)
+				v.Parent:Destroy()
+				if count > 6 then
+					break
+				else
+					count += 1
+				end
+			end	
+
+			if v:IsA("TextLabel") and string.find(v.Text,"This player") then
+				print('test5')
+				v.Parent:Destroy()
+			end	
+		end
+		
+		for i,v in next, temptable.players do
+			print('test6=' .. i .. ': ' .. v)
+			uiwlplayers:CreateButton('Player' .. i .. ': ' .. v, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v).HumanoidRootPart.CFrame end)
 		end
 	end
-	]]--
-	--[[
-	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui:GetChildren()) do
-		if v.Name == "TileGrid" then
-			for p,l in pairs(v:GetChildren()) do
-				if l:FindFirstChild("BG") then
-					if l:FindFirstChild("BG"):FindFirstChild("Icon") then
-						local ic = l:FindFirstChild("BG"):FindFirstChild("Icon")
-						print('ic.image=' .. ic.image)
-						if ic.Parent:FindFirstChild("Text") ~= "" then
-							local icontext = ic.Parent:FindFirstChild("Text")
-							print('text1=' .. icontext.Text)
-							local thing = ""
-							thing = string.gsub(ic.Parent:FindFirstChild("Text").Text,"x","")
-						end
-					end
+	
+	temptable.cache.disableinrange = false
+	for i,v in next, temptable.players do
+		if not api.tablefind(kocmoc.wlplayers, v) then
+			print('test7')
+			temptable.cache.disableinrange = true
+			for i,v in pairs(game:GetService("CoreGui"):GetDescendants()) do
+				print('test8')
+				if v:IsA("TextLabel") and string.find(v.Text,"This player") then
+					print('test9')
+					v.Parent:Destroy()
 				end
 			end
+			local playerpos = game.Workspace:FindFirstChild(v).HumanoidRootPart.Position
+			if (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 150 then
+				print('test10')
+				uiwlplayers:CreateButton('This player ' .. v .. ' is in range', function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v).HumanoidRootPart.CFrame end)
+			end
 		end
 	end
-	]]--
+	
+	if temptable.cache.disableinrange then -- disable when other player sin range
+		if kocmoc.toggles.killwindy then
+			uikillwindy:SetState(false)
+			kocmoc.toggles.killwindy = false
+		end
+		if kocmoc.toggles.farmsprouts then
+			uifarmsprouts:SetState(false) 
+			kocmoc.toggles.farmsprouts = false
+		end
+	else
+		if not kocmoc.toggles.killwindy then
+			uikillwindy:SetState(true)
+			kocmoc.toggles.killwindy = true -- enable Windy Bee when no other players in game
+		end
+		if not kocmoc.toggles.farmsprouts then
+			uifarmsprouts:SetState(true) 
+			kocmoc.toggles.farmsprouts = true
+		end	
+		
+	end
+	
 	print('End')
 end
 
