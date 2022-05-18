@@ -1715,6 +1715,7 @@ game.Workspace.Particles.ChildAdded:Connect(function(v)
 end)
 
 task.spawn(function() while task.wait() do
+		CheckPlayers() -- Morphisto
         temptable.magnitude = 50
         if game.Players.LocalPlayer.Character:FindFirstChild("ProgressLabel",true) then
         local pollenprglbl = game.Players.LocalPlayer.Character:FindFirstChild("ProgressLabel",true)
@@ -2499,7 +2500,6 @@ task.spawn(function()
 					end
 				end
 			end
-			CheckPlayers() -- Morphisto
 		end
     end)
 end)
