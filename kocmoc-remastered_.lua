@@ -2736,7 +2736,7 @@ function CheckPlayers()
 		end
 		table.insert(playerschanged, v.Name)
 	end
-
+	print('tablecount=' .. #temptable.players)
 	if newplayers then
 		temptable.players = playerschanged
 		for i,v in pairs(game:GetService("CoreGui"):GetDescendants()) do
@@ -2761,7 +2761,7 @@ function CheckPlayers()
 	
 	temptable.cache.disableinrange = false
 	for i,v in next, temptable.players do
-		print('player=' .. v)
+		--print('player=' .. v)
 		if not api.tablefind(kocmoc.wlplayers, v) then
 			temptable.cache.disableinrange = true
 			for j,k in pairs(game:GetService("CoreGui"):GetDescendants()) do
