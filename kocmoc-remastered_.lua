@@ -2752,6 +2752,11 @@ function CheckPlayers()
 	for i,v in next, temptable.players do
 		if not api.tablefind(kocmoc.wlplayers, v) then
 			temptable.cache.disableinrange = true
+			for i,v in pairs(game:GetService("CoreGui"):GetDescendants()) do
+				if v:IsA("TextLabel") and string.find(v.Text,"This player") then
+					v.Parent:Destroy()
+				end
+			end
 			local playerpos = game.Workspace:FindFirstChild(v).HumanoidRootPart.Position
 			if (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 150 then
 				uiwlplayers:CreateButton('This player ' .. v .. ' is in range', function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v).HumanoidRootPart.CFrame end)
