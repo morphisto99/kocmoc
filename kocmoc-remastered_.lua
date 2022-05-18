@@ -1726,7 +1726,6 @@ game.Workspace.Particles.ChildAdded:Connect(function(v)
 end)
 
 task.spawn(function() while task.wait() do
-		CheckPlayers() -- Morphisto
         temptable.magnitude = 50
         if game.Players.LocalPlayer.Character:FindFirstChild("ProgressLabel",true) then
         local pollenprglbl = game.Players.LocalPlayer.Character:FindFirstChild("ProgressLabel",true)
@@ -2511,6 +2510,7 @@ task.spawn(function()
 					end
 				end
 			end
+			CheckPlayers() -- Morphisto
 		end
     end)
 end)
@@ -2736,7 +2736,7 @@ function CheckPlayers()
 		end
 		table.insert(playerschanged, v.Name)
 	end
-	print(#temptable.players .. '=' .. #playerschanged)
+	--print(#temptable.players .. '=' .. #playerschanged)
 	
 	if newplayers or #temptable.players ~= #playerschanged then
 		temptable.players = playerschanged
@@ -2770,7 +2770,7 @@ function CheckPlayers()
 					k.Parent:Destroy()
 				end
 			end
-			print('player1=' .. v)
+			--print('player1=' .. v)
 			local playerpos = game.Workspace:FindFirstChild(v).HumanoidRootPart.Position
 			if (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 150 then
 				uiwlplayers:CreateButton('This player ' .. v .. ' is in range', function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v).HumanoidRootPart.CFrame end)
