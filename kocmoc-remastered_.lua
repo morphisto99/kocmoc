@@ -2761,7 +2761,7 @@ function CheckPlayers()
 	end
 	
 	temptable.cache.disableinrange = false
-	for i,v in next, temptable.players do
+	for i,v in next, playerschanged do
 		--print('player=' .. v)
 		if not api.tablefind(kocmoc.wlplayers, v) then
 			temptable.cache.disableinrange = true
@@ -2771,9 +2771,11 @@ function CheckPlayers()
 				end
 			end
 			--print('player1=' .. v)
-			local playerpos = game.Workspace:FindFirstChild(v).HumanoidRootPart.Position
-			if (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 150 then
-				uiwlplayers:CreateButton('This player ' .. v .. ' is in range', function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v).HumanoidRootPart.CFrame end)
+			if v ~= nil then
+				local playerpos = game.Workspace:FindFirstChild(v).HumanoidRootPart.Position
+				if (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 150 then
+					uiwlplayers:CreateButton('This player ' .. v .. ' is in range', function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v).HumanoidRootPart.CFrame end)
+				end
 			end
 		end
 	end
