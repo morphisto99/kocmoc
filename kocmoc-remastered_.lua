@@ -2736,8 +2736,9 @@ function CheckPlayers()
 		end
 		table.insert(playerschanged, v.Name)
 	end
-	temptable.players = playerschanged
+
 	if newplayers then
+		temptable.players = playerschanged
 		for i,v in pairs(game:GetService("CoreGui"):GetDescendants()) do
 			if v:IsA("TextLabel") and string.find(v.Text,"Player" .. count) then
 				v.Parent:Destroy()
@@ -2767,6 +2768,7 @@ function CheckPlayers()
 					k.Parent:Destroy()
 				end
 			end
+			print('player=' .. v)
 			local playerpos = game.Workspace:FindFirstChild(v).HumanoidRootPart.Position
 			if (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 150 then
 				uiwlplayers:CreateButton('This player ' .. v .. ' is in range', function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v).HumanoidRootPart.CFrame end)
@@ -2826,9 +2828,10 @@ function KillTest4()
 		end
 		table.insert(playerschanged, v.Name)
 	end
-	temptable.players = playerschanged
+
 	if newplayers then
 		print('test3')
+		temptable.players = playerschanged
 		for i,v in pairs(game:GetService("CoreGui"):GetDescendants()) do
 			if v:IsA("TextLabel") and string.find(v.Text,"Player" .. count) then
 				print('test4=' .. count)
