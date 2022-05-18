@@ -2736,10 +2736,9 @@ function CheckPlayers()
 		end
 		table.insert(playerschanged, v.Name)
 	end
-	print('test1=' .. #temptable.players .. '=' .. #playerschanged)
 	
 	if newplayers or #temptable.players ~= #playerschanged then
-		print('test2=' .. #temptable.players .. '=' .. #playerschanged)
+		--print('test2=' .. #temptable.players .. '=' .. #playerschanged)
 		temptable.players = playerschanged
 		for i,v in pairs(game:GetService("CoreGui"):GetDescendants()) do
 			if v:IsA("TextLabel") and string.find(v.Text,"Player" .. count) then
