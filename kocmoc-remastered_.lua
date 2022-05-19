@@ -1862,9 +1862,8 @@ task.spawn(function() while task.wait() do
 					if GetItemListWithValue()["JellyBeans"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Jelly Beans"})
 					end
-					if GetItemListWithValue()["CloudVial"] > 1 then
+					if GetItemListWithValue()["CloudVial"] > 0 then
 						print('inside of Cloudvial')
-						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Cloud Vial"})
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Cloud Vial"})
 					end
 					if GetItemListWithValue()["BlueExtract"] > 0 then
@@ -1895,8 +1894,7 @@ task.spawn(function() while task.wait() do
 					if GetItemListWithValue()["JellyBeans"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Jelly Beans"})
 					end
-					if GetItemListWithValue()["CloudVial"] > 1 then
-						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Cloud Vial"})
+					if GetItemListWithValue()["CloudVial"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Cloud Vial"})
 					end
 					if GetItemListWithValue()["BlueExtract"] > 0 then
@@ -1924,7 +1922,7 @@ task.spawn(function() while task.wait() do
 					if GetItemListWithValue()["JellyBeans"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Jelly Beans"})
 					end
-					if GetItemListWithValue()["CloudVial"] > 1 then
+					if GetItemListWithValue()["CloudVial"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Cloud Vial"})
 					end
 				end
@@ -2774,7 +2772,7 @@ function CheckPlayers()
 			end
 			--print('player1=' .. v)
 			--local Humanoid = char:WaitForChild("Humanoid")
-			local playerpos = game.Workspace:WaitForChild(v).HumanoidRootPart.Position
+			local playerpos = game:GetService("Workspace"):FindFirstChild(v).HumanoidRootPart.Position
 			--local playerpos = game.Workspace:FindFirstChild(v).HumanoidRootPart.Position
 			if (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 150 then
 				uiwlplayers:CreateButton('This player ' .. v .. ' is in range', function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v).HumanoidRootPart.CFrame end)
