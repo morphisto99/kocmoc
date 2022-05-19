@@ -2280,14 +2280,12 @@ game:GetService('RunService').Heartbeat:connect(function()
     if kocmoc.toggles.autoquest then firesignal(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.ButtonOverlay.MouseButton1Click) end
     if kocmoc.toggles.loopspeed then
 		local Humanoid = game.Players.LocalPlayer.Character:WaitForChild("Humanoid")
-		--local Humanoid = game.Players.LocalPlayer.Character.Humanoid
 		if Humanoid.WalkSpeed ~= kocmoc.vars.walkspeed then
 			Humanoid.WalkSpeed = kocmoc.vars.walkspeed
 		end
 	end
     if kocmoc.toggles.loopjump then
 		local Humanoid = game.Players.LocalPlayer.Character:WaitForChild("Humanoid")
-		--local Humanoid = game.Players.LocalPlayer.Character.Humanoid
 		if Humanoid.JumpPower ~= kocmoc.vars.jumppower then
 			Humanoid.JumpPower = kocmoc.vars.jumppower
 		end		
@@ -2774,6 +2772,7 @@ function CheckPlayers()
 			--local Humanoid = char:WaitForChild("Humanoid")
 			local playerpos = game:GetService("Workspace"):FindFirstChild(v).HumanoidRootPart.Position
 			--local playerpos = game.Workspace:FindFirstChild(v).HumanoidRootPart.Position
+			print('playerpos=' .. playerpos)
 			if (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 150 then
 				uiwlplayers:CreateButton('This player ' .. v .. ' is in range', function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v).HumanoidRootPart.CFrame end)
 			end
