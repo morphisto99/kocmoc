@@ -2731,13 +2731,13 @@ function CheckPlayers()
 	for i,v in pairs(game.Players:GetChildren()) do
 		if not api.tablefind(temptable.players, v.Name) then
 			newplayers = true
+			print('v.Name=' .. v.Name)
 			--local playerpos = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.Position
-			local playerpos = v.Position
-			print(playerpos)
 		end
 		table.insert(playerschanged, v.Name)
 	end
-	
+
+
 	if newplayers or #temptable.players ~= #playerschanged then
 		--print('test2=' .. #temptable.players .. '=' .. #playerschanged)
 		temptable.players = playerschanged
@@ -2774,7 +2774,7 @@ function CheckPlayers()
 			--print('player1=' .. v)
 			--local Humanoid = char:WaitForChild("Humanoid")
 			--local playerpos = game:GetService("Workspace"):FindFirstChild(v).HumanoidRootPart.Position
-			--local playerpos = game.Workspace:FindFirstChild(v).HumanoidRootPart.Position
+			local playerpos = game.Workspace:FindFirstChild(v).HumanoidRootPart.Position
 			if playerpos == nil then
 				print('playerpos is nil')
 			else
