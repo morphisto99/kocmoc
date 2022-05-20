@@ -2729,15 +2729,9 @@ function CheckPlayers()
 	local playerschanged = {}
 	
 	for i,v in pairs(game.Players:GetChildren()) do
-		--for j,k in pairs(temptable.players) do
-			if api.tablefind(temptable.players, v.Name) then
-				print('Exists=' .. v.Name)
-				--local playerpos = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.Position
-			else
-				newplayers = true
-				print('Not Exists=' .. v.Name)
-			end
-		--end
+		if not api.tablefind(temptable.players, v.Name) then
+			newplayers = true
+		end
 		table.insert(playerschanged, v.Name)
 	end
 
@@ -2778,6 +2772,21 @@ function CheckPlayers()
 			--print('player1=' .. v)
 			--local Humanoid = char:WaitForChild("Humanoid")
 			--local playerpos = game:GetService("Workspace"):FindFirstChild(v).HumanoidRootPart.Position
+			
+			for j,k in pairs(game:GetService("Workspace"):GetChildren()) do
+				if k:FindFirstChild(v) then
+					if k:FindFirstChild(v):FindFirstChild("HumanoidRootPart") then
+						local playerpos = k:FindFirstChild(v):FindFirstChild("HumanoidRootPart").Position
+						break
+					end
+				end
+			end
+			
+			if (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 150 then
+				uiwlplayers:CreateButton('This player ' .. v .. ' is in range', function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v).HumanoidRootPart.CFrame end)
+			end
+			
+			--[[
 			local playerpos = game.Workspace:FindFirstChild(v).HumanoidRootPart.Position
 			if playerpos == nil then
 				print('playerpos is nil')
@@ -2786,6 +2795,7 @@ function CheckPlayers()
 					uiwlplayers:CreateButton('This player ' .. v .. ' is in range', function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v).HumanoidRootPart.CFrame end)
 				end
 			end
+			]]--
 		end
 	end
 	
