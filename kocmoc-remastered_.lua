@@ -2729,11 +2729,15 @@ function CheckPlayers()
 	local playerschanged = {}
 	
 	for i,v in pairs(game.Players:GetChildren()) do
-		if not api.tablefind(temptable.players, v.Name) then
-			newplayers = true
-			print('v.Name=' .. v.Name)
-			--local playerpos = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.Position
-		end
+		--for j,k in pairs(temptable.players) do
+			if api.tablefind(temptable.players, v.Name) then
+				print('Exists=' .. v.Name)
+				--local playerpos = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.Position
+			else
+				newplayers = true
+				print('Not Exists=' .. v.Name)
+			end
+		--end
 		table.insert(playerschanged, v.Name)
 	end
 
