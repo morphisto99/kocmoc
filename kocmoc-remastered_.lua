@@ -2757,33 +2757,34 @@ function CheckPlayers()
 			uiwlplayers:CreateButton('Player' .. i .. ': ' .. v, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v).HumanoidRootPart.CFrame end)
 		end
 		
-		for j,k in pairs(game:GetService("CoreGui"):GetDescendants()) do
-			if k:IsA("TextLabel") and string.find(k.Text,"This player") then
-				k.Parent:Destroy()
-			end
-		end
-		temptable.cache.disableinrange = false
-		for i,v in next, playerschanged do
-			if not api.tablefind(kocmoc.wlplayers, v) then
-				temptable.cache.disableinrange = true
 
-				local playerpos
-				for j,k in pairs(game:GetService("Workspace"):GetChildren()) do
-					if k.Name == v then
-						playerpos = game.Workspace:FindFirstChild(k.Name).HumanoidRootPart.Position
-						break
-					end
+	end
+
+	for j,k in pairs(game:GetService("CoreGui"):GetDescendants()) do
+		if k:IsA("TextLabel") and string.find(k.Text,"This player") then
+			k.Parent:Destroy()
+		end
+	end
+	temptable.cache.disableinrange = false
+	for i,v in next, playerschanged do
+		if not api.tablefind(kocmoc.wlplayers, v) then
+			temptable.cache.disableinrange = true
+			local playerpos
+			for j,k in pairs(game:GetService("Workspace"):GetChildren()) do
+				if k.Name == v then
+					playerpos = game.Workspace:FindFirstChild(k.Name).HumanoidRootPart.Position
+					break
 				end
-				
-				if playerpos ~= nil then
-					if (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 150 then
-						uiwlplayers:CreateButton('This player ' .. v .. ' is in range', function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v).HumanoidRootPart.CFrame end)
-					end
+			end
+			
+			if playerpos ~= nil then
+				if (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 150 then
+					uiwlplayers:CreateButton('This player ' .. v .. ' is in range', function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v).HumanoidRootPart.CFrame end)
 				end
 			end
 		end
 	end
-
+		
 	if temptable.cache.disableinrange then -- disable when other player sin range
 		if kocmoc.toggles.killwindy then
 			uikillwindy:SetState(false)
