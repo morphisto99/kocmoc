@@ -2762,11 +2762,11 @@ function CheckPlayers()
 	for i,v in next, playerschanged do
 		if not api.tablefind(kocmoc.wlplayers, v) then
 			temptable.cache.disableinrange = true
-			for j,k in pairs(game:GetService("CoreGui"):GetDescendants()) do
-				if k:IsA("TextLabel") and string.find(k.Text,"This player") then
-					k.Parent:Destroy()
-				end
-			end
+			--for j,k in pairs(game:GetService("CoreGui"):GetDescendants()) do
+				--if k:IsA("TextLabel") and string.find(k.Text,"This player") then
+					--k.Parent:Destroy()
+				--end
+			--end
 			local playerpos
 			for j,k in pairs(game:GetService("Workspace"):GetChildren()) do
 				if k.Name == v then
