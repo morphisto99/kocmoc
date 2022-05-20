@@ -2775,7 +2775,9 @@ function CheckPlayers()
 			local playerpos
 			for j,k in pairs(game:GetService("Workspace"):GetChildren()) do
 				if k.Name == v then
-					print('name found!')
+					--print('name found!')
+					playerpos = game.Workspace:FindFirstChild(k.Name).HumanoidRootPart.Position
+					break
 				end
 				if k:FindFirstChild(v) then
 					print('test1')
