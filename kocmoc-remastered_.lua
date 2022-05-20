@@ -2772,20 +2772,26 @@ function CheckPlayers()
 			--print('player1=' .. v)
 			--local Humanoid = char:WaitForChild("Humanoid")
 			--local playerpos = game:GetService("Workspace"):FindFirstChild(v).HumanoidRootPart.Position
-			
+			local playerpos
 			for j,k in pairs(game:GetService("Workspace"):GetChildren()) do
+				if k.Name == v then
+					print('name found!')
+				end
 				if k:FindFirstChild(v) then
+					print('test1')
 					if k:FindFirstChild(v):FindFirstChild("HumanoidRootPart") then
-						local playerpos = k:FindFirstChild(v):FindFirstChild("HumanoidRootPart").Position
+						print('test2')
+						playerpos = k:FindFirstChild(v):FindFirstChild("HumanoidRootPart").Position
 						break
 					end
 				end
 			end
 			
-			if (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 150 then
-				uiwlplayers:CreateButton('This player ' .. v .. ' is in range', function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v).HumanoidRootPart.CFrame end)
+			if playerpos ~= nil then
+				if (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 150 then
+					uiwlplayers:CreateButton('This player ' .. v .. ' is in range', function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v).HumanoidRootPart.CFrame end)
+				end
 			end
-			
 			--[[
 			local playerpos = game.Workspace:FindFirstChild(v).HumanoidRootPart.Position
 			if playerpos == nil then
