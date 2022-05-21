@@ -2843,6 +2843,10 @@ function KillTest3()
 	print(' ')
 	print('Begin')
 
+	for i,v in pairs(game:GetService("Workspace").Flowers:GetChildren()) do
+		print('Flowers:' .. v.Name)
+	end
+
 	print('KillTest3')
 	for i,v in pairs(workspace.Monsters:GetChildren()) do
 		print('Monsters=' .. v.Name)
