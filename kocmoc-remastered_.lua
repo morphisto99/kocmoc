@@ -2872,7 +2872,7 @@ function KillTest3()
 	print('Getting Particles3')
 	if game:GetService("Workspace").Particles:FindFirstChild("StickBugTotem") then
 		local DefTotem = game:GetService("Workspace").Particles:FindFirstChild("StickBugTotem")
-		print(DefTotem.CFrame)
+		print(DefTotem.Frame)
 		print('End Particles3')
 	end
 	
@@ -2931,7 +2931,7 @@ function KillTest2()
 	
 	print("TotemPos.CFrame")
 	local TotemPos = game:GetService("Workspace").Particles:FindFirstChild("StickBugTotem")	
-	print(TotemPos.CFrame)
+	print(TotemPos.Frame)
 	
 	--[[
 	for i,v in pairs(game:GetService("Workspace").Particles:GetChildren()) do
