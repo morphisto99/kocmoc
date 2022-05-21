@@ -2824,7 +2824,7 @@ function KillTest4()
 	for i,v in pairs(workspace.Monsters:GetChildren()) do
 		if string.find(v.Name,"Stick Bug") then
 			while game.Workspace.Monsters:FindFirstChild(v.Name) do
-				game:GetService("Workspace").Map.Ground.HighBlock.CanCollide = false
+				--game:GetService("Workspace").Map.Ground.HighBlock.CanCollide = false
 				sbposition = game.Workspace.Monsters[v.Name].Head.Position
 				api.tween(1, CFrame.new(sbposition.x, sbposition.y + 25, sbposition.z))
 				temptable.float = true
@@ -2871,16 +2871,30 @@ function KillTest2()
 
 
 	print('Getting Particles')
+	for i,v in pairs(game:GetService("Workspace").Particles.StickBugTotem:GetDescendants()) do
+		print('StickBug1=' .. v.Name)
+	end
+
+	for i,v in pairs(game:GetService("Workspace").Particles.StickBugTotem:GetChildren()) do
+		print('StickBug2=' .. v.Name)
+	end
+	
+	--[[
 	for i,v in pairs(game:GetService("Workspace").Particles:GetChildren()) do
 		print('Particles.Name=' .. v.Name)
-        if string.find(v.Name, "StickBug") and tonumber((v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude) < temptable.magnitude/1.4 then
-            farm(v)
+        if string.find(v.Name, "StickBugTotem") then
+		
+			--api.tween(1,CFrame.new(v.Position.x, v.Position.y, v.Position.z)) task.wait(1)
+			--tonumber((v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude) < temptable.magnitude/1.4 then
+            --farm(v)
             break
         end
 	end
-	
+	]]--
+	--[[
 	print('Getting Part')
 	for i,v in pairs(game:GetService("Workspace").Part:GetChildren()) do
+		print('Part=' .. v.Text)
 		print('Part.Name=' .. v.Name)
 		if string.find(v.Name, "StickBug") then
 			print('Defense Totem Found 2')
@@ -2899,6 +2913,7 @@ function KillTest2()
 		end		
 	end
 	
+	
 	print('Getting NPCBees')
 	for i,v in pairs(game:GetService("Workspace").NPCBees:GetChildren()) do
 		print('NPCBees=' .. v.Name)
@@ -2915,7 +2930,7 @@ function KillTest2()
 			print('Defense Totem Found 5')
 		end
 	end
-	
+	]]--
 
 
 	--for i,v in next, game.Workspace.Happenings:GetDescendants() do
