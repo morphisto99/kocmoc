@@ -2871,8 +2871,8 @@ function KillTest3()
 	
 	print('Getting Particles3')
 	if game:GetService("Workspace").Particles:FindFirstChild("StickBugTotem") then
-		local DefTotem = game:GetService("Workspace").Particles:FindFirstChild("StickBugTotem")
-		print(DefTotem.Frame)
+		local DefTotem = game:GetService("Workspace").Particles.StickBugTotem.Part:FindFirstChild("GuiPos")
+		print(DefTotem.Position)
 		print('End Particles3')
 	end
 	
@@ -2921,17 +2921,34 @@ function KillTest2()
 	
 	for i,v in pairs(game:GetService("Workspace").Particles:GetChildren()) do
 		if v:FindFirstChild("StickBugTotem") then
-			api.humanoidrootpart().CFrame = v.CFrame			
-			if v:FindFirstChild("StickBugTotem"):FindFirstChild("TextLabel") then
-				local TotemLabel = v:FindFirstChild("StickBugTotem"):FindFirstChild("TextLabel").Text
-				print('TotemLabel=' .. TotemLabel)
+			print("Part1")
+			--api.humanoidrootpart().CFrame = v.CFrame
+			if v:FindFirstChild("StickBugTotem"):FindFirstChild("Part") then
+				print("Part2")
+				if v:FindFirstChild("StickBugTotem"):FindFirstChild("Part"):FindFirstChild("GroundPos") then
+					print("Part3")
+					local GroundPos = v:FindFirstChild("StickBugTotem"):FindFirstChild("Part"):FindFirstChild("GroundPos")
+					print(GroundPos.Position)
+				end
+			end
+			
+			if v:FindFirstChild("StickBugTotem"):FindFirstChild("Gui") then
+				print("Text1")
+				if v:FindFirstChild("StickBugTotem"):FindFirstChild("Gui"):FindFirstChild("Frame") then
+					print("Text2")
+					if v:FindFirstChild("StickBugTotem"):FindFirstChild("Gui"):FindFirstChild("Frame"):FindFirstChild("TextLabel") then
+						print("Text3")
+						local TotemLabel = v:FindFirstChild("Gui"):FindFirstChild("Frame"):FindFirstChild("TextLabel").Text
+						print('TotemLabel=' .. TotemLabel)
+					end
+				end
 			end
 		end
 	end
 	
-	print("TotemPos.CFrame")
-	local TotemPos = game:GetService("Workspace").Particles:FindFirstChild("StickBugTotem")	
-	print(TotemPos.Frame)
+	print("TotemPos")
+	local TotemPos = game:GetService("Workspace").Particles.StickBugTotem.Part:FindFirstChild("GroundPos").Position
+	print(TotemPos)
 	
 	--[[
 	for i,v in pairs(game:GetService("Workspace").Particles:GetChildren()) do
