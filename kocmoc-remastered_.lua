@@ -2820,7 +2820,7 @@ function KillTest4()
 	print(' ')
 	print('Begin')
 	
-	
+	--[[
 	print('Jumping above Stick Bug Head2')
 	for i,v in pairs(workspace.Monsters:GetChildren()) do
 		if string.find(v.Name,"Stick Bug") then
@@ -2843,7 +2843,7 @@ function KillTest4()
 			end -- collect tokens :yessir:
 		end
 	end
-	
+	]]--
 	print('End')
 end
 
