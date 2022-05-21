@@ -2826,7 +2826,7 @@ function KillTest4()
 			while game.Workspace.Monsters:FindFirstChild(v.Name) do
 				game:GetService("Workspace").Map.Ground.HighBlock.CanCollide = false
 				sbposition = game.Workspace.Monsters[v.Name].Head.Position
-				api.tween(1, CFrame.new(sbposition.x, sbposition.y + 10, sbposition.z))
+				api.tween(1, CFrame.new(sbposition.x, sbposition.y + 25, sbposition.z))
 				temptable.float = true
 				task.wait()
 				--api.humanoidrootpart().CFrame = temptable.gacf(sbposition, 10) temptable.float = true task.wait()
@@ -2844,14 +2844,9 @@ function KillTest3()
 
 	print('Jumping above Stick Bug Head1')
 	for i,v in pairs(workspace.Monsters:GetChildren()) do
+		print('Monsters=' .. v.Name)
 		if string.find(v.Name,"Stick Bug") then
-			while game.Workspace.Monsters:FindFirstChild(v.Name) do
-				--game:GetService("Workspace").Map.Ground.HighBlock.CanCollide = false
-				--sbposition = game.Workspace.Monsters[v.Name].Head.Position
-				--api.tween(1, CFrame.new(sbposition.x, sbposition.y + 10, sbposition.z))
-				api.humanoidrootpart().CFrame = temptable.gacf(v, 10) temptable.float = true task.wait()
-			end
-			temptable.float = false task.wait(5) for i =1, 5 do gettoken(api.humanoidrootpart().Position) end -- collect tokens :yessir:
+			print('Found Stick Bug!=' .. v.Name)
 		end
 	end
 	
@@ -2878,15 +2873,16 @@ function KillTest2()
 	print('Getting Particles')
 	for i,v in pairs(game:GetService("Workspace").Particles:GetChildren()) do
 		print('Particles.Name=' .. v.Name)
-		if string.find(v.Name, "Defense Totem") then
-			print('Defense Totem Found 1')
-		end
+        if string.find(v.Name, "StickBug") and tonumber((v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude) < temptable.magnitude/1.4 then
+            farm(v)
+            break
+        end
 	end
 	
 	print('Getting Part')
 	for i,v in pairs(game:GetService("Workspace").Part:GetChildren()) do
 		print('Part.Name=' .. v.Name)
-		if string.find(v.Name, "Defense Totem") then
+		if string.find(v.Name, "StickBug") then
 			print('Defense Totem Found 2')
 		end
 	end
@@ -2898,7 +2894,7 @@ function KillTest2()
 			local Terr = v:FindFirstChild("Territory")
 			--print('killmobs2():' .. Terr.Name)
 		end
-		if string.find(v.Name, "Defense Totem") then
+		if string.find(v.Name, "StickBug") then
 			print('Defense Totem Found 3')
 		end		
 	end
@@ -2906,7 +2902,7 @@ function KillTest2()
 	print('Getting NPCBees')
 	for i,v in pairs(game:GetService("Workspace").NPCBees:GetChildren()) do
 		print('NPCBees=' .. v.Name)
-		if string.find(v.Name, "Defense Totem") then
+		if string.find(v.Name, "StickBug") then
 			print('Defense Totem Found 4')
 		end
 	end
@@ -2915,7 +2911,7 @@ function KillTest2()
 	print('Getting NPCs')
 	for i,v in pairs(game:GetService("Workspace").NPCs:GetChildren()) do
 		print('NPCs=' .. v.Name)
-		if string.find(v.Name, "Defense Totem") then
+		if string.find(v.Name, "StickBug") then
 			print('Defense Totem Found 5')
 		end
 	end
