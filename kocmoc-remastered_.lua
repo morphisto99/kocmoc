@@ -2876,7 +2876,7 @@ function KillTest2()
 	print('Begin')
 
 
-	print('Getting Particles2')
+	print('Getting Particles1')
 	for i,v in pairs(game:GetService("Workspace").Particles.StickBugTotem:GetDescendants()) do
 		print('StickBug1=' .. v.Name)
 		if v:FindFirstChild("Frame") then
