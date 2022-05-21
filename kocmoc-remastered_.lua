@@ -2922,34 +2922,40 @@ function KillTest2()
 	end
 	]]--
 	print('Getting Decendants')
-	for i,v in pairs(game:GetService("Workspace").Particles.StickBugTotem.Part:GetDescendants()) do
-		print(v.Name)
-		--[[
-		if v:FindFirstChild("StickBugTotem") then
+	for i,v in pairs(game:GetService("Workspace").Particles.StickBugTotem.Part:GetChildren()) do
+		--print(v.Name)
+		if v:FindFirstChild("GroundPos") then
 			print("Part1")
 			--api.humanoidrootpart().CFrame = v.CFrame
-			if v:FindFirstChild("StickBugTotem"):FindFirstChild("Part") then
+			if v:FindFirstChild("GroundPos"):FindFirstChild("Gui") then
 				print("Part2")
-				if v:FindFirstChild("StickBugTotem"):FindFirstChild("Part"):FindFirstChild("GroundPos") then
+				if v:FindFirstChild("GroundPos"):FindFirstChild("Gui"):FindFirstChild("Frame") then
 					print("Part3")
-					local GroundPos = v:FindFirstChild("StickBugTotem"):FindFirstChild("Part"):FindFirstChild("GroundPos")
-					print(GroundPos.Position)
-				end
-			end
-			
-			if v:FindFirstChild("StickBugTotem"):FindFirstChild("Gui") then
-				print("Text1")
-				if v:FindFirstChild("StickBugTotem"):FindFirstChild("Gui"):FindFirstChild("Frame") then
-					print("Text2")
-					if v:FindFirstChild("StickBugTotem"):FindFirstChild("Gui"):FindFirstChild("Frame"):FindFirstChild("TextLabel") then
-						print("Text3")
-						local TotemLabel = v:FindFirstChild("Gui"):FindFirstChild("Frame"):FindFirstChild("TextLabel").Text
-						print('TotemLabel=' .. TotemLabel)
+					if v:FindFirstChild("GroundPos"):FindFirstChild("Gui"):FindFirstChild("Frame"):FindFirstChild("TextLabel") then
+						print("Part4")
+						local GroundText = v:FindFirstChild("GroundPos"):FindFirstChild("Gui"):FindFirstChild("Frame"):FindFirstChild("TextLabel")
+						print(GroundText.Text)
 					end
 				end
 			end
 		end
-		]]--
+		if v:FindFirstChild("GuiPos") then
+			print("Text1")
+			if v:FindFirstChild("GuiPos"):FindFirstChild("Gui") then
+				print("Text2")
+				if v:FindFirstChild("GuiPos"):FindFirstChild("Gui"):FindFirstChild("Frame") then
+					print("Text3")
+					if v:FindFirstChild("GuiPos"):FindFirstChild("Gui"):FindFirstChild("Frame"):FindFirstChild("TextLabel") then
+						print("Text4")
+						local GuiText = v:FindFirstChild("GuiPos"):FindFirstChild("Gui"):FindFirstChild("Frame"):FindFirstChild("TextLabel")
+						print(GuiText.Text)
+					end
+				end
+			end
+		end
+		if v:FindFirstChild("NamePos") then
+			print("NamePos found!")
+		end
 	end
 	
 	print("TotemPos")
@@ -2960,7 +2966,13 @@ function KillTest2()
 	print("TotemPosition")
 	local TotemPosition = game:GetService("Workspace").Particles.StickBugTotem.Part.Head.Position
 	print(TotemPosition.x,TotemPosition.y,TotemPosition.z)	
+	api.tween(1, CFrame.new(TotemPosition.x, TotemPosition.y, TotemPosition.z))
 	
+	if game.Workspace.Particles:FindFirstChild("StickBugTotem") then
+		print("test123")
+		snailposition = game.Workspace.Particles["StickBugTotem"].Head.Position
+		api.tween(1, CFrame.new(snailposition.x, snailposition.y + 30, snailposition.z))	
+	end
 	--[[
 	for i,v in pairs(game:GetService("Workspace").Particles:GetChildren()) do
 		print('Particles.Name=' .. v.Name)
@@ -3112,175 +3124,41 @@ function KillTest2()
 end
 
 function KillTest()
+	local PlayerGui = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+	--you may need to wait for any of the objects in the path
+	local messages = PlayerGui.Chat.Frame.ChatChannelParentFrame.Frame_MessageLogDisplay.Scroller
 
-	--for i,v in next, game.Workspace.Happenings.Puffshrooms:GetDescendants() do
-		--print(v.Name)
-	--end
-
-	print('test0')
-	-- for i,v in pairs(game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelCommon:GetChildren()) do
-	--[[
-	if game.Workspace.Happenings.Puffshrooms:FindFirstChildOfClass("Model") then
-		--fieldpos1 = getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
-		fieldpos1 = getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem")
-		local puffText = nil
-		puffText = fetchVisualPuffshroomString(fieldpos1)
-		if puffText ~= nil then
-			print(puffText)
-			api.tween(1,CFrame.new(getNearestField(fieldpos1.CFrame)))
-		end	
-		fieldposition1 = fieldpos1.Position
-		print('fieldpos1=' .. fieldpos1.CFrame)
-		--if (fieldposition1-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
-			--print('teleporting to ' .. v.Text)
-			--api.tween(1, fieldpos1) -- Morphisto
-			--task.wait(1)
-			--if kocmoc.toggles.autosprinkler then makesprinklers() end
-		--end
-	end
-	]]--
-	local part
-	for i,v in pairs(game.Workspace.Happenings.Puffshrooms:GetDescendants()) do
-		--print('v.Name=' .. v.Name)
-		if v:IsA("Model") then
-			print('Is a Model')
-			if part == nil then
-				--print('part is nil')
-				part = v
-			end
-			--print('v.Name=' .. v.Name)
-			if v:GetExtentsSize().Y >= part:GetExtentsSize().Y then
-				print(v:GetExtentsSize().Y.." >= "..part:GetExtentsSize().Y)
-				part = v
-				--break
-			end
-		end
-		if v.Name == "TextLabel" then
-			print('v.Text=' .. v.Text)
-			--local path
-			--fieldpos1 = api.partwithnamepart("Rare", v).CFrame
-			--print('Found Rare pos:' .. fieldpos1)
-
-			if string.match(v.Text, "Mythic") then
-				print("Mythic is found!")
-			elseif string.match(v.Text, "Legendary") then
-			elseif string.match(v.Text, "Epic") then
-			elseif string.match(v.Text, "Rare") then
-				print("Rare is found!")
-			else
-				print("Common is found!")
-			end
-
-		end
-
-	end
-
-
-				--[[
-				if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("BarRow") then
-					print('nameText3')
-					if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("BarRow"):FindFirstChild("Bar") then
-						print('nameText4')
-						if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("BarRow"):FindFirstChild("Bar"):FindFirstChild("FillBar") then
-							print('nameText5') -- works up to here
-							if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("BarRow"):FindFirstChild("Bar"):FindFirstChild("FillBar"):FindFirstChild("NumberLabel") then
-								print('nameText6')
-								if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("BarRow"):FindFirstChild("Bar"):FindFirstChild("FillBar"):FindFirstChild("NumberLabel"):FindFirstChild("NameRow") then
-									print('nameText7')
-									if v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("BarRow"):FindFirstChild("Bar"):FindFirstChild("FillBar"):FindFirstChild("NumberLabel"):FindFirstChild("NameRow"):FindFirstChild("TextLabel") then
-										print('nameText8')
-										local nameText = v:FindFirstChild("Attachment"):FindFirstChild("Gui"):FindFirstChild("BarRow"):FindFirstChild("Bar"):FindFirstChild("FillBar"):FindFirstChild("NumberLabel"):FindFirstChild("NameRow"):FindFirstChild("TextLabel").Text
-										print('nameText=' .. nameText)
-									end			
-								end
-							end
-						end
-					end
-				end
-				]]--
-
-	
-	--for _, part in next, game.Workspace.Happenings.Puffshrooms:FindFirstChild("PuffballMushroomModelCommon"):GetDescendants() do -- works
-		--print('partname=' .. part.Name)
-	--end
-
-	--for _, part in next, game.Workspace.Happenings.Puffshrooms.PuffballMushroomModelCommon:FindFirstChild("Puffball Top"):GetDescendants() do -- works
-		--print('part=' .. part.Name)
-	--end
-	
-	--for i,v in next, game.Workspace.Happenings.Puffshrooms.Attachment:GetDescendants() do
-		--print(v.Name)
-	--end
-	--[[
-	temptable.magnitude = 25
-	local plevel
-	for i,v in next, game.Workspace.Happenings.Puffshrooms:GetDescendants() do
-		if v.Name == "TextLabel" then
-			--print(v.Text)
-			pufflevel = string.match(v.Text, "%d+")
-			
-			if plevel == nil then
-				plevel = pufflevel
-			end
-			
-			print('pufflevel=' .. pufflevel .. ' > plevel=' .. plevel)
-			if pufflevel >= plevel then
-				plevel = pufflevel
-				if game.Workspace.Happenings.Puffshrooms:FindFirstChildOfClass("Model") then
-					fieldpos1 = getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
-					fieldposition1 = fieldpos1.Position
-					if (fieldposition1-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
-						print('teleporting to ' .. v.Text)
-						api.tween(1, fieldpos1) -- Morphisto
-						task.wait(1)
-						if kocmoc.toggles.autosprinkler then makesprinklers() end
-					end
-				end
-				--break
-			end
-		end
-	end
-	]]--
-	--for i,v in next, game.Workspace.MonsterSpawners:GetDescendants() do
-		--print('MonsterSprawners=' .. v.Name)
-	--end
-	--[[
-    for i,v in pairs(game:GetService("Workspace").MonsterSpawners:GetChildren()) do
-        if not string.find(v.Name,"CaveMonster") then
-			local mobText = nil
-			mobText = fetchVisualMonsterString(v)
-			if mobText ~= nil then
-				local mob = panel:CreateButton(mobText,function()
-					api.tween(1,CFrame.new(getNearestField(v)))
-				end)
-				table.insert(statusTable,{mob,v})
-			end
-        end
-    end
-	]]--
-
-	--local rankgui = game.Workspace.Happenings.Puffshrooms:FindFirstChild("Gui")
-	--local text = rankgui.TextLabel
-	--print('text123=' .. text)
-	
-	--for i,v in next, game.Workspace.Happenings.Puffshrooms.GetChildren() do
-		--v.TextLabel
-		--print(v.Name)
+	for i, message in pairs(messages:GetChildren()) do --loop through current messages
+		if not message:IsA("Frame") then continue end
+		if not message:FindFirstChild("TextLabel") then continue end 
 		
-		--[[
-		for x in string.gmatch(v.Name, "Puffshroom") do
-			if string.find(v.Name, "Puffshroom") then
-				api.tween(1,CFrame.new(v.Position.x, v.Position.y, v.Position.z)) task.wait(1)
-				api.tween(0.5, CFrame.new(v.Position.x, v.Position.y, v.Position.z)) task.wait(.5)
+		local Button = message.TextLabel:FindFirstChild("TextButton")
+		if Button then 
+			print("actual chat message")
+			local text = Button.Text
+			local username = text:sub(2, text:len()-2) --cut out "[" and "]:
+			print("user:", username)
+		else 
+			print("Probably a system message")
+		end 
+
+		local messageText = removeSpaces(message.TextLabel.Text)
+		if string.find(messageText, "Defense Totem") then
+			for i,field in next, fieldstable do
+				if string.find(messageText, field) then
+					print('field=' .. field)
+					fieldselected = game:GetService("Workspace").FlowerZones[field]
+					fieldpos = CFrame.new(fieldselected.Position.X, fieldselected.Position.Y+3, fieldselected.Position.Z)
+					api.tween(1, fieldpos)
+				end
 			end
 		end
-		]]--
-	--end			
-	
-	--for i,v in next, game.Workspace.Monsters:GetDescendants("Commando Chick (Lvl 13") do
-		--print(v.Name)
-	--end
-	
+		--print("the message:", messageText)
+		
+		--actually "delete" the message(it will be done client-side other users will still be able to see it)
+		--message:Destroy() 
+		-- Stick Bug build a Defense Totem in the Pine Tree Forest!
+	end
 end
 
 function fetchVisualPuffshroomString(v)
