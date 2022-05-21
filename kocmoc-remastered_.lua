@@ -2871,10 +2871,10 @@ function KillTest3()
 	
 	print('Getting Particles3')
 	if game:GetService("Workspace").Particles:FindFirstChild("StickBugTotem") then
-		local DefTotem = game:GetService("Workspace").Particles.StickBugTotem.Part:FindFirstChild("GuiPos")
-		print(DefTotem.Position)
+		local DefTotem = game:GetService("Workspace").Particles.StickBugTotem.Gui.Frame:FindFirstChild("TextLabel")
+		print(DefTotem.Text)
 		print('End Particles3')
-		local TotemPosition = game:GetService("Workspace").Particles.StickBugTotem.Head.Position
+		local TotemPosition = game:GetService("Workspace").Particles.StickBugTotem.Part.Head.Position
 		print(TotemPosition.x,TotemPosition.y,TotemPosition.z)
 		api.tween(1, CFrame.new(TotemPosition.x, TotemPosition.y + 2, TotemPosition.z))
 	end
@@ -2922,7 +2922,9 @@ function KillTest2()
 	end
 	]]--
 	
-	for i,v in pairs(game:GetService("Workspace").Particles:GetChildren()) do
+	for i,v in pairs(game:GetService("Workspace").Particles.StickBugTotem.Part:GetDescendants()) do
+		print(v.Name)
+		--[[
 		if v:FindFirstChild("StickBugTotem") then
 			print("Part1")
 			--api.humanoidrootpart().CFrame = v.CFrame
@@ -2947,11 +2949,15 @@ function KillTest2()
 				end
 			end
 		end
+		]]--
 	end
 	
 	print("TotemPos")
-	local TotemPos = game:GetService("Workspace").Particles.StickBugTotem.Part:FindFirstChild("GroundPos").Position
+	--local TotemPos = game:GetService("Workspace").Particles.StickBugTotem.Part:FindFirstChild("GroundPos").Position
+	local TotemPos = game:GetService("Workspace").Particles.StickBugTotem.Part:FindFirstChild("GuiPos").Position
 	print(TotemPos)
+	
+	
 	
 	--[[
 	for i,v in pairs(game:GetService("Workspace").Particles:GetChildren()) do
