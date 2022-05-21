@@ -2876,12 +2876,17 @@ function KillTest2()
 	print('Getting Particles')
 	for i,v in pairs(game:GetService("Workspace").Particles:GetChildren()) do
 		print('Particles.Name=' .. v.Name)
+		if string.find(v.Name, "Defense Totem")
+			print('Defense Totem Found 1')
+		end
 	end
 	
 	print('Getting Part')
 	for i,v in pairs(game:GetService("Workspace").Part:GetChildren()) do
-		print('v=' .. v)
 		print('Part.Name=' .. v.Name)
+		if string.find(v.Name, "Defense Totem")
+			print('Defense Totem Found 2')
+		end
 	end
 	
 	print('Getting MonsterSpawners')
@@ -2891,17 +2896,26 @@ function KillTest2()
 			local Terr = v:FindFirstChild("Territory")
 			--print('killmobs2():' .. Terr.Name)
 		end
+		if string.find(v.Name, "Defense Totem")
+			print('Defense Totem Found 3')
+		end		
 	end
 	
 	print('Getting NPCBees')
 	for i,v in pairs(game:GetService("Workspace").NPCBees:GetChildren()) do
 		print('NPCBees=' .. v.Name)
+		if string.find(v.Name, "Defense Totem")
+			print('Defense Totem Found 4')
+		end
 	end
 
 	print(' ')
 	print('Getting NPCs')
 	for i,v in pairs(game:GetService("Workspace").NPCs:GetChildren()) do
 		print('NPCs=' .. v.Name)
+		if string.find(v.Name, "Defense Totem")
+			print('Defense Totem Found 5')
+		end
 	end
 	
 
