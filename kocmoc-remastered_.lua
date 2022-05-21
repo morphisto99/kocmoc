@@ -2826,8 +2826,10 @@ function KillTest4()
 			while game.Workspace.Monsters:FindFirstChild(v.Name) do
 				game:GetService("Workspace").Map.Ground.HighBlock.CanCollide = false
 				sbposition = game.Workspace.Monsters[v.Name].Head.Position
-				--api.tween(1, CFrame.new(sbposition.x, sbposition.y + 10, sbposition.z))
-				api.humanoidrootpart().CFrame = temptable.gacf(sbposition, 10) temptable.float = true task.wait()
+				api.tween(1, CFrame.new(sbposition.x, sbposition.y + 10, sbposition.z))
+				temptable.float = true
+				task.wait()
+				--api.humanoidrootpart().CFrame = temptable.gacf(sbposition, 10) temptable.float = true task.wait()
 			end
 			temptable.float = false task.wait(5) for i =1, 5 do gettoken(api.humanoidrootpart().Position) end -- collect tokens :yessir:
 		end
