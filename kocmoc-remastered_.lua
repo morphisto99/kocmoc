@@ -2834,14 +2834,14 @@ function KillTest4()
 				if tonumber(sbposition.y) > 1000 then
 					break
 				end
-				api.tween(1, CFrame.new(sbposition.x, sbposition.y + 10, sbposition.z))
+				api.tween(1, CFrame.new(sbposition.x, sbposition.y + 20, sbposition.z))
 				temptable.float = true
 				--print(sbposition.x,sbposition.y,sbposition.z)
 				task.wait()
 				--api.humanoidrootpart().CFrame = temptable.gacf(sbposition, 10) temptable.float = true task.wait()
 			end
 			temptable.float = false
-			task.wait(1)
+			task.wait(2)
 			for i =1, 5 do
 				gettoken(api.humanoidrootpart().Position)
 			end -- collect tokens :yessir:
@@ -2871,7 +2871,7 @@ function KillTest3()
 	
 	print('Getting Particles3')
 	if game:GetService("Workspace").Particles:FindFirstChild("StickBugTotem") then
-		local DefTotem = game:GetService("Workspace").Particles.StickBugTotem.Gui.Frame:FindFirstChild("TextLabel")
+		local DefTotem = game:GetService("Workspace").Particles.StickBugTotem.Part.Gui.Frame:FindFirstChild("TextLabel")
 		print(DefTotem.Text)
 		print('End Particles3')
 		local TotemPosition = game:GetService("Workspace").Particles.StickBugTotem.Part.Head.Position
@@ -2908,7 +2908,7 @@ function KillTest2()
 	print(' ')
 	print('Begin')
 
-	print('Getting Particles1')
+	
 	--[[
 	for i,v in pairs(game:GetService("Workspace").Particles.StickBugTotem:GetDescendants()) do
 		print('StickBug1=' .. v.Name)
@@ -2921,7 +2921,7 @@ function KillTest2()
 		end
 	end
 	]]--
-	
+	print('Getting Decendants')
 	for i,v in pairs(game:GetService("Workspace").Particles.StickBugTotem.Part:GetDescendants()) do
 		print(v.Name)
 		--[[
@@ -2957,7 +2957,9 @@ function KillTest2()
 	local TotemPos = game:GetService("Workspace").Particles.StickBugTotem.Part:FindFirstChild("GuiPos").Position
 	print(TotemPos)
 	
-	
+	print("TotemPosition")
+	local TotemPosition = game:GetService("Workspace").Particles.StickBugTotem.Part.Head.Position
+	print(TotemPosition.x,TotemPosition.y,TotemPosition.z)	
 	
 	--[[
 	for i,v in pairs(game:GetService("Workspace").Particles:GetChildren()) do
