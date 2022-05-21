@@ -2826,8 +2826,9 @@ function KillTest4()
 			while game.Workspace.Monsters:FindFirstChild(v.Name) do
 				--game:GetService("Workspace").Map.Ground.HighBlock.CanCollide = false
 				sbposition = game.Workspace.Monsters[v.Name].Head.Position
-				api.tween(1, CFrame.new(sbposition.x, sbposition.y + 25, sbposition.z))
+				api.tween(1, CFrame.new(sbposition.x, sbposition.y + 10, sbposition.z))
 				temptable.float = true
+				print(sbposition.x,sbposition.y,sbposition.z)
 				task.wait()
 				--api.humanoidrootpart().CFrame = temptable.gacf(sbposition, 10) temptable.float = true task.wait()
 			end
@@ -2842,11 +2843,12 @@ function KillTest3()
 	print(' ')
 	print('Begin')
 
-	print('Jumping above Stick Bug Head1')
+	print('KillTest3')
 	for i,v in pairs(workspace.Monsters:GetChildren()) do
 		print('Monsters=' .. v.Name)
 		if string.find(v.Name,"Stick Bug") then
 			print('Found Stick Bug!=' .. v.Name)
+			print(v.Position)
 		end
 	end
 	
@@ -2870,15 +2872,28 @@ function KillTest2()
 	print('Begin')
 
 
-	print('Getting Particles')
+	print('Getting Particles2')
 	for i,v in pairs(game:GetService("Workspace").Particles.StickBugTotem:GetDescendants()) do
 		print('StickBug1=' .. v.Name)
-	end
-
-	for i,v in pairs(game:GetService("Workspace").Particles.StickBugTotem:GetChildren()) do
-		print('StickBug2=' .. v.Name)
+		if v:FindFirstChild("Frame") then
+			farm(v)
+		end
+		
 	end
 	
+	print('Getting Particles2')
+	for i,v in pairs(game:GetService("Workspace").Particles:FindFirstChild("StickBugTotem")) do
+		print('StickBug2=' .. v.Name)
+		if v:FindFirstChild("Part") then
+			print(v.Position)
+		end
+		
+	end
+	print('Getting Particles3')
+	if game:GetService("Workspace").Particles:FindFirstChild("StickBugTotem") then
+		local DefTotem = game:GetService("Workspace").Particles:FindFirstChild("StickBugTotem")
+		print(DefTotem.Position)
+	end
 	--[[
 	for i,v in pairs(game:GetService("Workspace").Particles:GetChildren()) do
 		print('Particles.Name=' .. v.Name)
