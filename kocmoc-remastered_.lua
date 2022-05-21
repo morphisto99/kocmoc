@@ -2737,8 +2737,6 @@ function CheckPlayers()
 		end
 		table.insert(playerschanged, v.Name)
 	end
-
-
 	if newplayers or #temptable.players ~= #playerschanged then
 		temptable.players = playerschanged
 		for i,v in pairs(game:GetService("CoreGui"):GetDescendants()) do
@@ -2749,18 +2747,11 @@ function CheckPlayers()
 				else
 					count += 1
 				end
-			end	
-
-			--if v:IsA("TextLabel") and string.find(v.Text,"This player") then
-				--v.Parent:Destroy()
-			--end	
+			end		
 		end
-		
 		for i,v in next, temptable.players do
 			uiwlplayers:CreateButton('Player' .. i .. ': ' .. v, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v).HumanoidRootPart.CFrame end)
 		end
-		
-
 	end
 
 	for j,k in pairs(game:GetService("CoreGui"):GetDescendants()) do
@@ -2809,6 +2800,7 @@ function CheckPlayers()
 		
 	end
 end
+-- Morphisto
 
 --chat messages have a huge amount of spaces at the start(for some reason)
 function removeSpaces(message) 
@@ -2828,83 +2820,17 @@ function KillTest4()
 	print(' ')
 	print('Begin')
 	
-	local count = 1
-	local newplayers = false
-	local playerschanged = {}
-	
-	for i,v in pairs(game.Players:GetChildren()) do
-		print('test1')
-		if not api.tablefind(temptable.players, v.Name) then
-			print('test2')
-			newplayers = true
-		end
-		table.insert(playerschanged, v.Name)
-	end
-
-	if newplayers then
-		print('test3')
-		temptable.players = playerschanged
-		for i,v in pairs(game:GetService("CoreGui"):GetDescendants()) do
-			if v:IsA("TextLabel") and string.find(v.Text,"Player" .. count) then
-				print('test4=' .. count)
-				v.Parent:Destroy()
-				if count > 6 then
-					break
-				else
-					count += 1
-				end
-			end	
-
-			if v:IsA("TextLabel") and string.find(v.Text,"This player") then
-				print('test5')
-				v.Parent:Destroy()
-			end	
-		end
-		
-		for i,v in next, temptable.players do
-			print('test6=' .. i .. ': ' .. v)
-			uiwlplayers:CreateButton('Player' .. i .. ': ' .. v, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v).HumanoidRootPart.CFrame end)
-		end
-	end
-	
-	temptable.cache.disableinrange = false
-	for i,v in next, temptable.players do
-		if not api.tablefind(kocmoc.wlplayers, v) then
-			print('test7')
-			temptable.cache.disableinrange = true
-			for j,k in pairs(game:GetService("CoreGui"):GetDescendants()) do
-				if k:IsA("TextLabel") and string.find(k.Text,"This player") then
-					print('test9')
-					k.Parent:Destroy()
-				end
+	print('Jumping above Stick Bug Head2')
+	for i,v in pairs(workspace.Monsters:GetChildren()) do
+		if string.find(v.Name,"Stick Bug") then
+			while game.Workspace.Monsters:FindFirstChild(v.Name) do
+				game:GetService("Workspace").Map.Ground.HighBlock.CanCollide = false
+				sbposition = game.Workspace.Monsters[v.Name].Head.Position
+				--api.tween(1, CFrame.new(sbposition.x, sbposition.y + 10, sbposition.z))
+				api.humanoidrootpart().CFrame = temptable.gacf(sbposition, 10) temptable.float = true task.wait()
 			end
-			local playerpos = game.Workspace:FindFirstChild(v).HumanoidRootPart.Position
-			if (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 150 then
-				print('test10')
-				uiwlplayers:CreateButton('This player ' .. v .. ' is in range', function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v).HumanoidRootPart.CFrame end)
-			end
+			temptable.float = false task.wait(5) for i =1, 5 do gettoken(api.humanoidrootpart().Position) end -- collect tokens :yessir:
 		end
-	end
-	
-	if temptable.cache.disableinrange then -- disable when other player sin range
-		if kocmoc.toggles.killwindy then
-			uikillwindy:SetState(false)
-			kocmoc.toggles.killwindy = false
-		end
-		if kocmoc.toggles.farmsprouts then
-			uifarmsprouts:SetState(false) 
-			kocmoc.toggles.farmsprouts = false
-		end
-	else
-		if not kocmoc.toggles.killwindy then
-			uikillwindy:SetState(true)
-			kocmoc.toggles.killwindy = true -- enable Windy Bee when no other players in game
-		end
-		if not kocmoc.toggles.farmsprouts then
-			uifarmsprouts:SetState(true) 
-			kocmoc.toggles.farmsprouts = true
-		end	
-		
 	end
 	
 	print('End')
@@ -2913,6 +2839,21 @@ end
 function KillTest3()
 	print(' ')
 	print('Begin')
+
+	print('Jumping above Stick Bug Head1')
+	for i,v in pairs(workspace.Monsters:GetChildren()) do
+		if string.find(v.Name,"Stick Bug") then
+			while game.Workspace.Monsters:FindFirstChild(v.Name) do
+				--game:GetService("Workspace").Map.Ground.HighBlock.CanCollide = false
+				--sbposition = game.Workspace.Monsters[v.Name].Head.Position
+				--api.tween(1, CFrame.new(sbposition.x, sbposition.y + 10, sbposition.z))
+				api.humanoidrootpart().CFrame = temptable.gacf(v, 10) temptable.float = true task.wait()
+			end
+			temptable.float = false task.wait(5) for i =1, 5 do gettoken(api.humanoidrootpart().Position) end -- collect tokens :yessir:
+		end
+	end
+	
+	--[[
 	--KillStickBug()
 	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.TileGrid.IconTile.BG:GetChildren()) do
 		print('KillTest1=' .. v.Name)
@@ -2923,17 +2864,27 @@ function KillTest3()
 			print('Text=' .. v:FindFirstChild("Text").Text)
 		end
 	end
+	]]--
 	print('End')
 end
 
 function KillTest2()
 	print(' ')
 	print('Begin')
+
+
+	print('Getting Particles')
+	for i,v in pairs(game:GetService("Workspace").Particles:GetChildren()) do
+		print('Particles.Name=' .. v.Name)
+	end
+	
+	print('Getting Part')
 	for i,v in pairs(game:GetService("Workspace").Part:GetChildren()) do
 		print('v=' .. v)
 		print('Part.Name=' .. v.Name)
 	end
-
+	
+	print('Getting MonsterSpawners')
     for i,v in pairs(game:GetService("Workspace").MonsterSpawners:GetChildren()) do
 		print('killmobs1():' .. v.Name)
         if v:FindFirstChild("Territory") then
@@ -2953,6 +2904,8 @@ function KillTest2()
 		print('NPCs=' .. v.Name)
 	end
 	
+
+
 	--for i,v in next, game.Workspace.Happenings:GetDescendants() do
 		--print('4:' .. v.Name)
 	--end
