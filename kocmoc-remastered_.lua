@@ -2714,15 +2714,19 @@ function KillStickBug()
 	for i,v in pairs(workspace.Monsters:GetChildren()) do
 		if string.find(v.Name,"Stick Bug") then
 			while game.Workspace.Monsters:FindFirstChild(v.Name) do
-				--game:GetService("Workspace").Map.Ground.HighBlock.CanCollide = false
-				stickbugposition = game.Workspace.Monsters[v.Name].Head.Position
-				api.tween(1, CFrame.new(stickbugposition.x, stickbugposition.y + 30, stickbugposition.z))
-				task.wait(1)
+				sbposition = game.Workspace.Monsters[v.Name].Head.Position
+				if tonumber(sbposition.y) > 1000 then
+					break
+				end
+				api.tween(1, CFrame.new(sbposition.x, sbposition.y + 20, sbposition.z))
+				temptable.float = true
+				task.wait()
 			end
-			for i = 1, 4 do gettoken(stickbugposition) end
+			temptable.float = false
+			task.wait(1)
+			for i =1, 4 do gettoken(api.humanoidrootpart().Position) end
 		end
 	end
-
 end
 
 -- Morphisto
@@ -2928,9 +2932,6 @@ function KillTest2()
 	print("TotemPos.CFrame")
 	local TotemPos = game:GetService("Workspace").Particles:FindFirstChild("StickBugTotem")	
 	print(TotemPos.CFrame)
-	
-	
-	
 	
 	--[[
 	for i,v in pairs(game:GetService("Workspace").Particles:GetChildren()) do
