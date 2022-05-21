@@ -2874,6 +2874,9 @@ function KillTest3()
 		local DefTotem = game:GetService("Workspace").Particles.StickBugTotem.Part:FindFirstChild("GuiPos")
 		print(DefTotem.Position)
 		print('End Particles3')
+		local TotemPosition = game:GetService("Workspace").Particles.StickBugTotem.Head.Position
+		print(TotemPosition.x,TotemPosition.y,TotemPosition.z)
+		api.tween(1, CFrame.new(TotemPosition.x, TotemPosition.y + 2, TotemPosition.z))
 	end
 	
 	--[[
