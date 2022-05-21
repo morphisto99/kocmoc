@@ -2854,7 +2854,7 @@ function KillTest3()
 	--for i,v in pairs(game:GetService("Workspace").Flowers:GetChildren()) do
 		--print('Flowers:' .. v.Name)
 	--end
-	
+	--[[
 	print('Getting Particles2')
 	for i,v in pairs(game:GetService("Workspace").Particles:StickBugTotem:GetDescendants()) do
 		print('StickBug2=' .. v.Name)
@@ -2868,7 +2868,7 @@ function KillTest3()
 		local DefTotem = game:GetService("Workspace").Particles:FindFirstChild("StickBugTotem")
 		print(DefTotem.Position)
 	end
-	
+	]]--
 	--[[
 	print('KillTest3')
 	for i,v in pairs(workspace.Monsters:GetChildren()) do
