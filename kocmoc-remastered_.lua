@@ -2837,7 +2837,7 @@ function KillTest4()
 				--api.humanoidrootpart().CFrame = temptable.gacf(sbposition, 10) temptable.float = true task.wait()
 			end
 			temptable.float = false
-			task.wait(3)
+			task.wait(1)
 			for i =1, 5 do
 				gettoken(api.humanoidrootpart().Position)
 			end -- collect tokens :yessir:
@@ -2868,7 +2868,8 @@ function KillTest3()
 	print('Getting Particles3')
 	if game:GetService("Workspace").Particles:FindFirstChild("StickBugTotem") then
 		local DefTotem = game:GetService("Workspace").Particles:FindFirstChild("StickBugTotem")
-		print(DefTotem.Position)
+		print(DefTotem.CFrame)
+		print('End Particles3')
 	end
 	
 	--[[
@@ -2901,6 +2902,7 @@ function KillTest2()
 	print('Begin')
 
 	print('Getting Particles1')
+	--[[
 	for i,v in pairs(game:GetService("Workspace").Particles.StickBugTotem:GetDescendants()) do
 		print('StickBug1=' .. v.Name)
 		if v:FindFirstChild("Frame") then
@@ -2911,11 +2913,25 @@ function KillTest2()
 			end
 		end
 	end
-
-	for _, part in next, game:GetService("Workspace").Particles.StickBugTotem.Part:GetDescendants() do -- works
-		print('partname=' .. part.Name)
+	]]--
+	
+	for i,v in pairs(game:GetService("Workspace").Particles:GetChildren()) do
+		if v:FindFirstChild("StickBugTotem") then
+			api.humanoidrootpart().CFrame = v.CFrame			
+			if v:FindFirstChild("StickBugTotem"):FindFirstChild("TextLabel") then
+				local TotemLabel = v:FindFirstChild("StickBugTotem"):FindFirstChild("TextLabel").Text
+				print('TotemLabel=' .. TotemLabel)
+			end
+		end
 	end
-
+	
+	print("TotemPos.CFrame")
+	local TotemPos = game:GetService("Workspace").Particles:FindFirstChild("StickBugTotem")	
+	print(TotemPos.CFrame)
+	
+	
+	
+	
 	--[[
 	for i,v in pairs(game:GetService("Workspace").Particles:GetChildren()) do
 		print('Particles.Name=' .. v.Name)
