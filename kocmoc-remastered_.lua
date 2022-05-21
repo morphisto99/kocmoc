@@ -2826,13 +2826,14 @@ function KillTest4()
 			while game.Workspace.Monsters:FindFirstChild(v.Name) do
 				--game:GetService("Workspace").Map.Ground.HighBlock.CanCollide = false
 				sbposition = game.Workspace.Monsters[v.Name].Head.Position
+				if tonumber(sbposition.y) > 1000 then break end
 				api.tween(1, CFrame.new(sbposition.x, sbposition.y + 10, sbposition.z))
 				temptable.float = true
-				print(sbposition.x,sbposition.y,sbposition.z)
+				--print(sbposition.x,sbposition.y,sbposition.z)
 				task.wait()
 				--api.humanoidrootpart().CFrame = temptable.gacf(sbposition, 10) temptable.float = true task.wait()
 			end
-			temptable.float = false task.wait(5) for i =1, 5 do gettoken(api.humanoidrootpart().Position) end -- collect tokens :yessir:
+			temptable.float = false task.wait(3) for i =1, 5 do gettoken(api.humanoidrootpart().Position) end -- collect tokens :yessir:
 		end
 	end
 	
@@ -2843,10 +2844,25 @@ function KillTest3()
 	print(' ')
 	print('Begin')
 
-	for i,v in pairs(game:GetService("Workspace").Flowers:GetChildren()) do
-		print('Flowers:' .. v.Name)
+	--for i,v in pairs(game:GetService("Workspace").Flowers:GetChildren()) do
+		--print('Flowers:' .. v.Name)
+	--end
+	
+	print('Getting Particles2')
+	for i,v in pairs(game:GetService("Workspace").Particles:StickBugTotem:GetDescendants()) do
+		print('StickBug2=' .. v.Name)
+		if v:FindFirstChild("Part") then
+			print(v.Position)
+		end
+		
 	end
-
+	print('Getting Particles3')
+	if game:GetService("Workspace").Particles:FindFirstChild("StickBugTotem") then
+		local DefTotem = game:GetService("Workspace").Particles:FindFirstChild("StickBugTotem")
+		print(DefTotem.Position)
+	end
+	
+	--[[
 	print('KillTest3')
 	for i,v in pairs(workspace.Monsters:GetChildren()) do
 		print('Monsters=' .. v.Name)
@@ -2855,7 +2871,7 @@ function KillTest3()
 			print(v.Position)
 		end
 	end
-	
+	]]--
 	--[[
 	--KillStickBug()
 	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.TileGrid.IconTile.BG:GetChildren()) do
@@ -2875,29 +2891,23 @@ function KillTest2()
 	print(' ')
 	print('Begin')
 
-
 	print('Getting Particles1')
 	for i,v in pairs(game:GetService("Workspace").Particles.StickBugTotem:GetDescendants()) do
 		print('StickBug1=' .. v.Name)
 		if v:FindFirstChild("Frame") then
-			farm(v)
+			if v:FindFirstChild("Frame"):FindFirstChild("GroundPos") then
+				--farm(v)
+				local GroundPos = v:FindFirstChild("Frame"):FindFirstChild("GroundPos")
+				print(GroundPos.Text)
+			end
 		end
 		
 	end
-	
-	print('Getting Particles2')
-	for i,v in pairs(game:GetService("Workspace").Particles:FindFirstChild("StickBugTotem")) do
-		print('StickBug2=' .. v.Name)
-		if v:FindFirstChild("Part") then
-			print(v.Position)
-		end
-		
+
+	for _, part in next, game:GetService("Workspace").Particles.StickBugTotem.Part:GetDescendants() do -- works
+		print('partname=' .. part.Name)
 	end
-	print('Getting Particles3')
-	if game:GetService("Workspace").Particles:FindFirstChild("StickBugTotem") then
-		local DefTotem = game:GetService("Workspace").Particles:FindFirstChild("StickBugTotem")
-		print(DefTotem.Position)
-	end
+
 	--[[
 	for i,v in pairs(game:GetService("Workspace").Particles:GetChildren()) do
 		print('Particles.Name=' .. v.Name)
