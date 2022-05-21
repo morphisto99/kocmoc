@@ -2820,7 +2820,7 @@ function KillTest4()
 	print(' ')
 	print('Begin')
 	
-	--[[
+	
 	print('Jumping above Stick Bug Head2')
 	for i,v in pairs(workspace.Monsters:GetChildren()) do
 		if string.find(v.Name,"Stick Bug") then
@@ -2843,7 +2843,7 @@ function KillTest4()
 			end -- collect tokens :yessir:
 		end
 	end
-	]]--
+	
 	print('End')
 end
 
@@ -2856,20 +2856,19 @@ function KillTest3()
 	--end
 	
 	print('Getting Particles2')
-	for i,v in pairs(game:GetService("Workspace").Particles:StickBugTotem:GetDescendants()) do
+	for i,v in pairs(game:GetService("Workspace").Particles:StickBugTotem.Part:GetDescendants()) do
 		print('StickBug2=' .. v.Name)
-		if v:FindFirstChild("Part") then
-			print(v.Position)
-		end
+		--if v:FindFirstChild("Part") then
+			--print(v.Position)
+		--end
 	end
 	
-	--[[
 	print('Getting Particles3')
 	if game:GetService("Workspace").Particles:FindFirstChild("StickBugTotem") then
 		local DefTotem = game:GetService("Workspace").Particles:FindFirstChild("StickBugTotem")
 		print(DefTotem.Position)
 	end
-	]]--
+	
 	--[[
 	print('KillTest3')
 	for i,v in pairs(workspace.Monsters:GetChildren()) do
@@ -2909,7 +2908,6 @@ function KillTest2()
 				print(GroundPos.Text)
 			end
 		end
-		
 	end
 
 	for _, part in next, game:GetService("Workspace").Particles.StickBugTotem.Part:GetDescendants() do -- works
