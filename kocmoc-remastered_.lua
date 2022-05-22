@@ -2815,7 +2815,7 @@ function KillStickBug()
 					if chkDFHP ~= 0 then
 						gettoken(fieldselected.Position)
 					end
-				until chkDFHP = 0
+				until chkDFHP == 0
 				ChatText = ""
 			else
 				for i =1, 4 do gettoken(api.humanoidrootpart().Position) end
