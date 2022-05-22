@@ -2709,6 +2709,34 @@ function KillStumpSnail()
 end
 -- Morphisto
 
+function findTextInChat(sText)
+	result = ""
+	local PlayerGui = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+	local messages = PlayerGui.Chat.Frame.ChatChannelParentFrame.Frame_MessageLogDisplay.Scroller
+	for i, message in pairs(messages:GetChildren()) do --loop through current messages
+		if not message:IsA("Frame") then continue end
+		if not message:FindFirstChild("TextLabel") then continue end 
+		
+		local Button = message.TextLabel:FindFirstChild("TextButton")
+		if Button then 
+			--print("actual chat message")
+			local text = Button.Text
+			local username = text:sub(2, text:len()-2) --cut out "[" and "]:
+			--print("user:", username)
+		else 
+			--print("Probably a system message")
+		end 
+		local messageText = removeSpaces(message.TextLabel.Text)
+		if string.find(messageText, sText) then
+			result = messageText
+			message:Destroy()
+			break
+		end
+	end
+	return result
+end
+
+
 -- Morphisto
 function KillStickBug()
 	--sblvl = ""
@@ -2732,6 +2760,7 @@ function KillStickBug()
 				task.wait()
 			end
 			temptable.float = false
+			--[[
 			if ChatText ~= "" then
 				for i,field in next, fieldstable do
 					if string.find(ChatText, field) then
@@ -2743,6 +2772,7 @@ function KillStickBug()
 					end
 				end
 			end
+			]]--
 			task.wait(1)
 			--[[
 			if kocmoc.toggles.autosprinkler then makesprinklers() end
@@ -3192,33 +3222,6 @@ function KillTest()
 	]]--
 end
 
-
-function findTextInChat(sText)
-	result = ""
-	local PlayerGui = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-	local messages = PlayerGui.Chat.Frame.ChatChannelParentFrame.Frame_MessageLogDisplay.Scroller
-	for i, message in pairs(messages:GetChildren()) do --loop through current messages
-		if not message:IsA("Frame") then continue end
-		if not message:FindFirstChild("TextLabel") then continue end 
-		
-		local Button = message.TextLabel:FindFirstChild("TextButton")
-		if Button then 
-			--print("actual chat message")
-			local text = Button.Text
-			local username = text:sub(2, text:len()-2) --cut out "[" and "]:
-			--print("user:", username)
-		else 
-			--print("Probably a system message")
-		end 
-		local messageText = removeSpaces(message.TextLabel.Text)
-		if string.find(messageText, sText) then
-			result = messageText
-			message:Destroy()
-			break
-		end
-	end
-	return result
-end
 
 function fetchVisualPuffshroomString(v)
     local puffText = nil
