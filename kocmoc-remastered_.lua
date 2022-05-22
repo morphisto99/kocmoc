@@ -2712,6 +2712,7 @@ end
 -- Morphisto
 function KillStickBug()
 	--sblvl = ""
+	--[[
 	for i,v in pairs(workspace.Monsters:GetChildren()) do
 		if string.find(v.Name,"Stick Bug") then
 			--sblvl = v.Name
@@ -2761,7 +2762,7 @@ function KillStickBug()
 			--break
 		end
 	end
-
+	]]--
 end
 
 function DefenseTotemHP()
