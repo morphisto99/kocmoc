@@ -2854,7 +2854,7 @@ function KillTest4()
 				if tonumber(sbposition.y) > 1000 then
 					break
 				end
-				api.tween(1, CFrame.new(sbposition.x, sbposition.y + 20, sbposition.z))
+				api.tween(1, CFrame.new(sbposition.x, sbposition.y + 30, sbposition.z))
 				temptable.float = true
 				--print(sbposition.x,sbposition.y,sbposition.z)
 				task.wait()
@@ -2958,6 +2958,7 @@ function KillTest2()
 		end
 		if v:FindFirstChild("NamePos") then
 			print("NamePos found!")
+			print(v.Position)
 		end
 	end
 	
@@ -3159,6 +3160,10 @@ function KillTest()
 				end
 			end
 		end
+		
+		if string.find(messageText, "hmm") then
+			message.Parent:Destroy()
+		end		
 		--print("the message:", messageText)
 		
 		--actually "delete" the message(it will be done client-side other users will still be able to see it)
