@@ -2779,21 +2779,39 @@ function KillStickBug()
 			--sblvl = v.Name
 			print('Now attacking ' .. v.Name)
 			disableall()
-			while game.Workspace.Monsters:FindFirstChild(v.Name) do
-				sbposition = game.Workspace.Monsters[v.Name].Head.Position
+			local sbposition = game.Workspace.Monsters[v.Name].Head.Position
+			api.tween(1, CFrame.new(sbposition.x, sbposition.y, sbposition.z))
+			task.wait(2)
+			if kocmoc.toggles.autosprinkler then makesprinklers() end
+			while game.Workspace.Monsters:FindFirstChild(v.Name) and not game.Workspace.Particles:FindFirstChild("StickBugTotem") do
 				if tonumber(sbposition.y) > 1000 then
 					break
 				end
+				--[[
 				ChatText = findTextInChat("Defense Totem")
 				if ChatText ~= "" then
 					break
 				end
+				]]--
 				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(sbposition.x, sbposition.y + 30, sbposition.z)
 				--api.tween(1, CFrame.new(sbposition.x, sbposition.y + 30, sbposition.z))
 				temptable.float = true
 				task.wait()
 			end
 			temptable.float = false
+			if game.Workspace.Particles:FindFirstChild("StickBugTotem") then
+				local DefTotem = game:GetService("Workspace").Particles.StickBugTotem:FindFirstChild("NamePos").Position
+				api.tween(1, CFrame.new(DefTotem.x, DefTotem.y, DefTotem.z))
+				task.wait(2)
+				if kocmoc.toggles.autosprinkler then makesprinklers() end
+				while game.Workspace.Particles:FindFirstChild("StickBugTotem") do
+					gettoken(DefTotem)
+					task.wait(1)
+				end
+				task.wait(2)
+				for i = 1, 4 do gettoken(DefTotem) end
+			end
+			--[[
 			if ChatText ~= "" then
 				for i,field in next, fieldstable do
 					if string.find(ChatText, field) then
@@ -2805,28 +2823,14 @@ function KillStickBug()
 					end
 				end
 			end
-			task.wait(1)
-			if kocmoc.toggles.autosprinkler then makesprinklers() end
-			if ChatText ~= "" then
-				local chkDFHP = 0
-				repeat
-					task.wait()
-					chkDFHP = DefenseTotemHP()
-					if chkDFHP ~= 0 then
-						gettoken(fieldselected.Position)
-					end
-				until chkDFHP == 0
-				ChatText = ""
-			else
-				for i =1, 4 do gettoken(api.humanoidrootpart().Position) end
-			end
+			]]--
+			task.wait(2)
+			for i =1, 4 do gettoken(api.humanoidrootpart().Position) end
 			enableall()
 			--break
 		end
 	end
 end
-
-
 
 -- Morphisto
 function CheckPlayers()
@@ -2922,22 +2926,20 @@ function KillTest3()
 		--print('Flowers:' .. v.Name)
 	--end
 	
-	--[[
+
 	print('Getting Particles2')
-	for i,v in pairs(game:GetService("Workspace").Particles:StickBugTotem.Part:GetDescendants()) do
-		print('StickBug2=' .. v.Name)
+	for i,v in pairs(game:GetService("Workspace").Particles.Folder2:GetChildren()) do
+		print('Part2=' .. v.Name)
 		--if v:FindFirstChild("Part") then
 			--print(v.Position)
 		--end
 	end
-	]]--
 	
 	print('Getting Particles3')
-	if game:GetService("Workspace").Particles:FindFirstChild("StickBugTotem") then
-		local DefTotem = game:GetService("Workspace").Particles.StickBugTotem.NamePos.Gui.Frame:FindFirstChild("TextLabel")
-		print(DefTotem.Text)
-		print('End Particles3')
-		
+	if game.Workspace.Particles:FindFirstChild("StickBugTotem") then
+		local DefTotem = game:GetService("Workspace").Particles.StickBugTotem:FindFirstChild("NamePos").Position
+		print(DefTotem.x,DefTotem.y,DefTotem.z)
+		api.tween(1, CFrame.new(DefTotem.x, DefTotem.y, DefTotem.z))
 	end
 	
 	--[[
@@ -2995,7 +2997,6 @@ function KillTest2()
 						print("Text4")
 						local GuiText = v:FindFirstChild("GuiPos"):FindFirstChild("Gui"):FindFirstChild("Frame"):FindFirstChild("TextLabel")
 						print(GuiText.Text)
-						print(v.Position)
 					end
 				end
 			end
@@ -3003,26 +3004,11 @@ function KillTest2()
 		if v:FindFirstChild("NamePos") then
 			print("NamePos found!")
 			print(v.Position)
+			api.tween(2, CFrame.new(v.Position.x,v.Position.y,v.Position.z))
+			task.wait(1)
 		end
 	end
 	
-	print("TotemPos")
-	--local TotemPos = game:GetService("Workspace").Particles.StickBugTotem.Part:FindFirstChild("GroundPos").Position
-	local TotemPos = game:GetService("Workspace").Particles.StickBugTotem.Part:FindFirstChild("GuiPos").Position
-	print(TotemPos)
-	api.tween(1, CFrame.new(TotemPos.x, TotemPos.y + 80, TotemPos.z))
-	task.wait(3)
-	
-	print("TotemPosition")
-	local TotemPosition = game:GetService("Workspace").Particles.StickBugTotem.Part.Head.Position
-	print(TotemPosition.x,TotemPosition.y,TotemPosition.z)	
-	api.tween(1, CFrame.new(TotemPosition.x, TotemPosition.y + 50, TotemPosition.z))
-	task.wait(3)
-	if game.Workspace.Particles:FindFirstChild("StickBugTotem") then
-		print("test123")
-		snailposition = game.Workspace.Particles["StickBugTotem"].Part.Head.Position
-		api.tween(1, CFrame.new(snailposition.x, snailposition.y + 80, snailposition.z))	
-	end
 	--[[
 	for i,v in pairs(game:GetService("Workspace").Particles:GetChildren()) do
 		print('Particles.Name=' .. v.Name)
