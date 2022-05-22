@@ -3130,10 +3130,25 @@ function KillTest2()
 end
 
 function KillTest()
-	local PlayerGui = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-	--you may need to wait for any of the objects in the path
-	local messages = PlayerGui.Chat.Frame.ChatChannelParentFrame.Frame_MessageLogDisplay.Scroller
 
+	local ChatText = findTextInChat("hmm")
+	print('findChat=' .. ChatText)
+	local ChatText = findTextInChat("Defense Totem")
+	if ChatText ~= "" then
+		print('inside of ChatText')
+		for i,field in next, fieldstable do
+			if string.find(ChatText, field) then
+				fieldselected = game:GetService("Workspace").FlowerZones[field]
+				fieldpos = CFrame.new(fieldselected.Position.X, fieldselected.Position.Y+3, fieldselected.Position.Z)
+				api.tween(1, fieldpos)
+				break
+			end
+		end
+	end
+		
+	--[[
+	local PlayerGui = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+	local messages = PlayerGui.Chat.Frame.ChatChannelParentFrame.Frame_MessageLogDisplay.Scroller
 	for i, message in pairs(messages:GetChildren()) do --loop through current messages
 		if not message:IsA("Frame") then continue end
 		if not message:FindFirstChild("TextLabel") then continue end 
@@ -3147,7 +3162,6 @@ function KillTest()
 		else 
 			--print("Probably a system message")
 		end 
-
 		local messageText = removeSpaces(message.TextLabel.Text)
 		if string.find(messageText, "Defense Totem") then
 			for i,field in next, fieldstable do
@@ -3157,19 +3171,40 @@ function KillTest()
 					fieldselected = game:GetService("Workspace").FlowerZones[field]
 					fieldpos = CFrame.new(fieldselected.Position.X, fieldselected.Position.Y+3, fieldselected.Position.Z)
 					api.tween(1, fieldpos)
+					break
 				end
 			end
 		end
-		
-		if string.find(messageText, "hmm") then
-			message:Destroy()
-		end		
-		--print("the message:", messageText)
-		
-		--actually "delete" the message(it will be done client-side other users will still be able to see it)
-		--message:Destroy() 
-		-- Stick Bug build a Defense Totem in the Pine Tree Forest!
 	end
+	]]--
+end
+
+
+function findTextInChat(sText)
+	result = ""
+	local PlayerGui = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+	local messages = PlayerGui.Chat.Frame.ChatChannelParentFrame.Frame_MessageLogDisplay.Scroller
+	for i, message in pairs(messages:GetChildren()) do --loop through current messages
+		if not message:IsA("Frame") then continue end
+		if not message:FindFirstChild("TextLabel") then continue end 
+		
+		local Button = message.TextLabel:FindFirstChild("TextButton")
+		if Button then 
+			print("actual chat message")
+			local text = Button.Text
+			local username = text:sub(2, text:len()-2) --cut out "[" and "]:
+			print("user:", username)
+		else 
+			--print("Probably a system message")
+		end 
+		local messageText = removeSpaces(message.TextLabel.Text)
+		if string.find(messageText, sText) then
+			result = messageText
+			message:Destroy()
+			break
+		end
+	end
+	return result
 end
 
 function fetchVisualPuffshroomString(v)
