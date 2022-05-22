@@ -2745,7 +2745,7 @@ function KillStickBug()
 		if string.find(v.Name,"Stick Bug") then
 			--sblvl = v.Name
 			print('Now attacking ' .. v.Name)
-			--disableall()
+			disableall()
 			while game.Workspace.Monsters:FindFirstChild(v.Name) do
 				sbposition = game.Workspace.Monsters[v.Name].Head.Position
 				if tonumber(sbposition.y) > 1000 then
@@ -2773,7 +2773,6 @@ function KillStickBug()
 				end
 			end
 			task.wait(1)
-			--[[
 			if kocmoc.toggles.autosprinkler then makesprinklers() end
 			if ChatText ~= "" then
 				repeat
@@ -2787,8 +2786,7 @@ function KillStickBug()
 			else
 				for i =1, 4 do gettoken(api.humanoidrootpart().Position) end
 			end
-			]]--
-			--enableall()
+			enableall()
 			--break
 		end
 	end
