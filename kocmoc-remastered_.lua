@@ -2781,18 +2781,13 @@ function KillStickBug()
 			disableall()
 			local sbposition = game.Workspace.Monsters[v.Name].Head.Position
 			api.tween(1, CFrame.new(sbposition.x, sbposition.y, sbposition.z))
-			task.wait(2)
+			task.wait(1)
 			if kocmoc.toggles.autosprinkler then makesprinklers() end
 			while game.Workspace.Monsters:FindFirstChild(v.Name) and not game.Workspace.Particles:FindFirstChild("StickBugTotem") do
+				sbposition = game.Workspace.Monsters[v.Name].Head.Position
 				if tonumber(sbposition.y) > 1000 then
 					break
 				end
-				--[[
-				ChatText = findTextInChat("Defense Totem")
-				if ChatText ~= "" then
-					break
-				end
-				]]--
 				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(sbposition.x, sbposition.y + 30, sbposition.z)
 				--api.tween(1, CFrame.new(sbposition.x, sbposition.y + 30, sbposition.z))
 				temptable.float = true
@@ -2800,32 +2795,23 @@ function KillStickBug()
 			end
 			temptable.float = false
 			if game.Workspace.Particles:FindFirstChild("StickBugTotem") then
-				local DefTotem = game:GetService("Workspace").Particles.StickBugTotem:FindFirstChild("NamePos").Position
-				api.tween(1, CFrame.new(DefTotem.x, DefTotem.y, DefTotem.z))
+				for j,k in pairs(game:GetService("Workspace").Particles.StickBugTotem:GetChildren()) do
+					if k:FindFirstChild("NamePos") then
+						api.tween(2, CFrame.new(k.Position.x,k.Position.y,k.Position.z))
+						break
+					end				
+				end
 				task.wait(2)
 				if kocmoc.toggles.autosprinkler then makesprinklers() end
 				while game.Workspace.Particles:FindFirstChild("StickBugTotem") do
-					gettoken(DefTotem)
+					gettoken(k.Position)
 					task.wait(1)
-				end
-				task.wait(2)
-				for i = 1, 4 do gettoken(DefTotem) end
+				end				
+				for i = 1, 3 do gettoken(k.Position) end
+			else
+				task.wait(1)
+				for i =1, 4 do gettoken(api.humanoidrootpart().Position) end			
 			end
-			--[[
-			if ChatText ~= "" then
-				for i,field in next, fieldstable do
-					if string.find(ChatText, field) then
-						fieldselected = game:GetService("Workspace").FlowerZones[field]
-						fieldpos = CFrame.new(fieldselected.Position.X, fieldselected.Position.Y+3, fieldselected.Position.Z)
-						api.tween(2, fieldpos)
-						task.wait(1)
-						break
-					end
-				end
-			end
-			]]--
-			task.wait(2)
-			for i =1, 4 do gettoken(api.humanoidrootpart().Position) end
 			enableall()
 			--break
 		end
