@@ -2740,6 +2740,7 @@ end
 -- Morphisto
 function KillStickBug()
 	--sblvl = ""
+	local ChatText = ""
 	for i,v in pairs(workspace.Monsters:GetChildren()) do
 		if string.find(v.Name,"Stick Bug") then
 			--sblvl = v.Name
@@ -2750,7 +2751,7 @@ function KillStickBug()
 				if tonumber(sbposition.y) > 1000 then
 					break
 				end
-				local ChatText = findTextInChat("Defense Totem")
+				ChatText = findTextInChat("Defense Totem")
 				if ChatText ~= "" then
 					break
 				end
@@ -2760,7 +2761,6 @@ function KillStickBug()
 				task.wait()
 			end
 			temptable.float = false
-			--[[
 			if ChatText ~= "" then
 				for i,field in next, fieldstable do
 					if string.find(ChatText, field) then
@@ -2772,7 +2772,6 @@ function KillStickBug()
 					end
 				end
 			end
-			]]--
 			task.wait(1)
 			--[[
 			if kocmoc.toggles.autosprinkler then makesprinklers() end
