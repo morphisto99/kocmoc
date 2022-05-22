@@ -2871,12 +2871,12 @@ function KillTest3()
 	
 	print('Getting Particles3')
 	if game:GetService("Workspace").Particles:FindFirstChild("StickBugTotem") then
-		local DefTotem = game:GetService("Workspace").Particles.StickBugTotem.Part.Gui.Frame:FindFirstChild("TextLabel")
+		local DefTotem = game:GetService("Workspace").Particles.StickBugTotem.Gui.Frame:FindFirstChild("TextLabel")
 		print(DefTotem.Text)
 		print('End Particles3')
-		local TotemPosition = game:GetService("Workspace").Particles.StickBugTotem.Part.Head.Position
-		print(TotemPosition.x,TotemPosition.y,TotemPosition.z)
-		api.tween(1, CFrame.new(TotemPosition.x, TotemPosition.y + 2, TotemPosition.z))
+		
+		local NamePos = game:GetService("Workspace").Particles.StickBugTotem.NamePos.Gui.Frame:FindFirstChild("TextLabel")
+		print(NamePos.Text)
 	end
 	
 	--[[
@@ -2922,7 +2922,7 @@ function KillTest2()
 	end
 	]]--
 	print('Getting Decendants')
-	for i,v in pairs(game:GetService("Workspace").Particles.StickBugTotem.Part:GetChildren()) do
+	for i,v in pairs(game:GetService("Workspace").Particles.StickBugTotem:GetChildren()) do
 		--print(v.Name)
 		if v:FindFirstChild("GroundPos") then
 			print("Part1")
@@ -2962,16 +2962,18 @@ function KillTest2()
 	--local TotemPos = game:GetService("Workspace").Particles.StickBugTotem.Part:FindFirstChild("GroundPos").Position
 	local TotemPos = game:GetService("Workspace").Particles.StickBugTotem.Part:FindFirstChild("GuiPos").Position
 	print(TotemPos)
+	api.tween(1, CFrame.new(TotemPos.x, TotemPos.y + 80, TotemPos.z))
+	task.wait(3)
 	
 	print("TotemPosition")
 	local TotemPosition = game:GetService("Workspace").Particles.StickBugTotem.Part.Head.Position
 	print(TotemPosition.x,TotemPosition.y,TotemPosition.z)	
-	api.tween(1, CFrame.new(TotemPosition.x, TotemPosition.y, TotemPosition.z))
-	
+	api.tween(1, CFrame.new(TotemPosition.x, TotemPosition.y + 50, TotemPosition.z))
+	task.wait(3)
 	if game.Workspace.Particles:FindFirstChild("StickBugTotem") then
 		print("test123")
-		snailposition = game.Workspace.Particles["StickBugTotem"].Head.Position
-		api.tween(1, CFrame.new(snailposition.x, snailposition.y + 30, snailposition.z))	
+		snailposition = game.Workspace.Particles["StickBugTotem"].Part.Head.Position
+		api.tween(1, CFrame.new(snailposition.x, snailposition.y + 80, snailposition.z))	
 	end
 	--[[
 	for i,v in pairs(game:GetService("Workspace").Particles:GetChildren()) do
@@ -3139,14 +3141,15 @@ function KillTest()
 			local username = text:sub(2, text:len()-2) --cut out "[" and "]:
 			print("user:", username)
 		else 
-			print("Probably a system message")
+			--print("Probably a system message")
 		end 
 
 		local messageText = removeSpaces(message.TextLabel.Text)
 		if string.find(messageText, "Defense Totem") then
 			for i,field in next, fieldstable do
 				if string.find(messageText, field) then
-					print('field=' .. field)
+					--print('field=' .. field)
+					message:Destroy()
 					fieldselected = game:GetService("Workspace").FlowerZones[field]
 					fieldpos = CFrame.new(fieldselected.Position.X, fieldselected.Position.Y+3, fieldselected.Position.Z)
 					api.tween(1, fieldpos)
