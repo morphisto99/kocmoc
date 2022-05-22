@@ -2775,16 +2775,17 @@ function KillStickBug()
 			task.wait(1)
 			if kocmoc.toggles.autosprinkler then makesprinklers() end
 			if ChatText ~= "" then
+				local chkDFHP = 0
 				repeat
 					task.wait()
-					local chkDFHP = DefenseTotemHP()
+					chkDFHP = DefenseTotemHP()
 					if chkDFHP ~= 0 then
 						gettoken(fieldselected.Position)
 					end
 				until chkDFHP = 0
 				ChatText = ""
 			else
-				for i =1, 4 do gettoken(api.humanoidrootpart().Position) end
+				--for i =1, 4 do gettoken(api.humanoidrootpart().Position) end
 			end
 			enableall()
 			--break
