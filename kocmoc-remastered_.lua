@@ -2708,7 +2708,7 @@ function KillStumpSnail()
 	end
 end
 -- Morphisto
-
+-- Morphisto
 function findTextInChat(sText)
 	result = ""
 	local PlayerGui = game.Players.LocalPlayer:WaitForChild("PlayerGui")
@@ -2735,8 +2735,27 @@ function findTextInChat(sText)
 	end
 	return result
 end
-
-
+-- Morphisto
+-- Morphisto
+function DefenseTotemHP()
+	local dtHP = 0
+	for i,v in pairs(game:GetService("Workspace").Particles.StickBugTotem:GetChildren()) do
+		--print(v.Name)
+		if v:FindFirstChild("GuiPos") then
+			if v:FindFirstChild("GuiPos"):FindFirstChild("Gui") then
+				if v:FindFirstChild("GuiPos"):FindFirstChild("Gui"):FindFirstChild("Frame") then
+					if v:FindFirstChild("GuiPos"):FindFirstChild("Gui"):FindFirstChild("Frame"):FindFirstChild("TextLabel") then
+						local GuiText = v:FindFirstChild("GuiPos"):FindFirstChild("Gui"):FindFirstChild("Frame"):FindFirstChild("TextLabel")
+						print(GuiText.Text)
+						dtHP = tonumber(GuiText.Text)
+						return dtHP
+					end
+				end
+			end
+		end
+	end
+end
+-- Morphisto
 -- Morphisto
 function KillStickBug()
 	--sblvl = ""
@@ -2776,7 +2795,6 @@ function KillStickBug()
 			if kocmoc.toggles.autosprinkler then makesprinklers() end
 			if ChatText ~= "" then
 				local chkDFHP = 0
-				--[[
 				repeat
 					task.wait()
 					chkDFHP = DefenseTotemHP()
@@ -2784,7 +2802,6 @@ function KillStickBug()
 						gettoken(fieldselected.Position)
 					end
 				until chkDFHP = 0
-				]]--
 				ChatText = ""
 			else
 				for i =1, 4 do gettoken(api.humanoidrootpart().Position) end
@@ -2795,24 +2812,7 @@ function KillStickBug()
 	end
 end
 
-function DefenseTotemHP()
-	local dtHP = 0
-	for i,v in pairs(game:GetService("Workspace").Particles.StickBugTotem:GetChildren()) do
-		--print(v.Name)
-		if v:FindFirstChild("GuiPos") then
-			if v:FindFirstChild("GuiPos"):FindFirstChild("Gui") then
-				if v:FindFirstChild("GuiPos"):FindFirstChild("Gui"):FindFirstChild("Frame") then
-					if v:FindFirstChild("GuiPos"):FindFirstChild("Gui"):FindFirstChild("Frame"):FindFirstChild("TextLabel") then
-						local GuiText = v:FindFirstChild("GuiPos"):FindFirstChild("Gui"):FindFirstChild("Frame"):FindFirstChild("TextLabel")
-						print(GuiText.Text)
-						dtHP = tonumber(GuiText.Text)
-						return dtHP
-					end
-				end
-			end
-		end
-	end
-end
+
 
 -- Morphisto
 function CheckPlayers()
