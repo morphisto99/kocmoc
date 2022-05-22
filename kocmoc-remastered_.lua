@@ -2718,13 +2718,33 @@ function KillStickBug()
 				if tonumber(sbposition.y) > 1000 then
 					break
 				end
-				api.tween(1, CFrame.new(sbposition.x, sbposition.y + 20, sbposition.z))
+				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(sbposition.x, sbposition.y + 30, sbposition.z)
+				--api.tween(1, CFrame.new(sbposition.x, sbposition.y + 30, sbposition.z))
 				temptable.float = true
 				task.wait()
 			end
 			temptable.float = false
 			task.wait(1)
 			for i =1, 4 do gettoken(api.humanoidrootpart().Position) end
+		end
+	end
+	
+	for i,v in pairs(game:GetService("Workspace").Particles.StickBugTotem:GetChildren()) do
+		--print(v.Name)
+		if v:FindFirstChild("GuiPos") then
+			print("Text1")
+			if v:FindFirstChild("GuiPos"):FindFirstChild("Gui") then
+				print("Text2")
+				if v:FindFirstChild("GuiPos"):FindFirstChild("Gui"):FindFirstChild("Frame") then
+					print("Text3")
+					if v:FindFirstChild("GuiPos"):FindFirstChild("Gui"):FindFirstChild("Frame"):FindFirstChild("TextLabel") then
+						print("Text4")
+						local GuiText = v:FindFirstChild("GuiPos"):FindFirstChild("Gui"):FindFirstChild("Frame"):FindFirstChild("TextLabel")
+						print(GuiText.Text)
+						print(v.Position)
+					end
+				end
+			end
 		end
 	end
 end
@@ -2871,12 +2891,10 @@ function KillTest3()
 	
 	print('Getting Particles3')
 	if game:GetService("Workspace").Particles:FindFirstChild("StickBugTotem") then
-		local DefTotem = game:GetService("Workspace").Particles.StickBugTotem.Gui.Frame:FindFirstChild("TextLabel")
+		local DefTotem = game:GetService("Workspace").Particles.StickBugTotem.NamePos.Gui.Frame:FindFirstChild("TextLabel")
 		print(DefTotem.Text)
 		print('End Particles3')
 		
-		local NamePos = game:GetService("Workspace").Particles.StickBugTotem.NamePos.Gui.Frame:FindFirstChild("TextLabel")
-		print(NamePos.Text)
 	end
 	
 	--[[
@@ -2924,21 +2942,6 @@ function KillTest2()
 	print('Getting Decendants')
 	for i,v in pairs(game:GetService("Workspace").Particles.StickBugTotem:GetChildren()) do
 		--print(v.Name)
-		if v:FindFirstChild("GroundPos") then
-			print("Part1")
-			--api.humanoidrootpart().CFrame = v.CFrame
-			if v:FindFirstChild("GroundPos"):FindFirstChild("Gui") then
-				print("Part2")
-				if v:FindFirstChild("GroundPos"):FindFirstChild("Gui"):FindFirstChild("Frame") then
-					print("Part3")
-					if v:FindFirstChild("GroundPos"):FindFirstChild("Gui"):FindFirstChild("Frame"):FindFirstChild("TextLabel") then
-						print("Part4")
-						local GroundText = v:FindFirstChild("GroundPos"):FindFirstChild("Gui"):FindFirstChild("Frame"):FindFirstChild("TextLabel")
-						print(GroundText.Text)
-					end
-				end
-			end
-		end
 		if v:FindFirstChild("GuiPos") then
 			print("Text1")
 			if v:FindFirstChild("GuiPos"):FindFirstChild("Gui") then
@@ -3149,7 +3152,7 @@ function KillTest()
 			for i,field in next, fieldstable do
 				if string.find(messageText, field) then
 					--print('field=' .. field)
-					message:Destroy()
+					message.Parent:Destroy()
 					fieldselected = game:GetService("Workspace").FlowerZones[field]
 					fieldpos = CFrame.new(fieldselected.Position.X, fieldselected.Position.Y+3, fieldselected.Position.Z)
 					api.tween(1, fieldpos)
