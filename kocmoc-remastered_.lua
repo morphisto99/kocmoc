@@ -2776,6 +2776,7 @@ function KillStickBug()
 			if kocmoc.toggles.autosprinkler then makesprinklers() end
 			if ChatText ~= "" then
 				local chkDFHP = 0
+				--[[
 				repeat
 					task.wait()
 					chkDFHP = DefenseTotemHP()
@@ -2783,9 +2784,10 @@ function KillStickBug()
 						gettoken(fieldselected.Position)
 					end
 				until chkDFHP = 0
+				]]--
 				ChatText = ""
 			else
-				--for i =1, 4 do gettoken(api.humanoidrootpart().Position) end
+				for i =1, 4 do gettoken(api.humanoidrootpart().Position) end
 			end
 			enableall()
 			--break
