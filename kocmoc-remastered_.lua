@@ -2711,11 +2711,19 @@ end
 
 -- Morphisto
 function KillStickBug()
+	--sblvl = ""
 	for i,v in pairs(workspace.Monsters:GetChildren()) do
 		if string.find(v.Name,"Stick Bug") then
+			--sblvl = v.Name
+			print('Now attacking ' .. v.Name)
+			disableall()
 			while game.Workspace.Monsters:FindFirstChild(v.Name) do
 				sbposition = game.Workspace.Monsters[v.Name].Head.Position
 				if tonumber(sbposition.y) > 1000 then
+					break
+				end
+				local ChatText = findTextInChat("Defense Totem")
+				if ChatText ~= "" then
 					break
 				end
 				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(sbposition.x, sbposition.y + 30, sbposition.z)
@@ -2724,24 +2732,50 @@ function KillStickBug()
 				task.wait()
 			end
 			temptable.float = false
+			if ChatText ~= "" then
+				for i,field in next, fieldstable do
+					if string.find(ChatText, field) then
+						fieldselected = game:GetService("Workspace").FlowerZones[field]
+						fieldpos = CFrame.new(fieldselected.Position.X, fieldselected.Position.Y+3, fieldselected.Position.Z)
+						api.tween(2, fieldpos)
+						task.wait(1)
+						break
+					end
+				end
+			end
 			task.wait(1)
-			for i =1, 4 do gettoken(api.humanoidrootpart().Position) end
+			if kocmoc.toggles.autosprinkler then makesprinklers() end
+			if ChatText ~= "" then
+				repeat
+					task.wait()
+					local chkDFHP = DefenseTotemHP()
+					if chkDFHP ~= 0 then
+						gettoken(fieldselected.Position)
+					end
+				until chkDFHP = 0
+				ChatText = ""
+			else
+				for i =1, 4 do gettoken(api.humanoidrootpart().Position) end
+			end
+			enableall()
+			--break
 		end
 	end
-	
+
+end
+
+function DefenseTotemHP()
+	local dtHP = 0
 	for i,v in pairs(game:GetService("Workspace").Particles.StickBugTotem:GetChildren()) do
 		--print(v.Name)
 		if v:FindFirstChild("GuiPos") then
-			print("Text1")
 			if v:FindFirstChild("GuiPos"):FindFirstChild("Gui") then
-				print("Text2")
 				if v:FindFirstChild("GuiPos"):FindFirstChild("Gui"):FindFirstChild("Frame") then
-					print("Text3")
 					if v:FindFirstChild("GuiPos"):FindFirstChild("Gui"):FindFirstChild("Frame"):FindFirstChild("TextLabel") then
-						print("Text4")
 						local GuiText = v:FindFirstChild("GuiPos"):FindFirstChild("Gui"):FindFirstChild("Frame"):FindFirstChild("TextLabel")
 						print(GuiText.Text)
-						print(v.Position)
+						dtHP = tonumber(GuiText.Text)
+						return dtHP
 					end
 				end
 			end
@@ -2844,29 +2878,7 @@ function KillTest4()
 	print(' ')
 	print('Begin')
 	
-	
-	print('Jumping above Stick Bug Head2')
-	for i,v in pairs(workspace.Monsters:GetChildren()) do
-		if string.find(v.Name,"Stick Bug") then
-			while game.Workspace.Monsters:FindFirstChild(v.Name) do
-				--game:GetService("Workspace").Map.Ground.HighBlock.CanCollide = false
-				sbposition = game.Workspace.Monsters[v.Name].Head.Position
-				if tonumber(sbposition.y) > 1000 then
-					break
-				end
-				api.tween(1, CFrame.new(sbposition.x, sbposition.y + 30, sbposition.z))
-				temptable.float = true
-				--print(sbposition.x,sbposition.y,sbposition.z)
-				task.wait()
-				--api.humanoidrootpart().CFrame = temptable.gacf(sbposition, 10) temptable.float = true task.wait()
-			end
-			temptable.float = false
-			task.wait(2)
-			for i =1, 5 do
-				gettoken(api.humanoidrootpart().Position)
-			end -- collect tokens :yessir:
-		end
-	end
+	KillStumpSnail()
 	
 	print('End')
 end
@@ -2952,6 +2964,7 @@ function KillTest2()
 						print("Text4")
 						local GuiText = v:FindFirstChild("GuiPos"):FindFirstChild("Gui"):FindFirstChild("Frame"):FindFirstChild("TextLabel")
 						print(GuiText.Text)
+						print(v.Position)
 					end
 				end
 			end
@@ -3135,7 +3148,6 @@ function KillTest()
 	print('findChat=' .. ChatText)
 	local ChatText = findTextInChat("Defense Totem")
 	if ChatText ~= "" then
-		print('inside of ChatText')
 		for i,field in next, fieldstable do
 			if string.find(ChatText, field) then
 				fieldselected = game:GetService("Workspace").FlowerZones[field]
@@ -3190,10 +3202,10 @@ function findTextInChat(sText)
 		
 		local Button = message.TextLabel:FindFirstChild("TextButton")
 		if Button then 
-			print("actual chat message")
+			--print("actual chat message")
 			local text = Button.Text
 			local username = text:sub(2, text:len()-2) --cut out "[" and "]:
-			print("user:", username)
+			--print("user:", username)
 		else 
 			--print("Probably a system message")
 		end 
