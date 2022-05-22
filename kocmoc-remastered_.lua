@@ -3153,7 +3153,7 @@ function KillTest()
 			for i,field in next, fieldstable do
 				if string.find(messageText, field) then
 					--print('field=' .. field)
-					message.Parent:Destroy()
+					message:Destroy()
 					fieldselected = game:GetService("Workspace").FlowerZones[field]
 					fieldpos = CFrame.new(fieldselected.Position.X, fieldselected.Position.Y+3, fieldselected.Position.Z)
 					api.tween(1, fieldpos)
@@ -3162,7 +3162,7 @@ function KillTest()
 		end
 		
 		if string.find(messageText, "hmm") then
-			message.Parent:Destroy()
+			message:Destroy()
 		end		
 		--print("the message:", messageText)
 		
