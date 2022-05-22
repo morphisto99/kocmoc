@@ -2708,7 +2708,21 @@ function KillStumpSnail()
 	end
 end
 -- Morphisto
+
 -- Morphisto
+--chat messages have a huge amount of spaces at the start(for some reason)
+function removeSpaces(message) 
+	local result = message 
+	local length = message:len()
+	for i = 1, length do 
+		if result:sub(1, 1) == " " then 
+			result = result:sub(2, length)
+		else 
+			break 
+		end
+	end
+	return result 
+end
 function findTextInChat(sText)
 	result = ""
 	local PlayerGui = game.Players.LocalPlayer:WaitForChild("PlayerGui")
@@ -2890,20 +2904,6 @@ function CheckPlayers()
 	end
 end
 -- Morphisto
-
---chat messages have a huge amount of spaces at the start(for some reason)
-function removeSpaces(message) 
-	local result = message 
-	local length = message:len()
-	for i = 1, length do 
-		if result:sub(1, 1) == " " then 
-			result = result:sub(2, length)
-		else 
-			break 
-		end
-	end
-	return result 
-end
 
 function KillTest4()
 	print(' ')
