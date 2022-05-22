@@ -2710,9 +2710,29 @@ end
 -- Morphisto
 
 -- Morphisto
+function DefenseTotemHP()
+	local dtHP = 0
+	for i,v in pairs(game:GetService("Workspace").Particles.StickBugTotem:GetChildren()) do
+		--print(v.Name)
+		if v:FindFirstChild("GuiPos") then
+			if v:FindFirstChild("GuiPos"):FindFirstChild("Gui") then
+				if v:FindFirstChild("GuiPos"):FindFirstChild("Gui"):FindFirstChild("Frame") then
+					if v:FindFirstChild("GuiPos"):FindFirstChild("Gui"):FindFirstChild("Frame"):FindFirstChild("TextLabel") then
+						local GuiText = v:FindFirstChild("GuiPos"):FindFirstChild("Gui"):FindFirstChild("Frame"):FindFirstChild("TextLabel")
+						print(GuiText.Text)
+						dtHP = tonumber(GuiText.Text)
+						return dtHP
+					end
+				end
+			end
+		end
+	end
+end
+-- Morphisto
+
+-- Morphisto
 function KillStickBug()
 	--sblvl = ""
-	--[[
 	for i,v in pairs(workspace.Monsters:GetChildren()) do
 		if string.find(v.Name,"Stick Bug") then
 			--sblvl = v.Name
@@ -2762,27 +2782,8 @@ function KillStickBug()
 			--break
 		end
 	end
-	]]--
 end
 
-function DefenseTotemHP()
-	local dtHP = 0
-	for i,v in pairs(game:GetService("Workspace").Particles.StickBugTotem:GetChildren()) do
-		--print(v.Name)
-		if v:FindFirstChild("GuiPos") then
-			if v:FindFirstChild("GuiPos"):FindFirstChild("Gui") then
-				if v:FindFirstChild("GuiPos"):FindFirstChild("Gui"):FindFirstChild("Frame") then
-					if v:FindFirstChild("GuiPos"):FindFirstChild("Gui"):FindFirstChild("Frame"):FindFirstChild("TextLabel") then
-						local GuiText = v:FindFirstChild("GuiPos"):FindFirstChild("Gui"):FindFirstChild("Frame"):FindFirstChild("TextLabel")
-						print(GuiText.Text)
-						dtHP = tonumber(GuiText.Text)
-						return dtHP
-					end
-				end
-			end
-		end
-	end
-end
 
 -- Morphisto
 function CheckPlayers()
@@ -2879,7 +2880,7 @@ function KillTest4()
 	print(' ')
 	print('Begin')
 	
-	KillStumpSnail()
+	KillStickBug()
 	
 	print('End')
 end
