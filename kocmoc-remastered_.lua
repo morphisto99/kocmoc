@@ -219,6 +219,8 @@ local buffTable = {
     ["Glue"]={b=false,DecalID="2504978518"};
     ["Glitter"]={b=false,DecalID="2542899798"};
     ["Tropical Drink"]={b=false,DecalID="3835877932"};
+	["Stinger"]={b=false,DecalID="2314214749"}; -- Morphisto
+	["Jelly Beans"]={b=false,DecalID="3080740120"}; -- Morphisto
 }
 -- Morphisto
 local fieldboostTable = {
@@ -1638,7 +1640,7 @@ end end)
 local demontoggleouyfyt = false
 task.spawn(function()
 	while wait(1) do
-		if temptable.started.mondo or temptable.started.vicious or temptable.started.windy or temptable.started.ant then
+		if temptable.started.mondo or temptable.started.vicious or temptable.started.windy or temptable.started.ant or temptable.started.crab or temptable.started.tunnelbear or temptable.started.kingbeetle or temptable.started.stumpsnail or temptable.started.stickbug then
 			if demontoggleouyfyt == false then
 				demontoggleouyfyt = true
 				game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
@@ -1870,6 +1872,7 @@ task.spawn(function() while task.wait() do
 				if temptable.puffshroomdetected and not temptable.puffshroomboosted then
 					if GetItemListWithValue()["Oil"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Oil"})
+						buffTable["Oil"].b = true
 					end
 					if GetItemListWithValue()["JellyBeans"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Jelly Beans"})
@@ -1902,27 +1905,35 @@ task.spawn(function() while task.wait() do
 				if temptable.puffshroomdetected and not temptable.puffshroomboosted then
 					if GetItemListWithValue()["Oil"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Oil"})
+						buffTable["Oil"].b = true
 					end
 					if GetItemListWithValue()["JellyBeans"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Jelly Beans"})
+						buffTable["Jelly Beans"].b = true
 					end
 					if GetItemListWithValue()["CloudVial"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Cloud Vial"})
+						buffTable["Cloud Vial"].b = true
 					end
 					if GetItemListWithValue()["BlueExtract"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Blue Extract"})
+						buffTable["Blue Extract"].b = true
 					end
 					if GetItemListWithValue()["RedExtract"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Red Extract"})
+						buffTable["Red Extract"].b = true
 					end
 					if GetItemListWithValue()["TropicalDrink"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Tropical Drink"})
+						buffTable["Tropical Drink"].b = true
 					end
 					if GetItemListWithValue()["Glitter"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Glitter"})
+						buffTable["Glitter"].b = true
 					end
 					if GetItemListWithValue()["Glue"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Glue"})
+						buffTable["Glue"].b = true
 					end
 					temptable.puffshroomboosted = true
 				end
@@ -1933,6 +1944,7 @@ task.spawn(function() while task.wait() do
 				if temptable.puffshroomdetected and not temptable.puffshroomboosted then
 					if GetItemListWithValue()["JellyBeans"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Jelly Beans"})
+						buffTable["Jelly Beans"].b = true
 					end
 					if GetItemListWithValue()["CloudVial"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Cloud Vial"})
@@ -2544,7 +2556,7 @@ function KillCoconutCrab()
 		end
 	end
 	if crabisready then
-		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
+		--game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
 		temptable.started.crab = true
 		disableall()
 		api.humanoidrootpart().CFrame = CFrame.new(-307.52117919922, 107.91863250732, 467.86791992188)
@@ -2580,7 +2592,7 @@ function KillCoconutCrab()
 		end
 		enableall()
 		temptable.started.crab = false
-		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"})
+		--game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"})
 	end
 end
 -- Morphisto
@@ -2600,7 +2612,7 @@ function KillTunnelBear()
 		end
 	end
 	if tunnelbearisready then
-		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
+		--game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
 		temptable.started.tunnelbear = true
 		disableall()
 		api.humanoidrootpart().CFrame = CFrame.new(283.4128112792969, 6.783041000366211, -39.41004943847656)
@@ -2629,7 +2641,7 @@ function KillTunnelBear()
 		end
 		enableall()
 		temptable.started.tunnelbear = false
-		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"})
+		--game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"})
 	end
 end
 -- Morphisto
@@ -2649,7 +2661,7 @@ function KillKingBeetle()
 		end
 	end
 	if kingbeetleisready then
-		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
+		--game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
 		temptable.started.kingbeetle = true
 		disableall()
 		api.humanoidrootpart().CFrame = CFrame.new(148.34913635253906, 34.24530792236328, 182.07960510253906)
@@ -2672,7 +2684,7 @@ function KillKingBeetle()
 		end
 		enableall()
 		temptable.started.kingbeetle = false
-		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"})
+		--game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"})
 	end
 end
 -- Morphisto
@@ -2692,7 +2704,7 @@ function KillStumpSnail()
 		end
 	end
 	if stumpsnailisready then
-		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
+		--game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
 		temptable.started.stumpsnail = true
 		disableall()
 		fd = game.Workspace.FlowerZones['Stump Field']
@@ -2716,7 +2728,7 @@ function KillStumpSnail()
 		end
 		enableall()
 		temptable.started.stumpsnail = false
-		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"})
+		--game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"})
 		--local ohString1 = "Equip" local ohTable2 = { ["Mute"] = false, ["Type"] = kocmoc.vars.defmask, ["Category"] = "Accessory" } game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer(ohString1, ohTable2) 
 	end
 end
@@ -2797,6 +2809,14 @@ function KillStickBug()
 			api.tween(1, CFrame.new(sbposition.x, sbposition.y + 30, sbposition.z))
 			task.wait(1)
 			if kocmoc.toggles.autosprinkler then makesprinklers() end
+			if GetItemListWithValue()["Oil"] > 0 then
+				game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Oil"})
+				buffTable["Oil"].b = true
+			end
+			if GetItemListWithValue()["JellyBeans"] > 0 then
+				game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Jelly Beans"})
+				buffTable["Jelly Beans"].b = true
+			end
 			while game.Workspace.Monsters:FindFirstChild(v.Name) and not game.Workspace.Particles:FindFirstChild("StickBugTotem") do
 				sbposition = game.Workspace.Monsters[v.Name].Head.Position
 				if tonumber(sbposition.y) > 1000 then
@@ -2930,19 +2950,15 @@ function KillTest3()
 	--end
 	
 
-	print('Getting Particles2')
-	for i,v in pairs(game:GetService("Workspace").Particles.Folder2:GetChildren()) do
-		print('Part2=' .. v.Name)
+	print('Getting Particles1')
+	for i,v in pairs(game:GetService("Workspace").Particles:GetChildren()) do
+		if v.Name == "PollenHealthBar" then
+			print("Pollen Health Bar Found")
+		end
+		print('GetPollenHealth=' .. v.Name)
 		--if v:FindFirstChild("Part") then
 			--print(v.Position)
 		--end
-	end
-	
-	print('Getting Particles3')
-	if game.Workspace.Particles:FindFirstChild("StickBugTotem") then
-		local DefTotem = game:GetService("Workspace").Particles.StickBugTotem:FindFirstChild("NamePos").Position
-		print(DefTotem.x,DefTotem.y,DefTotem.z)
-		api.tween(1, CFrame.new(DefTotem.x, DefTotem.y, DefTotem.z))
 	end
 	
 	--[[
