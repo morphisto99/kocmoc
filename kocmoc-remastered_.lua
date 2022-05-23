@@ -61,6 +61,7 @@ getgenv().temptable = {
 		tunnelbear = false, -- Morphisto
 		kingbeetle = false, -- Morphisto
 		stumpsnail = false, -- Morphisto
+		stickbug = false, -- Morphisto
         vicious = false,
         mondo = false,
         windy = false,
@@ -102,6 +103,7 @@ getgenv().temptable = {
 		killtunnelbear = false, -- Morphisto
 		killkingbeetle = false, -- Morphisto
 		killstumpsnail = false, -- Morphisto
+		killstickbug = false, -- Morphisto
         autofarm = false,
         killmondo = false,
         vicious = false,
@@ -378,6 +380,7 @@ getgenv().kocmoc = {
         autodonate = false,
         autouseconvertors = false,
         honeymaskconv = false,
+		killstickbug = false, -- Morphisto
 		farmboostedfield = false, -- Morphisto
 		disableinrange = false, -- Morphisto
 		killstumpsnail = false, -- Morphisto
@@ -461,6 +464,10 @@ function disableall()
 		kocmoc.toggles.killstumpsnail = false -- Morphisto
 		temptable.cache.killstumpsnail = true -- Morphisto
 	end
+	if kocmoc.toggles.killstickbug and not temptable.started.stickbug then -- Morphisto
+		kocmoc.toggles.killstickbug = false -- Morphisto
+		temptable.cache.killstickbug = true -- Morphisto
+	end
 	if kocmoc.toggles.autoant and not temptable.started.ant then -- Morphisto
 		kocmoc.toggles.autoant = false -- Morphisto
 		temptable.cache.autoant = true -- Morphisto
@@ -507,6 +514,10 @@ function enableall()
 	if temptable.cache.killstumpsnail then -- Morphisto
 		kocmoc.toggles.killstumpsnail = true -- Morphisto
 		temptable.cache.killstumpsnail = false -- Morphisto
+	end
+	if temptable.cache.killstickbug then -- Morphisto
+		kocmoc.toggles.killstickbug = true -- Morphisto
+		temptable.cache.killstickbug = false -- Morphisto
 	end
 	if temptable.cache.autoant then -- Morphisto
 		kocmoc.toggles.autoant = true -- Morphisto
@@ -1238,6 +1249,7 @@ uikillstumpsnail = mobkill:CreateToggle("Kill Stump Snail", nil, function(State)
 uikillmondo = mobkill:CreateToggle("Kill Mondo", nil, function(State) kocmoc.toggles.killmondo = State end)
 uikillvicious = mobkill:CreateToggle("Kill Vicious", nil, function(State) kocmoc.toggles.killvicious = State end)
 uikillwindy = mobkill:CreateToggle("Kill Windy", nil, function(State) kocmoc.toggles.killwindy = State end)
+uikillstickbug = mobkill:CreateToggle("Kill Stick Bug", nil, function(State) kocmoc.toggles.killstickbug = State end)
 mobkill:CreateToggle("Auto Kill Mobs", nil, function(State) kocmoc.toggles.autokillmobs = State end):AddToolTip("Kills mobs after x pollen converting")
 mobkill:CreateToggle("Avoid Mobs", nil, function(State) kocmoc.toggles.avoidmobs = State end)
 uiautoant = mobkill:CreateToggle("Auto Ant", nil, function(State) kocmoc.toggles.autoant = State end) -- Morphisto
@@ -1988,6 +2000,7 @@ task.spawn(function() while task.wait() do
 				if kocmoc.toggles.killkingbeetle then KillKingBeetle() end -- Morphisto
 				if kocmoc.toggles.killstumpsnail then KillStumpSnail() end -- Morphisto
 				if kocmoc.toggles.farmboostedfield then farmboostedfield() end -- Morphisto
+				if kocmoc.toggles.killstickbug then KillStickBug() end -- Morphisto
 				if (fieldposition-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
                     api.tween(2, fieldpos) -- Morphisto
                     if kocmoc.toggles.autosprinkler then makesprinklers() end
@@ -2776,6 +2789,7 @@ function KillStickBug()
 	local ChatText = ""
 	for i,v in pairs(workspace.Monsters:GetChildren()) do
 		if string.find(v.Name,"Stick Bug") then
+			temptable.started.stickbug = true
 			--sblvl = v.Name
 			print('Now attacking ' .. v.Name)
 			disableall()
@@ -2815,6 +2829,7 @@ function KillStickBug()
 				for i =1, 4 do gettoken(api.humanoidrootpart().Position) end			
 			end
 			enableall()
+			temptable.started.stickbug = false
 			--break
 		end
 	end
@@ -3290,6 +3305,7 @@ if kocmoc.toggles.killcrab then uikillcrab:SetState(true) end -- Morphisto
 if kocmoc.toggles.killtunnelbear then uikilltunnelbear:SetState(true) end -- Morphisto
 if kocmoc.toggles.killkingbeetle then uikillkingbeetle:SetState(true) end -- Morphisto
 if kocmoc.toggles.killstumpsnail then uikillstumpsnail:SetState(true) end -- Morphisto
+if kocmoc.toggles.killstickbug then uikillstickbug:SetState(true) end -- Morphisto
 if kocmoc.toggles.disableinrange then uidisableinrange:SetState(true) end -- Morphisto
 if kocmoc.toggles.farmboostedfield then uifarmboostedfield:SetState(true) end -- Morphisto
 if kocmoc.vars.defmask ~= "" then game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"}) end -- Morphisto
