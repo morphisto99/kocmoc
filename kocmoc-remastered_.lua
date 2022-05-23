@@ -2830,7 +2830,7 @@ function KillStickBug()
 			end
 			enableall()
 			temptable.started.stickbug = false
-			--break
+			break
 		end
 	end
 end
