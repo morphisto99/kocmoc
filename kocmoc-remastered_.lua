@@ -2616,7 +2616,7 @@ function KillTunnelBear()
 				--game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Stinger"})
 			--end
 			while game.Workspace.Monsters:FindFirstChild("Tunnel Bear (Lvl 9)") and not temptable.started.vicious and not temptable.started.monsters and not temptable.started.mondo and not temptable.started.crab and not temptable.started.kingbeetle do
-				api.humanoidrootpart().CFrame = CFrame.new(350.4128112792969, 29.783041000366211, -39.41004943847656)
+				api.humanoidrootpart().CFrame = CFrame.new(350.4128112792969, 31.783041000366211, -39.41004943847656)
 				temptable.float = true
 				task.wait(1)
 			end
