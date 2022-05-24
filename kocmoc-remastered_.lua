@@ -2811,11 +2811,11 @@ function KillStickBug()
 			if kocmoc.toggles.autosprinkler then makesprinklers() end
 			if GetItemListWithValue()["Oil"] > 0 then
 				game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Oil"})
-				buffTable["Oil"].b = true
+				--buffTable["Oil"].b = true
 			end
 			if GetItemListWithValue()["JellyBeans"] > 0 then
 				game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Jelly Beans"})
-				buffTable["Jelly Beans"].b = true
+				--buffTable["Jelly Beans"].b = true
 			end
 			while game.Workspace.Monsters:FindFirstChild(v.Name) and not game.Workspace.Particles:FindFirstChild("StickBugTotem") do
 				sbposition = game.Workspace.Monsters[v.Name].Head.Position
@@ -2828,7 +2828,7 @@ function KillStickBug()
 				task.wait()
 			end
 			temptable.float = false
-
+			--[[
 			for j,k in pairs(game:GetService("Workspace").Particles:GetChildren()) do
 				if k.Name == "PollenHealthBar" then
 					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(k.Position.x,k.Position.y,k.Position.z)
@@ -2841,7 +2841,7 @@ function KillStickBug()
 					break
 				end
 			end
-
+			]]--
 			if game.Workspace.Particles:FindFirstChild("StickBugTotem") then
 				for j,k in pairs(game:GetService("Workspace").Particles.StickBugTotem:GetChildren()) do
 					if k:FindFirstChild("NamePos") then
