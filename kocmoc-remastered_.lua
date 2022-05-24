@@ -2806,6 +2806,7 @@ function KillStickBug()
 	if sbTimer ~= "10:00" then
 		if not kocmoc.toggles.godmode then
 			kocmoc.toggles.godmode = true
+			uigodmode:SetState(true)
 			bssapi:Godmode(true)
 		end	
 		for i,v in pairs(workspace.Monsters:GetChildren()) do
@@ -2889,6 +2890,7 @@ function KillStickBug()
 	else
 		if kocmoc.toggles.godmode then
 			kocmoc.toggles.godmode = false
+			uigodmode:SetState(false)
 			bssapi:Godmode(false)
 		end
 	end
@@ -3007,7 +3009,7 @@ function KillTest3()
 	
 	print('ChallengeInfo2')
 	for i,v in pairs(game.Players.LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:GetChildren()) do
-		--print(v.Name)
+		print(v.Name)
 		if v.Name == "TimeLabel" then
 			print('TimeLabel=' .. v.Text)
 		end
@@ -3053,26 +3055,12 @@ function KillTest2()
 	print(sbTimer2)
 
 	print('ChallengeInfo3')
-	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:GetChildren()) do
-		--print(v.Name)
-		if v.Name == "TimeLabel" then
-			print('TimeLabel=' .. v.Text)
+	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo:GetChildren()) do
+		if v:FindFirstChild("SBChallengeInfo") then
+			if v:FindFirstChild("TimeLabel", true).Visible then
+				print("TimeLabel is Visible")
+			end		
 		end
-		if v.Name == "TimeValue" then
-			print('TimeValue=' .. v.Text)
-		end
-		--if v.Name == "TitleBar" then
-			--print('TitleBar=' .. v.Text)
-		--end
-		
-		if v:FindFirstChild("TitleBar").Visible then
-			print("TitleBar is Visible")
-		end
-
-		if v:FindFirstChild("TimeLabel", true).Visible then
-			print("TimeLabel is Visible")
-		end
-		
 	end
 	
 	print("Test for Visible")
