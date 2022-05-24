@@ -2954,8 +2954,11 @@ function KillTest3()
 	for i,v in pairs(game:GetService("Workspace").Particles:GetChildren()) do
 		if v.Name == "PollenHealthBar" then
 			print("Pollen Health Bar Found")
+			api.tween(1,CFrame.new(v.Position.x, v.Position.y, v.Position.z))
+			task.wait(1)
+			
 		end
-		print('GetPollenHealth=' .. v.Name)
+		--print('GetPollenHealth=' .. v.Name)
 		--if v:FindFirstChild("Part") then
 			--print(v.Position)
 		--end
