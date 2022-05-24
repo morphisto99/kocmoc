@@ -2832,7 +2832,7 @@ function KillStickBug()
 				local sbPollen = game.Workspace.Particles:FindFirstChild("PollenHealthBar").Position
 				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(sbPollen.x,sbPollen.y,sbPollen.z)
 				task.wait(1)
-				while game.Workspace.Particles:FindFirstChild("PollenHealthBar") then
+				while game.Workspace.Particles:FindFirstChild("PollenHealthBar") do
 					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(sbPollen.x,sbPollen.y,sbPollen.z)
 					task.wait(1)					
 				end
@@ -3007,7 +3007,7 @@ function KillTest2()
 		local sbPollen = game.Workspace.Particles:FindFirstChild("PollenHealthBar").Position
 		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(sbPollen.x,sbPollen.y,sbPollen.z)
 		task.wait(1)
-		while game.Workspace.Particles:FindFirstChild("PollenHealthBar") then
+		while game.Workspace.Particles:FindFirstChild("PollenHealthBar") do
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(sbPollen.x,sbPollen.y,sbPollen.z)
 			task.wait(1)					
 		end
