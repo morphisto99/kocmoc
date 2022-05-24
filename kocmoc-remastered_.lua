@@ -3039,21 +3039,20 @@ function KillTest2()
 	print(' ')
 	print('Begin')
 
-	print('MeterHUD')
-	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.MeterHUD:GetChildren()) do
-		print(v.Name)
-	end
-	
-	print('ChallengeInfo')
-	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo:GetChildren()) do
+
+	print('ChallengeInfo1')
+	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:GetChildren()) do
 		print(v.Name)
 	end
 
-	print('PromoPopUp')
-	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.PromoPopUp:GetChildren()) do
-		print(v.Name)
+	print('ChallengeInfo1')
+	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:GetChildren()) do
+		--print(v.Name)
+		if v.Name == "SBChallengeInfo" then
+			print("SBChallengeInfo" .. v.Text)
+		end
 	end
-	
+
 	--[[
 	for i,v in pairs(game:GetService("Workspace").Particles.StickBugTotem:GetDescendants()) do
 		print('StickBug1=' .. v.Name)
