@@ -3063,11 +3063,22 @@ function KillTest2()
 		end
 		if v.Name == "TitleBar" then
 			print('TitleBar=' .. v.Text)
-		end		
+		end
+		
+		if v:FindFirstChild("TitleBar", true).Visible then
+			print("TitleBar is Visible")
+		end
+
+		if v:FindFirstChild("TimeLabel", true).Visible then
+			print("TimeLabel is Visible")
+		end
+		
 	end
 	
-
-	
+	print("Test for Visible")
+	if game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("TitleBar").Visible == true then
+		print("Stick Bug Box is Visible")
+	end
 	--[[
 	for i,v in pairs(game:GetService("Workspace").Particles.StickBugTotem:GetDescendants()) do
 		print('StickBug1=' .. v.Name)
