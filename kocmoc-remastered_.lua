@@ -2802,90 +2802,94 @@ end
 -- Morphisto
 -- Morphisto
 function KillStickBug()
-	local ChatText = ""
-	for i,v in pairs(workspace.Monsters:GetChildren()) do
-		if string.find(v.Name,"Stick Bug") then
-			temptable.started.stickbug = true
-			print('Now attacking ' .. v.Name)
-			--if not kocmoc.toggles.godmode then
-				--kocmoc.toggles.godmode = true
-				--bssapi:Godmode(true)
-			--end
-			disableall()
+	local sbTimer = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("TimeValue").Text
+	if sbTimer ~= "10:00" then
+		if not kocmoc.toggles.godmode then
+			kocmoc.toggles.godmode = true
+			bssapi:Godmode(true)
+		end	
+		for i,v in pairs(workspace.Monsters:GetChildren()) do
+			if string.find(v.Name,"Stick Bug") then
+				temptable.started.stickbug = true
+				print('Now attacking ' .. v.Name)
 
-			if game.Workspace.Particles:FindFirstChild("PollenHealthBar") then
-				local sbpollenpos = game.Workspace.Particles:FindFirstChild("PollenHealthBar").Position
-				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(sbpollenpos.x,sbpollenpos.y,sbpollenpos.z)
-				task.wait(1)
-				temptable.magnitude = 25
-				while game.Workspace.Particles:FindFirstChild("PollenHealthBar") do
-					sbpollenpos = game.Workspace.Particles:FindFirstChild("PollenHealthBar").Position
-					if (sbpollenpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
-						api.tween(1, CFrame.new(sbpollenpos.x, sbpollenpos.y, sbpollenpos.z))
-					end
-					gettoken(sbpollenpos)
+				disableall()
 
-					--game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(sbpollenpos.x,sbpollenpos.y,sbpollenpos.z)
-					task.wait(1)					
-				end
-				for i = 1, 3 do gettoken(api.humanoidrootpart().Position) end
-			end
-
-			--api.humanoidrootpart().CFrame = CFrame.new(243.895538, 4.3493037, 320.418457)
-			--task.wait(15)
-			local sbposition = game.Workspace.Monsters[v.Name].Head.Position
-			api.tween(1, CFrame.new(sbposition.x, sbposition.y + 30, sbposition.z))
-			task.wait(1)
-			if kocmoc.toggles.autosprinkler then makesprinklers() end
-			--[[
-			if GetItemListWithValue()["Oil"] > 0 then
-				game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Oil"})
-				--buffTable["Oil"].b = true
-			end
-			if GetItemListWithValue()["JellyBeans"] > 0 then
-				game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Jelly Beans"})
-				--buffTable["Jelly Beans"].b = true
-			end
-			]]--
-			while game.Workspace.Monsters:FindFirstChild(v.Name) and not game.Workspace.Particles:FindFirstChild("StickBugTotem") do
-				sbposition = game.Workspace.Monsters[v.Name].Head.Position
-				if tonumber(sbposition.y) > 1000 then
-					break
-				end
-				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(sbposition.x, sbposition.y + 30, sbposition.z)
-				--api.tween(1, CFrame.new(sbposition.x, sbposition.y + 30, sbposition.z))
-				temptable.float = true
-				task.wait()
-			end
-			temptable.float = false
-
-			if game.Workspace.Particles:FindFirstChild("StickBugTotem") then
-				for j,k in pairs(game:GetService("Workspace").Particles.StickBugTotem:GetChildren()) do
-					if k:FindFirstChild("NamePos") then
-						game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(k.Position.x,k.Position.y,k.Position.z)
-						--api.tween(2, CFrame.new(k.Position.x,k.Position.y,k.Position.z))
-						break
-					end				
-				end
-				task.wait(1)
-				if kocmoc.toggles.autosprinkler then makesprinklers() end
-				while game.Workspace.Particles:FindFirstChild("StickBugTotem") do
-					gettoken(api.humanoidrootpart().Position)
+				if game.Workspace.Particles:FindFirstChild("PollenHealthBar") then
+					local sbpollenpos = game.Workspace.Particles:FindFirstChild("PollenHealthBar").Position
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(sbpollenpos.x,sbpollenpos.y,sbpollenpos.z)
 					task.wait(1)
-				end				
-				for i = 1, 3 do gettoken(api.humanoidrootpart().Position) end
-			else
+					temptable.magnitude = 25
+					while game.Workspace.Particles:FindFirstChild("PollenHealthBar") do
+						sbpollenpos = game.Workspace.Particles:FindFirstChild("PollenHealthBar").Position
+						if (sbpollenpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
+							api.tween(1, CFrame.new(sbpollenpos.x, sbpollenpos.y, sbpollenpos.z))
+						end
+						gettoken(sbpollenpos)
+
+						--game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(sbpollenpos.x,sbpollenpos.y,sbpollenpos.z)
+						task.wait(1)					
+					end
+					for i = 1, 3 do gettoken(api.humanoidrootpart().Position) end
+				end
+
+				--api.humanoidrootpart().CFrame = CFrame.new(243.895538, 4.3493037, 320.418457)
+				--task.wait(15)
+				local sbposition = game.Workspace.Monsters[v.Name].Head.Position
+				api.tween(1, CFrame.new(sbposition.x, sbposition.y + 30, sbposition.z))
 				task.wait(1)
 				if kocmoc.toggles.autosprinkler then makesprinklers() end
-				for i =1, 4 do gettoken(api.humanoidrootpart().Position) end			
+				--[[
+				if GetItemListWithValue()["Oil"] > 0 then
+					game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Oil"})
+					--buffTable["Oil"].b = true
+				end
+				if GetItemListWithValue()["JellyBeans"] > 0 then
+					game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Jelly Beans"})
+					--buffTable["Jelly Beans"].b = true
+				end
+				]]--
+				while game.Workspace.Monsters:FindFirstChild(v.Name) and not game.Workspace.Particles:FindFirstChild("StickBugTotem") do
+					sbposition = game.Workspace.Monsters[v.Name].Head.Position
+					if tonumber(sbposition.y) > 1000 then
+						break
+					end
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(sbposition.x, sbposition.y + 30, sbposition.z)
+					--api.tween(1, CFrame.new(sbposition.x, sbposition.y + 30, sbposition.z))
+					temptable.float = true
+					task.wait()
+				end
+				temptable.float = false
+
+				if game.Workspace.Particles:FindFirstChild("StickBugTotem") then
+					for j,k in pairs(game:GetService("Workspace").Particles.StickBugTotem:GetChildren()) do
+						if k:FindFirstChild("NamePos") then
+							game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(k.Position.x,k.Position.y,k.Position.z)
+							--api.tween(2, CFrame.new(k.Position.x,k.Position.y,k.Position.z))
+							break
+						end				
+					end
+					task.wait(1)
+					if kocmoc.toggles.autosprinkler then makesprinklers() end
+					while game.Workspace.Particles:FindFirstChild("StickBugTotem") do
+						gettoken(api.humanoidrootpart().Position)
+						task.wait(1)
+					end				
+					for i = 1, 3 do gettoken(api.humanoidrootpart().Position) end
+				else
+					task.wait(1)
+					if kocmoc.toggles.autosprinkler then makesprinklers() end
+					for i =1, 4 do gettoken(api.humanoidrootpart().Position) end			
+				end
+				enableall()
+				temptable.started.stickbug = false
+				break
 			end
-			enableall()
-			temptable.started.stickbug = false
-			--if kocmoc.toggles.godmode then
-				--kocmoc.toggles.godmode = false
-				--bssapi:Godmode(false)
-			--end
-			break
+		end
+	else
+		if kocmoc.toggles.godmode then
+			kocmoc.toggles.godmode = false
+			bssapi:Godmode(false)
 		end
 	end
 end
@@ -3045,10 +3049,25 @@ function KillTest2()
 
 	
 	print('ChallengeInfo1')
-	
-	local sbTimer = game.Players.LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("TimeValue")
-	print(sbTimer)
+	local sbTimer2 = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("TimeValue").Text
+	print(sbTimer2)
 
+	print('ChallengeInfo3')
+	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:GetChildren()) do
+		--print(v.Name)
+		if v.Name == "TimeLabel" then
+			print('TimeLabel=' .. v.Text)
+		end
+		if v.Name == "TimeValue" then
+			print('TimeValue=' .. v.Text)
+		end
+		if v.Name == "TitleBar" then
+			print('TitleBar=' .. v.Text)
+		end		
+	end
+	
+
+	
 	--[[
 	for i,v in pairs(game:GetService("Workspace").Particles.StickBugTotem:GetDescendants()) do
 		print('StickBug1=' .. v.Name)
