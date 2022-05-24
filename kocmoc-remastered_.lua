@@ -1299,7 +1299,7 @@ local miscc = misctab:CreateSection("Misc")
 miscc:CreateButton("Ant Challenge Semi-Godmode", function() api.tween(1, CFrame.new(93.4228, 32.3983, 553.128)) task.wait(1) game.ReplicatedStorage.Events.ToyEvent:FireServer("Ant Challenge") game.Players.LocalPlayer.Character.HumanoidRootPart.Position = Vector3.new(93.4228, 42.3983, 553.128) task.wait(2) game.Players.LocalPlayer.Character.Humanoid.Name = 1 local l = game.Players.LocalPlayer.Character["1"]:Clone() l.Parent = game.Players.LocalPlayer.Character l.Name = "Humanoid" task.wait() game.Players.LocalPlayer.Character["1"]:Destroy() api.tween(1, CFrame.new(93.4228, 32.3983, 553.128)) task.wait(8) api.tween(1, CFrame.new(93.4228, 32.3983, 553.128)) end)
 wstoggle = miscc:CreateToggle("Walk Speed", nil, function(State) kocmoc.toggles.loopspeed = State end) wstoggle:CreateKeybind("K", function(Key) end)
 jptoggle = miscc:CreateToggle("Jump Power", nil, function(State) kocmoc.toggles.loopjump = State end) jptoggle:CreateKeybind("L", function(Key) end)
-miscc:CreateToggle("Godmode", nil, function(State) kocmoc.toggles.godmode = State if State then bssapi:Godmode(true) else bssapi:Godmode(false) end end)
+uigodmode = miscc:CreateToggle("Godmode", nil, function(State) kocmoc.toggles.godmode = State if State then bssapi:Godmode(true) else bssapi:Godmode(false) end end)
 local misco = misctab:CreateSection("Other")
 misco:CreateDropdown("Equip Accesories", accesoriestable, function(Option) local ohString1 = "Equip" local ohTable2 = { ["Mute"] = false, ["Type"] = Option, ["Category"] = "Accessory" } game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer(ohString1, ohTable2) end)
 misco:CreateDropdown("Equip Masks", masktable, function(Option) local ohString1 = "Equip" local ohTable2 = { ["Mute"] = false, ["Type"] = Option, ["Category"] = "Accessory" } game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer(ohString1, ohTable2) end)
@@ -2807,14 +2807,19 @@ function KillStickBug()
 		if string.find(v.Name,"Stick Bug") then
 			temptable.started.stickbug = true
 			print('Now attacking ' .. v.Name)
+			--if not kocmoc.toggles.godmode then
+				--kocmoc.toggles.godmode = true
+				--bssapi:Godmode(true)
+			--end
 			disableall()
-			bssapi:Godmode(true)
-			api.humanoidrootpart().CFrame = CFrame.new(243.895538, 4.3493037, 320.418457)
-			task.wait(15)
+
+			--api.humanoidrootpart().CFrame = CFrame.new(243.895538, 4.3493037, 320.418457)
+			--task.wait(15)
 			local sbposition = game.Workspace.Monsters[v.Name].Head.Position
 			api.tween(1, CFrame.new(sbposition.x, sbposition.y + 30, sbposition.z))
 			task.wait(1)
 			if kocmoc.toggles.autosprinkler then makesprinklers() end
+			--[[
 			if GetItemListWithValue()["Oil"] > 0 then
 				game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Oil"})
 				--buffTable["Oil"].b = true
@@ -2823,6 +2828,7 @@ function KillStickBug()
 				game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Jelly Beans"})
 				--buffTable["Jelly Beans"].b = true
 			end
+			]]--
 			while game.Workspace.Monsters:FindFirstChild(v.Name) and not game.Workspace.Particles:FindFirstChild("StickBugTotem") do
 				sbposition = game.Workspace.Monsters[v.Name].Head.Position
 				if tonumber(sbposition.y) > 1000 then
@@ -2874,7 +2880,10 @@ function KillStickBug()
 			end
 			enableall()
 			temptable.started.stickbug = false
-			bssapi:Godmode(false)
+			--if kocmoc.toggles.godmode then
+				--kocmoc.toggles.godmode = false
+				--bssapi:Godmode(false)
+			--end
 			break
 		end
 	end
@@ -2961,7 +2970,23 @@ function KillTest4()
 	print(' ')
 	print('Begin')
 	
-	KillStickBug()
+	if game.Workspace.Particles:FindFirstChild("PollenHealthBar") then
+		local sbpollenpos = game.Workspace.Particles:FindFirstChild("PollenHealthBar").Position
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(sbpollenpos.x,sbpollenpos.y,sbpollenpos.z)
+		task.wait(1)
+		temptable.magnitude = 25
+		while game.Workspace.Particles:FindFirstChild("PollenHealthBar") do
+			sbpollenpos = game.Workspace.Particles:FindFirstChild("PollenHealthBar").Position
+			if (sbpollenpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
+				api.tween(1, CFrame.new(sbposition.x, sbposition.y, sbposition.z))
+			end
+			gettoken(sbpollenpos)
+
+			--game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(sbpollenpos.x,sbpollenpos.y,sbpollenpos.z)
+			task.wait(1)					
+		end
+		for i = 1, 3 do gettoken(api.humanoidrootpart().Position) end
+	end
 	
 	print('End')
 end
@@ -2983,10 +3008,6 @@ function KillTest3()
 			task.wait(1)
 			
 		end
-		--print('GetPollenHealth=' .. v.Name)
-		--if v:FindFirstChild("Part") then
-			--print(v.Position)
-		--end
 	end
 	
 	--[[
@@ -3018,16 +3039,11 @@ function KillTest2()
 	print(' ')
 	print('Begin')
 
-	if game.Workspace.Particles:FindFirstChild("PollenHealthBar") then
-		local sbPollen = game.Workspace.Particles:FindFirstChild("PollenHealthBar").Position
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(sbPollen.x,sbPollen.y,sbPollen.z)
-		task.wait(1)
-		while game.Workspace.Particles:FindFirstChild("PollenHealthBar") do
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(sbPollen.x,sbPollen.y,sbPollen.z)
-			task.wait(1)					
-		end
-		for i = 1, 3 do gettoken(api.humanoidrootpart().Position) end
-	end	
+	print('Finding Stick Bug Challenge')
+	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui:GetChildren()) do
+		print(v.Name)
+	end
+	
 	--[[
 	for i,v in pairs(game:GetService("Workspace").Particles.StickBugTotem:GetDescendants()) do
 		print('StickBug1=' .. v.Name)
@@ -3340,6 +3356,7 @@ if kocmoc.toggles.killwindy then uikillwindy:SetState(true) end -- Morphisto
 if kocmoc.toggles.autoant then uiautoant:SetState(true) end -- Morphisto
 if kocmoc.toggles.loopspeed then wstoggle:SetState(true) end -- Morphisto
 if kocmoc.toggles.loopjump then jptoggle:SetState(true) end -- Morphisto
+if kocmoc.toggles.godmode then uigodmode:SetState(true) end -- Morphisto
 if kocmoc.toggles.convertballoons then uiconvertballoons:SetState(true) end -- Morphisto
 if kocmoc.dispensesettings.rj then uirj:SetState(true) end -- Morphisto
 if kocmoc.dispensesettings.blub then uiblub:SetState(true) end -- Morphisto
