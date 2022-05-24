@@ -3001,16 +3001,19 @@ function KillTest3()
 		--print('Flowers:' .. v.Name)
 	--end
 	
-	print('PopupStack')
-	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.PopupStack:GetChildren()) do
-		print(v.Name)
+	print('ChallengeInfo2')
+	for i,v in pairs(game.Players.LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:GetChildren()) do
+		--print(v.Name)
+		if v.Name == "TimeLabel" then
+			print('TimeLabel=' .. v.Text)
+		end
+		if v.Name == "TimeValue" then
+			print('TimeValue=' .. v.Text)
+		end
+		if v.Name == "TitleBar" then
+			print('TitleBar=' .. v.Text)
+		end		
 	end
-
-	print('MinigameLayer')
-	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.MinigameLayer:GetChildren()) do
-		print(v.Name)
-	end
-	
 	--[[
 	print('KillTest3')
 	for i,v in pairs(workspace.Monsters:GetChildren()) do
@@ -3043,7 +3046,7 @@ function KillTest2()
 
 	print('ChallengeInfo1')
 	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:GetChildren()) do
-		print(v.Name)
+		--print(v.Name)
 		if v.Name == "TimeLabel" then
 			print('TimeLabel=' .. v.Text)
 		end
