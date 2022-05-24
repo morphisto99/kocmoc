@@ -3061,9 +3061,9 @@ function KillTest2()
 		if v.Name == "TimeValue" then
 			print('TimeValue=' .. v.Text)
 		end
-		if v.Name == "TitleBar" then
-			print('TitleBar=' .. v.Text)
-		end
+		--if v.Name == "TitleBar" then
+			--print('TitleBar=' .. v.Text)
+		--end
 		
 		if v:FindFirstChild("TitleBar").Visible then
 			print("TitleBar is Visible")
