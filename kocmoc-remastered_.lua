@@ -2813,6 +2813,24 @@ function KillStickBug()
 			--end
 			disableall()
 
+			if game.Workspace.Particles:FindFirstChild("PollenHealthBar") then
+				local sbpollenpos = game.Workspace.Particles:FindFirstChild("PollenHealthBar").Position
+				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(sbpollenpos.x,sbpollenpos.y,sbpollenpos.z)
+				task.wait(1)
+				temptable.magnitude = 25
+				while game.Workspace.Particles:FindFirstChild("PollenHealthBar") do
+					sbpollenpos = game.Workspace.Particles:FindFirstChild("PollenHealthBar").Position
+					if (sbpollenpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
+						api.tween(1, CFrame.new(sbposition.x, sbposition.y, sbposition.z))
+					end
+					gettoken(sbpollenpos)
+
+					--game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(sbpollenpos.x,sbpollenpos.y,sbpollenpos.z)
+					task.wait(1)					
+				end
+				for i = 1, 3 do gettoken(api.humanoidrootpart().Position) end
+			end
+
 			--api.humanoidrootpart().CFrame = CFrame.new(243.895538, 4.3493037, 320.418457)
 			--task.wait(15)
 			local sbposition = game.Workspace.Monsters[v.Name].Head.Position
@@ -2841,23 +2859,6 @@ function KillStickBug()
 			end
 			temptable.float = false
 
-			if game.Workspace.Particles:FindFirstChild("PollenHealthBar") then
-				local sbpollenpos = game.Workspace.Particles:FindFirstChild("PollenHealthBar").Position
-				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(sbpollenpos.x,sbpollenpos.y,sbpollenpos.z)
-				task.wait(1)
-				temptable.magnitude = 25
-				while game.Workspace.Particles:FindFirstChild("PollenHealthBar") do
-					sbpollenpos = game.Workspace.Particles:FindFirstChild("PollenHealthBar").Position
-					if (sbpollenpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
-						api.tween(1, CFrame.new(sbposition.x, sbposition.y, sbposition.z))
-					end
-					gettoken(sbpollenpos)
-
-					--game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(sbpollenpos.x,sbpollenpos.y,sbpollenpos.z)
-					task.wait(1)					
-				end
-				for i = 1, 3 do gettoken(api.humanoidrootpart().Position) end
-			end
 			if game.Workspace.Particles:FindFirstChild("StickBugTotem") then
 				for j,k in pairs(game:GetService("Workspace").Particles.StickBugTotem:GetChildren()) do
 					if k:FindFirstChild("NamePos") then
@@ -2999,15 +3000,14 @@ function KillTest3()
 		--print('Flowers:' .. v.Name)
 	--end
 	
+	print('PopupStack')
+	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.PopupStack:GetChildren()) do
+		print(v.Name)
+	end
 
-	print('Getting Particles1')
-	for i,v in pairs(game:GetService("Workspace").Particles:GetChildren()) do
-		if v.Name == "PollenHealthBar" then
-			print("Pollen Health Bar Found")
-			api.tween(1,CFrame.new(v.Position.x, v.Position.y, v.Position.z))
-			task.wait(1)
-			
-		end
+	print('MinigameLayer')
+	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.MinigameLayer:GetChildren()) do
+		print(v.Name)
 	end
 	
 	--[[
@@ -3039,8 +3039,18 @@ function KillTest2()
 	print(' ')
 	print('Begin')
 
-	print('Finding Stick Bug Challenge')
-	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui:GetChildren()) do
+	print('MeterHUD')
+	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.MeterHUD:GetChildren()) do
+		print(v.Name)
+	end
+	
+	print('ChallengeInfo')
+	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo:GetChildren()) do
+		print(v.Name)
+	end
+
+	print('PromoPopUp')
+	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.PromoPopUp:GetChildren()) do
 		print(v.Name)
 	end
 	
