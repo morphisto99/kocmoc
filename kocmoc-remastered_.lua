@@ -3065,7 +3065,7 @@ function KillTest2()
 			print('TitleBar=' .. v.Text)
 		end
 		
-		if v:FindFirstChild("TitleBar", true).Visible then
+		if v:FindFirstChild("TitleBar").Visible then
 			print("TitleBar is Visible")
 		end
 
