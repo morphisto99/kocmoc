@@ -2821,7 +2821,7 @@ function KillStickBug()
 				while game.Workspace.Particles:FindFirstChild("PollenHealthBar") do
 					sbpollenpos = game.Workspace.Particles:FindFirstChild("PollenHealthBar").Position
 					if (sbpollenpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
-						api.tween(1, CFrame.new(sbposition.x, sbposition.y, sbposition.z))
+						api.tween(1, CFrame.new(sbpollenpos.x, sbpollenpos.y, sbpollenpos.z))
 					end
 					gettoken(sbpollenpos)
 
@@ -2977,9 +2977,10 @@ function KillTest4()
 		task.wait(1)
 		temptable.magnitude = 25
 		while game.Workspace.Particles:FindFirstChild("PollenHealthBar") do
+			print("inside of PollenHeathBar")
 			sbpollenpos = game.Workspace.Particles:FindFirstChild("PollenHealthBar").Position
 			if (sbpollenpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
-				api.tween(1, CFrame.new(sbposition.x, sbposition.y, sbposition.z))
+				api.tween(1, CFrame.new(sbpollenpos.x, sbpollenpos.y, sbpollenpos.z))
 			end
 			gettoken(sbpollenpos)
 
@@ -3043,15 +3044,17 @@ function KillTest2()
 	print('ChallengeInfo1')
 	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:GetChildren()) do
 		print(v.Name)
+		if v.Name == "TimeLabel" then
+			print('TimeLabel=' .. v.Text)
+		end
+		if v.Name == "TimeValue" then
+			print('TimeValue=' .. v.Text)
+		end
+		if v.Name == "TitleBar" then
+			print('TitleBar=' .. v.Text)
+		end		
 	end
 
-	print('ChallengeInfo1')
-	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:GetChildren()) do
-		--print(v.Name)
-		if v.Name == "SBChallengeInfo" then
-			print("SBChallengeInfo" .. v.Text)
-		end
-	end
 
 	--[[
 	for i,v in pairs(game:GetService("Workspace").Particles.StickBugTotem:GetDescendants()) do
