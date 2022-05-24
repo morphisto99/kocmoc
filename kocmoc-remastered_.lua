@@ -3043,21 +3043,12 @@ function KillTest2()
 	print(' ')
 	print('Begin')
 
-
+	
 	print('ChallengeInfo1')
-	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:GetChildren()) do
-		--print(v.Name)
-		if v.Name == "TimeLabel" then
-			print('TimeLabel=' .. v.Text)
-		end
-		if v.Name == "TimeValue" then
-			print('TimeValue=' .. v.Text)
-		end
-		if v.Name == "TitleBar" then
-			print('TitleBar=' .. v.Text)
-		end		
-	end
-
+	
+	local sbTimeLabel = game.Players.LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("TimeLabel")
+	sbTimer = string.gsub(sbTimeLabel.Text,"Time:","")
+	print(sbTimer)
 
 	--[[
 	for i,v in pairs(game:GetService("Workspace").Particles.StickBugTotem:GetDescendants()) do
