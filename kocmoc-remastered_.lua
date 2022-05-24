@@ -1869,6 +1869,7 @@ task.spawn(function() while task.wait() do
                 temptable.magnitude = 25 
                 fieldpos = api.partwithnamepart("Mythic", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
                 fieldposition = fieldpos.Position
+				--[[
 				if temptable.puffshroomdetected and not temptable.puffshroomboosted then
 					if GetItemListWithValue()["Oil"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Oil"})
@@ -1897,10 +1898,12 @@ task.spawn(function() while task.wait() do
 					end
 					temptable.puffshroomboosted = true
 				end
+				]]--
             elseif api.partwithnamepart("Legendary", game.Workspace.Happenings.Puffshrooms) then
                 temptable.magnitude = 25 
                 fieldpos = api.partwithnamepart("Legendary", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
                 fieldposition = fieldpos.Position
+				--[[
 				if temptable.puffshroomdetected and not temptable.puffshroomboosted then
 					if GetItemListWithValue()["Oil"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Oil"})
@@ -1936,10 +1939,12 @@ task.spawn(function() while task.wait() do
 					end
 					temptable.puffshroomboosted = true
 				end
+				]]--
             elseif api.partwithnamepart("Epic", game.Workspace.Happenings.Puffshrooms) then
                 temptable.magnitude = 25 
                 fieldpos = api.partwithnamepart("Epic", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
                 fieldposition = fieldpos.Position
+				--[[
 				if temptable.puffshroomdetected and not temptable.puffshroomboosted then
 					if GetItemListWithValue()["JellyBeans"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Jelly Beans"})
@@ -1949,6 +1954,7 @@ task.spawn(function() while task.wait() do
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Cloud Vial"})
 					end
 				end
+				]]--
             else
 				--KillTest()
                 temptable.magnitude = 25 
@@ -2796,14 +2802,15 @@ end
 -- Morphisto
 -- Morphisto
 function KillStickBug()
-	--sblvl = ""
 	local ChatText = ""
 	for i,v in pairs(workspace.Monsters:GetChildren()) do
 		if string.find(v.Name,"Stick Bug") then
 			temptable.started.stickbug = true
-			--sblvl = v.Name
 			print('Now attacking ' .. v.Name)
 			disableall()
+			bssapi:Godmode(true)
+			api.humanoidrootpart().CFrame = CFrame.new(243.895538, 4.3493037, 320.418457)
+			task.wait(15)
 			local sbposition = game.Workspace.Monsters[v.Name].Head.Position
 			api.tween(1, CFrame.new(sbposition.x, sbposition.y + 30, sbposition.z))
 			task.wait(1)
@@ -2829,11 +2836,18 @@ function KillStickBug()
 			temptable.float = false
 
 			if game.Workspace.Particles:FindFirstChild("PollenHealthBar") then
-				local sbPollen = game.Workspace.Particles:FindFirstChild("PollenHealthBar").Position
-				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(sbPollen.x,sbPollen.y,sbPollen.z)
+				local sbpollenpos = game.Workspace.Particles:FindFirstChild("PollenHealthBar").Position
+				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(sbpollenpos.x,sbpollenpos.y,sbpollenpos.z)
 				task.wait(1)
+				temptable.magnitude = 25
 				while game.Workspace.Particles:FindFirstChild("PollenHealthBar") do
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(sbPollen.x,sbPollen.y,sbPollen.z)
+					sbpollenpos = game.Workspace.Particles:FindFirstChild("PollenHealthBar").Position
+					if (sbpollenpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
+						api.tween(1, CFrame.new(sbposition.x, sbposition.y, sbposition.z))
+					end
+					gettoken(sbpollenpos)
+
+					--game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(sbpollenpos.x,sbpollenpos.y,sbpollenpos.z)
 					task.wait(1)					
 				end
 				for i = 1, 3 do gettoken(api.humanoidrootpart().Position) end
@@ -2860,6 +2874,7 @@ function KillStickBug()
 			end
 			enableall()
 			temptable.started.stickbug = false
+			bssapi:Godmode(false)
 			break
 		end
 	end
