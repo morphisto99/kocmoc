@@ -3046,8 +3046,7 @@ function KillTest2()
 	
 	print('ChallengeInfo1')
 	
-	local sbTimeLabel = game.Players.LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("TimeLabel")
-	sbTimer = string.gsub(sbTimeLabel.Text,"Time:","")
+	local sbTimer = game.Players.LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("TimeValue")
 	print(sbTimer)
 
 	--[[
