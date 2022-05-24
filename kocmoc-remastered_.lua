@@ -1872,7 +1872,7 @@ task.spawn(function() while task.wait() do
 				if temptable.puffshroomdetected and not temptable.puffshroomboosted then
 					if GetItemListWithValue()["Oil"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Oil"})
-						buffTable["Oil"].b = true
+						--buffTable["Oil"].b = true
 					end
 					if GetItemListWithValue()["JellyBeans"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Jelly Beans"})
@@ -1905,35 +1905,35 @@ task.spawn(function() while task.wait() do
 				if temptable.puffshroomdetected and not temptable.puffshroomboosted then
 					if GetItemListWithValue()["Oil"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Oil"})
-						buffTable["Oil"].b = true
+						--buffTable["Oil"].b = true
 					end
 					if GetItemListWithValue()["JellyBeans"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Jelly Beans"})
-						buffTable["Jelly Beans"].b = true
+						--buffTable["Jelly Beans"].b = true
 					end
 					if GetItemListWithValue()["CloudVial"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Cloud Vial"})
-						buffTable["Cloud Vial"].b = true
+						--buffTable["Cloud Vial"].b = true
 					end
 					if GetItemListWithValue()["BlueExtract"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Blue Extract"})
-						buffTable["Blue Extract"].b = true
+						--buffTable["Blue Extract"].b = true
 					end
 					if GetItemListWithValue()["RedExtract"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Red Extract"})
-						buffTable["Red Extract"].b = true
+						--buffTable["Red Extract"].b = true
 					end
 					if GetItemListWithValue()["TropicalDrink"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Tropical Drink"})
-						buffTable["Tropical Drink"].b = true
+						--buffTable["Tropical Drink"].b = true
 					end
 					if GetItemListWithValue()["Glitter"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Glitter"})
-						buffTable["Glitter"].b = true
+						--buffTable["Glitter"].b = true
 					end
 					if GetItemListWithValue()["Glue"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Glue"})
-						buffTable["Glue"].b = true
+						--buffTable["Glue"].b = true
 					end
 					temptable.puffshroomboosted = true
 				end
@@ -2828,6 +2828,20 @@ function KillStickBug()
 				task.wait()
 			end
 			temptable.float = false
+
+			for j,k in pairs(game:GetService("Workspace").Particles:GetChildren()) do
+				if k.Name == "PollenHealthBar" then
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(k.Position.x,k.Position.y,k.Position.z)
+					task.wait(1)
+					while game.Workspace.Particles:FindFirstChild("PollenHealthBar") then
+						game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(k.Position.x,k.Position.y,k.Position.z)
+						task.wait(1)					
+					end
+					for i = 1, 3 do gettoken(api.humanoidrootpart().Position) end
+					break
+				end
+			end
+
 			if game.Workspace.Particles:FindFirstChild("StickBugTotem") then
 				for j,k in pairs(game:GetService("Workspace").Particles.StickBugTotem:GetChildren()) do
 					if k:FindFirstChild("NamePos") then
