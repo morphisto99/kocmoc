@@ -2803,23 +2803,28 @@ end
 -- Morphisto
 function KillStickBug()
 	local sbTimer = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("TimeValue").Text
+	if string.find(sbTimer, "s") then
+		local sbTime = string.gsub(sbTimer,"s","")
+		if tonumber(sbTime) < 20 then
+			game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("TimeValue").Text = "10:00"
+		end
+	end
 	if sbTimer ~= "10:00" then
+		temptable.started.stickbug = true
+		disableall()
 		if not kocmoc.toggles.godmode then
 			kocmoc.toggles.godmode = true
 			uigodmode:SetState(true)
 			bssapi:Godmode(true)
 		end	
+		
 		for i,v in pairs(workspace.Monsters:GetChildren()) do
 			if string.find(v.Name,"Stick Bug") then
-				temptable.started.stickbug = true
 				print('Now attacking ' .. v.Name)
-
-				disableall()
-
-				if game.Workspace.Particles:FindFirstChild("PollenHealthBar") then
-					local sbpollenpos = game.Workspace.Particles:FindFirstChild("PollenHealthBar").Position
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(sbpollenpos.x,sbpollenpos.y,sbpollenpos.z)
-					task.wait(1)
+				--if game.Workspace.Particles:FindFirstChild("PollenHealthBar") then
+					--local sbpollenpos = game.Workspace.Particles:FindFirstChild("PollenHealthBar").Position
+					--game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(sbpollenpos.x,sbpollenpos.y,sbpollenpos.z)
+					--task.wait(1)
 					temptable.magnitude = 25
 					while game.Workspace.Particles:FindFirstChild("PollenHealthBar") do
 						sbpollenpos = game.Workspace.Particles:FindFirstChild("PollenHealthBar").Position
@@ -2831,15 +2836,17 @@ function KillStickBug()
 						--game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(sbpollenpos.x,sbpollenpos.y,sbpollenpos.z)
 						task.wait(1)					
 					end
-					for i = 1, 3 do gettoken(api.humanoidrootpart().Position) end
-				end
+					for i = 1, 2 do gettoken(api.humanoidrootpart().Position) end
+				--end
 
 				--api.humanoidrootpart().CFrame = CFrame.new(243.895538, 4.3493037, 320.418457)
 				--task.wait(15)
+				
 				local sbposition = game.Workspace.Monsters[v.Name].Head.Position
-				api.tween(1, CFrame.new(sbposition.x, sbposition.y + 30, sbposition.z))
+				api.tween(1, CFrame.new(sbposition.x, sbposition.y, sbposition.z))
 				task.wait(1)
 				if kocmoc.toggles.autosprinkler then makesprinklers() end
+				
 				--[[
 				if GetItemListWithValue()["Oil"] > 0 then
 					game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Oil"})
@@ -2855,9 +2862,9 @@ function KillStickBug()
 					if tonumber(sbposition.y) > 1000 then
 						break
 					end
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(sbposition.x, sbposition.y + 30, sbposition.z)
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(sbposition.x, sbposition.y, sbposition.z)
 					--api.tween(1, CFrame.new(sbposition.x, sbposition.y + 30, sbposition.z))
-					temptable.float = true
+					--temptable.float = true
 					task.wait()
 				end
 				temptable.float = false
@@ -2876,22 +2883,24 @@ function KillStickBug()
 						gettoken(api.humanoidrootpart().Position)
 						task.wait(1)
 					end				
-					for i = 1, 3 do gettoken(api.humanoidrootpart().Position) end
+					for i = 1, 2 do gettoken(api.humanoidrootpart().Position) end
 				else
 					task.wait(1)
 					if kocmoc.toggles.autosprinkler then makesprinklers() end
-					for i =1, 4 do gettoken(api.humanoidrootpart().Position) end			
+					for i =1, 3 do gettoken(api.humanoidrootpart().Position) end			
 				end
-				enableall()
-				temptable.started.stickbug = false
 				break
 			end
 		end
 	else
-		if kocmoc.toggles.godmode then
-			kocmoc.toggles.godmode = false
-			uigodmode:SetState(false)
-			bssapi:Godmode(false)
+		if temptable.started.stickbug then
+			temptable.started.stickbug = false
+			enableall()
+			if kocmoc.toggles.godmode then
+				kocmoc.toggles.godmode = false
+				uigodmode:SetState(false)
+				bssapi:Godmode(false)
+			end
 		end
 	end
 end
@@ -3068,14 +3077,15 @@ function KillTest2()
 	print(' ')
 	print('Begin')
 
+	print("Search for Frame")
 	if game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("Frame") then
 		print("Frame is found!")
 	end
 	
-	print('ChallengeInfo1')
-	game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("TimeValue").Text = "5:00"
-	local sbTimer2 = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("TimeValue").Text
-	print(sbTimer2)
+	--print('ChallengeInfo1')
+	--game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("TimeValue").Text = "5:00"
+	--local sbTimer2 = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("TimeValue").Text
+	--print(sbTimer2)
 
 	print('ChallengeInfo3')
 	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo:GetChildren()) do
