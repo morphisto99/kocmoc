@@ -3008,8 +3008,9 @@ function KillTest3()
 	--end
 	
 	print('ChallengeInfo2')
-	for i,v in pairs(game.Players.LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:GetChildren()) do
+	for i,v in pairs(game.Players.LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:GetDescendants()) do
 		print(v.Name)
+		--[[
 		if v.Name == "TimeLabel" then
 			print('TimeLabel=' .. v.Text)
 		end
@@ -3018,8 +3019,26 @@ function KillTest3()
 		end
 		if v.Name == "TitleBar" then
 			print('TitleBar=' .. v.Text)
-		end		
+		end	
+		]]--
 	end
+
+	print('ChallengeInfo4')
+	for i,v in pairs(game.Players.LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo:GetDescendants()) do
+		print(v.Name)
+		--[[
+		if v.Name == "TimeLabel" then
+			print('TimeLabel=' .. v.Text)
+		end
+		if v.Name == "TimeValue" then
+			print('TimeValue=' .. v.Text)
+		end
+		if v.Name == "TitleBar" then
+			print('TitleBar=' .. v.Text)
+		end	
+		]]--
+	end
+	
 	--[[
 	print('KillTest3')
 	for i,v in pairs(workspace.Monsters:GetChildren()) do
@@ -3049,8 +3068,12 @@ function KillTest2()
 	print(' ')
 	print('Begin')
 
+	if game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("Frame") then
+		print("Frame is found!")
+	end
 	
 	print('ChallengeInfo1')
+	game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("TimeValue").Text = "5:00"
 	local sbTimer2 = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("TimeValue").Text
 	print(sbTimer2)
 
