@@ -2804,20 +2804,24 @@ task.spawn(function()
     while task.wait(1) do
 		if kocmoc.toggles.killstickbug and not temptable.started.windy and not temptable.started.vicious and not temptable.started.mondo and not temptable.started.monsters then
 			local sbTimer = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("TimeValue").Text
-			if string.find(sbTimer, "s") and tonumber(string.gsub(sbTimer,"s","")) < 10 then
-				print('Time is less than 10')
-				game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("TimeValue").Text = "10:00"
-				--sbTimer = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("TimeValue").Text
-				--print('New sbTimer=' .. sbTimer)
-				if temptable.started.stickbug then
-					print('Inside of sbTimer = 10:00')
-					temptable.started.stickbug = false
-					enableall()
-					if kocmoc.toggles.godmode then
-						print('disabling godmode')
-						kocmoc.toggles.godmode = false
-						uigodmode:SetState(false)
-						bssapi:Godmode(false)
+			if string.find(sbTimer, "s") then
+				local sbTime = string.gsub(sbTimer,"s","")
+				print('Time is less than ' .. sbTime)
+				if tonumber(sbTime) < 10 then
+					print('Time1 is less than ' .. sbTime)
+					game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("TimeValue").Text = "10:00"
+					--sbTimer = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("TimeValue").Text
+					--print('New sbTimer=' .. sbTimer)
+					if temptable.started.stickbug then
+						print('Inside of sbTimer = 10:00')
+						temptable.started.stickbug = false
+						enableall()
+						if kocmoc.toggles.godmode then
+							print('disabling godmode')
+							kocmoc.toggles.godmode = false
+							uigodmode:SetState(false)
+							bssapi:Godmode(false)
+						end
 					end
 				end
 			elseif sbTimer ~= "10:00" then
@@ -2870,14 +2874,19 @@ task.spawn(function()
 						end
 						]]--
 						while game.Workspace.Monsters:FindFirstChild(v.Name) and not game.Workspace.Particles:FindFirstChild("StickBugTotem") do
-							sbposition = game.Workspace.Monsters[v.Name].Head.Position
+							sbposition = game.Workspace.Monsters[v.Name].Position
 							if tonumber(sbposition.y) > 1000 then
 								break
 							end
-							--game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(sbposition.x, sbposition.y, sbposition.z)
-							api.tween(1, CFrame.new(sbposition.x, sbposition.y, sbposition.z))
+							--sbpollenpos = game.Workspace.Particles:FindFirstChild("PollenHealthBar").Position
+							if (sbposition-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
+								api.tween(1, CFrame.new(sbposition.x, sbposition.y, sbposition.z))
+							end
+							gettoken(sbposition)
+								
+							--api.tween(1, CFrame.new(sbposition.x, sbposition.y, sbposition.z))
 							--temptable.float = true
-							task.wait()
+							task.wait(1)
 						end
 						temptable.float = false
 
