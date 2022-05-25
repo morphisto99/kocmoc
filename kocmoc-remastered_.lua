@@ -2017,7 +2017,6 @@ task.spawn(function() while task.wait() do
 				if kocmoc.toggles.killkingbeetle then KillKingBeetle() end -- Morphisto
 				if kocmoc.toggles.killstumpsnail then KillStumpSnail() end -- Morphisto
 				if kocmoc.toggles.farmboostedfield then farmboostedfield() end -- Morphisto
-				if kocmoc.toggles.killstickbug then KillStickBug() end -- Morphisto
 				if (fieldposition-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
                     api.tween(2, fieldpos) -- Morphisto
                     if kocmoc.toggles.autosprinkler then makesprinklers() end
@@ -2800,119 +2799,115 @@ function DefenseTotemHP()
 	end
 end
 -- Morphisto
--- Morphisto
-function KillStickBug()
-	local sbTimer = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("TimeValue").Text
-	print('sbTimer1=' .. sbTimer)
-	if string.find(sbTimer, "s") then
-		print('Found s in timer')
-		local sbTime = string.gsub(sbTimer,"s","")
-		print('sbTime=' .. sbTime)
-		if tonumber(sbTime) < 20 then
-			print('Time is less than 20')
-			game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("TimeValue").Text = "10:00"
+-- Morphisto - Auto Stick Bug
+task.spawn(function()
+    while task.wait(1) do
+		if kocmoc.toggles.killstickbug and not temptable.started.windy and not temptable.started.vicious and not temptable.started.mondo and not temptable.started.monsters then
 			local sbTimer = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("TimeValue").Text
-			print('New sbTimer=' .. sbTimer)
-		end
-	end
-	if sbTimer == "10:00" then
-		print('Inside of sbTimer = 10:00')
-		if temptable.started.stickbug then
-			print('Inside2 of sbTimer = 10:00')
-			temptable.started.stickbug = false
-			enableall()
-			if kocmoc.toggles.godmode then
-				print('disabling godmode')
-				kocmoc.toggles.godmode = false
-				uigodmode:SetState(false)
-				bssapi:Godmode(false)
-			end
-		end	
-	else
-		temptable.started.stickbug = true
-		disableall()
-		if not kocmoc.toggles.godmode then
-			kocmoc.toggles.godmode = true
-			uigodmode:SetState(true)
-			bssapi:Godmode(true)
-		end	
-		
-		for i,v in pairs(workspace.Monsters:GetChildren()) do
-			if string.find(v.Name,"Stick Bug") then
-				print('Now attacking ' .. v.Name)
-				if game.Workspace.Particles:FindFirstChild("PollenHealthBar") then
-					local sbpollenpos = game.Workspace.Particles:FindFirstChild("PollenHealthBar").Position
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(sbpollenpos.x,sbpollenpos.y,sbpollenpos.z)
-					task.wait(1)
-					temptable.magnitude = 25
-					while game.Workspace.Particles:FindFirstChild("PollenHealthBar") do
-						sbpollenpos = game.Workspace.Particles:FindFirstChild("PollenHealthBar").Position
-						if (sbpollenpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
-							api.tween(1, CFrame.new(sbpollenpos.x, sbpollenpos.y, sbpollenpos.z))
-						end
-						gettoken(sbpollenpos)
-
-						--game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(sbpollenpos.x,sbpollenpos.y,sbpollenpos.z)
-						task.wait(1)					
+			if string.find(sbTimer, "s") and tonumber(string.gsub(sbTimer,"s","")) < 10 then
+				print('Time is less than 10')
+				game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("TimeValue").Text = "10:00"
+				--sbTimer = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("TimeValue").Text
+				--print('New sbTimer=' .. sbTimer)
+				if temptable.started.stickbug then
+					print('Inside of sbTimer = 10:00')
+					temptable.started.stickbug = false
+					enableall()
+					if kocmoc.toggles.godmode then
+						print('disabling godmode')
+						kocmoc.toggles.godmode = false
+						uigodmode:SetState(false)
+						bssapi:Godmode(false)
 					end
-					for i = 1, 2 do gettoken(api.humanoidrootpart().Position) end
 				end
+			elseif sbTimer ~= "10:00" then
+				if not temptable.started.stickbug then
+					temptable.started.stickbug = true
+					disableall()
+					if not kocmoc.toggles.godmode then
+						kocmoc.toggles.godmode = true
+						uigodmode:SetState(true)
+						bssapi:Godmode(true)
+					end
+				end
+				for i,v in pairs(workspace.Monsters:GetChildren()) do
+					if string.find(v.Name,"Stick Bug") then
+						print('Now attacking ' .. v.Name)
+						if game.Workspace.Particles:FindFirstChild("PollenHealthBar") then
+							local sbpollenpos = game.Workspace.Particles:FindFirstChild("PollenHealthBar").Position
+							game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(sbpollenpos.x,sbpollenpos.y,sbpollenpos.z)
+							task.wait(1)
+							temptable.magnitude = 25
+							while game.Workspace.Particles:FindFirstChild("PollenHealthBar") do
+								sbpollenpos = game.Workspace.Particles:FindFirstChild("PollenHealthBar").Position
+								if (sbpollenpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
+									api.tween(1, CFrame.new(sbpollenpos.x, sbpollenpos.y, sbpollenpos.z))
+								end
+								gettoken(sbpollenpos)
 
-				--api.humanoidrootpart().CFrame = CFrame.new(243.895538, 4.3493037, 320.418457)
-				--task.wait(15)
-				
-				local sbposition = game.Workspace.Monsters[v.Name].Head.Position
-				api.tween(1, CFrame.new(sbposition.x, sbposition.y, sbposition.z))
-				task.wait(1)
-				if kocmoc.toggles.autosprinkler then makesprinklers() end
-				
-				--[[
-				if GetItemListWithValue()["Oil"] > 0 then
-					game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Oil"})
-					--buffTable["Oil"].b = true
-				end
-				if GetItemListWithValue()["JellyBeans"] > 0 then
-					game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Jelly Beans"})
-					--buffTable["Jelly Beans"].b = true
-				end
-				]]--
-				while game.Workspace.Monsters:FindFirstChild(v.Name) and not game.Workspace.Particles:FindFirstChild("StickBugTotem") do
-					sbposition = game.Workspace.Monsters[v.Name].Head.Position
-					if tonumber(sbposition.y) > 1000 then
+								--game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(sbpollenpos.x,sbpollenpos.y,sbpollenpos.z)
+								task.wait(1)					
+							end
+							for i = 1, 2 do gettoken(api.humanoidrootpart().Position) end
+						end
+
+						--api.humanoidrootpart().CFrame = CFrame.new(243.895538, 4.3493037, 320.418457)
+						--task.wait(15)
+						
+						local sbposition = game.Workspace.Monsters[v.Name].Head.Position
+						api.tween(1, CFrame.new(sbposition.x, sbposition.y, sbposition.z))
+						task.wait(1)
+						if kocmoc.toggles.autosprinkler then makesprinklers() end
+						
+						--[[
+						if GetItemListWithValue()["Oil"] > 0 then
+							game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Oil"})
+							--buffTable["Oil"].b = true
+						end
+						if GetItemListWithValue()["JellyBeans"] > 0 then
+							game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Jelly Beans"})
+							--buffTable["Jelly Beans"].b = true
+						end
+						]]--
+						while game.Workspace.Monsters:FindFirstChild(v.Name) and not game.Workspace.Particles:FindFirstChild("StickBugTotem") do
+							sbposition = game.Workspace.Monsters[v.Name].Head.Position
+							if tonumber(sbposition.y) > 1000 then
+								break
+							end
+							--game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(sbposition.x, sbposition.y, sbposition.z)
+							api.tween(1, CFrame.new(sbposition.x, sbposition.y, sbposition.z))
+							--temptable.float = true
+							task.wait()
+						end
+						temptable.float = false
+
+						if game.Workspace.Particles:FindFirstChild("StickBugTotem") then
+							for j,k in pairs(game:GetService("Workspace").Particles.StickBugTotem:GetChildren()) do
+								if k:FindFirstChild("NamePos") then
+									game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(k.Position.x,k.Position.y,k.Position.z)
+									--api.tween(2, CFrame.new(k.Position.x,k.Position.y,k.Position.z))
+									break
+								end				
+							end
+							task.wait(1)
+							if kocmoc.toggles.autosprinkler then makesprinklers() end
+							while game.Workspace.Particles:FindFirstChild("StickBugTotem") do
+								gettoken(api.humanoidrootpart().Position)
+								task.wait(1)
+							end				
+							for i = 1, 2 do gettoken(api.humanoidrootpart().Position) end
+						else
+							task.wait(1)
+							if kocmoc.toggles.autosprinkler then makesprinklers() end
+							for i =1, 3 do gettoken(api.humanoidrootpart().Position) end			
+						end
 						break
 					end
-					--game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(sbposition.x, sbposition.y, sbposition.z)
-					api.tween(1, CFrame.new(sbposition.x, sbposition.y, sbposition.z))
-					--temptable.float = true
-					task.wait()
 				end
-				temptable.float = false
-
-				if game.Workspace.Particles:FindFirstChild("StickBugTotem") then
-					for j,k in pairs(game:GetService("Workspace").Particles.StickBugTotem:GetChildren()) do
-						if k:FindFirstChild("NamePos") then
-							game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(k.Position.x,k.Position.y,k.Position.z)
-							--api.tween(2, CFrame.new(k.Position.x,k.Position.y,k.Position.z))
-							break
-						end				
-					end
-					task.wait(1)
-					if kocmoc.toggles.autosprinkler then makesprinklers() end
-					while game.Workspace.Particles:FindFirstChild("StickBugTotem") do
-						gettoken(api.humanoidrootpart().Position)
-						task.wait(1)
-					end				
-					for i = 1, 2 do gettoken(api.humanoidrootpart().Position) end
-				else
-					task.wait(1)
-					if kocmoc.toggles.autosprinkler then makesprinklers() end
-					for i =1, 3 do gettoken(api.humanoidrootpart().Position) end			
-				end
-				break
 			end
 		end
 	end
-end
+end)
 
 -- Morphisto
 function CheckPlayers()
