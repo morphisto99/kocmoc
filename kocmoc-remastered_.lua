@@ -2803,13 +2803,31 @@ end
 -- Morphisto
 function KillStickBug()
 	local sbTimer = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("TimeValue").Text
+	print('sbTimer1=' .. sbTimer)
 	if string.find(sbTimer, "s") then
+		print('Found s in timer')
 		local sbTime = string.gsub(sbTimer,"s","")
+		print('sbTime=' .. sbTime)
 		if tonumber(sbTime) < 20 then
+			print('Time is less than 20')
 			game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("TimeValue").Text = "10:00"
+			local sbTimer = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("TimeValue").Text
+			print('New sbTimer=' .. sbTimer)
 		end
 	end
-	if sbTimer ~= "10:00" then
+	if sbTimer == "10:00" then
+		print('Inside of sbTimer = 10:00')
+		if temptable.started.stickbug then
+			temptable.started.stickbug = false
+			enableall()
+			if kocmoc.toggles.godmode then
+				print('disabling godmode')
+				kocmoc.toggles.godmode = false
+				uigodmode:SetState(false)
+				bssapi:Godmode(false)
+			end
+		end	
+	else
 		temptable.started.stickbug = true
 		disableall()
 		if not kocmoc.toggles.godmode then
@@ -2862,8 +2880,8 @@ function KillStickBug()
 					if tonumber(sbposition.y) > 1000 then
 						break
 					end
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(sbposition.x, sbposition.y, sbposition.z)
-					--api.tween(1, CFrame.new(sbposition.x, sbposition.y + 30, sbposition.z))
+					--game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(sbposition.x, sbposition.y, sbposition.z)
+					api.tween(1, CFrame.new(sbposition.x, sbposition.y, sbposition.z))
 					--temptable.float = true
 					task.wait()
 				end
@@ -2890,16 +2908,6 @@ function KillStickBug()
 					for i =1, 3 do gettoken(api.humanoidrootpart().Position) end			
 				end
 				break
-			end
-		end
-	else
-		if temptable.started.stickbug then
-			temptable.started.stickbug = false
-			enableall()
-			if kocmoc.toggles.godmode then
-				kocmoc.toggles.godmode = false
-				uigodmode:SetState(false)
-				bssapi:Godmode(false)
 			end
 		end
 	end
@@ -3018,8 +3026,7 @@ function KillTest3()
 	
 	print('ChallengeInfo2')
 	for i,v in pairs(game.Players.LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:GetDescendants()) do
-		print(v.Name)
-		--[[
+		--print(v.Name)
 		if v.Name == "TimeLabel" then
 			print('TimeLabel=' .. v.Text)
 		end
@@ -3029,13 +3036,11 @@ function KillTest3()
 		if v.Name == "TitleBar" then
 			print('TitleBar=' .. v.Text)
 		end	
-		]]--
 	end
 
 	print('ChallengeInfo4')
 	for i,v in pairs(game.Players.LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo:GetDescendants()) do
 		print(v.Name)
-		--[[
 		if v.Name == "TimeLabel" then
 			print('TimeLabel=' .. v.Text)
 		end
@@ -3045,7 +3050,6 @@ function KillTest3()
 		if v.Name == "TitleBar" then
 			print('TitleBar=' .. v.Text)
 		end	
-		]]--
 	end
 	
 	--[[
@@ -3082,14 +3086,14 @@ function KillTest2()
 		print("Frame is found!")
 	end
 	
-	--print('ChallengeInfo1')
+	print('ChallengeInfo1')
 	--game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("TimeValue").Text = "5:00"
-	--local sbTimer2 = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("TimeValue").Text
-	--print(sbTimer2)
+	local sbTimer2 = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("TimeValue").Text
+	print(sbTimer2)
 
 	print('ChallengeInfo3')
 	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo:GetChildren()) do
-		if v:FindFirstChild("SBChallengeInfo") then
+		if v.Name == "SBChallengeInfo" then
 			print("Test1")
 			if v:FindFirstChild("SBChallengeInfo"):FindFirstChild("TimeLabel", true).Visible then
 				print("TimeLabel is Visible")
