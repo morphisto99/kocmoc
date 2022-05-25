@@ -2859,7 +2859,7 @@ task.spawn(function()
 						--task.wait(15)
 						
 						local sbposition = game.Workspace.Monsters[v.Name].Head.Position
-						api.tween(1, CFrame.new(sbposition.x, sbposition.y, sbposition.z))
+						api.tween(1, CFrame.new(sbposition.x, sbposition.y - 30, sbposition.z))
 						task.wait(1)
 						if kocmoc.toggles.autosprinkler then makesprinklers() end
 						
@@ -2874,15 +2874,16 @@ task.spawn(function()
 						end
 						]]--
 						while game.Workspace.Monsters:FindFirstChild(v.Name) and not game.Workspace.Particles:FindFirstChild("StickBugTotem") do
-							sbposition = game.Workspace.Monsters[v.Name].Position
+							sbposition = game.Workspace.Monsters[v.Name].Head.Position
 							if tonumber(sbposition.y) > 1000 then
 								break
 							end
 							--sbpollenpos = game.Workspace.Particles:FindFirstChild("PollenHealthBar").Position
 							if (sbposition-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
-								api.tween(1, CFrame.new(sbposition.x, sbposition.y, sbposition.z))
+								api.tween(1, CFrame.new(sbposition.x, sbposition.y - 30, sbposition.z))
 							end
-							gettoken(sbposition)
+							--gettoken(sbposition)
+							gettoken(CFrame.new(sbposition.x, sbposition.y - 30, sbposition.z))
 								
 							--api.tween(1, CFrame.new(sbposition.x, sbposition.y, sbposition.z))
 							--temptable.float = true
@@ -3095,7 +3096,7 @@ function KillTest2()
 	print("Test StickBug1")
 	for i,v in pairs(workspace.Monsters:GetChildren()) do
 		if string.find(v.Name,"Stick Bug") then
-			local sbposition = game.Workspace.Monsters[v.Name].Position
+			local sbposition = game.Workspace.Monsters[v.Name].Head.Position
 			print(sbposition.x,sbposition.y,sbposition.z)
 			api.tween(1, CFrame.new(sbposition.x, sbposition.y, sbposition.z))
 		end
@@ -3105,7 +3106,7 @@ function KillTest2()
 	for i = 1, 15 do
 		local sbName = 'Stick Bug (Lvl ' .. i .. ')'
 		if game.Workspace.Monsters:FindFirstChild(sbName) then
-			local sbposition = game.Workspace.Monsters[sbName].Position
+			local sbposition = game.Workspace.Monsters[sbName].Head.Position
 			print(sbposition.x,sbposition.y,sbposition.z)
 			api.tween(1, CFrame.new(sbposition.x, sbposition.y, sbposition.z))
 		end
