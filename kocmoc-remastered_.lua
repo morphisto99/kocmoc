@@ -2822,9 +2822,9 @@ function KillStickBug()
 			if string.find(v.Name,"Stick Bug") then
 				print('Now attacking ' .. v.Name)
 				--if game.Workspace.Particles:FindFirstChild("PollenHealthBar") then
-					--local sbpollenpos = game.Workspace.Particles:FindFirstChild("PollenHealthBar").Position
-					--game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(sbpollenpos.x,sbpollenpos.y,sbpollenpos.z)
-					--task.wait(1)
+					local sbpollenpos = game.Workspace.Particles:FindFirstChild("PollenHealthBar").Position
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(sbpollenpos.x,sbpollenpos.y,sbpollenpos.z)
+					task.wait(1)
 					temptable.magnitude = 25
 					while game.Workspace.Particles:FindFirstChild("PollenHealthBar") do
 						sbpollenpos = game.Workspace.Particles:FindFirstChild("PollenHealthBar").Position
