@@ -3064,7 +3064,7 @@ function KillTest2()
 	end
 	
 	print("Test for Visible")
-	if game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("TitleBar").Visible == true then
+	if game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("TitleBar", true).Visible then
 		print("Stick Bug Box is Visible")
 	end
 	--[[
