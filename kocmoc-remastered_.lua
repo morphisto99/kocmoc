@@ -3086,30 +3086,31 @@ function KillTest2()
 	print(' ')
 	print('Begin')
 
-	print("Search for Frame")
-	if game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("Frame") then
-		print("Frame is found!")
-	end
 	
 	print('ChallengeInfo1')
 	--game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("TimeValue").Text = "5:00"
 	local sbTimer2 = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("TimeValue").Text
 	print(sbTimer2)
-
-	print('ChallengeInfo3')
-	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo:GetChildren()) do
-		if v.Name == "SBChallengeInfo" then
-			print("Test1")
-			if v:FindFirstChild("SBChallengeInfo"):FindFirstChild("TimeLabel", true).Visible then
-				print("TimeLabel is Visible")
-			end		
+	
+	print("Test StickBug1")
+	for i,v in pairs(workspace.Monsters:GetChildren()) do
+		if string.find(v.Name,"Stick Bug") then
+			local sbposition = game.Workspace.Monsters[v.Name].Position
+			print(sbposition.x,sbposition.y,sbposition.z)
+			api.tween(1, CFrame.new(sbposition.x, sbposition.y, sbposition.z))
 		end
 	end
 	
-	print("Test for Visible")
-	if game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("TitleBar", true).Visible then
-		print("Stick Bug Box is Visible")
-	end
+	print("Test StickBug2")
+	for i = 1, 15 do
+		local sbName = 'Stick Bug (Lvl ' .. i .. ')'
+		if game.Workspace.Monsters:FindFirstChild(sbName) then
+			local sbposition = game.Workspace.Monsters[sbName].Position
+			print(sbposition.x,sbposition.y,sbposition.z)
+			api.tween(1, CFrame.new(sbposition.x, sbposition.y, sbposition.z))
+		end
+	end 
+	
 	--[[
 	for i,v in pairs(game:GetService("Workspace").Particles.StickBugTotem:GetDescendants()) do
 		print('StickBug1=' .. v.Name)
