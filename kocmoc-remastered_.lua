@@ -2818,6 +2818,7 @@ function KillStickBug()
 	if sbTimer == "10:00" then
 		print('Inside of sbTimer = 10:00')
 		if temptable.started.stickbug then
+			print('Inside2 of sbTimer = 10:00')
 			temptable.started.stickbug = false
 			enableall()
 			if kocmoc.toggles.godmode then
@@ -2839,7 +2840,7 @@ function KillStickBug()
 		for i,v in pairs(workspace.Monsters:GetChildren()) do
 			if string.find(v.Name,"Stick Bug") then
 				print('Now attacking ' .. v.Name)
-				--if game.Workspace.Particles:FindFirstChild("PollenHealthBar") then
+				if game.Workspace.Particles:FindFirstChild("PollenHealthBar") then
 					local sbpollenpos = game.Workspace.Particles:FindFirstChild("PollenHealthBar").Position
 					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(sbpollenpos.x,sbpollenpos.y,sbpollenpos.z)
 					task.wait(1)
@@ -2855,7 +2856,7 @@ function KillStickBug()
 						task.wait(1)					
 					end
 					for i = 1, 2 do gettoken(api.humanoidrootpart().Position) end
-				--end
+				end
 
 				--api.humanoidrootpart().CFrame = CFrame.new(243.895538, 4.3493037, 320.418457)
 				--task.wait(15)
