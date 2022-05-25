@@ -3057,7 +3057,8 @@ function KillTest2()
 	print('ChallengeInfo3')
 	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo:GetChildren()) do
 		if v:FindFirstChild("SBChallengeInfo") then
-			if v:FindFirstChild("TimeLabel", true).Visible then
+			print("Test1")
+			if v:FindFirstChild("SBChallengeInfo"):FindFirstChild("TimeLabel", true).Visible then
 				print("TimeLabel is Visible")
 			end		
 		end
