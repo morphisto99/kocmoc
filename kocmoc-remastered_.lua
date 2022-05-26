@@ -1960,7 +1960,7 @@ task.spawn(function() while task.wait() do
                 temptable.magnitude = 25 
                 fieldpos = api.getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
                 fieldposition = fieldpos.Position
-				
+				buffTable["Jelly Bean Share Bonus"].b = true
 				local buffs = fetchBuffTable(buffTable)
 				for i,v in pairs(buffs) do
 					print(i,v)
