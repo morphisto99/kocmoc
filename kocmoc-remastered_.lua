@@ -1869,6 +1869,7 @@ task.spawn(function() while task.wait() do
                 temptable.magnitude = 25 
                 fieldpos = api.partwithnamepart("Mythic", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
                 fieldposition = fieldpos.Position
+				--[[
 				if temptable.puffshroomdetected then
 					local buffs = fetchBuffTable(buffTable)
 					if GetItemListWithValue()["Oil"] > 0 then
@@ -1911,10 +1912,12 @@ task.spawn(function() while task.wait() do
 					end
 					temptable.puffshroomboosted = true
 				end
+				--]]
             elseif api.partwithnamepart("Legendary", game.Workspace.Happenings.Puffshrooms) then
                 temptable.magnitude = 25 
                 fieldpos = api.partwithnamepart("Legendary", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
-                fieldposition = fieldpos.Position					
+                fieldposition = fieldpos.Position	
+				--[[
 				if temptable.puffshroomdetected then
 					local buffs = fetchBuffTable(buffTable)
 					if GetItemListWithValue()["Oil"] > 0 then
@@ -1957,12 +1960,12 @@ task.spawn(function() while task.wait() do
 					end
 					temptable.puffshroomboosted = true
 				end
-
+				]]--
             elseif api.partwithnamepart("Epic", game.Workspace.Happenings.Puffshrooms) then
                 temptable.magnitude = 25 
                 fieldpos = api.partwithnamepart("Epic", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
                 fieldposition = fieldpos.Position
-	
+				--[[
 				if temptable.puffshroomdetected then
 					local buffs = fetchBuffTable(buffTable)
 					if GetItemListWithValue()["JellyBeans"] > 0 then	
@@ -1976,7 +1979,7 @@ task.spawn(function() while task.wait() do
 						end
 					end
 				end
-
+				]]--
             else
                 temptable.magnitude = 25 
                 fieldpos = api.getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
@@ -1999,6 +2002,7 @@ task.spawn(function() while task.wait() do
                         temptable.started.mondo = true
 						-- Morphisto
 						disableall()
+						--[[
 						local buffs = fetchBuffTable(buffTable)
 						if GetItemListWithValue()["Oil"] > 0 then
 							if next(buffs) == nil or not api.tablefind(buffs, "Oil") then
@@ -2010,6 +2014,7 @@ task.spawn(function() while task.wait() do
 								game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Stinger"})
 							end
 						end
+						]]--
 						-- Morphisto
                         while game.Workspace.Monsters:FindFirstChild("Mondo Chick (Lvl 8)") do
 							-- Morphisto
@@ -3056,6 +3061,21 @@ function KillTest3()
 	for i,v in next, temptable.whitefields do
 		print(i,v)
 	end
+
+	local buffs = fetchBuffTable(buffTable)
+	for i,v next, buffs do
+		print(i,v)
+	end
+	if api.tablefind(buffs, "Stinger") then
+		print("Stingger buff found!")
+	end
+	--[[
+	if GetItemListWithValue()["JellyBeans"] > 0 then	
+		if next(buffs) == nil or not api.tablefind(buffs, "Jelly Beans") then
+			game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Jelly Beans"})
+		end
+	end
+	]]--
 	
 	--[[
 	print('KillTest3')
