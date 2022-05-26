@@ -3052,15 +3052,6 @@ function KillTest3()
 	--for i,v in pairs(game:GetService("Workspace").Flowers:GetChildren()) do
 		--print('Flowers:' .. v.Name)
 	--end
-	
-	local buffs = fetchBuffTable(buffTable)
-	if next(buffs) == nil then
-	   print("no current buffs active")
-	end
-
-	for i,v in pairs(buffs) do
-		print(i,v)
-	end
 
 	for i,v in next, temptable.whitefields do
 		print(i,v)
