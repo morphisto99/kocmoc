@@ -220,7 +220,7 @@ local buffTable = {
     ["Glitter"]={b=false,DecalID="2542899798"};
     ["Tropical Drink"]={b=false,DecalID="3835877932"};
 	["Stinger"]={b=false,DecalID="2314214749"}; -- Morphisto
-	["Jelly Beans"]={b=false,DecalID="3080740120"}; -- Morphisto
+	["Jelly Bean Sharing Bonus"]={b=false,DecalID="3080919019"}; -- Morphisto
 }
 -- Morphisto
 local fieldboostTable = {
@@ -1960,6 +1960,31 @@ task.spawn(function() while task.wait() do
                 temptable.magnitude = 25 
                 fieldpos = api.getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
                 fieldposition = fieldpos.Position
+				
+				local buffs = fetchBuffTable(buffTable)
+				for i,v in pairs(buffs) do
+					print(i,v)
+				end
+				
+				--[[
+				for i,v in pairs(buffTable) do
+					if v["b"] == true then
+						local inuse = false
+						for k,p in pairs(buffs) do
+							if k == i then inuse = true end
+						end
+						if inuse == false then
+							print('Buff not in use, FireServer=' .. i)
+							--game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"]=i})
+						end
+					end
+				end				
+				
+				if GetItemListWithValue()["JellyBeans"] > 0 then
+					game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Jelly Beans"})
+					buffTable["Jelly Bean Share"].b = true
+				end
+				]]--
 			end
 		elseif kocmoc.toggles.farmpuffshrooms and temptable.puffshroomboosted then
 			temptable.puffshroomdetected = false
@@ -2802,8 +2827,9 @@ end
 -- Morphisto - Auto Stick Bug
 task.spawn(function()
     while task.wait(1) do
-		if kocmoc.toggles.killstickbug and not temptable.started.windy and not temptable.started.vicious and not temptable.started.mondo and not temptable.started.monsters then
+		if kocmoc.toggles.killstickbug and not temptable.started.windy and not temptable.started.vicious and not temptable.started.mondo and not temptable.started.monsters and not temptable.started.fieldboost then
 			local sbTimer = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("TimeValue").Text
+			print('sbTimer=' .. sbTimer)
 			--if string.find(sbTimer, "s") then
 			if sbTimer == "0s" then
 				print('Stick Bug Chellenge has finished ' .. sbTimer)
