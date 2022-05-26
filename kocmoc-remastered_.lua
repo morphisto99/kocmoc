@@ -2808,8 +2808,6 @@ task.spawn(function()
 			if sbTimer == "0s" then
 				print('Stick Bug Chellenge has finished ' .. sbTimer)
 				game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("TimeValue").Text = "10:00"
-				--sbTimer = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("TimeValue").Text
-				--print('New sbTimer=' .. sbTimer)
 				if temptable.started.stickbug then
 					print('Inside of sbTimer = 10:00')
 					temptable.started.stickbug = false
@@ -2852,9 +2850,6 @@ task.spawn(function()
 							end
 							for i = 1, 2 do gettoken(api.humanoidrootpart().Position) end
 						end
-
-						--api.humanoidrootpart().CFrame = CFrame.new(243.895538, 4.3493037, 320.418457)
-						--task.wait(15)
 						
 						local sbposition = game.Workspace.Monsters[v.Name].Head.Position
 						api.tween(1, CFrame.new(sbposition.x, sbposition.y - 5, sbposition.z))
