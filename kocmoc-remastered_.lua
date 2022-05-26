@@ -2883,7 +2883,7 @@ task.spawn(function()
 								api.tween(1, CFrame.new(sbposition.x, sbposition.y - 30, sbposition.z))
 							end
 							--gettoken(sbposition)
-							gettoken(CFrame.new(sbposition.x, sbposition.y - 30, sbposition.z))
+							gettoken(sbposition)
 								
 							--api.tween(1, CFrame.new(sbposition.x, sbposition.y, sbposition.z))
 							--temptable.float = true
@@ -3103,9 +3103,11 @@ function KillTest2()
 	end
 	
 	print("Test StickBug2")
+	sblvl = ""
 	for i = 1, 15 do
 		local sbName = 'Stick Bug (Lvl ' .. i .. ')'
 		if game.Workspace.Monsters:FindFirstChild(sbName) then
+			sblvl = i
 			local sbposition = game.Workspace.Monsters[sbName].Head.Position
 			print(sbposition.x,sbposition.y,sbposition.z)
 			api.tween(1, CFrame.new(sbposition.x, sbposition.y, sbposition.z))
