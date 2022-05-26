@@ -2859,7 +2859,7 @@ task.spawn(function()
 						--task.wait(15)
 						
 						local sbposition = game.Workspace.Monsters[v.Name].Head.Position
-						api.tween(1, CFrame.new(sbposition.x, sbposition.y - 30, sbposition.z))
+						api.tween(1, CFrame.new(sbposition.x, sbposition.y - 5, sbposition.z))
 						task.wait(1)
 						if kocmoc.toggles.autosprinkler then makesprinklers() end
 						
@@ -2880,7 +2880,7 @@ task.spawn(function()
 							end
 							--sbpollenpos = game.Workspace.Particles:FindFirstChild("PollenHealthBar").Position
 							if (sbposition-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
-								api.tween(1, CFrame.new(sbposition.x, sbposition.y - 30, sbposition.z))
+								api.tween(1, CFrame.new(sbposition.x, sbposition.y - 5, sbposition.z))
 							end
 							--gettoken(sbposition)
 							gettoken(sbposition)
