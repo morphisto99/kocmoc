@@ -2836,10 +2836,13 @@ end
 task.spawn(function()
     while task.wait(1) do
 		if kocmoc.toggles.killstickbug and not temptable.started.windy and not temptable.started.vicious and not temptable.started.mondo and not temptable.started.monsters and not temptable.started.fieldboost then
+			local sbTime = ""
 			local sbTimer = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("TimeValue").Text
-			print('sbTimer=' .. sbTimer)
-			--if string.find(sbTimer, "s") then
-			if sbTimer == "0s" then
+			--print('sbTimer=' .. sbTimer)
+			if string.find(sbTimer, "s") then
+				sbTime = string.gsub(sbTimer,"s","")
+			end
+			if tonumber(sbTime) < 3 then
 				print('Stick Bug Chellenge has finished ' .. sbTimer)
 				game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("TimeValue").Text = "10:00"
 				if temptable.started.stickbug then
