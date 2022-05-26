@@ -1960,8 +1960,16 @@ task.spawn(function() while task.wait() do
                 temptable.magnitude = 25 
                 fieldpos = api.getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
                 fieldposition = fieldpos.Position
-				buffTable["Jelly Bean Share Bonus"].b = true
+				
+				if GetItemListWithValue()["JellyBeans"] > 0 then
+					game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Jelly Beans"})
+					--buffTable["Jelly Bean Share"].b = true
+				end
+				
 				local buffs = fetchBuffTable(buffTable)
+				if buffs == nil then
+					print("no current buffs active")
+				end
 				for i,v in pairs(buffs) do
 					print(i,v)
 				end
@@ -3048,32 +3056,12 @@ function KillTest3()
 		--print('Flowers:' .. v.Name)
 	--end
 	
-	print('ChallengeInfo2')
-	for i,v in pairs(game.Players.LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:GetDescendants()) do
-		--print(v.Name)
-		if v.Name == "TimeLabel" then
-			print('TimeLabel=' .. v.Text)
-		end
-		if v.Name == "TimeValue" then
-			print('TimeValue=' .. v.Text)
-		end
-		if v.Name == "TitleBar" then
-			print('TitleBar=' .. v.Text)
-		end	
+	local buffs = fetchBuffTable(buffTable)
+	if buffs == nil then
+		print("no current buffs active")
 	end
-
-	print('ChallengeInfo4')
-	for i,v in pairs(game.Players.LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo:GetDescendants()) do
-		print(v.Name)
-		if v.Name == "TimeLabel" then
-			print('TimeLabel=' .. v.Text)
-		end
-		if v.Name == "TimeValue" then
-			print('TimeValue=' .. v.Text)
-		end
-		if v.Name == "TitleBar" then
-			print('TitleBar=' .. v.Text)
-		end	
+	for i,v in pairs(buffs) do
+		print(i,v)
 	end
 	
 	--[[
@@ -3120,6 +3108,7 @@ function KillTest2()
 		end
 	end
 	
+	--[[
 	print("Test StickBug2")
 	sblvl = ""
 	for i = 1, 15 do
@@ -3131,7 +3120,7 @@ function KillTest2()
 			api.tween(1, CFrame.new(sbposition.x, sbposition.y, sbposition.z))
 		end
 	end 
-	
+	]]--
 	--[[
 	for i,v in pairs(game:GetService("Workspace").Particles.StickBugTotem:GetDescendants()) do
 		print('StickBug1=' .. v.Name)
