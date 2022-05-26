@@ -1914,12 +1914,7 @@ task.spawn(function() while task.wait() do
             elseif api.partwithnamepart("Legendary", game.Workspace.Happenings.Puffshrooms) then
                 temptable.magnitude = 25 
                 fieldpos = api.partwithnamepart("Legendary", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
-                fieldposition = fieldpos.Position
-
-						if next(buffs) == nil or not api.tablefind(buffs, "Cloud Vial") then
-							game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Cloud Vial"})
-						end
-						
+                fieldposition = fieldpos.Position					
 				if temptable.puffshroomdetected then
 					local buffs = fetchBuffTable(buffTable)
 					if GetItemListWithValue()["Oil"] > 0 then
@@ -1983,31 +1978,9 @@ task.spawn(function() while task.wait() do
 				end
 
             else
-				--KillTest()
                 temptable.magnitude = 25 
                 fieldpos = api.getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
                 fieldposition = fieldpos.Position
-				
-
-				--[[
-				for i,v in pairs(buffTable) do
-					if v["b"] == true then
-						local inuse = false
-						for k,p in pairs(buffs) do
-							if k == i then inuse = true end
-						end
-						if inuse == false then
-							print('Buff not in use, FireServer=' .. i)
-							--game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"]=i})
-						end
-					end
-				end				
-				
-				if GetItemListWithValue()["JellyBeans"] > 0 then
-					game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Jelly Beans"})
-					buffTable["Jelly Bean Share"].b = true
-				end
-				]]--
 			end
 		elseif temptable.puffshroomdetected and temptable.puffshroomboosted then
 			temptable.puffshroomdetected = false
