@@ -1869,112 +1869,126 @@ task.spawn(function() while task.wait() do
                 temptable.magnitude = 25 
                 fieldpos = api.partwithnamepart("Mythic", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
                 fieldposition = fieldpos.Position
-				--[[
-				if temptable.puffshroomdetected and not temptable.puffshroomboosted then
+				if temptable.puffshroomdetected then
+					local buffs = fetchBuffTable(buffTable)
 					if GetItemListWithValue()["Oil"] > 0 then
-						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Oil"})
-						--buffTable["Oil"].b = true
+						if next(buffs) == nil or not api.tablefind(buffs, "Oil") then
+							game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Oil"})
+						end
 					end
 					if GetItemListWithValue()["JellyBeans"] > 0 then
-						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Jelly Beans"})
+						if next(buffs) == nil or not api.tablefind(buffs, "Jelly Bean Sharing Bonus") then
+							game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Jelly Beans"})
+						end
 					end
-					if GetItemListWithValue()["CloudVial"] > 0 then
+					if GetItemListWithValue()["CloudVial"] > 0 or not temptable.puffshroomboosted then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Cloud Vial"})
 					end
 					if GetItemListWithValue()["BlueExtract"] > 0 then
-						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Blue Extract"})
+						if next(buffs) == nil or not api.tablefind(buffs, "Blue Extract") then
+							game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Blue Extract"})
+						end
 					end
 					if GetItemListWithValue()["RedExtract"] > 0 then
-						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Red Extract"})
+						if next(buffs) == nil or not api.tablefind(buffs, "Red Extract") then
+							game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Red Extract"})
+						end
 					end
 					if GetItemListWithValue()["TropicalDrink"] > 0 then
-						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Tropical Drink"})
+						if next(buffs) == nil or not api.tablefind(buffs, "Tropical Drink") then
+							game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Tropical Drink"})
+						end
 					end
 					if GetItemListWithValue()["Glitter"] > 0 then
-						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Glitter"})
+						if next(buffs) == nil or not api.tablefind(buffs, "Glitter") then
+							game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Glitter"})
+						end
 					end
 					if GetItemListWithValue()["Glue"] > 0 then
-						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Glue"})
+						if next(buffs) == nil or not api.tablefind(buffs, "Glue") then
+							game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Glue"})
+						end
 					end
 					temptable.puffshroomboosted = true
 				end
-				]]--
             elseif api.partwithnamepart("Legendary", game.Workspace.Happenings.Puffshrooms) then
                 temptable.magnitude = 25 
                 fieldpos = api.partwithnamepart("Legendary", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
                 fieldposition = fieldpos.Position
-				--[[
-				if temptable.puffshroomdetected and not temptable.puffshroomboosted then
+
+						if next(buffs) == nil or not api.tablefind(buffs, "Cloud Vial") then
+							game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Cloud Vial"})
+						end
+						
+				if temptable.puffshroomdetected then
+					local buffs = fetchBuffTable(buffTable)
 					if GetItemListWithValue()["Oil"] > 0 then
-						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Oil"})
-						--buffTable["Oil"].b = true
+						if next(buffs) == nil or not api.tablefind(buffs, "Oil") then
+							game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Oil"})
+						end
 					end
 					if GetItemListWithValue()["JellyBeans"] > 0 then
-						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Jelly Beans"})
-						--buffTable["Jelly Beans"].b = true
+						if next(buffs) == nil or not api.tablefind(buffs, "Jelly Bean Sharing Bonus") then
+							game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Jelly Beans"})
+						end
 					end
-					if GetItemListWithValue()["CloudVial"] > 0 then
+					if GetItemListWithValue()["CloudVial"] > 0 and not temptable.puffshroomboosted then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Cloud Vial"})
-						--buffTable["Cloud Vial"].b = true
 					end
 					if GetItemListWithValue()["BlueExtract"] > 0 then
-						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Blue Extract"})
-						--buffTable["Blue Extract"].b = true
+						if next(buffs) == nil or not api.tablefind(buffs, "Blue Extract") then
+							game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Blue Extract"})
+						end
 					end
 					if GetItemListWithValue()["RedExtract"] > 0 then
-						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Red Extract"})
-						--buffTable["Red Extract"].b = true
+						if next(buffs) == nil or not api.tablefind(buffs, "Red Extract") then
+							game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Red Extract"})
+						end
 					end
 					if GetItemListWithValue()["TropicalDrink"] > 0 then
-						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Tropical Drink"})
-						--buffTable["Tropical Drink"].b = true
+						if next(buffs) == nil or not api.tablefind(buffs, "Tropical Drink") then
+							game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Tropical Drink"})
+						end
 					end
 					if GetItemListWithValue()["Glitter"] > 0 then
-						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Glitter"})
-						--buffTable["Glitter"].b = true
+						if next(buffs) == nil or not api.tablefind(buffs, "Glitter") then
+							game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Glitter"})
+						end
 					end
 					if GetItemListWithValue()["Glue"] > 0 then
-						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Glue"})
-						--buffTable["Glue"].b = true
+						if next(buffs) == nil or not api.tablefind(buffs, "Glue") then
+							game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Glue"})
+						end
 					end
 					temptable.puffshroomboosted = true
 				end
-				]]--
+
             elseif api.partwithnamepart("Epic", game.Workspace.Happenings.Puffshrooms) then
                 temptable.magnitude = 25 
                 fieldpos = api.partwithnamepart("Epic", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
                 fieldposition = fieldpos.Position
-				--[[
-				if temptable.puffshroomdetected and not temptable.puffshroomboosted then
-					if GetItemListWithValue()["JellyBeans"] > 0 then
-						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Jelly Beans"})
-						--buffTable["Jelly Beans"].b = true
+	
+				if temptable.puffshroomdetected then
+					local buffs = fetchBuffTable(buffTable)
+					if GetItemListWithValue()["JellyBeans"] > 0 then	
+						if next(buffs) == nil or not api.tablefind(buffs, "Jelly Beans") then
+							game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Jelly Beans"})
+						end
 					end
 					if GetItemListWithValue()["CloudVial"] > 0 then
-						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Cloud Vial"})
+						if next(buffs) == nil or not api.tablefind(buffs, "Cloud Vial") then
+							game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Cloud Vial"})
+						end
 					end
 				end
-				]]--
+
             else
 				--KillTest()
                 temptable.magnitude = 25 
                 fieldpos = api.getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
                 fieldposition = fieldpos.Position
 				
-				if GetItemListWithValue()["JellyBeans"] > 0 then
-					game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Jelly Beans"})
-					--buffTable["Jelly Bean Share"].b = true
-				end
-				
-				local buffs = fetchBuffTable(buffTable)
-				if next(buffs) == nil then
-				   print("no current buffs active")
-				end
 
-				for i,v in pairs(buffs) do
-					print(i,v)
-				end
-				
 				--[[
 				for i,v in pairs(buffTable) do
 					if v["b"] == true then
@@ -1995,7 +2009,7 @@ task.spawn(function() while task.wait() do
 				end
 				]]--
 			end
-		elseif kocmoc.toggles.farmpuffshrooms and temptable.puffshroomboosted then
+		elseif temptable.puffshroomdetected and temptable.puffshroomboosted then
 			temptable.puffshroomdetected = false
 			temptable.puffshroomboosted = false
         end
@@ -2012,23 +2026,26 @@ task.spawn(function() while task.wait() do
                         temptable.started.mondo = true
 						-- Morphisto
 						disableall()
-						--if GetItemListWithValue()["Oil"] > 0 then
-							--game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Oil"})
-						--end
-						--if GetItemListWithValue()["Stinger"] > 0 then
-							--game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Stinger"})
-						--end
-						--local stingercooldown = time()
+						local buffs = fetchBuffTable(buffTable)
+						if GetItemListWithValue()["Oil"] > 0 then
+							if next(buffs) == nil or not api.tablefind(buffs, "Oil") then
+								game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Oil"})
+							end
+						end
+						if GetItemListWithValue()["Stinger"] > 0 then
+							if next(buffs) == nil or not api.tablefind(buffs, "Stinger") then
+								game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Stinger"})
+							end
+						end
 						-- Morphisto
                         while game.Workspace.Monsters:FindFirstChild("Mondo Chick (Lvl 8)") do
 							-- Morphisto
-							--local cooldown = time() - tonumber(stingercooldown)
-							--if cooldown > 28 then
-								--if GetItemListWithValue()["Stinger"] > 0 then
-									--game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Stinger"})
-								--end
-								--stingercooldown = time()
-							--end
+							local buffs = fetchBuffTable(buffTable)
+							if GetItemListWithValue()["Stinger"] > 0 then
+								if next(buffs) == nil or not api.tablefind(buffs, "Stinger") then
+									game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Stinger"})
+								end
+							end
 							-- Morphisto
                             game:GetService("Workspace").Map.Ground.HighBlock.CanCollide = false 
                             mondopition = game.Workspace.Monsters["Mondo Chick (Lvl 8)"].Head.Position
@@ -3069,6 +3086,10 @@ function KillTest3()
 	end
 
 	for i,v in pairs(buffs) do
+		print(i,v)
+	end
+
+	for i,v in next, temptable.whitefields do
 		print(i,v)
 	end
 	
