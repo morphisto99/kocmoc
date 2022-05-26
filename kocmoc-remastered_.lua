@@ -3066,7 +3066,7 @@ function KillTest3()
 	for i,v in next, buffs do
 		print(i,v)
 	end
-	if api.tablefind(buffs, "Stinger") then
+	if tablefind(buffs, "Stinger") then
 		print("Stingger buff found!")
 	end
 	--[[
@@ -3371,7 +3371,14 @@ function KillTest()
 	]]--
 end
 
-
+function tablefind(tt, va)
+	for i,v in pairs(tt) do
+		if i == va then
+			return i
+		end
+	end
+end
+	
 function fetchVisualPuffshroomString(v)
     local puffText = nil
 	if v:FindFirstChild("Attachment") then
