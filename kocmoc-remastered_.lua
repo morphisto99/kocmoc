@@ -2804,24 +2804,21 @@ task.spawn(function()
     while task.wait(1) do
 		if kocmoc.toggles.killstickbug and not temptable.started.windy and not temptable.started.vicious and not temptable.started.mondo and not temptable.started.monsters then
 			local sbTimer = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("TimeValue").Text
-			if string.find(sbTimer, "s") then
-				local sbTime = string.gsub(sbTimer,"s","")
-				print('Time is less than ' .. sbTime)
-				if tonumber(sbTime) < 10 then
-					print('Time1 is less than ' .. sbTime)
-					game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("TimeValue").Text = "10:00"
-					--sbTimer = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("TimeValue").Text
-					--print('New sbTimer=' .. sbTimer)
-					if temptable.started.stickbug then
-						print('Inside of sbTimer = 10:00')
-						temptable.started.stickbug = false
-						enableall()
-						if kocmoc.toggles.godmode then
-							print('disabling godmode')
-							kocmoc.toggles.godmode = false
-							uigodmode:SetState(false)
-							bssapi:Godmode(false)
-						end
+			--if string.find(sbTimer, "s") then
+			if sbTimer == "0s" then
+				print('Stick Bug Chellenge has finished ' .. sbTimer)
+				game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("TimeValue").Text = "10:00"
+				--sbTimer = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("TimeValue").Text
+				--print('New sbTimer=' .. sbTimer)
+				if temptable.started.stickbug then
+					print('Inside of sbTimer = 10:00')
+					temptable.started.stickbug = false
+					enableall()
+					if kocmoc.toggles.godmode then
+						print('disabling godmode')
+						kocmoc.toggles.godmode = false
+						uigodmode:SetState(false)
+						bssapi:Godmode(false)
 					end
 				end
 			elseif sbTimer ~= "10:00" then
@@ -2850,7 +2847,7 @@ task.spawn(function()
 								gettoken(sbpollenpos)
 
 								--game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(sbpollenpos.x,sbpollenpos.y,sbpollenpos.z)
-								task.wait(1)					
+								task.wait()					
 							end
 							for i = 1, 2 do gettoken(api.humanoidrootpart().Position) end
 						end
@@ -2882,12 +2879,11 @@ task.spawn(function()
 							if (sbposition-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
 								api.tween(1, CFrame.new(sbposition.x, sbposition.y - 5, sbposition.z))
 							end
-							--gettoken(sbposition)
 							gettoken(sbposition)
 								
 							--api.tween(1, CFrame.new(sbposition.x, sbposition.y, sbposition.z))
 							--temptable.float = true
-							task.wait(1)
+							task.wait()
 						end
 						temptable.float = false
 
@@ -2903,7 +2899,7 @@ task.spawn(function()
 							if kocmoc.toggles.autosprinkler then makesprinklers() end
 							while game.Workspace.Particles:FindFirstChild("StickBugTotem") do
 								gettoken(api.humanoidrootpart().Position)
-								task.wait(1)
+								task.wait()
 							end				
 							for i = 1, 2 do gettoken(api.humanoidrootpart().Position) end
 						else
