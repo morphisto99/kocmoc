@@ -3063,7 +3063,7 @@ function KillTest3()
 	end
 
 	local buffs = fetchBuffTable(buffTable)
-	for i,v next, buffs do
+	for i,v in next, buffs do
 		print(i,v)
 	end
 	if api.tablefind(buffs, "Stinger") then
