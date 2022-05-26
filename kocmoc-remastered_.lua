@@ -2861,6 +2861,9 @@ task.spawn(function()
 						kocmoc.toggles.godmode = true
 						uigodmode:SetState(true)
 						bssapi:Godmode(true)
+						task.wait(1)
+						api.humanoidrootpart().CFrame = CFrame.new(243.895538, 4.3493037, 320.418457)
+						task.wait(5)
 					end
 				end
 				
