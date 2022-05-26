@@ -2831,6 +2831,7 @@ task.spawn(function()
 						bssapi:Godmode(true)
 					end
 				end
+				
 				for i,v in pairs(workspace.Monsters:GetChildren()) do
 					if string.find(v.Name,"Stick Bug") then
 						print('Now attacking ' .. v.Name)
