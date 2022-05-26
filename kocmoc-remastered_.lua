@@ -1967,9 +1967,10 @@ task.spawn(function() while task.wait() do
 				end
 				
 				local buffs = fetchBuffTable(buffTable)
-				if buffs == nil then
-					print("no current buffs active")
+				if next(buffs) == nil then
+				   print("no current buffs active")
 				end
+
 				for i,v in pairs(buffs) do
 					print(i,v)
 				end
@@ -3063,9 +3064,10 @@ function KillTest3()
 	--end
 	
 	local buffs = fetchBuffTable(buffTable)
-	if buffs == nil then
-		print("no current buffs active")
+	if next(buffs) == nil then
+	   print("no current buffs active")
 	end
+
 	for i,v in pairs(buffs) do
 		print(i,v)
 	end
