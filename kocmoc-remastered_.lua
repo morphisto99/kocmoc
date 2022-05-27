@@ -3052,17 +3052,9 @@ function KillTest3()
 	--for i,v in pairs(game:GetService("Workspace").Flowers:GetChildren()) do
 		--print('Flowers:' .. v.Name)
 	--end
-
-	for i,v in next, temptable.whitefields do
-		print(i,v)
-	end
-
-	local buffs = fetchBuffTable(buffTable)
-	for i,v in next, buffs do
-		print(i,v)
-	end
-	if tablefind(buffs, "Stinger") then
-		print("Stingger buff found!")
+	print("Test3")
+	for i,v in next, game:GetService("Workspace").NPCs:GetChildren() do
+		print(v.Name)
 	end
 	--[[
 	if GetItemListWithValue()["JellyBeans"] > 0 then	
@@ -3101,9 +3093,12 @@ function KillTest2()
 	print(' ')
 	print('Begin')
 
-
+	print("Test2")
 	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC:GetChildren()) do
-	print(v.Name)
+		print(v.Name)
+		if v.Name == "TextBox" then
+			print("TextBox=" .. v.Name)
+		end
 	end
 	
 	--local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")
