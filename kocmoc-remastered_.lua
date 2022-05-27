@@ -3047,9 +3047,6 @@ function KillTest3()
 	print("Test3.1")
 	for i,v in pairs(game:GetService("Workspace").NPCs:GetChildren()) do
 		print('NPCs=' .. v.Name)
-		if string.find(v.Name, "StickBug") then
-			print('Defense Totem Found 5')
-		end
 	end
 	
 	--[[
