@@ -3023,12 +3023,12 @@ function KillTest4()
 	print(' ')
 	print('Begin')
 
-	for i,v in next, game:GetService("Workspace").NPCs["Stick Bug"]:GetChildren() do
-		if v.Name == "Available" then
-			print(v.Text)
-		end
+	local sbReady = game:GetService("Workspace").NPCs["Stick Bug"].Available
+	if sbReady then
+		print"Stick Bug is Ready")
+	else
+		print"Stick Bug is not Ready")
 	end
-	
 	print('End')
 end
 
@@ -3042,6 +3042,15 @@ function KillTest3()
 	print("Test3")
 	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:GetDescendants()) do
 		print(v.Name)
+		if v.Name == "Option1" then
+			print(v.Text)
+		end
+		if v.Name == "Option2" then
+			print(v.Text)
+		end
+		if v.Name == "Option3" then
+			print(v.Text)
+		end		
 	end
 	
 	print("Test3.1")
@@ -3051,6 +3060,10 @@ function KillTest3()
 			print('Defense Totem Found 5')
 		end
 	end
+	
+	print("Option3")
+	local option3 game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:FindFirstChild("Option3").Text
+	print(option3)
 	
 	--[[
 	if GetItemListWithValue()["JellyBeans"] > 0 then	
@@ -3090,17 +3103,14 @@ function KillTest2()
 	print('Begin')
 
 	print("Test2")
-	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC:GetDescendants()) do
-		print(v.Name)
-	end
+
+	local option3 game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:FindFirstChild("Option3").TextBox
+	print(option3.Text)	
 
 	print("Test2.1")
 	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC:GetChildren()) do
 		if v.Name == "TextBox" then
 			print("Textbox=" .. v.Text)
-		end
-		if v:FindFirstChild("TextBox") then
-			print('Text=' .. v.Text)
 		end
 	end
 	
