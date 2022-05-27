@@ -3043,6 +3043,15 @@ function KillTest3()
 	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:GetDescendants()) do
 		print(v.Name)
 	end
+	
+	print("Test3.1")
+	for i,v in pairs(game:GetService("Workspace").NPCs:GetChildren()) do
+		print('NPCs=' .. v.Name)
+		if string.find(v.Name, "StickBug") then
+			print('Defense Totem Found 5')
+		end
+	end
+	
 	--[[
 	if GetItemListWithValue()["JellyBeans"] > 0 then	
 		if next(buffs) == nil or not api.tablefind(buffs, "Jelly Beans") then
@@ -3090,8 +3099,8 @@ function KillTest2()
 		if v.Name == "TextBox" then
 			print("Textbox=" .. v.Text)
 		end
-		if v:FindFirstChild("Text") then
-			print('Text=' .. v:FindFirstChild("TextBox").Text)
+		if v:FindFirstChild("TextBox") then
+			print('Text=' .. v.Text)
 		end
 	end
 	
