@@ -3023,8 +3023,10 @@ function KillTest4()
 	print(' ')
 	print('Begin')
 
-	for i,v in next, game:GetService("Workspace").NPCs["Stick Bug"].Available:GetChildren() do
-		print(v.Name)
+	for i,v in next, game:GetService("Workspace").NPCs["Stick Bug"]:GetChildren() do
+		if v.Name == "Available" then
+			print(v.Text)
+		end
 	end
 	
 	print('End')
@@ -3038,7 +3040,7 @@ function KillTest3()
 		--print('Flowers:' .. v.Name)
 	--end
 	print("Test3")
-	for i,v in next, game:GetService("Workspace").NPCs["Stick Bug"].NPC:GetChildren() do
+	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:GetDescendants()) do
 		print(v.Name)
 	end
 	--[[
@@ -3079,10 +3081,17 @@ function KillTest2()
 	print('Begin')
 
 	print("Test2")
-	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC:GetChildren()) do
+	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC:GetDescendants()) do
 		print(v.Name)
+	end
+
+	print("Test2.1")
+	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC:GetChildren) do
 		if v.Name == "TextBox" then
-			print("TextBox=" .. v.Name)
+			print("Textbox=" .. v.Text)
+		end
+		if v:FindFirstChild("Text") then
+			print('Text=' .. v:FindFirstChild("TextBox").Text)
 		end
 	end
 	
