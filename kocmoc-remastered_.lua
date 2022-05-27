@@ -3047,6 +3047,9 @@ function KillTest3()
 	print("Test3.1")
 	for i,v in pairs(game:GetService("Workspace").NPCs:GetChildren()) do
 		print('NPCs=' .. v.Name)
+		if string.find(v.Name, "StickBug") then
+			print('Defense Totem Found 5')
+		end
 	end
 	
 	--[[
@@ -3092,7 +3095,7 @@ function KillTest2()
 	end
 
 	print("Test2.1")
-	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC:GetChildren) do
+	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC:GetChildren()) do
 		if v.Name == "TextBox" then
 			print("Textbox=" .. v.Text)
 		end
