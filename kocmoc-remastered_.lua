@@ -2820,13 +2820,13 @@ task.spawn(function()
 			if string.find(sbTimer, "s") then
 				sbTime = string.gsub(sbTimer,"s","")
 			end
-			if tonumber(sbTime) < 3 then
+			if tonumber(sbTime) < 15 then
+				enableall()
 				print('Stick Bug Chellenge has finished ' .. sbTimer)
 				game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("TimeValue").Text = "10:00"
 				if temptable.started.stickbug then
 					print('Inside of sbTimer = 10:00')
 					temptable.started.stickbug = false
-					enableall()
 					if kocmoc.toggles.godmode then
 						print('disabling godmode')
 						kocmoc.toggles.godmode = false
@@ -2901,6 +2901,11 @@ task.spawn(function()
 							gettoken(sbposition)
 							
 							local buffs = fetchBuffTable(buffTable)
+							if not tablefind(buffs, "Jelly Bean Sharing Bonus") then
+								if GetItemListWithValue()["JellyBeans"] > 0 then
+									game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Jelly Beans"})
+								end					
+							end
 							if not tablefind(buffs, "Stinger") then
 								if GetItemListWithValue()["Stinger"] > 0 then
 									game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Stinger"})
