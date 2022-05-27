@@ -3025,9 +3025,9 @@ function KillTest4()
 
 	local sbReady = game:GetService("Workspace").NPCs["Stick Bug"].Available
 	if sbReady then
-		print"Stick Bug is Ready")
+		print("Stick Bug is Ready")
 	else
-		print"Stick Bug is not Ready")
+		print("Stick Bug is not Ready")
 	end
 	print('End')
 end
