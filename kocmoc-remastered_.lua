@@ -3023,7 +3023,7 @@ function KillTest4()
 	print(' ')
 	print('Begin')
 
-	for i,v in next, game.ReplicatedStorage.Events.SelectNPCOption:GetChildren() do
+	for i,v in next, game:GetService("Workspace").NPCs["Stick Bug"].Available:GetChildren() do
 		print(v.Name)
 	end
 	
@@ -3038,7 +3038,7 @@ function KillTest3()
 		--print('Flowers:' .. v.Name)
 	--end
 	print("Test3")
-	for i,v in next, game:GetService("Workspace").NPCs["Stick Bug"]:GetChildren() do
+	for i,v in next, game:GetService("Workspace").NPCs["Stick Bug"].NPC:GetChildren() do
 		print(v.Name)
 	end
 	--[[
