@@ -3022,24 +3022,9 @@ end
 function KillTest4()
 	print(' ')
 	print('Begin')
-	
-	if game.Workspace.Particles:FindFirstChild("PollenHealthBar") then
-		local sbpollenpos = game.Workspace.Particles:FindFirstChild("PollenHealthBar").Position
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(sbpollenpos.x,sbpollenpos.y,sbpollenpos.z)
-		task.wait(1)
-		temptable.magnitude = 25
-		while game.Workspace.Particles:FindFirstChild("PollenHealthBar") do
-			print("inside of PollenHeathBar")
-			sbpollenpos = game.Workspace.Particles:FindFirstChild("PollenHealthBar").Position
-			if (sbpollenpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
-				api.tween(1, CFrame.new(sbpollenpos.x, sbpollenpos.y, sbpollenpos.z))
-			end
-			gettoken(sbpollenpos)
 
-			--game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(sbpollenpos.x,sbpollenpos.y,sbpollenpos.z)
-			task.wait(1)					
-		end
-		for i = 1, 3 do gettoken(api.humanoidrootpart().Position) end
+	for i,v in next, game.ReplicatedStorage.Events.SelectNPCOption:GetChildren() do
+		print(v.Name)
 	end
 	
 	print('End')
@@ -3053,7 +3038,7 @@ function KillTest3()
 		--print('Flowers:' .. v.Name)
 	--end
 	print("Test3")
-	for i,v in next, game:GetService("Workspace").NPCs:GetChildren() do
+	for i,v in next, game:GetService("Workspace").NPCs["Stick Bug"]:GetChildren() do
 		print(v.Name)
 	end
 	--[[
