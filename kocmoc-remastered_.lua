@@ -2814,7 +2814,7 @@ end
 task.spawn(function()
     while task.wait(1) do
 		if kocmoc.toggles.killstickbug and not temptable.started.windy and not temptable.started.vicious and not temptable.started.mondo and not temptable.started.monsters and not temptable.started.fieldboost then
-			local sbTime = ""
+			local sbTime = 99
 			local sbTimer = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("TimeValue").Text
 			--print('sbTimer=' .. sbTimer)
 			if string.find(sbTimer, "s") then
