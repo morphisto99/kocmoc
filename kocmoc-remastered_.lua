@@ -3062,7 +3062,7 @@ function KillTest3()
 	end
 	
 	print("Option3")
-	local option3 game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:FindFirstChild("Option3").Text
+	local option3 = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:FindFirstChild("Option3").Text
 	print(option3)
 	
 	--[[
@@ -3104,7 +3104,7 @@ function KillTest2()
 
 	print("Test2")
 
-	local option3 game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:FindFirstChild("Option3").TextBox
+	local option3 = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:FindFirstChild("Option3").TextBox
 	print(option3.Text)	
 
 	print("Test2.1")
