@@ -2894,7 +2894,6 @@ task.spawn(function()
 							if tonumber(sbposition.y) > 1000 then
 								break
 							end
-							--sbpollenpos = game.Workspace.Particles:FindFirstChild("PollenHealthBar").Position
 							if (sbposition-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
 								api.tween(1, CFrame.new(sbposition.x, sbposition.y - 5, sbposition.z))
 							end
@@ -3102,84 +3101,15 @@ function KillTest2()
 	print(' ')
 	print('Begin')
 
-	
-	print('ChallengeInfo1')
-	--game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("TimeValue").Text = "5:00"
-	local sbTimer2 = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("TimeValue").Text
-	print(sbTimer2)
-	
-	print("Test StickBug1")
-	for i,v in pairs(workspace.Monsters:GetChildren()) do
-		if string.find(v.Name,"Stick Bug") then
-			local sbposition = game.Workspace.Monsters[v.Name].Head.Position
-			print(sbposition.x,sbposition.y,sbposition.z)
-			api.tween(1, CFrame.new(sbposition.x, sbposition.y, sbposition.z))
-		end
+
+	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC:GetChildren()) do
+	print(v.Name)
 	end
 	
-	--[[
-	print("Test StickBug2")
-	sblvl = ""
-	for i = 1, 15 do
-		local sbName = 'Stick Bug (Lvl ' .. i .. ')'
-		if game.Workspace.Monsters:FindFirstChild(sbName) then
-			sblvl = i
-			local sbposition = game.Workspace.Monsters[sbName].Head.Position
-			print(sbposition.x,sbposition.y,sbposition.z)
-			api.tween(1, CFrame.new(sbposition.x, sbposition.y, sbposition.z))
-		end
-	end 
-	]]--
-	--[[
-	for i,v in pairs(game:GetService("Workspace").Particles.StickBugTotem:GetDescendants()) do
-		print('StickBug1=' .. v.Name)
-		if v:FindFirstChild("Frame") then
-			if v:FindFirstChild("Frame"):FindFirstChild("GroundPos") then
-				--farm(v)
-				local GroundPos = v:FindFirstChild("Frame"):FindFirstChild("GroundPos")
-				print(GroundPos.Text)
-			end
-		end
-	end
-	]]--
-	--[[
-	print('Getting Decendants')
-	for i,v in pairs(game:GetService("Workspace").Particles.StickBugTotem:GetChildren()) do
-		--print(v.Name)
-		if v:FindFirstChild("GuiPos") then
-			print("Text1")
-			if v:FindFirstChild("GuiPos"):FindFirstChild("Gui") then
-				print("Text2")
-				if v:FindFirstChild("GuiPos"):FindFirstChild("Gui"):FindFirstChild("Frame") then
-					print("Text3")
-					if v:FindFirstChild("GuiPos"):FindFirstChild("Gui"):FindFirstChild("Frame"):FindFirstChild("TextLabel") then
-						print("Text4")
-						local GuiText = v:FindFirstChild("GuiPos"):FindFirstChild("Gui"):FindFirstChild("Frame"):FindFirstChild("TextLabel")
-						print(GuiText.Text)
-					end
-				end
-			end
-		end
-		if v:FindFirstChild("NamePos") then
-			print("NamePos found!")
-			print(v.Position)
-			api.tween(2, CFrame.new(v.Position.x,v.Position.y,v.Position.z))
-			task.wait(1)
-		end
-	end
-	]]--
-	--[[
-	for i,v in pairs(game:GetService("Workspace").Particles:GetChildren()) do
-		print('Particles.Name=' .. v.Name)
-        if string.find(v.Name, "StickBugTotem") then
-		
-			--api.tween(1,CFrame.new(v.Position.x, v.Position.y, v.Position.z)) task.wait(1)
-			--tonumber((v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude) < temptable.magnitude/1.4 then
-            --farm(v)
-            break
-        end
-	end
-	]]--
+	--local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")
+	--firesignal(ScreenGui.NPC.ButtonOverlay.MouseButton1Click)
+	
+
 	--[[
 	print('Getting Part')
 	for i,v in pairs(game:GetService("Workspace").Part:GetChildren()) do
