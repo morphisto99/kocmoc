@@ -1865,121 +1865,114 @@ task.spawn(function() while task.wait() do
         end
         if kocmoc.toggles.farmpuffshrooms and game.Workspace.Happenings.Puffshrooms:FindFirstChildOfClass("Model") then
 			temptable.puffshroomdetected = true
+			local buffs = fetchBuffTable(buffTable)
             if api.partwithnamepart("Mythic", game.Workspace.Happenings.Puffshrooms) then
                 temptable.magnitude = 25 
                 fieldpos = api.partwithnamepart("Mythic", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
                 fieldposition = fieldpos.Position
-				--[[
 				if temptable.puffshroomdetected then
-					local buffs = fetchBuffTable(buffTable)
-					if GetItemListWithValue()["Oil"] > 0 then
-						if next(buffs) == nil or not api.tablefind(buffs, "Oil") then
+					if not tablefind(buffs, "Oil") then
+						if GetItemListWithValue()["Oil"] > 0 then
 							game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Oil"})
-						end
+						end					
 					end
-					if GetItemListWithValue()["JellyBeans"] > 0 then
-						if next(buffs) == nil or not api.tablefind(buffs, "Jelly Bean Sharing Bonus") then
+					if not tablefind(buffs, "Jelly Bean Sharing Bonus") then
+						if GetItemListWithValue()["CloudVial"] > 0 then
+							game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Cloud Vial"})
+						end
+						if GetItemListWithValue()["JellyBeans"] > 0 then
 							game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Jelly Beans"})
-						end
+						end	
 					end
-					if GetItemListWithValue()["CloudVial"] > 0 or not temptable.puffshroomboosted then
-						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Cloud Vial"})
-					end
-					if GetItemListWithValue()["BlueExtract"] > 0 then
-						if next(buffs) == nil or not api.tablefind(buffs, "Blue Extract") then
+					if not tablefind(buffs, "Blue Extract") then
+						if GetItemListWithValue()["BlueExtract"] > 0 then
 							game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Blue Extract"})
-						end
+						end					
 					end
-					if GetItemListWithValue()["RedExtract"] > 0 then
-						if next(buffs) == nil or not api.tablefind(buffs, "Red Extract") then
+					if not tablefind(buffs, "Red Extract") then
+						if GetItemListWithValue()["RedExtract"] > 0 then
 							game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Red Extract"})
-						end
+						end					
 					end
-					if GetItemListWithValue()["TropicalDrink"] > 0 then
-						if next(buffs) == nil or not api.tablefind(buffs, "Tropical Drink") then
+					if not tablefind(buffs, "Tropical Drink") then
+						if GetItemListWithValue()["TropicalDrink"] > 0 then
 							game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Tropical Drink"})
-						end
+						end					
 					end
-					if GetItemListWithValue()["Glitter"] > 0 then
-						if next(buffs) == nil or not api.tablefind(buffs, "Glitter") then
+					if not tablefind(buffs, "Glitter") then
+						if GetItemListWithValue()["Glitter"] > 0 then
 							game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Glitter"})
-						end
+						end					
 					end
-					if GetItemListWithValue()["Glue"] > 0 then
-						if next(buffs) == nil or not api.tablefind(buffs, "Glue") then
+					if not tablefind(buffs, "Glue") then
+						if GetItemListWithValue()["Glue"] > 0 then
 							game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Glue"})
-						end
+						end					
 					end
-					temptable.puffshroomboosted = true
 				end
-				--]]
             elseif api.partwithnamepart("Legendary", game.Workspace.Happenings.Puffshrooms) then
                 temptable.magnitude = 25 
                 fieldpos = api.partwithnamepart("Legendary", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
-                fieldposition = fieldpos.Position	
-				--[[
+                fieldposition = fieldpos.Position
 				if temptable.puffshroomdetected then
-					local buffs = fetchBuffTable(buffTable)
-					if GetItemListWithValue()["Oil"] > 0 then
-						if next(buffs) == nil or not api.tablefind(buffs, "Oil") then
+					if not tablefind(buffs, "Oil") then
+						if GetItemListWithValue()["Oil"] > 0 then
 							game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Oil"})
-						end
+						end					
 					end
-					if GetItemListWithValue()["JellyBeans"] > 0 then
-						if next(buffs) == nil or not api.tablefind(buffs, "Jelly Bean Sharing Bonus") then
+					if not tablefind(buffs, "Jelly Bean Sharing Bonus") then
+						if GetItemListWithValue()["CloudVial"] > 0 then
+							game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Cloud Vial"})
+						end
+						if GetItemListWithValue()["JellyBeans"] > 0 then
 							game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Jelly Beans"})
-						end
+						end							
 					end
-					if GetItemListWithValue()["CloudVial"] > 0 and not temptable.puffshroomboosted then
-						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Cloud Vial"})
-					end
-					if GetItemListWithValue()["BlueExtract"] > 0 then
-						if next(buffs) == nil or not api.tablefind(buffs, "Blue Extract") then
+					if not tablefind(buffs, "Blue Extract") then
+						if GetItemListWithValue()["BlueExtract"] > 0 then
 							game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Blue Extract"})
-						end
+						end					
 					end
-					if GetItemListWithValue()["RedExtract"] > 0 then
-						if next(buffs) == nil or not api.tablefind(buffs, "Red Extract") then
+					if not tablefind(buffs, "Red Extract") then
+						if GetItemListWithValue()["RedExtract"] > 0 then
 							game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Red Extract"})
-						end
+						end					
 					end
-					if GetItemListWithValue()["TropicalDrink"] > 0 then
-						if next(buffs) == nil or not api.tablefind(buffs, "Tropical Drink") then
+					if not tablefind(buffs, "Tropical Drink") then
+						if GetItemListWithValue()["TropicalDrink"] > 0 then
 							game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Tropical Drink"})
-						end
+						end					
 					end
-					if GetItemListWithValue()["Glitter"] > 0 then
-						if next(buffs) == nil or not api.tablefind(buffs, "Glitter") then
+					if not tablefind(buffs, "Glitter") then
+						if GetItemListWithValue()["Glitter"] > 0 then
 							game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Glitter"})
-						end
+						end					
 					end
-					if GetItemListWithValue()["Glue"] > 0 then
-						if next(buffs) == nil or not api.tablefind(buffs, "Glue") then
+					if not tablefind(buffs, "Glue") then
+						if GetItemListWithValue()["Glue"] > 0 then
 							game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Glue"})
-						end
+						end					
 					end
-					temptable.puffshroomboosted = true
 				end
-				]]--
             elseif api.partwithnamepart("Epic", game.Workspace.Happenings.Puffshrooms) then
                 temptable.magnitude = 25 
                 fieldpos = api.partwithnamepart("Epic", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
                 fieldposition = fieldpos.Position
-				--[[
 				if temptable.puffshroomdetected then
-					local buffs = fetchBuffTable(buffTable)
-					if GetItemListWithValue()["JellyBeans"] > 0 then	
-						if next(buffs) == nil or not api.tablefind(buffs, "Jelly Beans") then
-							game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Jelly Beans"})
-						end
-					end
-					if GetItemListWithValue()["CloudVial"] > 0 then
-						if next(buffs) == nil or not api.tablefind(buffs, "Cloud Vial") then
+					if not tablefind(buffs, "Oil") then
+						if GetItemListWithValue()["CloudVial"] > 0 then
 							game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Cloud Vial"})
 						end
+						if GetItemListWithValue()["Oil"] > 0 then
+							game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Oil"})
+						end					
+					end
+					if not tablefind(buffs, "Jelly Bean Sharing Bonus") then
+						if GetItemListWithValue()["JellyBeans"] > 0 then
+							game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Jelly Beans"})
+						end					
 					end
 				end
-				]]--
             else
                 temptable.magnitude = 25 
                 fieldpos = api.getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
@@ -2004,7 +1997,7 @@ task.spawn(function() while task.wait() do
 						disableall()
 						local buffs = fetchBuffTable(buffTable)
 						if not tablefind(buffs, "Oil") then
-							if GetItemListWithValue()["Stinger"] > 0 then
+							if GetItemListWithValue()["Oil"] > 0 then
 								game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Oil"})
 							end					
 						end
@@ -2582,7 +2575,6 @@ function KillCoconutCrab()
 		end
 	end
 	if crabisready then
-		--game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
 		temptable.started.crab = true
 		disableall()
 		api.humanoidrootpart().CFrame = CFrame.new(-307.52117919922, 107.91863250732, 467.86791992188)
@@ -2592,20 +2584,24 @@ function KillCoconutCrab()
 			api.humanoidrootpart().CFrame = CFrame.new(243.895538, 4.3493037, 320.418457)
 			task.wait(15)
 		else
-			if GetItemListWithValue()["Oil"] > 0 then
-				game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Oil"})
+			local buffs = fetchBuffTable(buffTable)
+			if not tablefind(buffs, "Oil") then
+				if GetItemListWithValue()["Oil"] > 0 then
+					game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Oil"})
+				end					
 			end
-			if GetItemListWithValue()["Stinger"] > 0 then
-				game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Stinger"})
+			if not tablefind(buffs, "Stinger") then
+				if GetItemListWithValue()["Stinger"] > 0 then
+					game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Stinger"})
+				end					
 			end
-			local oilcooldown = time()
+
 			while game.Workspace.Monsters:FindFirstChild("Coconut Crab (Lvl 12)") and not temptable.started.vicious and not temptable.started.monsters do
-				local cooldown = time() - tonumber(oilcooldown)
-				if cooldown > 30 then
+				local buffs = fetchBuffTable(buffTable)
+				if not tablefind(buffs, "Stinger") then
 					if GetItemListWithValue()["Stinger"] > 0 then
 						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Stinger"})
-					end
-					oilcooldown = time()
+					end					
 				end
 				task.wait(1)
 			end
@@ -2618,7 +2614,6 @@ function KillCoconutCrab()
 		end
 		enableall()
 		temptable.started.crab = false
-		--game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"})
 	end
 end
 -- Morphisto
@@ -2638,7 +2633,6 @@ function KillTunnelBear()
 		end
 	end
 	if tunnelbearisready then
-		--game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
 		temptable.started.tunnelbear = true
 		disableall()
 		api.humanoidrootpart().CFrame = CFrame.new(283.4128112792969, 6.783041000366211, -39.41004943847656)
@@ -2650,9 +2644,12 @@ function KillTunnelBear()
 			api.humanoidrootpart().CFrame = CFrame.new(243.895538, 4.3493037, 320.418457)
 			task.wait(15)
 		else
-			--if GetItemListWithValue()["Stinger"] > 0 then
-				--game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Stinger"})
-			--end
+			local buffs = fetchBuffTable(buffTable)
+			if not tablefind(buffs, "Stinger") then
+				if GetItemListWithValue()["Stinger"] > 0 then
+					game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Stinger"})
+				end					
+			end
 			while game.Workspace.Monsters:FindFirstChild("Tunnel Bear (Lvl 9)") and not temptable.started.vicious and not temptable.started.monsters and not temptable.started.mondo and not temptable.started.crab and not temptable.started.kingbeetle do
 				api.humanoidrootpart().CFrame = CFrame.new(350.4128112792969, 31.783041000366211, -39.41004943847656)
 				temptable.float = true
@@ -2667,7 +2664,6 @@ function KillTunnelBear()
 		end
 		enableall()
 		temptable.started.tunnelbear = false
-		--game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"})
 	end
 end
 -- Morphisto
@@ -2687,7 +2683,6 @@ function KillKingBeetle()
 		end
 	end
 	if kingbeetleisready then
-		--game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
 		temptable.started.kingbeetle = true
 		disableall()
 		api.humanoidrootpart().CFrame = CFrame.new(148.34913635253906, 34.24530792236328, 182.07960510253906)
@@ -2710,7 +2705,6 @@ function KillKingBeetle()
 		end
 		enableall()
 		temptable.started.kingbeetle = false
-		--game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"})
 	end
 end
 -- Morphisto
@@ -2730,7 +2724,6 @@ function KillStumpSnail()
 		end
 	end
 	if stumpsnailisready then
-		--game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
 		temptable.started.stumpsnail = true
 		disableall()
 		fd = game.Workspace.FlowerZones['Stump Field']
@@ -2743,8 +2736,6 @@ function KillStumpSnail()
 		else
 			while game.Workspace.Monsters:FindFirstChild("Stump Snail (Lvl 6)") and not temptable.started.vicious and not temptable.started.monsters do
 				game:GetService("Workspace").Map.Ground.HighBlock.CanCollide = false
-				--snailposition = game.Workspace.Monsters["Stump Snail (Lvl 6)"].Head.Position
-				--api.tween(1, CFrame.new(snailposition.x, snailposition.y - 40, snailposition.z))
 				task.wait(1)
 			end
 			task.wait(0.5)
@@ -2754,8 +2745,6 @@ function KillStumpSnail()
 		end
 		enableall()
 		temptable.started.stumpsnail = false
-		--game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"})
-		--local ohString1 = "Equip" local ohTable2 = { ["Mute"] = false, ["Type"] = kocmoc.vars.defmask, ["Category"] = "Accessory" } game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer(ohString1, ohTable2) 
 	end
 end
 -- Morphisto
