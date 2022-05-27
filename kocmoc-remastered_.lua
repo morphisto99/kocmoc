@@ -1761,7 +1761,7 @@ task.spawn(function() while task.wait() do
         -- Morphisto
         if kocmoc.toggles.autofarm then
         if kocmoc.toggles.autoquest then checkquestcooldown() end -- Morphisto
-		if kocmoc.toggles.autodoquest and game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.Menus.Children.Quests.Content:FindFirstChild("Frame") then
+		if kocmoc.toggles.autodoquest and game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.Menus.Children.Quests.Content:FindFirstChild("Frame") and not kocmoc.toggles.farmboostedfield then
             for i,v in next, game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.Menus.Children.Quests:GetDescendants() do
                 if v.Name == "Description" then
                     if string.match(v.Parent.Parent.TitleBar.Text, kocmoc.vars.npcprefer) or kocmoc.vars.npcprefer == "All Quests" and not string.find(v.Text, "Puffshroom") then
@@ -2002,27 +2002,20 @@ task.spawn(function() while task.wait() do
                         temptable.started.mondo = true
 						-- Morphisto
 						disableall()
-						--[[
 						local buffs = fetchBuffTable(buffTable)
-						if GetItemListWithValue()["Oil"] > 0 then
-							if next(buffs) == nil or not api.tablefind(buffs, "Oil") then
+						if not tablefind(buffs, "Oil") then
+							if GetItemListWithValue()["Stinger"] > 0 then
 								game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Oil"})
-							end
+							end					
 						end
-						if GetItemListWithValue()["Stinger"] > 0 then
-							if next(buffs) == nil or not api.tablefind(buffs, "Stinger") then
-								game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Stinger"})
-							end
-						end
-						]]--
 						-- Morphisto
                         while game.Workspace.Monsters:FindFirstChild("Mondo Chick (Lvl 8)") do
 							-- Morphisto
 							local buffs = fetchBuffTable(buffTable)
-							if GetItemListWithValue()["Stinger"] > 0 then
-								if next(buffs) == nil or not api.tablefind(buffs, "Stinger") then
+							if not tablefind(buffs, "Stinger") then
+								if GetItemListWithValue()["Stinger"] > 0 then
 									game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Stinger"})
-								end
+								end					
 							end
 							-- Morphisto
                             game:GetService("Workspace").Map.Ground.HighBlock.CanCollide = false 
@@ -2892,16 +2885,21 @@ task.spawn(function()
 						task.wait(1)
 						if kocmoc.toggles.autosprinkler then makesprinklers() end
 						
-						--[[
-						if GetItemListWithValue()["Oil"] > 0 then
-							game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Oil"})
-							--buffTable["Oil"].b = true
+						local sblvl = v.Name:gsub("%D+", "")
+						print('Strick Bug level is: ' .. sblvl)
+						if tonumber(sblvl) > 6 then 
+							local buffs = fetchBuffTable(buffTable)
+							if not tablefind(buffs, "Oil") then
+								if GetItemListWithValue()["Oil"] > 0 then
+									game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Oil"})
+								end					
+							end
+							if not tablefind(buffs, "Jelly Bean Sharing Bonus") then
+								if GetItemListWithValue()["JellyBeans"] > 0 then
+									game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Jelly Beans"})
+								end					
+							end
 						end
-						if GetItemListWithValue()["JellyBeans"] > 0 then
-							game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Jelly Beans"})
-							--buffTable["Jelly Beans"].b = true
-						end
-						]]--
 						while game.Workspace.Monsters:FindFirstChild(v.Name) and not game.Workspace.Particles:FindFirstChild("StickBugTotem") do
 							sbposition = game.Workspace.Monsters[v.Name].Head.Position
 							if tonumber(sbposition.y) > 1000 then
@@ -2912,9 +2910,13 @@ task.spawn(function()
 								api.tween(1, CFrame.new(sbposition.x, sbposition.y - 5, sbposition.z))
 							end
 							gettoken(sbposition)
-								
-							--api.tween(1, CFrame.new(sbposition.x, sbposition.y, sbposition.z))
-							--temptable.float = true
+							
+							local buffs = fetchBuffTable(buffTable)
+							if not tablefind(buffs, "Stinger") then
+								if GetItemListWithValue()["Stinger"] > 0 then
+									game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Stinger"})
+								end					
+							end
 							task.wait()
 						end
 						temptable.float = false
