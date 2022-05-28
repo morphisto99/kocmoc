@@ -2828,7 +2828,6 @@ task.spawn(function()
 				sbTime = string.gsub(sbTimer,"s","")
 			end
 			if tonumber(sbTime) < 15 then
-				enableall()
 				print('Stick Bug Chellenge has finished ' .. sbTimer)
 				game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("TimeValue").Text = "10:00"
 				if temptable.started.stickbug then
@@ -2841,11 +2840,13 @@ task.spawn(function()
 						bssapi:Godmode(false)
 					end
 				end
+				enableall()
 			elseif sbTimer ~= "10:00" then
 				if not temptable.started.stickbug then
+					print("test stickbug1")
 					temptable.started.stickbug = true
-					disableall()
 					if not kocmoc.toggles.godmode then
+						print("test stickbug2")
 						kocmoc.toggles.godmode = true
 						uigodmode:SetState(true)
 						bssapi:Godmode(true)
@@ -2853,6 +2854,7 @@ task.spawn(function()
 						api.humanoidrootpart().CFrame = CFrame.new(243.895538, 4.3493037, 320.418457)
 						task.wait(5)
 					end
+					disableall()
 				end
 				
 				for i,v in pairs(workspace.Monsters:GetChildren()) do
@@ -3061,8 +3063,7 @@ function KillTest3()
 		end		
 	end
 	]]--
-	
-	local sbReady = game.Players.LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame.Option1.Text
+	local sbReady = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:FindFirstChild("Option1").Text
 	if string.find(sbReady, "Use free entry to start") then
 		print("Stick Bug is ready")
 	end
@@ -3115,17 +3116,16 @@ function KillTest2()
 	print(' ')
 	print('Begin')
 
-	print("Test2")
 
+	print("Test2")
+	for i,v in next, v1 do
+		print(i,v)
+	end
+	
+	print("Test2.1")
 	local option3 = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:FindFirstChild("Option1").Text
 	print(option3)	
 
-	print("Test2.1")
-	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC:GetChildren()) do
-		if v.Name == "TextBox" then
-			print("Textbox=" .. v.Text)
-		end
-	end
 	
 	--local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")
 	--firesignal(ScreenGui.NPC.ButtonOverlay.MouseButton1Click)
