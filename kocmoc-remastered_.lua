@@ -956,7 +956,14 @@ local function donateToShrine(item,qnt)
     end)
     if not s then print(e) end
 end
-
+-- Morphisto
+local function isStickBugOnCooldown()
+    local isOnCooldown = false
+    local cooldown = 5400 - (require(game.ReplicatedStorage.OsTime)() - (require(game.ReplicatedStorage.StatTools).GetLastCooldownTime(v1, "StickBug")))
+    if cooldown > 0 then isOnCooldown = true end
+    return isOnCooldown
+end
+-- Mortphisto
 local function isWindshrineOnCooldown()
     local isOnCooldown = false
     local cooldown = 3600 - (require(game.ReplicatedStorage.OsTime)() - (require(game.ReplicatedStorage.StatTools).GetLastCooldownTime(v1, "WindShrine")))
@@ -1965,7 +1972,7 @@ task.spawn(function() while task.wait() do
 						end
 						if GetItemListWithValue()["Oil"] > 0 then
 							game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Oil"})
-						end					
+						end	
 					end
 					if not tablefind(buffs, "Jelly Bean Sharing Bonus") then
 						if GetItemListWithValue()["JellyBeans"] > 0 then
@@ -3040,6 +3047,7 @@ function KillTest3()
 		--print('Flowers:' .. v.Name)
 	--end
 	print("Test3")
+	--[[
 	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:GetDescendants()) do
 		print(v.Name)
 		if v.Name == "Option1" then
@@ -3052,15 +3060,23 @@ function KillTest3()
 			print(v.Text)
 		end		
 	end
+	]]--
 	
 	local sbReady = game.Players.LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame.Option1.Text
-	print(sbReady)
 	if string.find(sbReady, "Use free entry to start") then
 		print("Stick Bug is ready")
 	end
 	if string.find(sbReady, "Use free challenge entry") then
 		print("Stick Bug is not ready")
-	end	
+	end
+	print("Test3.1")
+	if isStickBugOnCooldown() == false then
+		print("Stick Bug is ready")
+	end
+	
+	if isStickBugOnCooldown() == true then
+		print("Stick Bug is not ready")
+	end
 	
 	--[[
 	if GetItemListWithValue()["JellyBeans"] > 0 then	
