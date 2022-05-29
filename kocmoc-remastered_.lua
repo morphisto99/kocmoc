@@ -3076,17 +3076,15 @@ function KillTest3()
 	end
 	]]--
 	
-	print("Test3.3")
-	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:GetDescendants()) do
-		print(v.Name)
-	end
+	--print("Test3.3")
+	--for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:GetDescendants()) do
+		--print(v.Name)
+	--end
 	
 	
-	local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")	
-	task.wait(1)
-	firesignal(ScreenGui.NPC.OptionFrame.Option3.MouseButton1Click)
+
 	
-	
+	--local Button = message.TextLabel:FindFirstChild("TextButton")
 	
 	--[[
 	if GetItemListWithValue()["JellyBeans"] > 0 then	
@@ -3172,6 +3170,19 @@ function KillTest2()
 		firesignal(ScreenGui.NPC.ButtonOverlay.MouseButton1Click)
 		task.wait(0.5)
 	end
+	
+	--local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")	
+	task.wait(1)
+	firesignal(ScreenGui.NPC.OptionFrame.Option3.MouseButton1Click)
+	task.wait(1)
+	firesignal(ScreenGui.NPC.ButtonOverlay.MouseButton1Click)
+	
+	local sbReady = ScreenGui.NPC.OptionFrame.Option3.Text
+	local sbReady_ = sbReady:match("%((%a+)%)")
+	print(sbReady_)
+	
+	--local sbReady = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:FindFirstChild("Option1").Text	
+	
 	--[[
 	task.wait(1)
 	firesignal(ScreenGui.NPC.OptionFrame.Option3.ButtonOverlay.MouseButton1Click)
