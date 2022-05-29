@@ -3043,6 +3043,7 @@ function KillTest3()
 	--end
 	print("Test3")
 
+	--[[
 	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC:GetDescendants()) do
 		print(v.Name)
 		if v.Name == "Option1" then
@@ -3055,7 +3056,7 @@ function KillTest3()
 			print(v.Text)
 		end		
 	end
-
+	]]--
 	--[[
 	local sbReady = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:FindFirstChild("Option1").Text
 	if string.find(sbReady, "Use free entry to start") then
@@ -3078,11 +3079,13 @@ function KillTest3()
 	
 	--print("Test3.3")
 	--for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:GetDescendants()) do
-		--print(v.Name)
+	--	print(v.Name)
 	--end
 	
 	
-
+	local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")	
+	task.wait(1)
+	firesignal(ScreenGui.NPC.OptionFrame.Option3.MouseButton1Click)
 	
 	--local Button = message.TextLabel:FindFirstChild("TextButton")
 	
@@ -3128,6 +3131,8 @@ function KillTest2()
 
     if kocmoc.toggles.autoquest then
 		kocmoc.toggles.autoquest = false
+		local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")
+		firesignal(ScreenGui.NPC.ButtonOverlay.MouseButton1Click)
 	end
 	
     for i,v in next, game:GetService("Workspace").NPCs:GetChildren() do
@@ -3164,27 +3169,10 @@ function KillTest2()
 	print("Test2.1")
 
 	local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")
-	for x = 0, 6 do
+	for x = 0, 7 do
 		firesignal(ScreenGui.NPC.ButtonOverlay.MouseButton1Click)
 		task.wait(0.5)
 	end
-	
-	--local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")	
-	task.wait(1)
-	firesignal(ScreenGui.NPC.OptionFrame.Option3.MouseButton1Click)
-	task.wait(1)
-	firesignal(ScreenGui.NPC.ButtonOverlay.MouseButton1Click)
-	
-	local sbReady = ScreenGui.NPC.OptionFrame.Option3.Text
-	local sbReady_ = sbReady:match("%((%a+)%)")
-	print(sbReady_)
-
-    if not kocmoc.toggles.autoquest then
-		kocmoc.toggles.autoquest = true
-	end
-
-	--local sbReady = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:FindFirstChild("Option1").Text	
-	
 	--[[
 	task.wait(1)
 	firesignal(ScreenGui.NPC.OptionFrame.Option3.ButtonOverlay.MouseButton1Click)
