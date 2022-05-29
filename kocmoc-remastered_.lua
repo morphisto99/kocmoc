@@ -3028,7 +3028,7 @@ function CheckPlayers()
 			for j,k in pairs(game:GetService("Workspace"):GetChildren()) do
 				if k.Name == v then
 					playerpos = game.Workspace:FindFirstChild(k.Name).HumanoidRootPart.Position
-					print('player ' .. j .. ':' .. k.Name .. ', position=' .. playerpos)
+					print('player ' .. j .. ':' .. k.Name .. ', position=' .. playerpos.x .. ',' .. playerpos.y .. ',' .. playerpos.z)
 					break
 				end
 			end
