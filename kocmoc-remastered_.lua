@@ -3028,13 +3028,14 @@ function CheckPlayers()
 			for j,k in pairs(game:GetService("Workspace"):GetChildren()) do
 				if k.Name == v then
 					playerpos = game.Workspace:FindFirstChild(k.Name).HumanoidRootPart.Position
+					print('player ' .. j .. ':' .. k.Name .. ', position=' .. playerpos)
 					break
 				end
 			end
 			
 			if playerpos ~= nil then
 				if (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 150 then
-					print('player ' .. j .. ':' .. k.Name .. ', position=' .. playerpos)
+					
 					uiwlplayers:CreateButton('This player ' .. v .. ' is in range', function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v).HumanoidRootPart.CFrame end)
 				end
 			end
