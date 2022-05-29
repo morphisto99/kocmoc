@@ -3030,21 +3030,25 @@ function CheckPlayers()
 				if k.Name == v then
 					playerpos = game.Workspace:FindFirstChild(k.Name).HumanoidRootPart.Position		
 					if next(temptable.oplayers) ~= nil then
+						--local magvalue = table.find(temptable.oplayers, k.Name)
+						
+						--[[
 						for l,m in pairs(temptable.oplayers) do
 							if l == k.Name then
 								if m ~= playerpos.magnitude then
 									temptable.oplayers[k.Name] = playerpos.magnitude
+									break
 								end
 							else
 								temptable.oplayers[k.Name] = playerpos.magnitude
-								--table.insert(temptable.oplayers, k.Name .. '=' .. playerpos.magnitude)
+								break
 							end
 						end
+						]]--
 					else
 						--print('player inserted=' .. oplayer)
 						temptable.oplayers[k.Name] = playerpos.magnitude
 					end
-					
 					break
 				end
 			end
@@ -3112,11 +3116,15 @@ function KillTest3()
 	
 	temptable.oplayers["testing123"] = 411.123312313
 	temptable.oplayers["testing321"] = 301.222222222
+	local magvalue = table.find(temptable.oplayers, "testing321")
+	print('magvalue=' .. magvalue)
+	--[[
 	for i,v in pairs(temptable.oplayers) do
 		print(i,v)
 		--local splitPlayer = string.split(v,",")
 		--print(splitPlayer[1] .. ':' .. splitPlayer[2])
 	end
+	]]--
 	--[[
 	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC:GetDescendants()) do
 		print(v.Name)
