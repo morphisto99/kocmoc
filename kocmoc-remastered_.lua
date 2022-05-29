@@ -3123,18 +3123,14 @@ function KillTest2()
 							--print(image.ImageTransparency)
 							button = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ActivateButton.MouseButton1Click
 							game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(v.Platform.Position.X, v.Platform.Position.Y+3, v.Platform.Position.Z)
-							task.wait(1)							
+							task.wait(1)					
 							for b,z in next, getconnections(button) do
-								print('inside of button')
 								z.Function()
 							end
-							
 							task.wait(8)
-							if image.ImageTransparency == 0 then
+							for b,z in next, getconnections(button) do
+								z.Function()
 								print('inside of image')
-								for b,z in next, getconnections(button) do
-									z.Function()
-								end
 							end
 							task.wait(2)
 						end
@@ -3146,6 +3142,7 @@ function KillTest2()
 	
 	print("Test2.1")
 	local option3 = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:FindFirstChild("Option1").Text
+	--word=str:match("%((%a+)%)") -- get strings in ( )
 	print(option3)	
 
 	
