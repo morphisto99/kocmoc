@@ -3164,7 +3164,7 @@ function KillTest2()
 	print("Test2.1")
 
 	local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")
-	for x = 0, 7 do
+	for x = 0, 6 do
 		firesignal(ScreenGui.NPC.ButtonOverlay.MouseButton1Click)
 		task.wait(0.5)
 	end
