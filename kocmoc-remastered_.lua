@@ -3113,29 +3113,23 @@ function KillTest2()
 						if v.Platform.AlertPos.AlertGui:FindFirstChild("ImageLabel") then
 							image = v.Platform.AlertPos.AlertGui.ImageLabel
 							print('v.Name=' .. v.Name)
-							print(image.ImageTransparency)
+							--print(image.ImageTransparency)
 							button = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ActivateButton.MouseButton1Click
-							api.tween(2,CFrame.new(v.Platform.Position.X, v.Platform.Position.Y+3, v.Platform.Position.Z))
+							game.Players.Local
 							
+							Player.Character.HumanoidRootPart.CFrame = CFrame.new(v.Platform.Position.X, v.Platform.Position.Y+3, v.Platform.Position.Z)
+							task.wait(1)							
+							for b,z in next, getconnections(button) do
+								z.Function()
+							end
+							task.wait(8)
 							if image.ImageTransparency == 0 then
-								if kocmoc.toggles.tptonpc then
-									game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(v.Platform.Position.X, v.Platform.Position.Y+3, v.Platform.Position.Z)
-									task.wait(1)
-								else
-									api.tween(2,CFrame.new(v.Platform.Position.X, v.Platform.Position.Y+3, v.Platform.Position.Z))
-									task.wait(3)
-								end
+								print('inside of image')
 								for b,z in next, getconnections(button) do
 									z.Function()
 								end
-								task.wait(8)
-								if image.ImageTransparency == 0 then
-									for b,z in next, getconnections(button) do
-										z.Function()
-									end
-								end
-								task.wait(2)
 							end
+							task.wait(2)
 						end
 					end
 				end
