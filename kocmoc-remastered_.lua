@@ -3042,8 +3042,8 @@ function KillTest3()
 		--print('Flowers:' .. v.Name)
 	--end
 	print("Test3")
-	--[[
-	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:GetDescendants()) do
+
+	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC:GetDescendants()) do
 		print(v.Name)
 		if v.Name == "Option1" then
 			print(v.Text)
@@ -3055,7 +3055,7 @@ function KillTest3()
 			print(v.Text)
 		end		
 	end
-	]]--
+
 	--[[
 	local sbReady = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:FindFirstChild("Option1").Text
 	if string.find(sbReady, "Use free entry to start") then
@@ -3084,7 +3084,7 @@ function KillTest3()
 	
 	local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")	
 	task.wait(1)
-	firesignal(ScreenGui.NPC.OptionFrame.Option3.ActivateButton.MouseButton1Click)
+	firesignal(ScreenGui.NPC.OptionFrame.Option3.MouseButton1Click)
 	
 	
 	
