@@ -49,6 +49,7 @@ getgenv().temptable = {
     puffshroomdetected = false,
 	puffshroomboosted = false,
 	players = {}, -- Morphisto
+	oplayers = {}, -- Morphisto
     magnitude = 60,
     blacklist = {
         ""
@@ -3028,7 +3029,13 @@ function CheckPlayers()
 			for j,k in pairs(game:GetService("Workspace"):GetChildren()) do
 				if k.Name == v then
 					playerpos = game.Workspace:FindFirstChild(k.Name).HumanoidRootPart.Position
-					print('player ' .. k.Name .. ', magnitude=' .. playerpos.magnitude)
+					local oplayer = k.Name .. ',' .. playerpos.magnitude
+					if not api.tablefind(temptable.oplayers, oplayer) then
+						print('other player inserted')
+						table.insert(temptable.oplayers, oplayer)
+					else
+						print('Already exist=' .. oplayer)
+					end
 					break
 				end
 			end
