@@ -3136,10 +3136,13 @@ function KillTest2()
 							end
 							]]--
 							local option3 = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:FindFirstChild("Option3")
+							print(option3.Text)
+							--[[
 							if option3.Text == "Cancel" then
 								print('Inside of Option3')
 								option3.ActivateButton.MouseButton1Click
 							end
+							]]--
 						end
 					end
 				end
