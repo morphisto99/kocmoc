@@ -3187,6 +3187,8 @@ function KillTest2()
 	task.wait(0.5)
 	firesignal(ScreenGui.NPC.ButtonOverlay.MouseButton1Click)
 	task.wait(0.5)
+	firesignal(ScreenGui.NPC.ButtonOverlay.MouseButton1Click)
+	task.wait(0.5)
 	--[[
 	local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")	
 	task.wait(1)
