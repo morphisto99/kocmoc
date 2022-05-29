@@ -3135,8 +3135,8 @@ function KillTest2()
 								task.wait(1)
 							end
 							]]--
-							local option3 = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:FindFirstChild("Option3")
-							print(option3.Text)
+							--local option3 = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:FindFirstChild("Option3")
+							--print(option3.Text)
 							--[[
 							if option3.Text == "Cancel" then
 								print('Inside of Option3')
