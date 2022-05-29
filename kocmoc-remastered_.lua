@@ -3127,7 +3127,7 @@ function KillTest2()
 							for b,z in next, getconnections(button) do
 								z.Function()
 							end
-							local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")
+							--local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")
 							
 							--[[
 							for x = 1, 7 do
