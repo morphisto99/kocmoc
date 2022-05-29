@@ -3030,9 +3030,9 @@ function CheckPlayers()
 				if k.Name == v then
 					playerpos = game.Workspace:FindFirstChild(k.Name).HumanoidRootPart.Position
 					local oplayer = k.Name .. ',' .. playerpos.magnitude
-					if not api.tablefind(temptable.oplayers, oplayer) then
+					if not api.tablefind(temptable.oplayers, k.Name) then
 						print('player inserted=' .. oplayer)
-						table.insert(temptable.oplayers, {k.Name,playerpos.magnitude})
+						table.insert(temptable.oplayers, k.Name .. '=' .. playerpos.magnitude)
 					else
 						--print('Already exist=' .. oplayer)
 					end
