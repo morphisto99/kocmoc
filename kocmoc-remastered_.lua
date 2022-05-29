@@ -3028,21 +3028,16 @@ function CheckPlayers()
 			local playerpos
 			for j,k in pairs(game:GetService("Workspace"):GetChildren()) do
 				if k.Name == v then
-					playerpos = game.Workspace:FindFirstChild(k.Name).HumanoidRootPart.Position
-					
+					playerpos = game.Workspace:FindFirstChild(k.Name).HumanoidRootPart.Position		
 					if next(temptable.oplayers) ~= nil then
 						for l,m in pairs(temptable.oplayers) do
-							
-							local splitPlayer = string.split(m,",")
-							if splitPlayer[1] ~= nil then
-								if splitPlayer[1] == k.Name then
-									if splitPlayer[2] ~= playerpos.magnitude then
-										temptable.oplayers[k.Name] = playerpos.magnitude
-									end
-								else
+							if l == k.Name then
+								if m ~= playerpos.magnitude then
 									temptable.oplayers[k.Name] = playerpos.magnitude
-									--table.insert(temptable.oplayers, k.Name .. '=' .. playerpos.magnitude)
 								end
+							else
+								temptable.oplayers[k.Name] = playerpos.magnitude
+								--table.insert(temptable.oplayers, k.Name .. '=' .. playerpos.magnitude)
 							end
 						end
 					else
