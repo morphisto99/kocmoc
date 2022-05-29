@@ -3068,16 +3068,24 @@ function KillTest3()
 	]]--
 
 	print("Test3.2")
-	local option3 = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:FindFirstChild("Option3")
-	if option3.Text == "Cancel" then
-		print('Inside of Option3')
-		firesignal(option3.ActivateButton.MouseButton1Click)
-	end	
-
+	for i,v in pairs(
+	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:GetChildren()) do	
+		if v.Name == "Option3" then
+			print('Inside of Option3')
+			firesignal(v:ActivateButton.MouseButton1Click)
+		end	
+	end
 	print("Test3.3")
-	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame.Option3:GetChildren()) do
+	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:GetDescendants()) do
 		print(v.Name)
 	end
+	
+	local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")	
+	task.wait(1)
+	firesignal(ScreenGui.NPC.OptionFrame.Option3.ButtonOverlay.MouseButton1Click)
+	task.wait(1)
+	firesignal(ScreenGui.NPC.OptionFrame.Option3.ActivateButton.MouseButton1Click)
+	
 	--[[
 	if GetItemListWithValue()["JellyBeans"] > 0 then	
 		if next(buffs) == nil or not api.tablefind(buffs, "Jelly Beans") then
@@ -3139,6 +3147,7 @@ function KillTest2()
 							for b,z in next, getconnections(button) do
 								z.Function()
 							end
+							task.wait(1)
 							--local option3 = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:FindFirstChild("Option3")
 							--print(option3.Text)
 							--[[
@@ -3159,7 +3168,12 @@ function KillTest2()
 	local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")
 	for x = 0, 7 do
 		firesignal(ScreenGui.NPC.ButtonOverlay.MouseButton1Click)
+		task.wait(0.5)
 	end
+	task.wait(1)
+	firesignal(ScreenGui.NPC.OptionFrame.Option3.ButtonOverlay.MouseButton1Click)
+	task.wait(1)
+	firesignal(ScreenGui.NPC.OptionFrame.Option3.ActivateButton.MouseButton1Click)
 	
 	--word=str:match("%((%a+)%)") -- get strings in ( )
 	
