@@ -956,14 +956,7 @@ local function donateToShrine(item,qnt)
     end)
     if not s then print(e) end
 end
--- Morphisto
-local function isStickBugOnCooldown()
-    local isOnCooldown = false
-    local cooldown = 5400 - (require(game.ReplicatedStorage.OsTime)() - (require(game.ReplicatedStorage.StatTools).GetLastCooldownTime(v1, "StickBug")))
-    if cooldown > 0 then isOnCooldown = true end
-    return isOnCooldown
-end
--- Mortphisto
+
 local function isWindshrineOnCooldown()
     local isOnCooldown = false
     local cooldown = 3600 - (require(game.ReplicatedStorage.OsTime)() - (require(game.ReplicatedStorage.StatTools).GetLastCooldownTime(v1, "WindShrine")))
@@ -3071,13 +3064,7 @@ function KillTest3()
 		print("Stick Bug is not ready")
 	end
 	print("Test3.1")
-	if isStickBugOnCooldown() == false then
-		print("Stick Bug is ready")
-	end
-	
-	if isStickBugOnCooldown() == true then
-		print("Stick Bug is not ready")
-	end
+
 	
 	--[[
 	if GetItemListWithValue()["JellyBeans"] > 0 then	
@@ -3118,9 +3105,42 @@ function KillTest2()
 
 
 	print("Test2")
-	for i,v in next, v1 do
-		print(i,v)
-	end
+    for i,v in next, game:GetService("Workspace").NPCs:GetChildren() do
+        if v.Name ~= "Ant Challenge Info" and v.Name ~= "Bubble Bee Man 2" and v.Name ~= "Wind Shrine" and v.Name ~= "Gummy Bear" then
+			if v:FindFirstChild("Platform") then
+				if v.Platform:FindFirstChild("AlertPos") then
+					if v.Platform.AlertPos:FindFirstChild("AlertGui") then
+						if v.Platform.AlertPos.AlertGui:FindFirstChild("ImageLabel") then
+							image = v.Platform.AlertPos.AlertGui.ImageLabel
+							print('v.Name=' .. v.Name)
+							print(image)
+							button = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ActivateButton.MouseButton1Click
+							print(button)
+							if image.ImageTransparency == 0 then
+								if kocmoc.toggles.tptonpc then
+									game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(v.Platform.Position.X, v.Platform.Position.Y+3, v.Platform.Position.Z)
+									task.wait(1)
+								else
+									api.tween(2,CFrame.new(v.Platform.Position.X, v.Platform.Position.Y+3, v.Platform.Position.Z))
+									task.wait(3)
+								end
+								for b,z in next, getconnections(button) do
+									z.Function()
+								end
+								task.wait(8)
+								if image.ImageTransparency == 0 then
+									for b,z in next, getconnections(button) do
+										z.Function()
+									end
+								end
+								task.wait(2)
+							end
+						end
+					end
+				end
+			end
+		end
+    end
 	
 	print("Test2.1")
 	local option3 = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:FindFirstChild("Option1").Text
