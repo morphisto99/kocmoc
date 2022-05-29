@@ -3056,6 +3056,7 @@ function KillTest3()
 		end		
 	end
 	]]--
+	--[[
 	local sbReady = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:FindFirstChild("Option1").Text
 	if string.find(sbReady, "Use free entry to start") then
 		print("Stick Bug is ready")
@@ -3064,8 +3065,19 @@ function KillTest3()
 		print("Stick Bug is not ready")
 	end
 	print("Test3.1")
+	]]--
 
-	
+	print("Test3.2")
+	local option3 = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:FindFirstChild("Option3")
+	if option3.Text == "Cancel" then
+		print('Inside of Option3')
+		firesignal(option3.ActivateButton.MouseButton1Click)
+	end	
+
+	print("Test3.3")
+	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame.Option3:GetChildren()) do
+		print(v.Name)
+	end
 	--[[
 	if GetItemListWithValue()["JellyBeans"] > 0 then	
 		if next(buffs) == nil or not api.tablefind(buffs, "Jelly Beans") then
@@ -3145,17 +3157,10 @@ function KillTest2()
 	print("Test2.1")
 
 	local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")
-	for x = 1, 7 do
+	for x = 0, 7 do
 		firesignal(ScreenGui.NPC.ButtonOverlay.MouseButton1Click)
-		task.wait(1)
 	end
 	
-	print("Test2.2")
-	local option3 = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:FindFirstChild("Option3")
-	if option3.Text == "Cancel" then
-		print('Inside of Option3')
-		firesignal(option3.ActivateButton.MouseButton1Click)
-	end	
 	--word=str:match("%((%a+)%)") -- get strings in ( )
 	
 
