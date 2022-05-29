@@ -3105,6 +3105,13 @@ function KillTest2()
 
 
 	print("Test2")
+
+    if kocmoc.toggles.autoquest then
+		kocmoc.toggles.autoquest = false
+		local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")
+		firesignal(ScreenGui.NPC.ButtonOverlay.MouseButton1Click)
+	end
+	
     for i,v in next, game:GetService("Workspace").NPCs:GetChildren() do
         if v.Name == "Stick Bug" then
 			if v:FindFirstChild("Platform") then
@@ -3118,8 +3125,10 @@ function KillTest2()
 							game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(v.Platform.Position.X, v.Platform.Position.Y+3, v.Platform.Position.Z)
 							task.wait(1)							
 							for b,z in next, getconnections(button) do
+								print('inside of button')
 								z.Function()
 							end
+							
 							task.wait(8)
 							if image.ImageTransparency == 0 then
 								print('inside of image')
