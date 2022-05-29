@@ -3167,12 +3167,29 @@ function KillTest2()
     end
 	
 	print("Test2.1")
-
+	task.wait(1)
 	local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")
-	for x = 0, 5 do
+	for x = 0, 6 do
 		firesignal(ScreenGui.NPC.ButtonOverlay.MouseButton1Click)
 		task.wait(0.5)
 	end
+	
+	local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")	
+	task.wait(1)
+	firesignal(ScreenGui.NPC.OptionFrame.Option3.MouseButton1Click)
+	task.wait(1)
+	firesignal(ScreenGui.NPC.ButtonOverlay.MouseButton1Click)
+	task.wait(1)
+
+	local sbReady = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:FindFirstChild("Option1").Text
+	if string.find(sbReady, "Use free entry to start") then
+		print("Stick Bug is ready")
+	end
+	if string.find(sbReady, "Use free challenge entry") then
+		print("Stick Bug is not ready")
+	end
+	
+	
 	--[[
 	task.wait(1)
 	firesignal(ScreenGui.NPC.OptionFrame.Option3.ButtonOverlay.MouseButton1Click)
