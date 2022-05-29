@@ -3066,7 +3066,7 @@ function KillTest3()
 	end
 	print("Test3.1")
 	]]--
-
+	--[[
 	print("Test3.2")
 	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:GetChildren()) do	
 		if v.Name == "Option3" then
@@ -3074,6 +3074,8 @@ function KillTest3()
 			firesignal(v:ActivateButton.MouseButton1Click)
 		end	
 	end
+	]]--
+	
 	print("Test3.3")
 	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:GetDescendants()) do
 		print(v.Name)
