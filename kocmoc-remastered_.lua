@@ -3106,7 +3106,7 @@ function KillTest2()
 
 	print("Test2")
     for i,v in next, game:GetService("Workspace").NPCs:GetChildren() do
-        if v.Name ~= "Ant Challenge Info" and v.Name ~= "Bubble Bee Man 2" and v.Name ~= "Wind Shrine" and v.Name ~= "Gummy Bear" then
+        if v.Name == "Stick Bug" then
 			if v:FindFirstChild("Platform") then
 				if v.Platform:FindFirstChild("AlertPos") then
 					if v.Platform.AlertPos:FindFirstChild("AlertGui") then
