@@ -3115,6 +3115,8 @@ function KillTest2()
 							print('v.Name=' .. v.Name)
 							print(image.ImageTransparency)
 							button = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ActivateButton.MouseButton1Click
+							api.tween(2,CFrame.new(v.Platform.Position.X, v.Platform.Position.Y+3, v.Platform.Position.Z))
+							
 							if image.ImageTransparency == 0 then
 								if kocmoc.toggles.tptonpc then
 									game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(v.Platform.Position.X, v.Platform.Position.Y+3, v.Platform.Position.Z)
