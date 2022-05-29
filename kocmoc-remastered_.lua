@@ -3128,8 +3128,6 @@ function KillTest2()
 
     if kocmoc.toggles.autoquest then
 		kocmoc.toggles.autoquest = false
-		local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")
-		firesignal(ScreenGui.NPC.ButtonOverlay.MouseButton1Click)
 	end
 	
     for i,v in next, game:GetService("Workspace").NPCs:GetChildren() do
@@ -3180,7 +3178,11 @@ function KillTest2()
 	local sbReady = ScreenGui.NPC.OptionFrame.Option3.Text
 	local sbReady_ = sbReady:match("%((%a+)%)")
 	print(sbReady_)
-	
+
+    if not kocmoc.toggles.autoquest then
+		kocmoc.toggles.autoquest = true
+	end
+
 	--local sbReady = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:FindFirstChild("Option1").Text	
 	
 	--[[
