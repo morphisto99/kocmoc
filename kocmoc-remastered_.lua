@@ -3029,7 +3029,14 @@ function CheckPlayers()
 			for j,k in pairs(game:GetService("Workspace"):GetChildren()) do
 				if k.Name == v then
 					playerpos = game.Workspace:FindFirstChild(k.Name).HumanoidRootPart.Position		
-					if next(temptable.oplayers) ~= nil then
+					if next(temptable.oplayers) == nil then
+						temptable.oplayers[k.Name] = playerpos.magnitude
+					else
+						
+						--if api.tablefind(temptable.oplayers, k.Name) then
+							--local oplayername = api.tablefind(temptable.oplayers, k.Name)
+							
+						--end
 						--local magvalue = table.find(temptable.oplayers, k.Name)
 						
 						--[[
@@ -3045,9 +3052,6 @@ function CheckPlayers()
 							end
 						end
 						]]--
-					else
-						--print('player inserted=' .. oplayer)
-						temptable.oplayers[k.Name] = playerpos.magnitude
 					end
 					break
 				end
@@ -3116,8 +3120,9 @@ function KillTest3()
 	
 	temptable.oplayers["testing123"] = 411.123312313
 	temptable.oplayers["testing321"] = 301.222222222
-	local magvalue = table.find(temptable.oplayers, "testing321")
-	print('magvalue=' .. magvalue)
+	if api.tablefind(temptable.oplayers, "testing321") == "testing321" then
+		print("Player found!")		
+	end
 	--[[
 	for i,v in pairs(temptable.oplayers) do
 		print(i,v)
