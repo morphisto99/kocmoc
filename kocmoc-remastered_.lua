@@ -3129,11 +3129,11 @@ function KillTest2()
 
 	print("Test2")
 
-    if kocmoc.toggles.autoquest then
-		kocmoc.toggles.autoquest = false
-		local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")
-		firesignal(ScreenGui.NPC.ButtonOverlay.MouseButton1Click)
-	end
+    -- if kocmoc.toggles.autoquest then
+	--	kocmoc.toggles.autoquest = false
+	--	local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")
+	--	firesignal(ScreenGui.NPC.ButtonOverlay.MouseButton1Click)
+	--end
 	
     for i,v in next, game:GetService("Workspace").NPCs:GetChildren() do
         if v.Name == "Stick Bug" then
@@ -3168,35 +3168,21 @@ function KillTest2()
 	
 	print("Test2.1")
 	task.wait(1)
-	local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")
 	--[[
+	local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")
+	
 	for x = 0, 6 do
 		firesignal(ScreenGui.NPC.ButtonOverlay.MouseButton1Click)
 		task.wait(0.5)
 	end
 	]]--
-	firesignal(ScreenGui.NPC.ButtonOverlay.MouseButton1Click)
-	task.wait(0.5)
-	firesignal(ScreenGui.NPC.ButtonOverlay.MouseButton1Click)
-	task.wait(0.5)
-	firesignal(ScreenGui.NPC.ButtonOverlay.MouseButton1Click)
-	task.wait(0.5)
-	firesignal(ScreenGui.NPC.ButtonOverlay.MouseButton1Click)
-	task.wait(0.5)
-	firesignal(ScreenGui.NPC.ButtonOverlay.MouseButton1Click)
-	task.wait(0.5)
-	firesignal(ScreenGui.NPC.ButtonOverlay.MouseButton1Click)
-	task.wait(0.5)
-	firesignal(ScreenGui.NPC.ButtonOverlay.MouseButton1Click)
-	task.wait(0.5)
-	--[[
+
 	local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")	
-	task.wait(1)
 	firesignal(ScreenGui.NPC.OptionFrame.Option3.MouseButton1Click)
 	task.wait(1)
-	firesignal(ScreenGui.NPC.ButtonOverlay.MouseButton1Click)
-	task.wait(1)
-	]]--
+	--firesignal(ScreenGui.NPC.ButtonOverlay.MouseButton1Click)
+	--task.wait(1)
+
 	local sbReady = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:FindFirstChild("Option1").Text
 	if string.find(sbReady, "Use free entry to start") then
 		print("Stick Bug is ready")
