@@ -39,7 +39,8 @@ end
 getgenv().temptable = {
     version = "3.2.9-1",
     blackfield = "Sunflower Field",
-	boostedfield = "", -- Morphisto 
+	boostedfield = "", -- Morphisto
+	sbready = false, -- Morphisto
     redfields = {},
     bluefields = {},
     whitefields = {},
@@ -902,9 +903,43 @@ function checkquestcooldown()
 		if kocmoc.toggles.honeystorm then
 			disableall()
 			game.ReplicatedStorage.Events.ToyEvent:FireServer("Honeystorm")
-			task.wait(15)
 			enableall()
 		end
+		disableall()
+		-- Check Stickbug cooldown
+		for i,v in next, game:GetService("Workspace").NPCs:GetChildren() do
+			if v.Name == "Stick Bug" then
+				if v:FindFirstChild("Platform") then
+					if v.Platform:FindFirstChild("AlertPos") then
+						if v.Platform.AlertPos:FindFirstChild("AlertGui") then
+							if v.Platform.AlertPos.AlertGui:FindFirstChild("ImageLabel") then
+								image = v.Platform.AlertPos.AlertGui.ImageLabel
+								button = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ActivateButton.MouseButton1Click
+								game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(v.Platform.Position.X, v.Platform.Position.Y+3, v.Platform.Position.Z)
+								task.wait(1)					
+								for b,z in next, getconnections(button) do
+									z.Function()
+								end
+								task.wait(1)
+								break
+							end
+						end
+					end
+				end
+			end
+		end
+		task.wait(1)
+		local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")	
+		firesignal(ScreenGui.NPC.OptionFrame.Option3.MouseButton1Click)
+		task.wait(1)
+		local sbReady = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:FindFirstChild("Option1").Text
+		if string.find(sbReady, "Use free entry to start") then
+			temptable.sbready = true
+		else
+			temptable.sbready = false
+		end
+		enableall()
+		-- Check Stickbug cooldown
 	end
 end
 -- Morphisto
@@ -2032,6 +2067,13 @@ task.spawn(function() while task.wait() do
 				if kocmoc.toggles.killkingbeetle then KillKingBeetle() end -- Morphisto
 				if kocmoc.toggles.killstumpsnail then KillStumpSnail() end -- Morphisto
 				if kocmoc.toggles.farmboostedfield then farmboostedfield() end -- Morphisto
+				if kocmoc.toggles.killstickbug and temptable.sbready then -- Morphisto
+					local event = game.ReplicatedStorage.Events:FindFirstChild("SelectNPCOption")
+					if event then
+						event:FireServer("StartFreeStickBugEvent")
+					end
+					temptable.sbready = false
+				end
 				if (fieldposition-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
                     api.tween(2, fieldpos) -- Morphisto
                     if kocmoc.toggles.autosprinkler then makesprinklers() end
@@ -2992,13 +3034,14 @@ function CheckPlayers()
 			
 			if playerpos ~= nil then
 				if (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 150 then
+					print('player ' .. j .. ':' .. k.Name .. ', position=' .. playerpos)
 					uiwlplayers:CreateButton('This player ' .. v .. ' is in range', function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v).HumanoidRootPart.CFrame end)
 				end
 			end
 		end
 	end
 		
-	if temptable.cache.disableinrange then -- disable when other player sin range
+	if temptable.cache.disableinrange then -- disable when other players in range
 		if kocmoc.toggles.killwindy then
 			uikillwindy:SetState(false)
 			kocmoc.toggles.killwindy = false
@@ -3007,6 +3050,10 @@ function CheckPlayers()
 			uifarmsprouts:SetState(false) 
 			kocmoc.toggles.farmsprouts = false
 		end
+		if kocmoc.toggles.killstickbug then
+			uikillstickbug:SetState(false) 
+			kocmoc.toggles.killstickbug = false
+		end		
 	else
 		if not kocmoc.toggles.killwindy then
 			uikillwindy:SetState(true)
@@ -3016,7 +3063,10 @@ function CheckPlayers()
 			uifarmsprouts:SetState(true) 
 			kocmoc.toggles.farmsprouts = true
 		end	
-		
+		if not kocmoc.toggles.killstickbug then
+			uikillstickbug:SetState(true) 
+			kocmoc.toggles.killstickbug = true
+		end			
 	end
 end
 -- Morphisto
@@ -3142,8 +3192,6 @@ function KillTest2()
 					if v.Platform.AlertPos:FindFirstChild("AlertGui") then
 						if v.Platform.AlertPos.AlertGui:FindFirstChild("ImageLabel") then
 							image = v.Platform.AlertPos.AlertGui.ImageLabel
-							print('v.Name=' .. v.Name)
-							--print(image.ImageTransparency)
 							button = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ActivateButton.MouseButton1Click
 							game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(v.Platform.Position.X, v.Platform.Position.Y+3, v.Platform.Position.Z)
 							task.wait(1)					
@@ -3151,14 +3199,7 @@ function KillTest2()
 								z.Function()
 							end
 							task.wait(1)
-							--local option3 = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:FindFirstChild("Option3")
-							--print(option3.Text)
-							--[[
-							if option3.Text == "Cancel" then
-								print('Inside of Option3')
-								option3.ActivateButton.MouseButton1Click
-							end
-							]]--
+							break
 						end
 					end
 				end
@@ -3168,20 +3209,10 @@ function KillTest2()
 	
 	print("Test2.1")
 	task.wait(1)
-	--[[
-	local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")
-	
-	for x = 0, 6 do
-		firesignal(ScreenGui.NPC.ButtonOverlay.MouseButton1Click)
-		task.wait(0.5)
-	end
-	]]--
 
 	local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")	
 	firesignal(ScreenGui.NPC.OptionFrame.Option3.MouseButton1Click)
 	task.wait(1)
-	--firesignal(ScreenGui.NPC.ButtonOverlay.MouseButton1Click)
-	--task.wait(1)
 
 	local sbReady = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:FindFirstChild("Option1").Text
 	if string.find(sbReady, "Use free entry to start") then
