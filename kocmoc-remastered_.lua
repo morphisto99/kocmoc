@@ -3032,6 +3032,7 @@ function CheckPlayers()
 					
 					if next(temptable.oplayers) ~= nil then
 						for l,m in pairs(temptable.oplayers) do
+							
 							local splitPlayer = string.split(m,",")
 							if splitPlayer[1] ~= nil then
 								if splitPlayer[1] == k.Name then
@@ -3117,9 +3118,9 @@ function KillTest3()
 	temptable.oplayers["testing123"] = 411.123312313
 	temptable.oplayers["testing321"] = 301.222222222
 	for i,v in pairs(temptable.oplayers) do
-		print(v)
-		local splitPlayer = string.split(v,",")
-		print(splitPlayer[1] .. ':' .. splitPlayer[2])
+		print(i,v)
+		--local splitPlayer = string.split(v,",")
+		--print(splitPlayer[1] .. ':' .. splitPlayer[2])
 	end
 	--[[
 	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC:GetDescendants()) do
