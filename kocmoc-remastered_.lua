@@ -3106,7 +3106,7 @@ function KillTest2()
 
 	print("Test2")
     for i,v in next, game:GetService("Workspace").NPCs:GetChildren() do
-        if v.Name = "Stick Bug" then
+        if v.Name ~= "Ant Challenge Info" and v.Name ~= "Bubble Bee Man 2" and v.Name ~= "Wind Shrine" and v.Name ~= "Gummy Bear" then
 			if v:FindFirstChild("Platform") then
 				if v.Platform:FindFirstChild("AlertPos") then
 					if v.Platform.AlertPos:FindFirstChild("AlertGui") then
@@ -3116,7 +3116,6 @@ function KillTest2()
 							print(image.ImageTransparency)
 							button = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ActivateButton.MouseButton1Click
 							if image.ImageTransparency == 0 then
-								
 								if kocmoc.toggles.tptonpc then
 									game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(v.Platform.Position.X, v.Platform.Position.Y+3, v.Platform.Position.Z)
 									task.wait(1)
