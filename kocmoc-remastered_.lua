@@ -3029,12 +3029,22 @@ function CheckPlayers()
 			for j,k in pairs(game:GetService("Workspace"):GetChildren()) do
 				if k.Name == v then
 					playerpos = game.Workspace:FindFirstChild(k.Name).HumanoidRootPart.Position
-					local oplayer = k.Name .. ',' .. playerpos.magnitude
-					if not api.tablefind(temptable.oplayers, k.Name) then
-						print('player inserted=' .. oplayer)
-						table.insert(temptable.oplayers, k.Name .. '=' .. playerpos.magnitude)
+					if next(temptable.oplayers) ~= nil then
+						for i,v in pairs(temptable.oplayers) do
+							local splitPlayer = string.split(v,",")
+							if splitPlayer[1] ~= nil then
+								if splitPlayer[1] == k.Name then
+									if splitPlayer[2] ~= playerpos.magnitude then
+										splitPlayer[2] = playerpos.magnitude
+									end
+								else
+									table.insert(temptable.oplayers, k.Name .. '=' .. playerpos.magnitude)
+								end
+							end
+						end
 					else
-						--print('Already exist=' .. oplayer)
+						--print('player inserted=' .. oplayer)
+						table.insert(temptable.oplayers, k.Name .. '=' .. playerpos.magnitude)
 					end
 					break
 				end
@@ -3101,7 +3111,9 @@ function KillTest3()
 	--end
 	print("Test3")
 	for i,v in pairs(temptable.oplayers) do
-		print(i,v)
+		print(v)
+		local splitPlayer = string.split(v,",")
+		print(splitPlayer[1] .. ':' .. splitPlayer[2])
 	end
 	--[[
 	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC:GetDescendants()) do
