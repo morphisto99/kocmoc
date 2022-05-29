@@ -3079,11 +3079,14 @@ function KillTest3()
 		print(v.Name)
 	end
 	
+	--[[
 	local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")	
 	task.wait(1)
 	firesignal(ScreenGui.NPC.OptionFrame.Option3.ButtonOverlay.MouseButton1Click)
 	task.wait(1)
 	firesignal(ScreenGui.NPC.OptionFrame.Option3.ActivateButton.MouseButton1Click)
+	]]--
+	
 	
 	--[[
 	if GetItemListWithValue()["JellyBeans"] > 0 then	
@@ -3169,11 +3172,12 @@ function KillTest2()
 		firesignal(ScreenGui.NPC.ButtonOverlay.MouseButton1Click)
 		task.wait(0.5)
 	end
+	--[[
 	task.wait(1)
 	firesignal(ScreenGui.NPC.OptionFrame.Option3.ButtonOverlay.MouseButton1Click)
 	task.wait(1)
 	firesignal(ScreenGui.NPC.OptionFrame.Option3.ActivateButton.MouseButton1Click)
-	
+	]]--
 	--word=str:match("%((%a+)%)") -- get strings in ( )
 	
 
