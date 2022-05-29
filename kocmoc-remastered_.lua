@@ -3029,7 +3029,7 @@ function CheckPlayers()
 			for j,k in pairs(game:GetService("Workspace"):GetChildren()) do
 				if k.Name == v then
 					playerpos = game.Workspace:FindFirstChild(k.Name).HumanoidRootPart.Position
-					
+					--[[
 					if next(temptable.oplayers) ~= nil then
 						for l,m in pairs(temptable.oplayers) do
 							local splitPlayer = string.split(m,",")
@@ -3047,7 +3047,7 @@ function CheckPlayers()
 						--print('player inserted=' .. oplayer)
 						table.insert(temptable.oplayers, k.Name .. '=' .. playerpos.magnitude)
 					end
-					
+					]]--
 					break
 				end
 			end
@@ -3112,6 +3112,8 @@ function KillTest3()
 		--print('Flowers:' .. v.Name)
 	--end
 	print("Test3")
+	table.insert(temptable.oplayers, testing123 .. '=' .. 411.123312313)
+	table.insert(temptable.oplayers, testing321 .. '=' .. 301.222222222)
 	for i,v in pairs(temptable.oplayers) do
 		print(v)
 		local splitPlayer = string.split(v,",")
