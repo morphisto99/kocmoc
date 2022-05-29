@@ -3029,9 +3029,10 @@ function CheckPlayers()
 			for j,k in pairs(game:GetService("Workspace"):GetChildren()) do
 				if k.Name == v then
 					playerpos = game.Workspace:FindFirstChild(k.Name).HumanoidRootPart.Position
+					
 					if next(temptable.oplayers) ~= nil then
-						for i,v in pairs(temptable.oplayers) do
-							local splitPlayer = string.split(v,",")
+						for l,m in pairs(temptable.oplayers) do
+							local splitPlayer = string.split(m,",")
 							if splitPlayer[1] ~= nil then
 								if splitPlayer[1] == k.Name then
 									if splitPlayer[2] ~= playerpos.magnitude then
@@ -3046,6 +3047,7 @@ function CheckPlayers()
 						--print('player inserted=' .. oplayer)
 						table.insert(temptable.oplayers, k.Name .. '=' .. playerpos.magnitude)
 					end
+					
 					break
 				end
 			end
