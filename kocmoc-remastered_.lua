@@ -3031,10 +3031,10 @@ function CheckPlayers()
 					playerpos = game.Workspace:FindFirstChild(k.Name).HumanoidRootPart.Position
 					local oplayer = k.Name .. ',' .. playerpos.magnitude
 					if not api.tablefind(temptable.oplayers, oplayer) then
-						print('other player inserted')
-						table.insert(temptable.oplayers, oplayer)
+						print('player inserted=' .. oplayer)
+						table.insert(temptable.oplayers, {k.Name,playerpos.magnitude})
 					else
-						print('Already exist=' .. oplayer)
+						--print('Already exist=' .. oplayer)
 					end
 					break
 				end
@@ -3100,7 +3100,9 @@ function KillTest3()
 		--print('Flowers:' .. v.Name)
 	--end
 	print("Test3")
-
+	for i,v in pairs(temptable.oplayers) do
+		print(i,v)
+	end
 	--[[
 	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC:GetDescendants()) do
 		print(v.Name)
@@ -3141,9 +3143,9 @@ function KillTest3()
 	--end
 	
 	
-	local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")	
-	task.wait(1)
-	firesignal(ScreenGui.NPC.OptionFrame.Option3.MouseButton1Click)
+	--local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")	
+	--task.wait(1)
+	--firesignal(ScreenGui.NPC.OptionFrame.Option3.MouseButton1Click)
 	
 	--local Button = message.TextLabel:FindFirstChild("TextButton")
 	
