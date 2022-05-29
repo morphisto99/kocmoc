@@ -3129,6 +3129,7 @@ function KillTest2()
 							end
 							local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui
 							for x = 1, 7 do
+								print('inside of ScreenGui')
 								firesignal(ScreenGui.NPC.ButtonOverlay.MouseButton1Click)
 								task.wait(1)
 							end
