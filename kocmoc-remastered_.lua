@@ -3068,7 +3068,6 @@ function KillTest3()
 	]]--
 
 	print("Test3.2")
-	for i,v in pairs(
 	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:GetChildren()) do	
 		if v.Name == "Option3" then
 			print('Inside of Option3')
