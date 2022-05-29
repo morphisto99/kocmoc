@@ -3115,9 +3115,7 @@ function KillTest2()
 							print('v.Name=' .. v.Name)
 							--print(image.ImageTransparency)
 							button = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ActivateButton.MouseButton1Click
-							game.Players.Local
-							
-							Player.Character.HumanoidRootPart.CFrame = CFrame.new(v.Platform.Position.X, v.Platform.Position.Y+3, v.Platform.Position.Z)
+							game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(v.Platform.Position.X, v.Platform.Position.Y+3, v.Platform.Position.Z)
 							task.wait(1)							
 							for b,z in next, getconnections(button) do
 								z.Function()
