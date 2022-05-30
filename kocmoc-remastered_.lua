@@ -3022,7 +3022,7 @@ function CheckPlayers()
 			k.Parent:Destroy()
 		end
 	end
-	temptable.cache.disableinrange = false
+	--temptable.cache.disableinrange = false
 	for i,v in next, playerschanged do
 		if not api.tablefind(kocmoc.wlplayers, v) then
 			temptable.cache.disableinrange = true
@@ -3035,10 +3035,11 @@ function CheckPlayers()
 					else
 						local oplayer = tablefind(temptable.oplayers, k.Name)
 						if oplayer ~= nil and oplayer == k.Name then
-							if temptable.oplayers[k.Name] ~= playerpos.magnitude then
-								temptable.oplayers[k.Name] = playerpos.magnitude
-							else
+							if temptable.oplayers[k.Name] == playerpos.magnitude then
 								temptable.cache.disableinrange = false
+							else
+								temptable.oplayers[k.Name] = playerpos.magnitude
+								temptable.cache.disableinrange = true
 							end
 						end
 					end
