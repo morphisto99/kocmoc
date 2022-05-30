@@ -2922,7 +2922,6 @@ task.spawn(function()
 						if kocmoc.toggles.autosprinkler then makesprinklers() end
 						
 						local sblvl = v.Name:gsub("%D+", "")
-						print('Strick Bug level is: ' .. sblvl)
 						if tonumber(sblvl) > 6 then 
 							local buffs = fetchBuffTable(buffTable)
 							if not tablefind(buffs, "Oil") then
@@ -3105,28 +3104,12 @@ function KillTest3()
 		--print('Flowers:' .. v.Name)
 	--end
 	
-	
-	
-	--[[
-	temptable.oplayers["testing123"] = 411.123312313
-	temptable.oplayers["testing321"] = 301.222222222
 	for i,v in pairs(temptable.oplayers) do
 		print(i,v)
 		--local splitPlayer = string.split(v,",")
 		--print(splitPlayer[1] .. ':' .. splitPlayer[2])
 	end
 
-	
-	
-	local oplayer3 = tablefind(temptable.oplayers, "testing321")
-	if oplayer3 ~= nil then
-		print('oplayer3=' .. oplayer3)
-		if oplayer3 == "testing321" then
-			print("Player3 found!")
-			print(temptable.oplayers["testing321"])
-		end
-	end
-	]]--
 	--[[
 	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC:GetDescendants()) do
 		print(v.Name)
@@ -3141,19 +3124,24 @@ function KillTest3()
 		end		
 	end
 	]]--
+	for i,v in pairs(game:GetService("StarterGui").LocalPlayer.PlayerGui.ScreenGui.NPC:GetDescendants()) do
+		print(v.Name)
+		if v.Name == "Option1" then
+			print(v.Text)
+		end
+		if v.Name == "Option2" then
+			print(v.Text)
+		end
+		if v.Name == "Option3" then
+			print(v.Text)
+		end		
+	end	
+	
+	
 	print("Before")
 	local sbReady = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:FindFirstChild("Option1").Text
 	print('sbReady=' .. sbReady)
-	
-	print("Fire Stick bug Free Challenge")
-	local event = game.ReplicatedStorage.Events:FindFirstChild("SelectNPCOption")
-	if event then
-		event:FireServer("StartFreeStickBugEvent")
-	end
-	print("after")
-	local sbReady = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:FindFirstChild("Option1").Text
-	print('sbReady=' .. sbReady)
-	
+
 	--[[
 	if string.find(sbReady, "Use free entry to start") then
 		print("Stick Bug is ready")
