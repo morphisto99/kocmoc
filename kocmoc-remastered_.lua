@@ -3147,7 +3147,7 @@ function KillTest3()
 	end
 	]]--
 	
-	local oplayer3 = tablefind2(temptable.oplayers, "testing321")
+	local oplayer3 = tablefind(temptable.oplayers, "testing321")
 	if oplayer3 ~= nil then
 		print('oplayer3=' .. oplayer3)
 		if oplayer3 == "testing321" then
