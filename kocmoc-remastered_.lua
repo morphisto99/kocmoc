@@ -3120,7 +3120,9 @@ function KillTest3()
 	
 	temptable.oplayers["testing123"] = 411.123312313
 	temptable.oplayers["testing321"] = 301.222222222
-	if api.tablefind(temptable.oplayers, "testing321") == "testing321" then
+	local oplayer = api.tablefind(temptable.oplayers, "testing321")
+	print(oplayer)
+	if oplayer == "testing321" then
 		print("Player found!")		
 	end
 	--[[
