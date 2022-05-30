@@ -906,6 +906,7 @@ function checkquestcooldown()
 			game.ReplicatedStorage.Events.ToyEvent:FireServer("Honeystorm")
 			enableall()
 		end
+		--[[
 		disableall()
 		-- Check Stickbug cooldown
 		for i,v in next, game:GetService("Workspace").NPCs:GetChildren() do
@@ -941,6 +942,7 @@ function checkquestcooldown()
 		end
 		enableall()
 		-- Check Stickbug cooldown
+		]]--
 	end
 end
 -- Morphisto
@@ -3128,7 +3130,7 @@ function KillTest3()
 
 	local oplayer1 = api.tablefind(temptable.oplayers, "testing321")
 	if oplayer1 ~= nil then
-		print('oplayer1' .. oplayer1)
+		print('oplayer1=' .. oplayer1)
 		if oplayer1 == "testing321" then
 			print("Player1 found!")		
 		end
@@ -3136,15 +3138,15 @@ function KillTest3()
 
 	local oplayer2 = table.find(temptable.oplayers, "testing321")
 	if oplayer2 ~= nil then
-		print('oplayer2' .. oplayer2)
+		print('oplayer2=' .. oplayer2)
 		if oplayer2 == "testing321" then
 			print("Player2 found!")		
 		end
 	end
 	
-	local oplayer3 = tablefind(temptable.oplayers, "testing321")
+	local oplayer3 = tablefind2(temptable.oplayers, "testing321")
 	if oplayer3 ~= nil then
-		print('oplayer3' .. oplayer3)
+		print('oplayer3=' .. oplayer3)
 		if oplayer3 == "testing321" then
 			print("Player3 found!")		
 		end
@@ -3486,6 +3488,14 @@ function tablefind(tt, va)
 	for i,v in pairs(tt) do
 		if i == va then
 			return i
+		end
+	end
+end
+
+function tablefind2(tt, va)
+	for i,v in pairs(tt) do
+		if i == va then
+			return i,v
 		end
 	end
 end
