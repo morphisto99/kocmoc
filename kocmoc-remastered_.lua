@@ -3127,17 +3127,28 @@ function KillTest3()
 	end
 
 	local oplayer1 = api.tablefind(temptable.oplayers, "testing321")
-	print('oplayer1' .. oplayer1)
-	if oplayer1 == "testing321" then
-		print("Player1 found!")		
+	if oplayer1 ~= nil then
+		print('oplayer1' .. oplayer1)
+		if oplayer1 == "testing321" then
+			print("Player1 found!")		
+		end
 	end
 
 	local oplayer2 = table.find(temptable.oplayers, "testing321")
-	print('oplayer2' .. oplayer2)
-	if oplayer2 == "testing321" then
-		print("Player2 found!")		
+	if oplayer2 ~= nil then
+		print('oplayer2' .. oplayer2)
+		if oplayer2 == "testing321" then
+			print("Player2 found!")		
+		end
 	end
-
+	
+	local oplayer3 = tablefind(temptable.oplayers, "testing321")
+	if oplayer3 ~= nil then
+		print('oplayer3' .. oplayer3)
+		if oplayer3 == "testing321" then
+			print("Player3 found!")		
+		end
+	end
 	
 	--[[
 	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC:GetDescendants()) do
@@ -3268,6 +3279,7 @@ function KillTest2()
 		print("Stick Bug is not ready")
 	end
 	
+
 	
 	--[[
 	task.wait(1)
