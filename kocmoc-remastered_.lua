@@ -3124,7 +3124,7 @@ function KillTest3()
 		end		
 	end
 	]]--
-	for i,v in pairs(game:GetService("StarterGui").LocalPlayer.PlayerGui.ScreenGui.NPC:GetDescendants()) do
+	for i,v in pairs(game:GetService("StarterGui").Players.LocalPlayer.PlayerGui.ScreenGui.NPC:GetDescendants()) do
 		print(v.Name)
 		if v.Name == "Option1" then
 			print(v.Text)
