@@ -3120,18 +3120,25 @@ function KillTest3()
 	
 	temptable.oplayers["testing123"] = 411.123312313
 	temptable.oplayers["testing321"] = 301.222222222
-	local oplayer = api.tablefind(temptable.oplayers, "testing321")
-	print(oplayer)
-	if oplayer == "testing321" then
-		print("Player found!")		
-	end
-	--[[
 	for i,v in pairs(temptable.oplayers) do
 		print(i,v)
 		--local splitPlayer = string.split(v,",")
 		--print(splitPlayer[1] .. ':' .. splitPlayer[2])
 	end
-	]]--
+
+	local oplayer1 = api.tablefind(temptable.oplayers, "testing321")
+	print('oplayer1' .. oplayer1)
+	if oplayer1 == "testing321" then
+		print("Player1 found!")		
+	end
+
+	local oplayer2 = table.find(temptable.oplayers, "testing321")
+	print('oplayer2' .. oplayer2)
+	if oplayer2 == "testing321" then
+		print("Player2 found!")		
+	end
+
+	
 	--[[
 	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC:GetDescendants()) do
 		print(v.Name)
