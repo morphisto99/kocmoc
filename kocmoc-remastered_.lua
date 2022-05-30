@@ -3034,34 +3034,20 @@ function CheckPlayers()
 					if next(temptable.oplayers) == nil then
 						temptable.oplayers[k.Name] = playerpos.magnitude
 					else
-						
-						--if api.tablefind(temptable.oplayers, k.Name) then
-							--local oplayername = api.tablefind(temptable.oplayers, k.Name)
-							
-						--end
-						--local magvalue = table.find(temptable.oplayers, k.Name)
-						
-						--[[
-						for l,m in pairs(temptable.oplayers) do
-							if l == k.Name then
-								if m ~= playerpos.magnitude then
-									temptable.oplayers[k.Name] = playerpos.magnitude
-									break
-								end
-							else
+						local oplayer = tablefind(temptable.oplayers, k.Name)
+						if oplayer ~= nil and oplayer == k.Name then
+							if temptable.oplayers[k.Name] ~= playerpos.magnitude then
 								temptable.oplayers[k.Name] = playerpos.magnitude
-								break
+							else
+								temptable.cache.disableinrange = false
 							end
 						end
-						]]--
 					end
 					break
 				end
 			end
-			
 			if playerpos ~= nil then
 				if (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 150 then
-					
 					uiwlplayers:CreateButton('This player ' .. v .. ' is in range', function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v).HumanoidRootPart.CFrame end)
 				end
 			end
