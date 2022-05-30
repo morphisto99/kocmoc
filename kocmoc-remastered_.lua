@@ -319,6 +319,7 @@ antpart.CanCollide = false
 -- config
 
 quest_time = time() -- Morphisto
+stickbug_time = time() -- Morphisto
 
 getgenv().kocmoc = {
     rares = {},
@@ -906,9 +907,15 @@ function checkquestcooldown()
 			game.ReplicatedStorage.Events.ToyEvent:FireServer("Honeystorm")
 			enableall()
 		end
-		--[[
-		disableall()
-		-- Check Stickbug cooldown
+		checksbcooldown() -- Morphisto check Stick Bug cooldown
+	end
+end
+-- Morphisto
+-- Morphisto
+function checksbcooldown()
+	local cooldown = time() - tonumber(stickbug_time)
+	--1800 sec is 30mins
+	if cooldown > 1800 and not temptable.started.vicious and not temptable.started.windy then
 		for i,v in next, game:GetService("Workspace").NPCs:GetChildren() do
 			if v.Name == "Stick Bug" then
 				if v:FindFirstChild("Platform") then
@@ -940,9 +947,7 @@ function checkquestcooldown()
 		else
 			temptable.sbready = false
 		end
-		enableall()
-		-- Check Stickbug cooldown
-		]]--
+		stickbug_time = time()
 	end
 end
 -- Morphisto
@@ -3125,19 +3130,6 @@ function KillTest3()
 		end		
 	end
 	]]--
-	for i,v in pairs(game:GetService("StarterGui").Players.LocalPlayer.PlayerGui.ScreenGui.NPC:GetDescendants()) do
-		print(v.Name)
-		if v.Name == "Option1" then
-			print(v.Text)
-		end
-		if v.Name == "Option2" then
-			print(v.Text)
-		end
-		if v.Name == "Option3" then
-			print(v.Text)
-		end		
-	end	
-	
 	
 	print("Before")
 	local sbReady = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:FindFirstChild("Option1").Text
