@@ -3104,8 +3104,10 @@ function KillTest3()
 	--for i,v in pairs(game:GetService("Workspace").Flowers:GetChildren()) do
 		--print('Flowers:' .. v.Name)
 	--end
-	print("Test3")
 	
+	
+	
+	--[[
 	temptable.oplayers["testing123"] = 411.123312313
 	temptable.oplayers["testing321"] = 301.222222222
 	for i,v in pairs(temptable.oplayers) do
@@ -3114,24 +3116,7 @@ function KillTest3()
 		--print(splitPlayer[1] .. ':' .. splitPlayer[2])
 	end
 
-	local oplayer1 = api.tablefind(temptable.oplayers, "testing321")
-	if oplayer1 ~= nil then
-		print('oplayer1=' .. oplayer1)
-		if oplayer1 == "testing321" then
-			print("Player1 found!")		
-		end
-	end
-
-	--[[
-	local oplayer2 = tablefind(temptable.oplayers, "testing321")
-	if oplayer2 ~= nil then
-		print('oplayer2=' .. oplayer2)
-		print('oplayer2.1=' .. oplayer2["testing321"])
-		if oplayer2 == "testing321" then
-			print("Player2 found!")		
-		end
-	end
-	]]--
+	
 	
 	local oplayer3 = tablefind(temptable.oplayers, "testing321")
 	if oplayer3 ~= nil then
@@ -3141,7 +3126,7 @@ function KillTest3()
 			print(temptable.oplayers["testing321"])
 		end
 	end
-	
+	]]--
 	--[[
 	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC:GetDescendants()) do
 		print(v.Name)
@@ -3156,16 +3141,29 @@ function KillTest3()
 		end		
 	end
 	]]--
-	--[[
+	print("Before")
 	local sbReady = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:FindFirstChild("Option1").Text
+	print('sbReady=' .. sbReady)
+	
+	print("Fire Stick bug Free Challenge")
+	local event = game.ReplicatedStorage.Events:FindFirstChild("SelectNPCOption")
+	if event then
+		event:FireServer("StartFreeStickBugEvent")
+	end
+	print("after")
+	local sbReady = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:FindFirstChild("Option1").Text
+	print('sbReady=' .. sbReady)
+	
+	--[[
 	if string.find(sbReady, "Use free entry to start") then
 		print("Stick Bug is ready")
 	end
 	if string.find(sbReady, "Use free challenge entry") then
 		print("Stick Bug is not ready")
 	end
-	print("Test3.1")
 	]]--
+	print("Test3.1")
+
 	--[[
 	print("Test3.2")
 	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:GetChildren()) do	
