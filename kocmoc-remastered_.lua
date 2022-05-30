@@ -3048,7 +3048,7 @@ function CheckPlayers()
 							end
 						end
 					end
-					break
+					--break
 				end
 			end
 			if playerpos ~= nil then
