@@ -3150,9 +3150,9 @@ function KillTest3()
 	local oplayer3 = tablefind2(temptable.oplayers, "testing321")
 	if oplayer3 ~= nil then
 		print('oplayer3=' .. oplayer3)
-		print('oplayer3=' .. oplayer3["testing321"])
 		if oplayer3 == "testing321" then
-			print("Player3 found!")		
+			print("Player3 found!")
+			print(temptable.oplayers["testing321"])
 		end
 	end
 	
@@ -3499,7 +3499,7 @@ end
 function tablefind2(tt, va)
 	for i,v in pairs(tt) do
 		if i == va then
-			return i,v
+			return i
 		end
 	end
 end
