@@ -3136,9 +3136,10 @@ function KillTest3()
 		end
 	end
 
-	local oplayer2 = table.find(temptable.oplayers, "testing321")
+	local oplayer2 = tablefind(temptable.oplayers, "testing321")
 	if oplayer2 ~= nil then
 		print('oplayer2=' .. oplayer2)
+		print('oplayer2.1=' .. oplayer2["testing321"])
 		if oplayer2 == "testing321" then
 			print("Player2 found!")		
 		end
@@ -3147,6 +3148,7 @@ function KillTest3()
 	local oplayer3 = tablefind2(temptable.oplayers, "testing321")
 	if oplayer3 ~= nil then
 		print('oplayer3=' .. oplayer3)
+		print('oplayer3=' .. oplayer3["testing321"])
 		if oplayer3 == "testing321" then
 			print("Player3 found!")		
 		end
