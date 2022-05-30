@@ -3028,27 +3028,27 @@ function CheckPlayers()
 		end
 	end
 	--temptable.cache.disableinrange = false
-	for i,v in next, playerschanged do
+	for i,v in next, temptable.players do
 		if not api.tablefind(kocmoc.wlplayers, v) then
 			temptable.cache.disableinrange = true
 			local playerpos
 			for j,k in pairs(game:GetService("Workspace"):GetChildren()) do
 				if k.Name == v then
-					playerpos = game.Workspace:FindFirstChild(k.Name).HumanoidRootPart.Position		
+					playerpos = game.Workspace:FindFirstChild(v).HumanoidRootPart.Position		
 					if next(temptable.oplayers) == nil then
-						temptable.oplayers[k.Name] = playerpos.magnitude
+						temptable.oplayers[v] = playerpos.magnitude
 					else
-						local oplayer = tablefind(temptable.oplayers, k.Name)
-						if oplayer ~= nil and oplayer == k.Name then
-							if temptable.oplayers[k.Name] == playerpos.magnitude then
+						local oplayer = tablefind(temptable.oplayers, v)
+						if oplayer ~= nil and oplayer == v then
+							if temptable.oplayers[v] == playerpos.magnitude then
 								temptable.cache.disableinrange = false
 							else
-								temptable.oplayers[k.Name] = playerpos.magnitude
+								temptable.oplayers[v] = playerpos.magnitude
 								temptable.cache.disableinrange = true
 							end
 						end
 					end
-					--break
+					break
 				end
 			end
 			if playerpos ~= nil then
@@ -3110,6 +3110,8 @@ function KillTest3()
 		--print('Flowers:' .. v.Name)
 	--end
 	
+	temptable.oplayers["test1"] = 123.123
+	temptable.oplayers["test2"] = 321.321
 	for i,v in pairs(temptable.oplayers) do
 		print(i,v)
 		--local splitPlayer = string.split(v,",")
