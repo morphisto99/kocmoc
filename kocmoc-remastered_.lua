@@ -3046,13 +3046,13 @@ function CheckPlayers()
 						--print('find if ' .. v .. ' in temptable.oplayers')
 						if oplayer ~= nil and oplayer == v then
 							--print(v .. ' is found in temptable.oplayers')
-							if temptable.oplayers[v] == playerpos.magnitude then
+							if temptable.oplayers[v] ~= playerpos.magnitude then
 								--print('testing for magnitude1')
-								temptable.cache.disableinrange = false
-							else
-								--print('testing for magnitude2')
 								temptable.oplayers[v] = playerpos.magnitude
 								temptable.cache.disableinrange = true
+							else
+								--print('testing for magnitude2')
+								--temptable.cache.disableinrange = false
 							end
 						else
 							temptable.oplayers[v] = playerpos.magnitude
@@ -3120,8 +3120,8 @@ function KillTest3()
 		--print('Flowers:' .. v.Name)
 	--end
 	
-	temptable.oplayers["test1"] = 123.123
-	temptable.oplayers["test2"] = 321.321
+	--temptable.oplayers["test1"] = 123.123
+	--temptable.oplayers["test2"] = 321.321
 	for i,v in pairs(temptable.oplayers) do
 		print(i,v)
 		--local splitPlayer = string.split(v,",")
