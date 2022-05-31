@@ -3031,7 +3031,7 @@ function CheckPlayers()
 	for i,v in next, playerschanged do
 		--print('player=' .. v)
 		if not api.tablefind(kocmoc.wlplayers, v) then
-			--temptable.cache.disableinrange = true
+			temptable.cache.disableinrange = true
 			local playerpos
 			--print('oplayer=' .. v)
 			for j,k in pairs(game:GetService("Workspace"):GetChildren()) do
@@ -3066,6 +3066,8 @@ function CheckPlayers()
 					uiwlplayers:CreateButton('This player ' .. v .. ' is in range', function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v).HumanoidRootPart.CFrame end)
 				end
 			end
+		else
+			temptable.cache.disableinrange = false
 		end
 	end
 		
