@@ -2897,7 +2897,7 @@ task.spawn(function()
 						api.humanoidrootpart().CFrame = CFrame.new(243.895538, 4.3493037, 320.418457)
 						task.wait(5)
 					end
-					disableall()
+					--disableall()
 				end
 				
 				for i,v in pairs(workspace.Monsters:GetChildren()) do
@@ -3034,7 +3034,7 @@ function CheckPlayers()
 			local playerpos
 			for j,k in pairs(game:GetService("Workspace"):GetChildren()) do
 				if k.Name == v then
-					playerpos = game.Workspace:FindFirstChild(v).HumanoidRootPart.Position		
+					playerpos = game.Workspace:FindFirstChild(v).HumanoidRootPart.Position
 					if next(temptable.oplayers) == nil then
 						temptable.oplayers[v] = playerpos.magnitude
 					else
