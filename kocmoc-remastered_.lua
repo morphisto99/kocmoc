@@ -2897,7 +2897,7 @@ task.spawn(function()
 						api.humanoidrootpart().CFrame = CFrame.new(243.895538, 4.3493037, 320.418457)
 						task.wait(5)
 					end
-					--disableall()
+					disableall()
 				end
 				
 				for i,v in pairs(workspace.Monsters:GetChildren()) do
@@ -3028,21 +3028,29 @@ function CheckPlayers()
 		end
 	end
 	--temptable.cache.disableinrange = false
-	for i,v in next, temptable.players do
+	for i,v in next, playerschanged do
+		print('player=' .. v)
 		if not api.tablefind(kocmoc.wlplayers, v) then
 			temptable.cache.disableinrange = true
 			local playerpos
+			print('oplayer=' .. v)
 			for j,k in pairs(game:GetService("Workspace"):GetChildren()) do
 				if k.Name == v then
+					print(k.Name .. '=' .. v)
 					playerpos = game.Workspace:FindFirstChild(v).HumanoidRootPart.Position
 					if next(temptable.oplayers) == nil then
+						print('Add oplayer first time')
 						temptable.oplayers[v] = playerpos.magnitude
 					else
 						local oplayer = tablefind(temptable.oplayers, v)
+						print('find if ' .. v .. ' in temptable.oplayers')
 						if oplayer ~= nil and oplayer == v then
+							print(v .. ' is found in temptable.oplayers')
 							if temptable.oplayers[v] == playerpos.magnitude then
+								print('testing for magnitude1')
 								temptable.cache.disableinrange = false
 							else
+								print('testing for magnitude2')
 								temptable.oplayers[v] = playerpos.magnitude
 								temptable.cache.disableinrange = true
 							end
