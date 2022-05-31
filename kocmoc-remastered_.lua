@@ -3031,7 +3031,7 @@ function CheckPlayers()
 	for i,v in next, playerschanged do
 		--print('player=' .. v)
 		if not api.tablefind(kocmoc.wlplayers, v) then
-			temptable.cache.disableinrange = true
+			--temptable.cache.disableinrange = true
 			local playerpos
 			--print('oplayer=' .. v)
 			for j,k in pairs(game:GetService("Workspace"):GetChildren()) do
