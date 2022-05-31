@@ -3029,31 +3029,33 @@ function CheckPlayers()
 	end
 	--temptable.cache.disableinrange = false
 	for i,v in next, playerschanged do
-		print('player=' .. v)
+		--print('player=' .. v)
 		if not api.tablefind(kocmoc.wlplayers, v) then
 			temptable.cache.disableinrange = true
 			local playerpos
-			print('oplayer=' .. v)
+			--print('oplayer=' .. v)
 			for j,k in pairs(game:GetService("Workspace"):GetChildren()) do
 				if k.Name == v then
-					print(k.Name .. '=' .. v)
+					--print(k.Name .. '=' .. v)
 					playerpos = game.Workspace:FindFirstChild(v).HumanoidRootPart.Position
 					if next(temptable.oplayers) == nil then
-						print('Add oplayer first time')
+						--print('Add oplayer first time')
 						temptable.oplayers[v] = playerpos.magnitude
 					else
 						local oplayer = tablefind(temptable.oplayers, v)
-						print('find if ' .. v .. ' in temptable.oplayers')
+						--print('find if ' .. v .. ' in temptable.oplayers')
 						if oplayer ~= nil and oplayer == v then
-							print(v .. ' is found in temptable.oplayers')
+							--print(v .. ' is found in temptable.oplayers')
 							if temptable.oplayers[v] == playerpos.magnitude then
-								print('testing for magnitude1')
+								--print('testing for magnitude1')
 								temptable.cache.disableinrange = false
 							else
-								print('testing for magnitude2')
+								--print('testing for magnitude2')
 								temptable.oplayers[v] = playerpos.magnitude
 								temptable.cache.disableinrange = true
 							end
+						else
+							temptable.oplayers[v] = playerpos.magnitude
 						end
 					end
 					break
