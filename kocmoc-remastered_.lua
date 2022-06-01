@@ -3115,6 +3115,26 @@ function KillTest4()
 	print('End')
 end
 
+-- Return a key with the given value (or nil if not found).  If there are
+-- multiple keys with that value, the particular key returned is arbitrary.
+function keyOf(tbl, value)
+    for k, v in pairs(tbl) do
+        if v == value then
+            return k
+        end
+    end
+    return nil
+end
+
+--print(keyOf({ a = 1, b = 2 }, 2))  -- 'b'
+
+function table.removekey(table, key)
+    local element = table[key]
+    table[key] = nil
+    return element
+end
+
+
 function KillTest3()
 	print(' ')
 	print('Begin')
@@ -3122,15 +3142,17 @@ function KillTest3()
 	--for i,v in pairs(game:GetService("Workspace").Flowers:GetChildren()) do
 		--print('Flowers:' .. v.Name)
 	--end
-
+	
 	-- remove non existing other players from temptable.oplayers
-	for i,v in ipairs(temptable.oplayers) do
-		print(i,v)
-		if not api.tablefind(playerschanged, v) then
-			table.remove(temptable.oplayers, i)
+
+	for key,value in pairs(temptable.oplayers) do
+		print(key,value)
+		if not api.tablefind(playerschanged, key) then
+			print(key .. ' has been removed from temptable.oplayers')
+			table.removekey(temptable.oplayers, key)
 		end
 	end
-	
+
 	print('Begin2')
 	--temptable.oplayers["test1"] = 123.123
 	--temptable.oplayers["test2"] = 321.321
@@ -3492,7 +3514,10 @@ function tablefind2(tt, va)
 		end
 	end
 end
-	
+
+
+
+
 function fetchVisualPuffshroomString(v)
     local puffText = nil
 	if v:FindFirstChild("Attachment") then
