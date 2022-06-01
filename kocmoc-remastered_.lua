@@ -3070,12 +3070,7 @@ function CheckPlayers()
 			temptable.cache.disableinrange = false
 		end
 	end
-	-- remove non existing other players from temptable.oplayers
-	for i,v in ipairs(temptable.oplayers) do
-		if not api.tablefind(playerschanged, v) then
-			table.remove(temptable.oplayers, i)
-		end
-	end
+
 	
 	if temptable.cache.disableinrange then -- disable when other players in range
 		if kocmoc.toggles.killwindy then
@@ -3127,7 +3122,16 @@ function KillTest3()
 	--for i,v in pairs(game:GetService("Workspace").Flowers:GetChildren()) do
 		--print('Flowers:' .. v.Name)
 	--end
+
+	-- remove non existing other players from temptable.oplayers
+	for i,v in ipairs(temptable.oplayers) do
+		print(i,v)
+		if not api.tablefind(playerschanged, v) then
+			table.remove(temptable.oplayers, i)
+		end
+	end
 	
+	print('Begin2')
 	--temptable.oplayers["test1"] = 123.123
 	--temptable.oplayers["test2"] = 321.321
 	for i,v in pairs(temptable.oplayers) do
