@@ -3116,7 +3116,7 @@ function KillTest4()
 end
 
 
-function table.removekey(table, key)
+function tableremovekey(table, key)
    local element = table[key]
    table[key] = nil
    return element
