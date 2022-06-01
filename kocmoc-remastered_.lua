@@ -3123,7 +3123,16 @@ function KillTest3()
 	print(' ')
 	print('Begin')
 
-
+	local map = { foo = 1, bar = 2 , car = 3}
+	for i,v in pairs(map) do print(i,v) end
+	tableremovekey(map,'bar')
+	for i,v in pairs(map) do print(i,v) end
+	
+	print('Begin1')
+	local map2 = { "foo" = 1, "bar" = 2 , "car" = 3}
+	for i,v in pairs(map2) do print(i,v) end
+	tableremovekey(map2,'bar')
+	for i,v in pairs(map2) do print(i,v) end
 	--for i,v in pairs(game:GetService("Workspace").Flowers:GetChildren()) do
 		--print('Flowers:' .. v.Name)
 	--end
@@ -3141,23 +3150,13 @@ function KillTest3()
 	]]--
 	
 	print('Begin2')
-	temptable.oplayers["test1"] = 123.123
-	temptable.oplayers["test2"] = 321.321
+	--temptable.oplayers["test1"] = 123.123
+	--temptable.oplayers["test2"] = 321.321
 	for i,v in pairs(temptable.oplayers) do
 		print(i,v)
+		--local splitPlayer = string.split(v,",")
+		--print(splitPlayer[1] .. ':' .. splitPlayer[2])
 	end
-
-	function tableremovekey(tbl, key)
-	   local element = tbl[key]
-	   tbl[key] = nil
-	   return element
-	end
-
-	tableremovekey(temptable.oplayers, "test2")
-	for i,v in pairs(temptable.oplayers) do
-		print(i,v)
-	end
-	
 
 	--[[
 	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC:GetDescendants()) do
@@ -3510,6 +3509,12 @@ function tablefind2(tt, va)
 			return i
 		end
 	end
+end
+
+function tableremovekey(tbl, key)
+   local element = tbl[key]
+   tbl[key] = nil
+   return element
 end
 
 
