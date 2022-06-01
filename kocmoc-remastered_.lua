@@ -3072,7 +3072,6 @@ function CheckPlayers()
 	end
 	-- remove non existing other players from temptable.oplayers
 	for i,v in ipairs(temptable.oplayers) do
-		print(i,v)
 		if not api.tablefind(playerschanged, v) then
 			table.remove(temptable.oplayers, i)
 		end
