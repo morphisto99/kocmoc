@@ -3128,11 +3128,6 @@ function KillTest3()
 	tableremovekey(map,'bar')
 	for i,v in pairs(map) do print(i,v) end
 	
-	print('Begin1')
-	local map2 = { "foo" = 1, "bar" = 2 , "car" = 3}
-	for i,v in pairs(map2) do print(i,v) end
-	tableremovekey(map2,'bar')
-	for i,v in pairs(map2) do print(i,v) end
 	--for i,v in pairs(game:GetService("Workspace").Flowers:GetChildren()) do
 		--print('Flowers:' .. v.Name)
 	--end
