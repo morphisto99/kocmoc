@@ -3116,18 +3116,23 @@ function KillTest4()
 end
 
 
-function tableremovekey(table, key)
-   local element = table[key]
-   table[key] = nil
-   return element
-end
+
 
 
 function KillTest3()
 	print(' ')
 	print('Begin')
 
-
+	local map = { foo = 1, bar = 2 , car = 3}
+	for i,v in pairs(map) do print(i,v) end
+	tableremovekey(map,'bar')
+	for i,v in pairs(map) do print(i,v) end
+	
+	print('Begin1')
+	local map2 = { "foo" = 1, "bar" = 2 , "car" = 3}
+	for i,v in pairs(map2) do print(i,v) end
+	tableremovekey(map2,'bar')
+	for i,v in pairs(map2) do print(i,v) end
 	--for i,v in pairs(game:GetService("Workspace").Flowers:GetChildren()) do
 		--print('Flowers:' .. v.Name)
 	--end
@@ -3506,7 +3511,11 @@ function tablefind2(tt, va)
 	end
 end
 
-
+function tableremovekey(tbl, key)
+   local element = tbl[key]
+   tbl[key] = nil
+   return element
+end
 
 
 function fetchVisualPuffshroomString(v)
