@@ -3115,25 +3115,11 @@ function KillTest4()
 	print('End')
 end
 
--- Return a key with the given value (or nil if not found).  If there are
--- multiple keys with that value, the particular key returned is arbitrary.
-function keyOf(tbl, value)
-    for k, v in pairs(tbl) do
-        if v == value then
-            return k
-        end
-    end
-    return nil
-end
-
---print(keyOf({ a = 1, b = 2 }, 2))  -- 'b'
-
 function table.removekey(tbl, key)
     local element = tbl[key]
     tbl[key] = nil
     return element
 end
-
 
 function KillTest3()
 	print(' ')
