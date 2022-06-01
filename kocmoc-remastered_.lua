@@ -3147,7 +3147,13 @@ function KillTest3()
 		print(i,v)
 	end
 
-	tableremovekey(temptable.oplayers,"test2")
+	function tableremovekey(tbl, key)
+	   local element = tbl[key]
+	   tbl[key] = nil
+	   return element
+	end
+
+	tableremovekey(temptable.oplayers, "test2")
 	for i,v in pairs(temptable.oplayers) do
 		print(i,v)
 	end
@@ -3504,12 +3510,6 @@ function tablefind2(tt, va)
 			return i
 		end
 	end
-end
-
-function tableremovekey(tbl, key)
-   local element = tbl[key]
-   tbl[key] = nil
-   return element
 end
 
 
