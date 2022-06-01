@@ -3115,22 +3115,26 @@ function KillTest4()
 	print('End')
 end
 
-function table.removekey(tbl, key)
-    local element = tbl[key]
-    tbl[key] = nil
-    return element
+
+function table.removekey(table, key)
+   local element = table[key]
+   table[key] = nil
+   return element
 end
+
 
 function KillTest3()
 	print(' ')
 	print('Begin')
+
 
 	--for i,v in pairs(game:GetService("Workspace").Flowers:GetChildren()) do
 		--print('Flowers:' .. v.Name)
 	--end
 	
 	-- remove non existing other players from temptable.oplayers
-
+	
+	--[[
 	for key,value in pairs(temptable.oplayers) do
 		print(key,value)
 		if not api.tablefind(playerschanged, key) then
@@ -3138,7 +3142,8 @@ function KillTest3()
 			table.removekey(temptable.oplayers, key)
 		end
 	end
-
+	]]--
+	
 	print('Begin2')
 	--temptable.oplayers["test1"] = 123.123
 	--temptable.oplayers["test2"] = 321.321
