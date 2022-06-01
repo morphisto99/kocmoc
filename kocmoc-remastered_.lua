@@ -3115,31 +3115,22 @@ function KillTest4()
 	print('End')
 end
 
-
-
-
+function table.removekey(tbl, key)
+    local element = tbl[key]
+    tbl[key] = nil
+    return element
+end
 
 function KillTest3()
 	print(' ')
 	print('Begin')
 
-	local map = { foo = 1, bar = 2 , car = 3}
-	for i,v in pairs(map) do print(i,v) end
-	tableremovekey(map,'bar')
-	for i,v in pairs(map) do print(i,v) end
-	
-	print('Begin1')
-	local map2 = { "foo" = 1, "bar" = 2 , "car" = 3}
-	for i,v in pairs(map2) do print(i,v) end
-	tableremovekey(map2,'bar')
-	for i,v in pairs(map2) do print(i,v) end
 	--for i,v in pairs(game:GetService("Workspace").Flowers:GetChildren()) do
 		--print('Flowers:' .. v.Name)
 	--end
 	
 	-- remove non existing other players from temptable.oplayers
-	
-	--[[
+
 	for key,value in pairs(temptable.oplayers) do
 		print(key,value)
 		if not api.tablefind(playerschanged, key) then
@@ -3147,8 +3138,7 @@ function KillTest3()
 			table.removekey(temptable.oplayers, key)
 		end
 	end
-	]]--
-	
+
 	print('Begin2')
 	--temptable.oplayers["test1"] = 123.123
 	--temptable.oplayers["test2"] = 321.321
@@ -3511,11 +3501,7 @@ function tablefind2(tt, va)
 	end
 end
 
-function tableremovekey(tbl, key)
-   local element = tbl[key]
-   tbl[key] = nil
-   return element
-end
+
 
 
 function fetchVisualPuffshroomString(v)
