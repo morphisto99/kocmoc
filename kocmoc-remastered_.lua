@@ -3128,9 +3128,9 @@ end
 
 --print(keyOf({ a = 1, b = 2 }, 2))  -- 'b'
 
-function table.removekey(table, key)
-    local element = table[key]
-    table[key] = nil
+function table.removekey(tbl, key)
+    local element = tbl[key]
+    tbl[key] = nil
     return element
 end
 
