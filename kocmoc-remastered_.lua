@@ -2172,7 +2172,7 @@ task.spawn(function()
 			end
 			for i,v in next, game.workspace.Particles:GetChildren() do
 				for x in string.gmatch(v.Name, "Vicious") do
-                    while kocmoc.toggles.killvicious and temptable.detected.vicious do task.wait() if string.find(v.Name, "Vicious") then
+                    while kocmoc.toggles.killvicious and temptable.detected.vicious and not temptable.cache.disableinrange do task.wait() if string.find(v.Name, "Vicious") then
                         for i=1, 4 do temptable.float = true vichumanoid.CFrame = CFrame.new(v.Position.x+10, v.Position.y, v.Position.z) task.wait(.3)
                         end
                     end end
@@ -3070,7 +3070,13 @@ function CheckPlayers()
 			temptable.cache.disableinrange = false
 		end
 	end
-		
+	-- remove non existing other players from temptable.oplayers
+	for i,v in next, temptable.oplayers do
+		if not api.tablefind(playerschanged, v) then
+			table.remove(temptable.oplayers, i)
+		end
+	end
+	
 	if temptable.cache.disableinrange then -- disable when other players in range
 		if kocmoc.toggles.killwindy then
 			uikillwindy:SetState(false)
