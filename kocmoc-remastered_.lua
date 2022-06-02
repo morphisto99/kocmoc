@@ -3114,7 +3114,9 @@ function KillTest4()
 	print('Begin')
 
 	local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")	
-	firesignal(ScreenGui.NPC.OptionFrame.MouseButton1Click)
+	--firesignal(ScreenGui.NPC.OptionFrame.Option1.MouseButton1Click)
+	local sbReady1 = ScreenGui.NPC.OptionFrame:FindFirstChild("Option1").Text
+	print('sbReady1=' .. sbReady1)
 	task.wait(1)
 	
 	local sbReady = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:FindFirstChild("Option1").Text
