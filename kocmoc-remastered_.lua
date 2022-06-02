@@ -3135,7 +3135,7 @@ function KillTest3()
 
 	for key,value in pairs(temptable.oplayers) do
 		print(key,value)
-		if not api.tablefind(playerschanged, key) then
+		if not tablefind(playerschanged, key) then
 			print(key .. ' has been removed from temptable.oplayers')
 			local element = tableremovekey(temptable.oplayers, key)
 			print('element=' .. element)
