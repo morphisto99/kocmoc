@@ -3113,9 +3113,19 @@ function KillTest4()
 	print(' ')
 	print('Begin')
 
-	for i,v in pairs(temptable.oplayers) do
-		print(i,v)
+	local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")	
+	firesignal(ScreenGui.NPC.OptionFrame.MouseButton1Click)
+	task.wait(1)
+	
+	local sbReady = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:FindFirstChild("Option1").Text
+	print(sbReady)
+	if string.find(sbReady, "Use free entry to start") then
+		print("Stick Bug is ready")
 	end
+	if string.find(sbReady, "Use free challenge entry") then
+		print("Stick Bug is not ready")
+	end
+	
 	print('End')
 end
 
@@ -3292,6 +3302,7 @@ function KillTest2()
 	--end
 
 	local sbReady = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:FindFirstChild("Option1").Text
+	print(sbReady)
 	if string.find(sbReady, "Use free entry to start") then
 		print("Stick Bug is ready")
 	end
