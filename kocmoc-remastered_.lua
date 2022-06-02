@@ -3115,13 +3115,11 @@ function KillTest4()
 	print('End')
 end
 
-
-function tableremovekey(table, key)
-   local element = table[key]
-   table[key] = nil
+function tableremovekey(tbl, key)
+   local element = tbl[key]
+   tbl[key] = nil
    return element
 end
-
 
 function KillTest3()
 	print(' ')
@@ -3134,24 +3132,30 @@ function KillTest3()
 	
 	-- remove non existing other players from temptable.oplayers
 	
-	--[[
+
 	for key,value in pairs(temptable.oplayers) do
 		print(key,value)
 		if not api.tablefind(playerschanged, key) then
 			print(key .. ' has been removed from temptable.oplayers')
-			table.removekey(temptable.oplayers, key)
+			local element = tableremovekey(temptable.oplayers, key)
+			print('element=' .. element)
 		end
 	end
-	]]--
 	
+	--[[
 	print('Begin2')
-	--temptable.oplayers["test1"] = 123.123
-	--temptable.oplayers["test2"] = 321.321
+	temptable.oplayers["test1"] = 123.123
+	temptable.oplayers["test2"] = 321.321
 	for i,v in pairs(temptable.oplayers) do
 		print(i,v)
-		--local splitPlayer = string.split(v,",")
-		--print(splitPlayer[1] .. ':' .. splitPlayer[2])
 	end
+
+
+	tableremovekey(temptable.oplayers, "test2")
+	for i,v in pairs(temptable.oplayers) do
+		print(i,v)
+	end
+	]]--
 
 	--[[
 	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC:GetDescendants()) do
@@ -3505,8 +3509,6 @@ function tablefind2(tt, va)
 		end
 	end
 end
-
-
 
 
 function fetchVisualPuffshroomString(v)
