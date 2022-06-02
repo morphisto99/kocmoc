@@ -2215,7 +2215,7 @@ task.spawn(function() while task.wait() do
 				task.wait(1)
 				awb = true
 			end
-            if awb and temptable.windy.Name == "Windy" then
+            if awb and temptable.windy.Name ~= nil and temptable.windy.Name == "Windy" then -- Sometimes bugs out/crash - need to fix - attempt to index nil with Name
                 api.humanoidrootpart().CFrame = temptable.gacf(temptable.windy, 25) temptable.float = true task.wait()
             end
         end 
@@ -2874,8 +2874,9 @@ task.spawn(function()
 				print('Stick Bug Chellenge has finished ' .. sbTimer)
 				game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("TimeValue").Text = "10:00"
 				if temptable.started.stickbug then
-					print('Inside of sbTimer = 10:00')
+					enableall()
 					temptable.started.stickbug = false
+					print('Inside of sbTimer = 10:00')
 					if kocmoc.toggles.godmode then
 						print('disabling godmode')
 						kocmoc.toggles.godmode = false
@@ -2883,21 +2884,22 @@ task.spawn(function()
 						bssapi:Godmode(false)
 					end
 				end
-				enableall()
+				
 			elseif sbTimer ~= "10:00" then
 				if not temptable.started.stickbug then
-					print("test stickbug1")
 					temptable.started.stickbug = true
+					disableall()
+					print("test stickbug1")
 					if not kocmoc.toggles.godmode then
 						print("test stickbug2")
+						bssapi:Godmode(true)
 						kocmoc.toggles.godmode = true
 						uigodmode:SetState(true)
-						bssapi:Godmode(true)
-						task.wait(1)
+						task.wait(2)
 						api.humanoidrootpart().CFrame = CFrame.new(243.895538, 4.3493037, 320.418457)
-						task.wait(5)
+						task.wait(1)
 					end
-					disableall()
+					
 				end
 				
 				for i,v in pairs(workspace.Monsters:GetChildren()) do
@@ -3071,6 +3073,11 @@ function CheckPlayers()
 		end
 	end
 
+	for key,value in pairs(temptable.oplayers) do
+		if not tablefind(playerschanged, key) then
+			tableremovekey(temptable.oplayers, key)
+		end
+	end
 	
 	if temptable.cache.disableinrange then -- disable when other players in range
 		if kocmoc.toggles.killwindy then
@@ -3278,6 +3285,11 @@ function KillTest2()
 	local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")	
 	firesignal(ScreenGui.NPC.OptionFrame.Option3.MouseButton1Click)
 	task.wait(1)
+
+	local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")	
+	firesignal(ScreenGui.NPC.OptionFrame.Option3.MouseButton1Click)
+	task.wait(1)
+	
 
 	local sbReady = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:FindFirstChild("Option1").Text
 	if string.find(sbReady, "Use free entry to start") then
