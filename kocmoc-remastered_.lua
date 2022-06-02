@@ -3286,10 +3286,10 @@ function KillTest2()
 	firesignal(ScreenGui.NPC.OptionFrame.Option3.MouseButton1Click)
 	task.wait(1)
 
-	local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")	
-	firesignal(ScreenGui.NPC.OptionFrame.Option3.MouseButton1Click)
-	task.wait(1)
-	
+    --if kocmoc.toggles.autoquest then
+	local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")
+	firesignal(ScreenGui.NPC.ButtonOverlay.MouseButton1Click)
+	--end
 
 	local sbReady = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:FindFirstChild("Option1").Text
 	if string.find(sbReady, "Use free entry to start") then
