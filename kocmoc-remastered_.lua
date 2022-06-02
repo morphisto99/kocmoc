@@ -3106,11 +3106,8 @@ function KillTest4()
 	print(' ')
 	print('Begin')
 
-	local sbReady = game:GetService("Workspace").NPCs["Stick Bug"].Available
-	if sbReady then
-		print("Stick Bug is Ready")
-	else
-		print("Stick Bug is not Ready")
+	for i,v in pairs(temptable.oplayers) do
+		print(i,v)
 	end
 	print('End')
 end
@@ -3137,20 +3134,19 @@ function KillTest3()
 		print(key,value)
 		if not tablefind(temptable.players, key) then
 			print(key .. ' has been removed from temptable.oplayers')
-			local element = tableremovekey(temptable.oplayers, key)
-			print('element=' .. element)
+			tableremovekey(temptable.oplayers, key)
 		end
 	end
 	
-	--[[
+	
 	print('Begin2')
-	temptable.oplayers["test1"] = 123.123
-	temptable.oplayers["test2"] = 321.321
+	--temptable.oplayers["test1"] = 123.123
+	--temptable.oplayers["test2"] = 321.321
 	for i,v in pairs(temptable.oplayers) do
 		print(i,v)
 	end
 
-
+	--[[
 	tableremovekey(temptable.oplayers, "test2")
 	for i,v in pairs(temptable.oplayers) do
 		print(i,v)
