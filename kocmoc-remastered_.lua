@@ -3531,15 +3531,6 @@ function tablefind(tt, va)
 	end
 end
 
-function tablefind2(tt, va)
-	for i,v in pairs(tt) do
-		if i == va then
-			return i
-		end
-	end
-end
-
-
 function fetchVisualPuffshroomString(v)
     local puffText = nil
 	if v:FindFirstChild("Attachment") then
