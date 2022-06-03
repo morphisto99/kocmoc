@@ -3305,11 +3305,12 @@ function KillTest2()
 
 	local sbReady = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:FindFirstChild("Option1").Text
 	print(sbReady)
-	if string.find(sbReady, "Use free entry to start") then
+	local sbtime = sbReady:match("%((%a+)%)")
+	print('sbtime=' .. sbtime)
+	if sbReady:match("%((%a+)%)") then
+		print("Stick Bug is not ready. time left:" .. sbtime)
+	else
 		print("Stick Bug is ready")
-	end
-	if string.find(sbReady, "Use free challenge entry") then
-		print("Stick Bug is not ready")
 	end
 	
 
