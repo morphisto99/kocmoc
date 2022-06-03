@@ -916,6 +916,10 @@ function checksbcooldown()
 	local cooldown = time() - tonumber(stickbug_time)
 	--1800 sec is 30mins
 	if cooldown > 1800 and not temptable.started.vicious and not temptable.started.windy then
+		if kocmoc.toggles.autoquest then
+			kocmoc.toggles.autoquest = false
+			uiautoquest:SetState(false)
+		end
 		for i,v in next, game:GetService("Workspace").NPCs:GetChildren() do
 			if v.Name == "Stick Bug" then
 				if v:FindFirstChild("Platform") then
@@ -941,11 +945,18 @@ function checksbcooldown()
 		local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")	
 		firesignal(ScreenGui.NPC.OptionFrame.Option3.MouseButton1Click)
 		task.wait(1)
+		local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")
+		firesignal(ScreenGui.NPC.ButtonOverlay.MouseButton1Click)
+
 		local sbReady = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:FindFirstChild("Option1").Text
-		if string.find(sbReady, "Use free entry to start") then
-			temptable.sbready = true
-		else
+		if string.match(sbReady, "[%d:]+") then
 			temptable.sbready = false
+		else
+			temptable.sbready = true
+		end
+		if not kocmoc.toggles.autoquest then
+			kocmoc.toggles.autoquest = true
+			uiautoquest:SetState(true)
 		end
 		stickbug_time = time()
 	end
@@ -3268,7 +3279,7 @@ function KillTest2()
 	--	local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")
 	--	firesignal(ScreenGui.NPC.ButtonOverlay.MouseButton1Click)
 	--end
-	--[[
+
     for i,v in next, game:GetService("Workspace").NPCs:GetChildren() do
         if v.Name == "Stick Bug" then
 			if v:FindFirstChild("Platform") then
@@ -3291,17 +3302,13 @@ function KillTest2()
 		end
     end
 	
-	print("Test2.1")
-	task.wait(1)
-	]]--
+
 	local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")	
 	firesignal(ScreenGui.NPC.OptionFrame.Option3.MouseButton1Click)
 	task.wait(1)
 
-    --if kocmoc.toggles.autoquest then
 	local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")
 	firesignal(ScreenGui.NPC.ButtonOverlay.MouseButton1Click)
-	--end
 
 	local sbReady = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:FindFirstChild("Option1").Text
 	print(sbReady)
