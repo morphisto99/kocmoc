@@ -3268,7 +3268,7 @@ function KillTest2()
 	--	local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")
 	--	firesignal(ScreenGui.NPC.ButtonOverlay.MouseButton1Click)
 	--end
-	
+	--[[
     for i,v in next, game:GetService("Workspace").NPCs:GetChildren() do
         if v.Name == "Stick Bug" then
 			if v:FindFirstChild("Platform") then
@@ -3293,7 +3293,7 @@ function KillTest2()
 	
 	print("Test2.1")
 	task.wait(1)
-
+	]]--
 	local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")	
 	firesignal(ScreenGui.NPC.OptionFrame.Option3.MouseButton1Click)
 	task.wait(1)
