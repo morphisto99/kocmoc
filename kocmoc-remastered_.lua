@@ -3305,9 +3305,9 @@ function KillTest2()
 
 	local sbReady = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:FindFirstChild("Option1").Text
 	print(sbReady)
-	local sbtime = string.match(sbReady, "%(([+:]?%w+)%)")
+	local sbtime = string.match(sbReady, "[%d:]+")
 	print('sbtime=' .. sbtime)
-	if string.match(sbReady, "%(([+:]?%w+)%)") then
+	if string.match(sbReady, "[%d:]+") then
 		print("Stick Bug is not ready. time left:" .. sbtime)
 	else
 		print("Stick Bug is ready")
