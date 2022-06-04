@@ -2232,10 +2232,12 @@ task.spawn(function() while task.wait() do
 				task.wait(1)
 				awb = true
 			end
-			print('temptable.windy.Name=' .. temptable.windy.Name)
-            if awb and temptable.windy.Name == "Windy" then -- Sometimes bugs out/crash - need to fix - attempt to index nil with Name
-                api.humanoidrootpart().CFrame = temptable.gacf(temptable.windy, 25) temptable.float = true task.wait()
-            end
+			--print('temptable.windy.Name=' .. temptable.windy.Name)
+			if temptable.windy.Name ~= nil then
+				if awb and temptable.windy.Name == "Windy" then -- Sometimes bugs out/crash - need to fix - attempt to index nil with Name
+					api.humanoidrootpart().CFrame = temptable.gacf(temptable.windy, 25) temptable.float = true task.wait()
+				end
+			end
         end 
         enableall()
         temptable.float = false
