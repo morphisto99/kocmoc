@@ -914,8 +914,6 @@ end
 -- Morphisto
 function checksbcooldown()
 	local cooldown = time() - tonumber(stickbug_time)
-	print('cooldown=' .. cooldown)
-
 	--1800 sec is 30mins
 	if cooldown > 1800 and not temptable.started.vicious and not temptable.started.windy then
 		disableall()
@@ -951,12 +949,14 @@ function checksbcooldown()
 		local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")
 		firesignal(ScreenGui.NPC.ButtonOverlay.MouseButton1Click)
 		task.wait(1)
-		local sbReady = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:FindFirstChild("Option1").Text
-		if string.match(sbReady, "[%d:]+") then
+		local sbReady = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:FindFirstChild("Option1").Text	
+		local sbtime = string.match(sbReady, "[%d:]+")
+		if sbtime then
 			temptable.sbready = false
 		else
 			temptable.sbready = true
 		end
+		mobsb:UpdateText('Stick Bug: ' .. sbtime:sub(1, -4))
 		if not kocmoc.toggles.autoquest then
 			kocmoc.toggles.autoquest = true
 			uiautoquest:SetState(true)
