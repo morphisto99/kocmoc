@@ -914,6 +914,8 @@ end
 -- Morphisto
 function checksbcooldown()
 	local cooldown = time() - tonumber(stickbug_time)
+	print('cooldown=' .. cooldown)
+
 	--1800 sec is 30mins
 	if cooldown > 1800 and not temptable.started.vicious and not temptable.started.windy then
 		disableall()
@@ -2228,7 +2230,7 @@ task.spawn(function() while task.wait() do
 				task.wait(1)
 				awb = true
 			end
-            if awb and temptable.windy.Name ~= nil and temptable.windy.Name == "Windy" then -- Sometimes bugs out/crash - need to fix - attempt to index nil with Name
+            if awb and temptable.windy == "Windy" then -- Sometimes bugs out/crash - need to fix - attempt to index nil with Name
                 api.humanoidrootpart().CFrame = temptable.gacf(temptable.windy, 25) temptable.float = true task.wait()
             end
         end 
@@ -2563,6 +2565,7 @@ task.spawn(function()
 			end
 		end
 		local mob2 = panel:CreateButton("Mondo Chick: 00:00",function() api.tween(1,game:GetService("Workspace").FlowerZones["Mountain Top Field"].CFrame) end)
+		local mobsb = panel:CreateButton('Stick Bug: 00:00',function()) end) -- Morphisto
 		local panel2 = hometab:CreateSection("Utility Panel")
 		local windUpd = panel2:CreateButton("Wind Shrine: 00:00",function() api.tween(1,CFrame.new(game:GetService("Workspace").NPCs["Wind Shrine"].Circle.Position + Vector3.new(0,5,0))) end)
 		local rfbUpd = panel2:CreateButton("Red Field Booster: 00:00",function() api.tween(1,CFrame.new(game:GetService("Workspace").Toys["Red Field Booster"].Platform.Position + Vector3.new(0,5,0))) end)
@@ -3320,9 +3323,8 @@ function KillTest2()
 		print("Stick Bug is not ready. time left:" .. sbtime)
 	else
 		print("Stick Bug is ready")
-	end
-	
-
+	end	
+	mobsb:UpdateText('Stick Bug: ' .. sbtime)
 	
 	--[[
 	task.wait(1)
