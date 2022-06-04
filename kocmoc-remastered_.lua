@@ -953,10 +953,12 @@ function checksbcooldown()
 		local sbtime = string.match(sbReady, "[%d:]+")
 		if sbtime then
 			temptable.sbready = false
+			mobsb:UpdateText('Stick Bug: ' .. sbtime:sub(1, -4))
 		else
 			temptable.sbready = true
+			mobsb:UpdateText('Stick Bug: Ready')
 		end
-		mobsb:UpdateText('Stick Bug: ' .. sbtime:sub(1, -4))
+		
 		if not kocmoc.toggles.autoquest then
 			kocmoc.toggles.autoquest = true
 			uiautoquest:SetState(true)
