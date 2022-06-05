@@ -3164,10 +3164,10 @@ function KillTest3()
 		print("test stickbug1")
 		if not kocmoc.toggles.godmode then
 			print("test stickbug2")
-			bssapi:Godmode(true)
-			uigodmode:SetState(true)
 			kocmoc.toggles.godmode = true
-			task.wait(3)
+			bssapi:Godmode(true)
+			--uigodmode:SetState(true)
+			task.wait(5)
 			--api.humanoidrootpart().CFrame = CFrame.new(243.895538, 4.3493037, 320.418457)
 			api.humanoidrootpart().CFrame = CFrame.new(368.6580810546875, 29.768888473510742, 163.85317993164062)
 			task.wait(5)
