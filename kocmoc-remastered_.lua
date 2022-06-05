@@ -2232,7 +2232,7 @@ task.spawn(function() while task.wait() do
 				task.wait(1)
 				awb = true
 			end
-			--print('temptable.windy.Name=' .. temptable.windy.Name)
+			print('temptable.windy.Name=' .. temptable.windy.Name)
 			if temptable.windy.Name ~= nil then
 				if awb and temptable.windy.Name == "Windy" then -- Sometimes bugs out/crash - need to fix - attempt to index nil with Name
 					api.humanoidrootpart().CFrame = temptable.gacf(temptable.windy, 25) temptable.float = true task.wait()
@@ -3134,16 +3134,19 @@ function KillTest4()
 	print(' ')
 	print('Begin')
 
-	if temptable.started.stickbug then
-		enableall()
-		temptable.started.stickbug = false
-		print('Inside of sbTimer = 10:00')
-		if kocmoc.toggles.godmode then
-			print('disabling godmode')
-			kocmoc.toggles.godmode = false
-			uigodmode:SetState(false)
-			--bssapi:Godmode(false)
-		end
+	local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")	
+	--firesignal(ScreenGui.NPC.OptionFrame.Option1.MouseButton1Click)
+	local sbReady1 = ScreenGui.NPC.OptionFrame:FindFirstChild("Option1").Text
+	print('sbReady1=' .. sbReady1)
+	task.wait(1)
+	
+	local sbReady = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:FindFirstChild("Option1").Text
+	print(sbReady)
+	if string.find(sbReady, "Use free entry to start") then
+		print("Stick Bug is ready")
+	end
+	if string.find(sbReady, "Use free challenge entry") then
+		print("Stick Bug is not ready")
 	end
 	
 	print('End')
@@ -3159,30 +3162,30 @@ function KillTest3()
 	print(' ')
 	print('Begin')
 
-	if not temptable.started.stickbug then
-		temptable.started.stickbug = true
-		disableall()
-		print("test stickbug1")
-		if not kocmoc.toggles.godmode then
-			print("test stickbug2")
-			--bssapi:Godmode(true)
-			uigodmode:SetState(true)
-			kocmoc.toggles.godmode = true
-			task.wait(2)
-			api.humanoidrootpart().CFrame = CFrame.new(243.895538, 4.3493037, 320.418457)
-			task.wait(1)
+	for key,value in pairs(temptable.oplayers) do
+		print(key,value)
+		if not tablefind(temptable.players, key) then
+			print(key .. ' has been removed from temptable.oplayers')
+			tableremovekey(temptable.oplayers, key)
 		end
-		
 	end
-							
-	print('End')
+	
+	print('Begin2')
+	--temptable.oplayers["test1"] = 123.123
+	--temptable.oplayers["test2"] = 321.321
+	for i,v in pairs(temptable.oplayers) do
+		print(i,v)
+	end
+	
+	print("Before")
+	local sbReady = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:FindFirstChild("Option1").Text
+	print('sbReady=' .. sbReady)
+
 end
 
 function KillTest2()
 	print(' ')
 	print('Begin')
-
-
 	print("Test2")
 
     -- if kocmoc.toggles.autoquest then
@@ -3232,156 +3235,6 @@ function KillTest2()
 	end	
 	mobsb:UpdateText('Stick Bug: ' .. sbtime)
 	
-	--[[
-	task.wait(1)
-	firesignal(ScreenGui.NPC.OptionFrame.Option3.ButtonOverlay.MouseButton1Click)
-	task.wait(1)
-	firesignal(ScreenGui.NPC.OptionFrame.Option3.ActivateButton.MouseButton1Click)
-	]]--
-	--word=str:match("%((%a+)%)") -- get strings in ( )
-	
-
-	
-	--local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")
-	--firesignal(ScreenGui.NPC.ButtonOverlay.MouseButton1Click)
-	
-
-	--[[
-	print('Getting Part')
-	for i,v in pairs(game:GetService("Workspace").Part:GetChildren()) do
-		print('Part=' .. v.Text)
-		print('Part.Name=' .. v.Name)
-		if string.find(v.Name, "StickBug") then
-			print('Defense Totem Found 2')
-		end
-	end
-	
-	print('Getting MonsterSpawners')
-    for i,v in pairs(game:GetService("Workspace").MonsterSpawners:GetChildren()) do
-		print('killmobs1():' .. v.Name)
-        if v:FindFirstChild("Territory") then
-			local Terr = v:FindFirstChild("Territory")
-			--print('killmobs2():' .. Terr.Name)
-		end
-		if string.find(v.Name, "StickBug") then
-			print('Defense Totem Found 3')
-		end		
-	end
-	
-	
-	print('Getting NPCBees')
-	for i,v in pairs(game:GetService("Workspace").NPCBees:GetChildren()) do
-		print('NPCBees=' .. v.Name)
-		if string.find(v.Name, "StickBug") then
-			print('Defense Totem Found 4')
-		end
-	end
-
-	print(' ')
-	print('Getting NPCs')
-	for i,v in pairs(game:GetService("Workspace").NPCs:GetChildren()) do
-		print('NPCs=' .. v.Name)
-		if string.find(v.Name, "StickBug") then
-			print('Defense Totem Found 5')
-		end
-	end
-	]]--
-
-
-	--for i,v in next, game.Workspace.Happenings:GetDescendants() do
-		--print('4:' .. v.Name)
-	--end
-	
-	--for i,v in next, game.Workspace.MonsterSpawners:GetDescendants() do
-		--print('7:' .. v.Name)
-	--end
-	
-	--for i,v in next, game.Workspace:GetDescendants() do
-		--print('3:' .. v.Name)
-	--end	
-	
-	--[[
-	local PlayerGui = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-	--you may need to wait for any of the objects in the path
-	local messages = PlayerGui.Chat.Frame.ChatChannelParentFrame.Frame_MessageLogDisplay.Scroller
-
-	for i, message in pairs(messages:GetChildren()) do --loop through current messages
-		if not message:IsA("Frame") then continue end
-		if not message:FindFirstChild("TextLabel") then continue end 
-		
-		local Button = message.TextLabel:FindFirstChild("TextButton")
-		if Button then 
-			print("actual chat message")
-			local text = Button.Text
-			local username = text:sub(2, text:len()-2) --cut out "[" and "]:
-			print("user:", username)
-		else 
-			print("Probably a system message")
-		end 
-
-		local messageText = removeSpaces(message.TextLabel.Text)
-		print("the message:", messageText)
-		
-		--actually "delete" the message(it will be done client-side other users will still be able to see it)
-		--message:Destroy() 
-		-- Stick Bug build a Defense Totem in the Pine Tree Forest!
-	end
-	]]--
-
-	
-	--[[
-	for i,v in next, game.Workspace.Flowers:GetChildren() do
-		print('3:' .. v.Name)
-	end
-	
-	for i,v in next, game.Workspace.Happenings:GetChildren() do
-		print('4:' .. v.Name)
-	end
-	
-	for i,v in next, game.workspace.Collectibles:GetChildren() do
-		print('5:' .. v.Name)
-	end
-	
-	for i,v in next, game.Workspace.FlowerZones:GetChildren() do
-		print('6:' .. v.Name)
-	end
-	
-	for i,v in next, game.Workspace.MonsterSpawners:GetChildren() do
-		print('7:' .. v.Name)
-	end
-	]]--
-	
-	--[[
-	for i,v in pairs(workspace.Monsters:GetChildren()) do
-		print(v.Name)
-		if string.find(v.Name,"Stick Bug") then
-			while game.Workspace.Monsters:FindFirstChild(v.Name) do
-			
-			end
-		end
-	end
-
-	while game.Workspace.Monsters:FindFirstChild("Stump Snail (Lvl 6)") and not temptable.started.vicious and not temptable.started.monsters do
-		game:GetService("Workspace").Map.Ground.HighBlock.CanCollide = false
-		--snailposition = game.Workspace.Monsters["Stump Snail (Lvl 6)"].Head.Position
-		--api.tween(1, CFrame.new(snailposition.x, snailposition.y - 40, snailposition.z))
-		task.wait(1)
-	end
-	]]--
-	
-	--[[
-	-- Summon Stick Bug
-	local event = game.ReplicatedStorage.Events:FindFirstChild("SelectNPCOption")
-	if event then
-		event:FireServer("StartFreeStickBugEvent")
-		wait(0.5)
-		--if event then
-			--event:FireServer("StartPaidStickBugEvent")
-		--end
-	end
-	-- Summon Stick Bug
-	]]--
-	print('End')
 end
 
 function KillTest()
