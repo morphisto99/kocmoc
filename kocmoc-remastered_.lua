@@ -2900,7 +2900,7 @@ task.spawn(function()
 					if kocmoc.toggles.godmode then
 						print('disabling godmode')
 						kocmoc.toggles.godmode = false
-						uigodmode:SetState(false)
+						--uigodmode:SetState(false)
 						bssapi:Godmode(false)
 					end
 				end
@@ -2912,9 +2912,9 @@ task.spawn(function()
 					print("test stickbug1")
 					if not kocmoc.toggles.godmode then
 						print("test stickbug2")
-						bssapi:Godmode(true)
 						kocmoc.toggles.godmode = true
-						uigodmode:SetState(true)
+						bssapi:Godmode(true)
+						--uigodmode:SetState(true)
 						task.wait(2)
 						api.humanoidrootpart().CFrame = CFrame.new(243.895538, 4.3493037, 320.418457)
 						task.wait(1)
@@ -3140,8 +3140,8 @@ function KillTest4()
 		if kocmoc.toggles.godmode then
 			print('disabling godmode')
 			kocmoc.toggles.godmode = false
-			uigodmode:SetState(false)
-			--bssapi:Godmode(false)
+			--uigodmode:SetState(false)
+			bssapi:Godmode(false)
 		end
 	end
 	
@@ -3167,10 +3167,10 @@ function KillTest3()
 			kocmoc.toggles.godmode = true
 			bssapi:Godmode(true)
 			--uigodmode:SetState(true)
-			task.wait(5)
-			--api.humanoidrootpart().CFrame = CFrame.new(243.895538, 4.3493037, 320.418457)
-			api.humanoidrootpart().CFrame = CFrame.new(368.6580810546875, 29.768888473510742, 163.85317993164062)
-			task.wait(5)
+			task.wait(2)
+			api.humanoidrootpart().CFrame = CFrame.new(243.895538, 4.3493037, 320.418457)
+			--api.humanoidrootpart().CFrame = CFrame.new(368.6580810546875, 29.768888473510742, 163.85317993164062)
+			task.wait(1)
 		end
 		
 	end
