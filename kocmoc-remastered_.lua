@@ -946,7 +946,6 @@ function checksbcooldown()
 		local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")	
 		firesignal(ScreenGui.NPC.OptionFrame.Option3.MouseButton1Click)
 		task.wait(1)
-		local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")
 		firesignal(ScreenGui.NPC.ButtonOverlay.MouseButton1Click)
 		task.wait(1)
 		local sbReady = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:FindFirstChild("Option1").Text	
@@ -3217,8 +3216,6 @@ function KillTest2()
 	local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")	
 	firesignal(ScreenGui.NPC.OptionFrame.Option3.MouseButton1Click)
 	task.wait(1)
-
-	local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")
 	firesignal(ScreenGui.NPC.ButtonOverlay.MouseButton1Click)
 
 	local sbReady = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:FindFirstChild("Option1").Text
