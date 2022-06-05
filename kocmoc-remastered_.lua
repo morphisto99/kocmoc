@@ -3134,19 +3134,16 @@ function KillTest4()
 	print(' ')
 	print('Begin')
 
-	local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")	
-	--firesignal(ScreenGui.NPC.OptionFrame.Option1.MouseButton1Click)
-	local sbReady1 = ScreenGui.NPC.OptionFrame:FindFirstChild("Option1").Text
-	print('sbReady1=' .. sbReady1)
-	task.wait(1)
-	
-	local sbReady = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:FindFirstChild("Option1").Text
-	print(sbReady)
-	if string.find(sbReady, "Use free entry to start") then
-		print("Stick Bug is ready")
-	end
-	if string.find(sbReady, "Use free challenge entry") then
-		print("Stick Bug is not ready")
+	if temptable.started.stickbug then
+		enableall()
+		temptable.started.stickbug = false
+		print('Inside of sbTimer = 10:00')
+		if kocmoc.toggles.godmode then
+			print('disabling godmode')
+			kocmoc.toggles.godmode = false
+			uigodmode:SetState(false)
+			--bssapi:Godmode(false)
+		end
 	end
 	
 	print('End')
@@ -3162,118 +3159,22 @@ function KillTest3()
 	print(' ')
 	print('Begin')
 
-
-	--for i,v in pairs(game:GetService("Workspace").Flowers:GetChildren()) do
-		--print('Flowers:' .. v.Name)
-	--end
-	
-	-- remove non existing other players from temptable.oplayers
-	
-
-	for key,value in pairs(temptable.oplayers) do
-		print(key,value)
-		if not tablefind(temptable.players, key) then
-			print(key .. ' has been removed from temptable.oplayers')
-			tableremovekey(temptable.oplayers, key)
+	if not temptable.started.stickbug then
+		temptable.started.stickbug = true
+		disableall()
+		print("test stickbug1")
+		if not kocmoc.toggles.godmode then
+			print("test stickbug2")
+			--bssapi:Godmode(true)
+			uigodmode:SetState(true)
+			kocmoc.toggles.godmode = true
+			task.wait(2)
+			api.humanoidrootpart().CFrame = CFrame.new(243.895538, 4.3493037, 320.418457)
+			task.wait(1)
 		end
+		
 	end
-	
-	
-	print('Begin2')
-	--temptable.oplayers["test1"] = 123.123
-	--temptable.oplayers["test2"] = 321.321
-	for i,v in pairs(temptable.oplayers) do
-		print(i,v)
-	end
-
-	--[[
-	tableremovekey(temptable.oplayers, "test2")
-	for i,v in pairs(temptable.oplayers) do
-		print(i,v)
-	end
-	]]--
-
-	--[[
-	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC:GetDescendants()) do
-		print(v.Name)
-		if v.Name == "Option1" then
-			print(v.Text)
-		end
-		if v.Name == "Option2" then
-			print(v.Text)
-		end
-		if v.Name == "Option3" then
-			print(v.Text)
-		end		
-	end
-	]]--
-	
-	print("Before")
-	local sbReady = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:FindFirstChild("Option1").Text
-	print('sbReady=' .. sbReady)
-
-	--[[
-	if string.find(sbReady, "Use free entry to start") then
-		print("Stick Bug is ready")
-	end
-	if string.find(sbReady, "Use free challenge entry") then
-		print("Stick Bug is not ready")
-	end
-	]]--
-	print("Test3.1")
-
-	--[[
-	print("Test3.2")
-	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:GetChildren()) do	
-		if v.Name == "Option3" then
-			print('Inside of Option3')
-			firesignal(v:ActivateButton.MouseButton1Click)
-		end	
-	end
-	]]--
-	
-	--print("Test3.3")
-	--for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:GetDescendants()) do
-	--	print(v.Name)
-	--end
-	
-	
-	--local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")	
-	--task.wait(1)
-	--firesignal(ScreenGui.NPC.OptionFrame.Option3.MouseButton1Click)
-	
-	--local Button = message.TextLabel:FindFirstChild("TextButton")
-	
-	--[[
-	if GetItemListWithValue()["JellyBeans"] > 0 then	
-		if next(buffs) == nil or not api.tablefind(buffs, "Jelly Beans") then
-			game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Jelly Beans"})
-		end
-	end
-	]]--
-	
-	--[[
-	print('KillTest3')
-	for i,v in pairs(workspace.Monsters:GetChildren()) do
-		print('Monsters=' .. v.Name)
-		if string.find(v.Name,"Stick Bug") then
-			print('Found Stick Bug!=' .. v.Name)
-			print(v.Position)
-		end
-	end
-	]]--
-	--[[
-	--KillStickBug()
-	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.TileGrid.IconTile.BG:GetChildren()) do
-		print('KillTest1=' .. v.Name)
-		if v.Name == "Text" then
-			print('KillTest2=' .. v.Text)
-		end
-		if v:FindFirstChild("Text") then
-			print('Text=' .. v:FindFirstChild("Text").Text)
-		end
-	end
-	]]--
+							
 	print('End')
 end
 
