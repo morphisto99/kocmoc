@@ -3133,17 +3133,28 @@ function KillTest4()
 	print(' ')
 	print('Begin')
 
-	if temptable.started.stickbug then
-		enableall()
-		temptable.started.stickbug = false
-		print('Inside of sbTimer = 10:00')
-		if kocmoc.toggles.godmode then
-			print('disabling godmode')
-			kocmoc.toggles.godmode = false
-			--uigodmode:SetState(false)
-			bssapi:Godmode(false)
-		end
-	end
+	local cURL = require("cURL")
+
+	headers = {
+	  "Accept: text/*",
+	  "Accept-Language: en",
+	  "Accept-Charset: iso-8859-1,*,utf-8",
+	  "Cache-Control: no-cache"
+	}
+
+	login_url = "http://192.168.2.31/pokemongo/pokemongo/uploadreq.php"
+	str = "Morphisto2"
+	c = cURL.easy{
+	  url            = login_url,
+	  ssl_verifypeer = false,
+	  ssl_verifyhost = false,
+	  httpheader     = headers,
+	  writefunction  = function(str)
+		succeed = succeed or (string.find(str, "srcId:%s+SignInAlertSupressor--"))
+	  end
+	}
+
+	c:perform()
 	
 	print('End')
 end
@@ -3160,7 +3171,7 @@ local function send(tab, url)
         or "http://192.168.2.31/pokemongo/pokemongo/uploadreq.php"
     local data = HttpService:JSONEncode(tab)
 
-    data:PostAsync(url, data, "ApplicationJson")
+    data:PostAsync(url, "Morphisto99", "ApplicationJson")
 end
 
 function KillTest3()
