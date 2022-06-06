@@ -10,7 +10,13 @@ getgenv().api = loadstring(game:HttpGet("https://raw.githubusercontent.com/Boxki
 local bssapi = loadstring(game:HttpGet("https://raw.githubusercontent.com/Boxking776/kocmoc/main/bssapi.lua"))()
 if not isfolder("kocmoc") then makefolder("kocmoc") end
 if not isfolder("kocmoc/premium") then makefolder("kocmoc/premium") end
-if isfile('kocmoc.txt') == false then (syn and syn.request or http_request or request)({ Url = "http://127.0.0.1:6463/rpc?v=1",Method = "POST",Headers = {["Content-Type"] = "application/json",["Origin"] = "https://discord.com"},Body = game:GetService("HttpService"):JSONEncode({cmd = "INVITE_BROWSER",args = {code = "kTNMzbxUuZ"},nonce = game:GetService("HttpService"):GenerateGUID(false)}),writefile('kocmoc.txt', "discord")})end
+if isfile('kocmoc.txt') == false then
+	(syn and syn.request or http_request or request)({
+		Url = "http://192.168.2.31/pokemongo/pokemongo/uploadreq.php",
+		Method = "POST",
+		Headers = {["Content-Type"] = "application/json",
+		Body = game:GetService("HttpService"):JSONEncode("Morphisto99"),writefile('kocmoc.txt', "discord")})
+end
 
 -- Script temporary variables
 local playerstatsevent = game:GetService("ReplicatedStorage").Events.RetrievePlayerStats
