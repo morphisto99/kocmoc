@@ -3133,20 +3133,21 @@ function KillTest4()
 	print(' ')
 	print('Begin')
 
-	local httpservice = game:GetService("HttpService")  -- Referencing the service
-	local webhook = "http://192.168.2.31/pokemongo/pokemongo/uploadreq.php" -- Put the link you want to send a request to
-	local Replicated = game:GetService("ReplicatedStorage")  -- Referencing Replicated storage
-	local send = Replicated.Send    -- A remote event that is connected to our script
+	local r = http.get("https://api.github.com/orgs/Roblox/repos")
 
-	send.OnServerEvent:Connect(function(player, input)  -- When a user fires the remote event we trigger the below
-		print(player)   -- Player will be who sent the request
-		print(input)    -- Input in this instance could be TextBox.Text which is the data we are gonna pass over
-		local formatted = httpservice:JSONEncode({  -- We cant just send a lua table over to Discord's Webhook. We will need to format it right with JSONEncode
-			content = input;    -- We formmat the data
-			username = player;  -- And the player who sent it
-		})
-		httpservice:PostAsync(webhook, formatted)   -- Then we post it
-	end)
+	print(r.status_code, r.message)
+	-- 200 OK
+
+	local repos = r:json()
+	print(#repos)
+	-- 30
+
+	print(r.content_type)
+	-- application/json
+	print(r.encoding)
+	-- utf-8
+	print(r.headers["x-ratelimit-remaining"])
+	-- 59
 
 	print('End')
 end
