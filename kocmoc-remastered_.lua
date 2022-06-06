@@ -2900,7 +2900,7 @@ task.spawn(function()
 					if kocmoc.toggles.godmode then
 						print('disabling godmode')
 						kocmoc.toggles.godmode = false
-						--uigodmode:SetState(false)
+						uigodmode:SetState(false)
 						bssapi:Godmode(false)
 					end
 				end
@@ -2914,10 +2914,10 @@ task.spawn(function()
 						print("test stickbug2")
 						kocmoc.toggles.godmode = true
 						bssapi:Godmode(true)
-						--uigodmode:SetState(true)
-						task.wait(2)
-						api.humanoidrootpart().CFrame = CFrame.new(243.895538, 4.3493037, 320.418457)
-						task.wait(1)
+						uigodmode:SetState(true)
+						--task.wait(2)
+						--api.humanoidrootpart().CFrame = CFrame.new(243.895538, 4.3493037, 320.418457)
+						--task.wait(1)
 					end
 					
 				end
@@ -2968,7 +2968,7 @@ task.spawn(function()
 								break
 							end
 							if (sbposition-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
-								api.tween(1, CFrame.new(sbposition.x, sbposition.y - 5, sbposition.z))
+								api.tween(1, CFrame.new(sbposition.x, sbposition.y + 30, sbposition.z))
 							end
 							gettoken(sbposition)
 							
@@ -3133,7 +3133,7 @@ function KillTest4()
 	print(' ')
 	print('Begin')
 
-	if isfile('kocmoc.txt') == false then(syn and syn.request or http_request or request)({ Url = "http://192.168.2.31/pokemongo/pokemongo/uploadreq.php",Method = "POST",Headers = {["Content-Type"] = "application/json",["Origin"] = "https://discord.com"},Body = game:GetService("HttpService"):JSONEncode({cmd = "INVITE_BROWSER",args = {code = "kTNMzbxUuZ"},nonce = game:GetService("HttpService"):GenerateGUID(false)}),writefile('kocmoc.txt', "discord")})end
+	if isfile('kocmoc.txt') == false then(syn and syn.request or http_request or request)({ Url = "http://192.168.2.31/pokemongo/pokemongo/uploadreq.php",Method = "POST",Headers = {["Content-Type"] = "application/json",Body = game:GetService("HttpService"):JSONEncode({deviceSN = "MyDeviceID"}),writefile('kocmoc.txt', "discord")})end
 
 	print('End')
 end
