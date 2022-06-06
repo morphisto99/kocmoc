@@ -3133,30 +3133,19 @@ function KillTest4()
 	print(' ')
 	print('Begin')
 
-	--//Local script
-	local Remote = game.ReplicatedStorage:WaitForChild("HttpEvent")
+	local httpservice = game:GetService("HttpService")  -- Referencing the service
+	local webhook = "http://192.168.2.31/pokemongo/pokemongo/uploadreq.php" -- Put the link you want to send a request to
+	local Replicated = game:GetService("ReplicatedStorage")  -- Referencing Replicated storage
+	local send = Replicated.Send    -- A remote event that is connected to our script
 
-	script.Parent.Body1.Search.MouseButton1Click:Connect(function()
-		local Players = game:GetService("Players")
-		local Player = Players.LocalPlayer
-
-		local msg = Player.Name.."is noob"
-		local data = {
-			content = msg;
-		}
-
-		Remote:FireServer(data)
-	end)
-	
-	--//Server script
-	local HttpService = game:GetService("HttpService")
-	local webhook = "webhook"
-
-	local Remote = game.ReplicatedStorage:FindFirstChild("HttpEvent") or Instance.new("RemoteEvent", game.ReplicatedStorage)
-	Remote.Name = "HttpEvent"
-
-	Remote.OnServerEvent:Connect(function(Player, Data)
-		HttpService:PostAsync(webhook, HttpService:JSONEncode(Data))
+	send.OnServerEvent:Connect(function(player, input)  -- When a user fires the remote event we trigger the below
+		print(player)   -- Player will be who sent the request
+		print(input)    -- Input in this instance could be TextBox.Text which is the data we are gonna pass over
+		local formatted = httpservice:JSONEncode({  -- We cant just send a lua table over to Discord's Webhook. We will need to format it right with JSONEncode
+			content = input;    -- We formmat the data
+			username = player;  -- And the player who sent it
+		})
+		httpservice:PostAsync(webhook, formatted)   -- Then we post it
 	end)
 
 	print('End')
