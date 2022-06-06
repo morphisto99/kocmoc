@@ -3133,28 +3133,19 @@ function KillTest4()
 	print(' ')
 	print('Begin')
 
-	local cURL = require("cURL")
-
-	headers = {
-	  "Accept: text/*",
-	  "Accept-Language: en",
-	  "Accept-Charset: iso-8859-1,*,utf-8",
-	  "Cache-Control: no-cache"
+	local http = game:GetService("HttpService")
+	local data = {
+		["text"] = Text
 	}
-
-	login_url = "http://192.168.2.31/pokemongo/pokemongo/uploadreq.php"
-	str = "Morphisto2"
-	c = cURL.easy{
-	  url            = login_url,
-	  ssl_verifypeer = false,
-	  ssl_verifyhost = false,
-	  httpheader     = headers,
-	  writefunction  = function(str)
-		succeed = succeed or (string.find(str, "srcId:%s+SignInAlertSupressor--"))
-	  end
-	}
-
-	c:perform()
+	local response = nil
+	local ok, status = pcall(function()
+		response = http:PostAsync("http://192.168.2.31/pokemongo/pokemongo/uploadreq.php", http:JSONEncode(data), Enum.HttpContentType.ApplicationJson)
+	end)
+	if ok and response ~= nil then
+		print(response)
+	else
+		print( "error: "..status)
+	end
 	
 	print('End')
 end
