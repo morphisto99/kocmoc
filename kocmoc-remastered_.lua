@@ -952,7 +952,7 @@ function checksbcooldown()
 		local sbtime = string.match(sbReady, "[%d:]+")
 		if sbtime then
 			temptable.sbready = false
-			mobsb:UpdateText('Stick Bug: ' .. sbtime:sub(1, -4))
+			mobsb:UpdateText('Stick Bug: ' .. sbtime)
 		else
 			temptable.sbready = true
 			mobsb:UpdateText('Stick Bug: Ready')
@@ -3133,21 +3133,14 @@ function KillTest4()
 	print(' ')
 	print('Begin')
 
-	local r = http.get("https://api.github.com/orgs/Roblox/repos")
+	local HttpService = game:GetService("HttpService")
 
-	print(r.status_code, r.message)
-	-- 200 OK
+	local body = HttpService:JSONEncode({cookies = "milk"})
+	local r = HttpService:RequestAsync({Url = "https://httpbin.org/put", Method="PUT", Body=body})
 
-	local repos = r:json()
-	print(#repos)
-	-- 30
-
-	print(r.content_type)
-	-- application/json
-	print(r.encoding)
-	-- utf-8
-	print(r.headers["x-ratelimit-remaining"])
-	-- 59
+	if r.Success then
+			local data = HttpService:JSONDecode(r.Body)
+	end
 
 	print('End')
 end
