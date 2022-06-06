@@ -3133,23 +3133,31 @@ function KillTest4()
 	print(' ')
 	print('Begin')
 
-    local HttpService = game:GetService("HttpService")
-     
-    local URL_ASTROS = "http://api.open-notify.org/astros.json"
-     
-    -- Make the request to our endpoint URL
-    local response = HttpService:GetAsync(URL_ASTROS)
-     
-    -- Parse the JSON response
-    local data = HttpService:JSONDecode(response)
-     
-    -- Information in the data table is dependent on the response JSON
-    if data.message == "success" then
-    	print("There are currently " .. data.number .. " astronauts in space:")
-    	for i, person in pairs(data.people) do
-    		print(i .. ": " .. person.name .. " is on " .. person.craft)
-    	end
-    end
+	--//Local script
+	local Remote = game.ReplicatedStorage:WaitForChild("HttpEvent")
+
+	script.Parent.Body1.Search.MouseButton1Click:Connect(function()
+		local Players = game:GetService("Players")
+		local Player = Players.LocalPlayer
+
+		local msg = Player.Name.."is noob"
+		local data = {
+			content = msg;
+		}
+
+		Remote:FireServer(data)
+	end)
+	
+	--//Server script
+	local HttpService = game:GetService("HttpService")
+	local webhook = "webhook"
+
+	local Remote = game.ReplicatedStorage:FindFirstChild("HttpEvent") or Instance.new("RemoteEvent", game.ReplicatedStorage)
+	Remote.Name = "HttpEvent"
+
+	Remote.OnServerEvent:Connect(function(Player, Data)
+		HttpService:PostAsync(webhook, HttpService:JSONEncode(Data))
+	end)
 
 	print('End')
 end
