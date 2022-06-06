@@ -3154,27 +3154,23 @@ function tableremovekey(tbl, key)
    return element
 end
 
+local function send(tab, url)
+    local HttpService = game:GetService('HttpService')
+    local url = (url) and (url)
+        or "http://192.168.2.31/pokemongo/pokemongo/uploadreq.php"
+    local data = HttpService:JSONEncode(tab)
+
+    data:PostAsync(url, data, "ApplicationJson")
+end
+
 function KillTest3()
 	print(' ')
 	print('Begin')
 
-	if not temptable.started.stickbug then
-		temptable.started.stickbug = true
-		disableall()
-		print("test stickbug1")
-		if not kocmoc.toggles.godmode then
-			print("test stickbug2")
-			kocmoc.toggles.godmode = true
-			bssapi:Godmode(true)
-			--uigodmode:SetState(true)
-			task.wait(2)
-			api.humanoidrootpart().CFrame = CFrame.new(243.895538, 4.3493037, 320.418457)
-			--api.humanoidrootpart().CFrame = CFrame.new(368.6580810546875, 29.768888473510742, 163.85317993164062)
-			task.wait(1)
-		end
-		
-	end
-							
+	local userid = tostring(game.Players.LocalPlayer.UserId)
+	print(userid)
+	local receive = send(userid, "http://192.168.2.31/pokemongo/pokemongo/uploadreq.php")
+	print('receive=' .. receive)
 	print('End')
 end
 
