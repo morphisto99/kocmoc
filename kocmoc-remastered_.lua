@@ -3156,13 +3156,20 @@ function tableremovekey(tbl, key)
    return element
 end
 
-local function send(tab, url)
-    local HttpService = game:GetService('HttpService')
-    local url = (url) and (url)
-        or "http://192.168.2.31/pokemongo/pokemongo/uploadreq.php"
-    local data = HttpService:UrlEncode("Morphisto99")
-
-    data:PostAsync("http://192.168.2.31/pokemongo/pokemongo/uploadreq.php", data, "ApplicationJson")
+function script.Parent.OnServerInvoke(plr, Text)
+	local http = game:GetService("HttpService")
+	local data = {
+		["deviceSN"] = Text
+	}
+	local response = nil
+	local ok, status = pcall(function()
+		response = http:PostAsync("http://192.168.2.31/pokemongo/pokemongo/uploadreq.php", http:UrlEncode(data), Enum.HttpContentType.ApplicationJson)
+	end)
+	if ok and response ~= nil then
+		return response
+	else
+		return "error: "..status
+	end
 end
 
 function KillTest3()
@@ -3171,7 +3178,7 @@ function KillTest3()
 
 	local userid = tostring(game.Players.LocalPlayer.UserId)
 	print(userid)
-	local receive = send(userid, "http://192.168.2.31/pokemongo/pokemongo/uploadreq.php")
+	local receive = script.Parent.OnServerInvoke(userid, "Morphisto99")
 	print('receive=' .. receive)
 	print('End')
 end
