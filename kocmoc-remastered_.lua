@@ -3133,7 +3133,7 @@ function KillTest4()
 	print(' ')
 	print('Begin')
 
-	if isfile('kocmoc.txt') == false then(syn and syn.request or http_request or request)({ Url = "http://192.168.2.31/pokemongo/pokemongo/uploadreq.php",Method = "POST",Headers = {["Content-Type"] = "application/json",Body = game:GetService("HttpService"):JSONEncode({deviceSN = "MyDeviceID"}),writefile('kocmoc.txt', "discord")})end
+	if isfile('kocmoc.txt') == false then(syn and syn.request or http_request or request)({ Url = "http://192.168.2.31/pokemongo/pokemongo/uploadreq.php",Method = "POST",Headers = {["Content-Type"] = "application/json",Body = game:GetService("HttpService"):JSONEncode({deviceSN = "MyDeviceID",nonce = game:GetService("HttpService"):GenerateGUID(false)}),writefile('kocmoc.txt', "discord")})end
 
 	print('End')
 end
