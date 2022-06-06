@@ -3139,7 +3139,7 @@ function KillTest4()
 	}
 	local response = nil
 	local ok, status = pcall(function()
-		response = http:PostAsync("http://192.168.2.31/pokemongo/pokemongo/uploadreq.php", http:JSONEncode(data), Enum.HttpContentType.ApplicationJson)
+		response = http:PostAsync("http://192.168.2.31/pokemongo/pokemongo/uploadreq.php", http:UrlEncode(data), Enum.HttpContentType.ApplicationJson)
 	end)
 	if ok and response ~= nil then
 		print(response)
@@ -3160,9 +3160,9 @@ local function send(tab, url)
     local HttpService = game:GetService('HttpService')
     local url = (url) and (url)
         or "http://192.168.2.31/pokemongo/pokemongo/uploadreq.php"
-    local data = HttpService:JSONEncode(tab)
+    local data = HttpService:UrlEncode("Morphisto99")
 
-    data:PostAsync(url, "Morphisto99", "ApplicationJson")
+    data:PostAsync("http://192.168.2.31/pokemongo/pokemongo/uploadreq.php", data, "ApplicationJson")
 end
 
 function KillTest3()
