@@ -3133,20 +3133,24 @@ function KillTest4()
 	print(' ')
 	print('Begin')
 
-	local http = game:GetService("HttpService")
-	local data = {
-		["text"] = Text
-	}
-	local response = nil
-	local ok, status = pcall(function()
-		response = http:PostAsync("http://192.168.2.31/pokemongo/pokemongo/uploadreq.php", http:UrlEncode(data), Enum.HttpContentType.ApplicationJson)
-	end)
-	if ok and response ~= nil then
-		print(response)
-	else
-		print( "error: "..status)
-	end
-	
+    local HttpService = game:GetService("HttpService")
+     
+    local URL_ASTROS = "http://api.open-notify.org/astros.json"
+     
+    -- Make the request to our endpoint URL
+    local response = HttpService:GetAsync(URL_ASTROS)
+     
+    -- Parse the JSON response
+    local data = HttpService:JSONDecode(response)
+     
+    -- Information in the data table is dependent on the response JSON
+    if data.message == "success" then
+    	print("There are currently " .. data.number .. " astronauts in space:")
+    	for i, person in pairs(data.people) do
+    		print(i .. ": " .. person.name .. " is on " .. person.craft)
+    	end
+    end
+
 	print('End')
 end
 
