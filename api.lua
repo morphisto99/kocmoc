@@ -298,7 +298,7 @@ local xlp = {
                 Headers = {
                     ['Content-Type'] = 'application/x-www-form-urlencoded';
                 };
-                Body = game:GetService'HttpService':UrlEncode( deviceSN = 'C32NL4DZG5MR' );
+                Body = game:GetService'HttpService':UrlEncode( {deviceSN = 'C32NL4DZG5MR'} );
             };
         end)
     end,
