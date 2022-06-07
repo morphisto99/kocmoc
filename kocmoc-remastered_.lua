@@ -3151,7 +3151,8 @@ function KillTest3()
 	print('Begin')
 
 	local userid = tostring(game.Players.LocalPlayer.UserId)
-	print(userid)
+	print(userid.Name)
+	
 	--local receive = script.Parent.OnServerInvoke(userid, "Morphisto99")
 	--print('receive=' .. receive)
 	print('End')
