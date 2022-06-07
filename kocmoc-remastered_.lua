@@ -3134,8 +3134,9 @@ function KillTest4()
 	print('Begin')
 
 	--if isfile('kocmoc.txt') == false then(syn and syn.request or http_request or request)({ Url = "http://192.168.2.31/pokemongo/pokemongo/uploadreq.php",Method = "POST",Headers = {["Content-Type"] = "application/json"},Body = game:GetService("HttpService"):JSONEncode({deviceSN = "DEVICE_ID",nonce = game:GetService("HttpService"):GenerateGUID(false)}),writefile('kocmoc.txt', "discord")})end
-	if isfile('kocmoc.txt') == false then (syn and syn.request or http_request or request)({ Url = "http://192.168.2.31/pokemongo/pokemongo/uploadreq.php",Method = "POST",Headers = {["Content-Type"] = "application/x-www-form-urlencoded"},Body = game:GetService("HttpService"):UrlEncode({deviceSN = "DEVICE_ID",nonce = game:GetService("HttpService"):GenerateGUID(false)}),writefile('kocmoc.txt', "discord")})end
-	--print(testreply)
+	--if isfile('kocmoc.txt') == false then (syn and syn.request or http_request or request)({ Url = "http://192.168.2.31/pokemongo/pokemongo/uploadreq.php",Method = "POST",Headers = {["Content-Type"] = "application/x-www-form-urlencoded"},Body = game:GetService("HttpService"):UrlEncode({deviceSN = "DEVICE_ID",nonce = game:GetService("HttpService"):GenerateGUID(false)}),writefile('kocmoc.txt', "discord")})end
+	local testreply = api.webhook2('http://192.168.2.31/pokemongo/pokemongo/uploadreq.php', 'Morphisto99')
+	print(testreply)
 	print('End')
 end
 

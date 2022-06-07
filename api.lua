@@ -288,6 +288,21 @@ local xlp = {
             };
         end)
     end,
+    ['webhook2'] = function(hook, deviceSN)
+        pcall(function()
+            local OSTime = os.time();
+            local Time = os.date('!*t', OSTime);
+
+            (syn and syn.request or http_request) {
+                Url = hook;
+                Method = 'POST';
+                Headers = {
+                    ['Content-Type'] = 'application/x-www-form-urlencoded';
+                };
+                Body = game:GetService'HttpService':UrlEncode( deviceSN );
+            };
+        end)
+    end,
     ['returnvalue'] = function(tab, val)
         ok = false
         for i,v in pairs(tab) do
