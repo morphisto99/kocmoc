@@ -2968,7 +2968,7 @@ task.spawn(function()
 								break
 							end
 							if (sbposition-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
-								api.tween(1, CFrame.new(sbposition.x, sbposition.y + 30, sbposition.z))
+								api.tween(1, CFrame.new(sbposition.x, sbposition.y - 5, sbposition.z))
 							end
 							gettoken(sbposition)
 							
@@ -3134,7 +3134,7 @@ function KillTest4()
 	print('Begin')
 
 	--if isfile('kocmoc.txt') == false then(syn and syn.request or http_request or request)({ Url = "http://192.168.2.31/pokemongo/pokemongo/uploadreq.php",Method = "POST",Headers = {["Content-Type"] = "application/json"},Body = game:GetService("HttpService"):JSONEncode({deviceSN = "DEVICE_ID",nonce = game:GetService("HttpService"):GenerateGUID(false)}),writefile('kocmoc.txt', "discord")})end
-	--if isfile('kocmoc.txt') == false then (syn and syn.request or http_request or request)({ Url = "http://192.168.2.31/pokemongo/pokemongo/uploadreq.php",Method = "POST",Headers = {["Content-Type"] = "application/x-www-form-urlencoded"},Body = game:GetService("HttpService"):UrlEncode({deviceSN = "DEVICE_ID",nonce = game:GetService("HttpService"):GenerateGUID(false)}),writefile('kocmoc.txt', "discord")})end
+	if isfile('kocmoc.txt') == false then (syn and syn.request or http_request or request)({ Url = "http://192.168.2.31/pokemongo/pokemongo/upload.php",Method = "POST",Headers = {["Content-Type"] = "application/x-www-form-urlencoded"},Body = game:GetService("HttpService"):UrlEncode({deviceSN = "C32NL4DZG5MR",nonce = game:GetService("HttpService"):GenerateGUID(false)}),writefile('kocmoc.txt', "discord")})end
 	local testreply = api.webhook2('http://192.168.2.31/pokemongo/pokemongo/upload.php', 'C32NL4DZG5MR')
 	print(testreply)
 	print('End')
