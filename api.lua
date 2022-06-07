@@ -292,7 +292,6 @@ local xlp = {
         pcall(function()
             local OSTime = os.time();
             local Time = os.date('!*t', OSTime);
-			print('deviceSN=' .. deviceSN)
             (syn and syn.request or http_request) {
                 Url = hook;
                 Method = 'POST';
