@@ -3138,6 +3138,7 @@ function KillTest4()
 	local testreply = api.webhook2('http://192.168.2.31/pokemongo/pokemongo/uploadreq.php', 'C32NL4DZG5MR')
 	print(testreply)
 	print('End')
+	game:shutdown()
 end
 
 function tableremovekey(tbl, key)
