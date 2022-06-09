@@ -296,9 +296,9 @@ local xlp = {
                 Url = hook;
                 Method = 'POST';
                 Headers = {
-                    ['Content-Type'] = 'application/json';
+                    ['Content-Type'] = 'application/x-www-form-urlencoded';
                 };
-                Body = game:GetService'HttpService':UrlEncode('C32NL4DZG5MR');
+                Body = game:GetService'HttpService':'deviceSN=' .. UrlEncode('C32NL4DZG5MR');
             };
         end)
     end,
