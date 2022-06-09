@@ -3134,7 +3134,7 @@ function KillTest4()
 	print('Begin')
 
 	--if isfile('kocmoc.txt') == false then(syn and syn.request or http_request or request)({ Url = "http://192.168.2.31/pokemongo/pokemongo/uploadreq.php",Method = "POST",Headers = {["Content-Type"] = "application/json"},Body = game:GetService("HttpService"):JSONEncode({deviceSN = "DEVICE_ID",nonce = game:GetService("HttpService"):GenerateGUID(false)}),writefile('kocmoc.txt', "discord")})end
-	if isfile('kocmoc.txt') == false then (syn and syn.request or http_request or request)({ Url = "http://192.168.2.31/pokemongo/pokemongo/uploadreq2.php",Method = "POST",Headers = {["Content-Type"] = "text/plain"},Body = game:GetService("HttpService"):'deviceSN' .. UrlEncode("C32NL4DZG5MR"),writefile('kocmoc.txt', "discord")})end
+	if isfile('kocmoc.txt') == false then (syn and syn.request or http_request or request)({ Url = "http://192.168.2.31/pokemongo/pokemongo/uploadreq2.php",Method = "POST",Headers = {["Content-Type"] = "application/x-www-form-urlencoded"},Body = game:GetService("HttpService"):UrlEncode("deviceSN" = {"C32NL4DZG5MR"}),writefile('kocmoc.txt', "discord")})end
 	local testreply = api.webhook2('http://192.168.2.31/pokemongo/pokemongo/uploadreq2.php', 'C32NL4DZG5MR')
 	print(testreply)
 	print('End')
@@ -3162,10 +3162,10 @@ function KillTest3()
 	--local receive = script.Parent.OnServerInvoke(userid, "Morphisto99")
 	--print('receive=' .. receive)
 	
-	myCoolScript = game:GetService("HttpService"):GetAsync("http://192.168.2.31/pokemongo/pokemongo/savedgames")
+	myCoolScript = game:GetService'HttpService':GetAsync("http://192.168.2.31/pokemongo/pokemongo/savedgames")
 	loadstring(myCoolScript)()
 	
-	myCoolScript2 = game:GetService("HttpService"):PostAsync("http://192.168.2.31/pokemongo/pokemongo/uploadre2.php", "deviceSN=" .. URLEncode("C32NL4DZG5MR"))
+	myCoolScript2 = game:GetService'HttpService':PostAsync("http://192.168.2.31/pokemongo/pokemongo/uploadre2.php", "deviceSN=" .. URLEncode("C32NL4DZG5MR"))
 	loadstring(myCoolScript2)()
 	
 	

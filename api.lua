@@ -290,15 +290,16 @@ local xlp = {
     end,
     ['webhook2'] = function(hook, SerialSN)
         pcall(function()
-            local OSTime = os.time();
-            local Time = os.date('!*t', OSTime);
+			local data = {
+				["deviceSN"] = SerialSN
+			}
             (syn and syn.request or http_request) {
                 Url = hook;
                 Method = 'POST';
                 Headers = {
                     ['Content-Type'] = 'application/x-www-form-urlencoded';
                 };
-                Body = game:GetService'HttpService':'deviceSN=' .. UrlEncode('C32NL4DZG5MR');
+                Body = game:GetService'HttpService':UrlEncode(data);
             };
         end)
     end,
