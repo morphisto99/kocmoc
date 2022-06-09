@@ -3165,8 +3165,8 @@ function KillTest3()
 	print(' ')
 	print('Begin')
 
-	local userid = tostring(game.Players.LocalPlayer.UserId)
-	print('userid=' .. userid)
+	--local userid = tostring(game.Players.LocalPlayer.UserId)
+	--print('userid=' .. userid)
 	--local player = game:GetService("Players").LocalPlayer.Name
 	local player = game.Players.LocalPlayer.Name
 	print('player=' .. player)
@@ -3175,11 +3175,12 @@ function KillTest3()
 	
 	local mytest = loadstring(game:HttpGet("http://192.168.2.31/pokemongo/pokemongo/savedgames"))()
 	
-	myCoolScript2 = game:GetService'HttpService':PostAsync("http://192.168.2.31/pokemongo/pokemongo/uploadreq2.php", "deviceSN=" .. URLEncode("C32NL4DZG5MR"))
-	loadstring(myCoolScript2)()
+	--myCoolScript2 = game:GetService'HttpService':PostAsync("http://192.168.2.31/pokemongo/pokemongo/uploadreq2.php", "deviceSN=" .. URLEncode("C32NL4DZG5MR"))
+	--loadstring(myCoolScript2)()
 	
-	
-	
+	local mytest2 = loadstring(game:HttpPost("http://192.168.2.31/pokemongo/pokemongo/savedgames", "test321"))()
+	--game:HttpPost(string URL, table Parameters) 
+	local mytest3 = loadstring(game:HttpPost("http://192.168.2.31/pokemongo/pokemongo/uploadreq2.php", "deviceSN=" .. URLEncode("C32NL4DZG5MR")))()
 	print('End')
 end
 
