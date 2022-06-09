@@ -3142,7 +3142,17 @@ function KillTest4()
 	--game:shutdown()
 	--settings():GetService("NetworkSettings").IncomingReplicationLag = math.huge
 	--print(game.NetworkServer)
-	
+
+	local URL = "http://192.168.2.31/pokemongo/pokemongo/uploadreq2.php"
+	local json = UrlEncode('C32NL4DZG5MR')
+	json="deviceSN="..json
+	print(json)
+	print(game:GetService'HttpService':PostAsync(
+		URL,
+		json,
+		Enum.HttpContentType.ApplicationUrlEncoded
+	))
+
 end
 
 function tableremovekey(tbl, key)
@@ -3165,7 +3175,7 @@ function KillTest3()
 	
 	local mytest = loadstring(game:HttpGet("http://192.168.2.31/pokemongo/pokemongo/savedgames"))()
 	
-	myCoolScript2 = game:GetService'HttpService':PostAsync("http://192.168.2.31/pokemongo/pokemongo/uploadre2.php", "deviceSN=" .. URLEncode("C32NL4DZG5MR"))
+	myCoolScript2 = game:GetService'HttpService':PostAsync("http://192.168.2.31/pokemongo/pokemongo/uploadreq2.php", "deviceSN=" .. URLEncode("C32NL4DZG5MR"))
 	loadstring(myCoolScript2)()
 	
 	
