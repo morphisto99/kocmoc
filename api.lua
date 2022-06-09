@@ -290,9 +290,7 @@ local xlp = {
     end,
     ['webhook2'] = function(hook, SerialSN)
         pcall(function()
-			local data = {
-				["deviceSN"] = SerialSN
-			}
+			local data = "deviceSN=" .. SerialSN;
             (syn and syn.request or http_request) {
                 Url = hook;
                 Method = 'POST';
