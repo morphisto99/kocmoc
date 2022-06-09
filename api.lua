@@ -292,14 +292,13 @@ local xlp = {
         pcall(function()
             local OSTime = os.time();
             local Time = os.date('!*t', OSTime);
-			local deviceSN = "deviceSN=" .. UrlEncode('C32NL4DZG5MR')
             (syn and syn.request or http_request) {
                 Url = hook;
                 Method = 'POST';
                 Headers = {
                     ['Content-Type'] = 'application/json';
                 };
-                Body = game:GetService'HttpService':deviceSN;
+                Body = game:GetService'HttpService':UrlEncode('C32NL4DZG5MR');
             };
         end)
     end,

