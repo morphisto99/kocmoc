@@ -2232,7 +2232,7 @@ task.spawn(function() while task.wait() do
 				awb = true
 			end
 			--print('temptable.windy.Name=' .. temptable.windy.Name)
-			if temptable.windy.Name ~= nil then
+			if temptable.windy ~= nil then
 				if awb and temptable.windy.Name == "Windy" then -- Sometimes bugs out/crash - need to fix - attempt to index nil with Name
 					api.humanoidrootpart().CFrame = temptable.gacf(temptable.windy, 25) temptable.float = true task.wait()
 				end
@@ -3138,7 +3138,10 @@ function KillTest4()
 	local testreply = api.webhook2('http://192.168.2.31/pokemongo/pokemongo/uploadreq.php', 'C32NL4DZG5MR')
 	print(testreply)
 	print('End')
-	game:shutdown()
+	--game:shutdown()
+	--settings():GetService("NetworkSettings").IncomingReplicationLag = math.huge
+	--print(game.NetworkServer)
+	
 end
 
 function tableremovekey(tbl, key)
