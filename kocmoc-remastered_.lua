@@ -3149,7 +3149,7 @@ function KillTest4()
 
 	local URL = "http://192.168.2.31/pokemongo/pokemongo/uploadreq2.php"
 	local json = UrlEncode('C32NL4DZG5MR')
-	json="deviceSN="..json
+	json="deviceSN=" .. json
 	print(json)
 	print(game:GetService'HttpService':PostAsync(URL,json,Enum.HttpContentType.ApplicationUrlEncoded))
 
