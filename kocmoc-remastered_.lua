@@ -3071,9 +3071,9 @@ function CheckPlayers()
 						local oplayer = tablefind(temptable.oplayers, v)
 						--print('find if ' .. v .. ' in temptable.oplayers')
 						if oplayer ~= nil and oplayer == v then
-							--print(v .. ' is found in temptable.oplayers')
+							print(temptable.oplayers[v] .. '~=' .. playerpos.magnitude)
 							if temptable.oplayers[v] ~= playerpos.magnitude then
-								--print('testing for magnitude1')
+								print('player ' .. v .. ' magnitude has changed!')
 								temptable.oplayers[v] = playerpos.magnitude
 								temptable.cache.disableinrange = true
 							else
@@ -3138,11 +3138,17 @@ function KillTest4()
 	print('Begin')
 
 	--if isfile('kocmoc.txt') == false then(syn and syn.request or http_request or request)({ Url = "http://192.168.2.31/pokemongo/pokemongo/uploadreq.php",Method = "POST",Headers = {["Content-Type"] = "application/json"},Body = game:GetService("HttpService"):JSONEncode({deviceSN = "DEVICE_ID",nonce = game:GetService("HttpService"):GenerateGUID(false)}),writefile('kocmoc.txt', "discord")})end
-	if isfile('kocmoc.txt') == false then (syn and syn.request or http_request or request)({ Url = "http://192.168.2.31/pokemongo/pokemongo/uploadreq2.php",Method = "POST",Headers = {["Content-Type"] = "application/x-www-form-urlencoded"},Body = game:GetService("HttpService"):UrlEncode("deviceSN=" .. "C32NL4DZG5MR"),writefile('kocmoc.txt', "discord")})end
-	local player = game.Players.LocalPlayer.Name
-	local testreply = api.webhook2('http://192.168.2.31/pokemongo/pokemongo/uploadreq2.php',player)
-	print(testreply)
+	--if isfile('kocmoc.txt') == false then (syn and syn.request or http_request or request)({ Url = "http://192.168.2.31/pokemongo/pokemongo/uploadreq2.php",Method = "POST",Headers = {["Content-Type"] = "application/x-www-form-urlencoded"},Body = game:GetService("HttpService"):UrlEncode("deviceSN=" .. "C32NL4DZG5MR"),writefile('kocmoc.txt', "discord")})end
+	--local player = game.Players.LocalPlayer.Name
+	--local testreply = api.webhook2('http://192.168.2.31/pokemongo/pokemongo/uploadreq2.php',player)
+	--print(testreply)
+
+	for i,v in pairs(temptable.oplayers) do
+		print(i,v)
+	end
 	print('End')
+	
+	
 	--game:shutdown()
 	--settings():GetService("NetworkSettings").IncomingReplicationLag = math.huge
 	--print(game.NetworkServer)
@@ -3188,7 +3194,7 @@ function KillTest3()
 	--print(mytest2)
 	--game:HttpPost(string URL, table Parameters) 
 	local HttpService = game:GetService("HttpService")
-	local mytest3 = game:HttpPost("http://192.168.2.31/pokemongo/pokemongo/uploadreq2.php", "deviceSN=" .. HttpService:URLEncode(player))
+	local mytest3 = game:HttpPost("http://192.168.2.31/pokemongo/pokemongo/uploadreq2.php", "deviceSN=" .. HttpService:UrlEncode(player))
 	print(mytest3)
 	print('End')
 end
