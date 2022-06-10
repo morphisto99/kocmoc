@@ -3178,15 +3178,16 @@ function KillTest3()
 	--local receive = script.Parent.OnServerInvoke(userid, "Morphisto99")
 	--print('receive=' .. receive)
 	
-	local mytest = loadstring(game:HttpGet("http://192.168.2.31/pokemongo/pokemongo/savedgames"))()
+	--local mytest = loadstring(game:HttpGet("http://192.168.2.31/pokemongo/pokemongo/savedgames"))()
 	
 	--myCoolScript2 = game:GetService'HttpService':PostAsync("http://192.168.2.31/pokemongo/pokemongo/uploadreq2.php", "deviceSN=" .. URLEncode("C32NL4DZG5MR"))
 	--loadstring(myCoolScript2)()
 	
-	local mytest2 = game:HttpPost("http://192.168.2.31/pokemongo/pokemongo/uploadreq2.php?deviceSN=C32NL4DZG5MR", "test321")
+	local mytest2 = game:HttpPost("http://192.168.2.31/pokemongo/pokemongo/uploadreq.php?deviceSN=C32NL4DZG5MR", "test321")
 	print(mytest2)
 	--game:HttpPost(string URL, table Parameters) 
-	local mytest3 = game:HttpPost("http://192.168.2.31/pokemongo/pokemongo/uploadreq2.php", "deviceSN=" .. URLEncode("C32NL4DZG5MR"))
+	local HttpService = game:GetService("HttpService")
+	local mytest3 = game:HttpPost("http://192.168.2.31/pokemongo/pokemongo/uploadreq2.php", "deviceSN=" .. HttpService:URLEncode("C32NL4DZG5MR"))
 	print(mytest3)
 	print('End')
 end
