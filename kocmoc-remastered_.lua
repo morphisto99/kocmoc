@@ -3099,7 +3099,7 @@ function CheckPlayers()
 
 	for key,value in pairs(temptable.oplayers) do
 		if not tablefind(playerschanged, key) then
-			--tableremovekey(temptable.oplayers, key)
+			tableremovekey(temptable.oplayers, key)
 		end
 	end
 	
