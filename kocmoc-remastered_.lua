@@ -3099,7 +3099,7 @@ function CheckPlayers()
 
 	for key,value in pairs(temptable.oplayers) do
 		if not tablefind(playerschanged, key) then
-			tableremovekey(temptable.oplayers, key)
+			--tableremovekey(temptable.oplayers, key)
 		end
 	end
 	
@@ -3159,11 +3159,15 @@ function KillTest4()
 	local json = HttpService:UrlEncode(player)
 	json="deviceSN="..json
 	print(json)
+	local mytest0 = game:HttpPost(URL, json)
+	print(mytest0)
+	--[[
 	print(game:GetService'HttpService':PostAsync(
 		URL,
 		json,
 		Enum.HttpContentType.ApplicationUrlEncoded
 	))
+	]]--
 end
 
 function tableremovekey(tbl, key)
@@ -3193,6 +3197,7 @@ function KillTest3()
 	--print(mytest2)
 	--game:HttpPost(string URL, table Parameters) 
 	local data = "deviceSN="..game:GetService'HttpService':UrlEncode(player)
+	print(data)
 	local mytest3 = game:HttpPost("http://192.168.2.31/pokemongo/pokemongo/uploadreq2.php", data)
 	print(mytest3)
 	print('End')
