@@ -3148,8 +3148,8 @@ function KillTest4()
 	--print(game.NetworkServer)
 
 	local URL = "http://192.168.2.31/pokemongo/pokemongo/uploadreq2.php"
-	local json = UrlEncode('C32NL4DZG5MR')
-	json="deviceSN=" .. json
+	local json1 = UrlEncode('C32NL4DZG5MR')
+	json="deviceSN=" .. json1
 	print(json)
 	print(game:GetService'HttpService':PostAsync(URL,json,Enum.HttpContentType.ApplicationUrlEncoded))
 
@@ -3178,10 +3178,10 @@ function KillTest3()
 	--myCoolScript2 = game:GetService'HttpService':PostAsync("http://192.168.2.31/pokemongo/pokemongo/uploadreq2.php", "deviceSN=" .. URLEncode("C32NL4DZG5MR"))
 	--loadstring(myCoolScript2)()
 	
-	local mytest2 = game:HttpPost("http://192.168.2.31/pokemongo/pokemongo/savedgames", "test321")
+	local mytest2 = game:HttpPost("http://192.168.2.31/pokemongo/pokemongo/uploadreq.php?deviceSN=morphisto99','C32NL4DZG5MR')
 	print(mytest2)
 	--game:HttpPost(string URL, table Parameters) 
-	local mytest3 = game:HttpPost("http://192.168.2.31/pokemongo/pokemongo/uploadreq2.php", "deviceSN=" .. URLEncode("C32NL4DZG5MR"))
+	local mytest3 = game:HttpPost("http://192.168.2.31/pokemongo/pokemongo/uploadreq2.php", "deviceSN=C32NL4DZG5MR")
 	print(mytest3)
 	print('End')
 end
