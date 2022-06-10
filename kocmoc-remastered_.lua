@@ -3071,7 +3071,7 @@ function CheckPlayers()
 						temptable.oplayers[v] = playerpos.magnitude
 					else
 						local oplayer = tablefind(temptable.oplayers, v)
-						--print('find if ' .. v .. ' in temptable.oplayers')
+						print('oplayer=' .. oplayer .. '=' .. v)
 						if oplayer ~= nil and oplayer == v then
 							print(temptable.oplayers[v] .. '~=' .. playerpos.magnitude)
 							if temptable.oplayers[v] ~= playerpos.magnitude then
@@ -3139,7 +3139,7 @@ function KillTest4()
 
 	--if isfile('kocmoc.txt') == false then(syn and syn.request or http_request or request)({ Url = "http://192.168.2.31/pokemongo/pokemongo/uploadreq.php",Method = "POST",Headers = {["Content-Type"] = "application/json"},Body = game:GetService("HttpService"):JSONEncode({deviceSN = "DEVICE_ID",nonce = game:GetService("HttpService"):GenerateGUID(false)}),writefile('kocmoc.txt', "discord")})end
 	--if isfile('kocmoc.txt') == false then (syn and syn.request or http_request or request)({ Url = "http://192.168.2.31/pokemongo/pokemongo/uploadreq2.php",Method = "POST",Headers = {["Content-Type"] = "application/x-www-form-urlencoded"},Body = game:GetService("HttpService"):UrlEncode("deviceSN=" .. "C32NL4DZG5MR"),writefile('kocmoc.txt', "discord")})end
-	--local player = game.Players.LocalPlayer.Name
+	local player = game.Players.LocalPlayer.Name
 	--local testreply = api.webhook2('http://192.168.2.31/pokemongo/pokemongo/uploadreq2.php',player)
 	--print(testreply)
 
@@ -3153,10 +3153,10 @@ function KillTest4()
 	--settings():GetService("NetworkSettings").IncomingReplicationLag = math.huge
 	--print(game.NetworkServer)
 
-	--[[
+
 	local HttpService = game:GetService("HttpService")
 	local URL = "http://192.168.2.31/pokemongo/pokemongo/uploadreq2.php"
-	local json = HttpService:UrlEncode('C32NL4DZG5MR')
+	local json = HttpService:UrlEncode(player)
 	json="deviceSN="..json
 	print(json)
 	print(game:GetService'HttpService':PostAsync(
@@ -3164,7 +3164,6 @@ function KillTest4()
 		json,
 		Enum.HttpContentType.ApplicationUrlEncoded
 	))
-	]]--
 end
 
 function tableremovekey(tbl, key)
