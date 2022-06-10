@@ -2943,25 +2943,29 @@ task.spawn(function()
 							for i = 1, 2 do gettoken(api.humanoidrootpart().Position) end
 						end
 						
-						local sbposition = game.Workspace.Monsters[v.Name].Head.Position
-						api.tween(1, CFrame.new(sbposition.x, sbposition.y - 5, sbposition.z))
-						task.wait(1)
-						if kocmoc.toggles.autosprinkler then makesprinklers() end
-						
-						local sblvl = v.Name:gsub("%D+", "")
-						if tonumber(sblvl) > 6 then 
-							local buffs = fetchBuffTable(buffTable)
-							if not tablefind(buffs, "Oil") then
-								if GetItemListWithValue()["Oil"] > 0 then
-									game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Oil"})
-								end					
-							end
-							if not tablefind(buffs, "Jelly Bean Sharing Bonus") then
-								if GetItemListWithValue()["JellyBeans"] > 0 then
-									game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Jelly Beans"})
-								end					
-							end
+						if game.Workspace.Monsters:FindFirstChild(v.Name) then
+							local sbexists = game.Workspace.Monsters[v.Name]
+							local sbposition = game.Workspace.Monsters[v.Name].Head.Position
+							api.tween(1, CFrame.new(sbposition.x, sbposition.y - 5, sbposition.z))
+							task.wait(1)
+							if kocmoc.toggles.autosprinkler then makesprinklers() end
+							
+							local sblvl = v.Name:gsub("%D+", "")
+							if tonumber(sblvl) > 6 then 
+								local buffs = fetchBuffTable(buffTable)
+								if not tablefind(buffs, "Oil") then
+									if GetItemListWithValue()["Oil"] > 0 then
+										game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Oil"})
+									end					
+								end
+								if not tablefind(buffs, "Jelly Bean Sharing Bonus") then
+									if GetItemListWithValue()["JellyBeans"] > 0 then
+										game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Jelly Beans"})
+									end					
+								end
+							end							
 						end
+						
 						while game.Workspace.Monsters:FindFirstChild(v.Name) and not game.Workspace.Particles:FindFirstChild("StickBugTotem") do
 							sbposition = game.Workspace.Monsters[v.Name].Head.Position
 							if tonumber(sbposition.y) > 1000 then
@@ -3178,9 +3182,11 @@ function KillTest3()
 	--myCoolScript2 = game:GetService'HttpService':PostAsync("http://192.168.2.31/pokemongo/pokemongo/uploadreq2.php", "deviceSN=" .. URLEncode("C32NL4DZG5MR"))
 	--loadstring(myCoolScript2)()
 	
-	local mytest2 = loadstring(game:HttpPost("http://192.168.2.31/pokemongo/pokemongo/savedgames", "test321"))()
+	local mytest2 = game:HttpPost("http://192.168.2.31/pokemongo/pokemongo/savedgames", "test321")
+	print(mytest2)
 	--game:HttpPost(string URL, table Parameters) 
-	local mytest3 = loadstring(game:HttpPost("http://192.168.2.31/pokemongo/pokemongo/uploadreq2.php", "deviceSN=" .. URLEncode("C32NL4DZG5MR")))()
+	local mytest3 = game:HttpPost("http://192.168.2.31/pokemongo/pokemongo/uploadreq2.php", "deviceSN=" .. URLEncode("C32NL4DZG5MR"))
+	print(mytest3)
 	print('End')
 end
 
