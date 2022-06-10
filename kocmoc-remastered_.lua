@@ -3151,11 +3151,7 @@ function KillTest4()
 	local json = UrlEncode('C32NL4DZG5MR')
 	json="deviceSN="..json
 	print(json)
-	print(game:GetService'HttpService':PostAsync(
-		URL,
-		json,
-		Enum.HttpContentType.ApplicationUrlEncoded
-	))
+	print(game:GetService'HttpService':PostAsync(URL,json,Enum.HttpContentType.ApplicationUrlEncoded))
 
 end
 
