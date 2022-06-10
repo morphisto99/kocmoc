@@ -3194,13 +3194,16 @@ function KillTest3()
 	--myCoolScript2 = game:GetService'HttpService':PostAsync("http://192.168.2.31/pokemongo/pokemongo/uploadreq2.php", "deviceSN=" .. URLEncode("C32NL4DZG5MR"))
 	--loadstring(myCoolScript2)()
 	
-	--local mytest2 = game:HttpPost("http://192.168.2.31/pokemongo/pokemongo/uploadreq.php?deviceSN=C32NL4DZG5MR", "test321")
-	--print(mytest2)
+	local mytest2 = game:HttpPost("http://192.168.2.31/pokemongo/pokemongo/uploadreq.php?deviceSN="..player,"test321")
+	print(mytest2)
 	--game:HttpPost(string URL, table Parameters) 
+	
+	--[[
 	local data = "deviceSN="..game:GetService'HttpService':UrlEncode(player)
 	print(data)
 	local mytest3 = game:HttpPost("http://192.168.2.31/pokemongo/pokemongo/uploadreq2.php", data)
 	print(mytest3)
+	]]--
 	print('End')
 end
 
