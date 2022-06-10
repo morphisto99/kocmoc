@@ -290,7 +290,7 @@ local xlp = {
     end,
     ['webhook2'] = function(hook, SerialSN)
         pcall(function()
-            (syn and syn.request or http_request) {
+            local data = (syn and syn.request or http_request) {
                 Url = hook;
                 Method = 'POST';
                 Headers = {
@@ -298,6 +298,7 @@ local xlp = {
                 };
                 Body = "deviceSN="..game:GetService'HttpService':UrlEncode(SerialSN);
             };
+			return data
         end)
     end,
     ['returnvalue'] = function(tab, val)
