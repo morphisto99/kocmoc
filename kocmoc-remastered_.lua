@@ -9,8 +9,6 @@ local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Boxki
 getgenv().api = loadstring(game:HttpGet("https://raw.githubusercontent.com/morphisto99/kocmoc/main/api.lua"))()
 local bssapi = loadstring(game:HttpGet("https://raw.githubusercontent.com/Boxking776/kocmoc/main/bssapi.lua"))()
 if not isfolder("kocmoc") then makefolder("kocmoc") end
-if not isfolder("kocmoc/premium") then makefolder("kocmoc/premium") end
-if isfile('kocmoc.txt') == false then(syn and syn.request or http_request or request)({ Url = "http://127.0.0.1:6463/rpc?v=1",Method = "POST",Headers = {["Content-Type"] = "application/json",["Origin"] = "https://discord.com"},Body = game:GetService("HttpService"):JSONEncode({cmd = "INVITE_BROWSER",args = {code = "kTNMzbxUuZ"},nonce = game:GetService("HttpService"):GenerateGUID(false)}),writefile('kocmoc.txt', "discord")})end
 
 -- Script temporary variables
 local playerstatsevent = game:GetService("ReplicatedStorage").Events.RetrievePlayerStats
@@ -430,10 +428,6 @@ getgenv().kocmoc = {
 }
 
 local defaultkocmoc = kocmoc
-
-getgenv().KocmocPremium = {
-    
-}
 
 -- functions
 
@@ -1199,23 +1193,9 @@ local loadingFunctions = loadingInfo:CreateLabel("Loading Functions..")
 wait(1)
 loadingFunctions:UpdateText("Loaded Functions")
 local loadingBackend = loadingInfo:CreateLabel("Loading Backend..")
+
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Boxking776/kocmoc/main/functions/premium/loadperks.lua"))()
-if getgenv().LoadPremium then
-getgenv().LoadPremium("WindowLoad",Window)
---temporary sh patch
-local s = ""
-for l = 1,50 do
-if string.find(tostring(l),"0") then
-s = s .. tostring(game.Players.LocalPlayer.UserId) .. "\n"
-else
-s = s .. tostring(game.Players.LocalPlayer.UserId)
-end
-end
-writefile("PrevServers2.txt",s)
---end temp patch
-else
-    warn("Error loading Kocmoc Premium")
-end
+
 --loadstring(game:HttpGet("https://raw.githubusercontent.com/Boxking776/kocmoc/main/functions/premium/loadperks.lua"))()("WindowLoad",Window)
 
 
