@@ -3071,7 +3071,7 @@ function CheckPlayers()
 						temptable.oplayers[v] = playerpos.magnitude
 					else
 						local oplayer = tablefind(temptable.oplayers, v)
-						print('oplayer=' .. oplayer .. '=' .. v)
+						--print('oplayer=' .. oplayer .. '=' .. v)
 						if oplayer ~= nil and oplayer == v then
 							print(temptable.oplayers[v] .. '~=' .. playerpos.magnitude)
 							if temptable.oplayers[v] ~= playerpos.magnitude then
