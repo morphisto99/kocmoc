@@ -3073,9 +3073,9 @@ function CheckPlayers()
 						local oplayer = tablefind(temptable.oplayers, v)
 						--print('oplayer=' .. oplayer .. '=' .. v)
 						if oplayer ~= nil and oplayer == v then
-							print(temptable.oplayers[v] .. '~=' .. playerpos.magnitude)
+							--print(temptable.oplayers[v] .. '~=' .. playerpos.magnitude)
 							if temptable.oplayers[v] ~= playerpos.magnitude then
-								print('player ' .. v .. ' magnitude has changed!')
+								--print('player ' .. v .. ' magnitude has changed!')
 								temptable.oplayers[v] = playerpos.magnitude
 								temptable.cache.disableinrange = true
 							else
