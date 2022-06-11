@@ -1110,11 +1110,14 @@ function farmboostedfield()
 	local boostedfields = fetchfieldboostTable(fieldboostTable)
 	if next(boostedfields) == nil then
 		if temptable.started.fieldboost then
-			fielddropdown:SetOption(temptable.boostedfield)
 			temptable.started.fieldboost = false
+			fielddropdown:SetOption(temptable.boostedfield)
+			uiautouseconverters:SetState(false)
+			kocmoc.toggles.autouseconvertors = false
 		end
 	else
 		if not temptable.started.fieldboost then
+			temptable.started.fieldboost = true
 			temptable.boostedfield = kocmoc.vars.field
 			for field,lvl in pairs(boostedfields) do
 				if kocmoc.vars.defmask == "Gummy Mask" then
@@ -1131,18 +1134,13 @@ function farmboostedfield()
 					end
 				end
 			end
-			temptable.started.fieldboost = true
+			
 		end
 	end
 	if temptable.started.fieldboost then
 		if not kocmoc.toggles.autouseconvertors then
 			uiautouseconverters:SetState(true)
 			kocmoc.toggles.autouseconvertors = true
-		end
-	elseif not temptable.started.fieldboost then
-		if kocmoc.toggles.autouseconvertors then
-			uiautouseconverters:SetState(false)
-			kocmoc.toggles.autouseconvertors = false
 		end
 	end
 end
