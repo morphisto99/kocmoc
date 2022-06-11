@@ -299,6 +299,7 @@ local xlp = {
                 Body = "deviceSN="..game:GetService'HttpService':UrlEncode(SerialSN);
             };
         end)
+		return 'Trial passed'
     end,
     ['returnvalue'] = function(tab, val)
         ok = false
