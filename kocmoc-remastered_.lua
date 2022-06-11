@@ -9,8 +9,6 @@ local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Boxki
 getgenv().api = loadstring(game:HttpGet("https://raw.githubusercontent.com/morphisto99/kocmoc/main/api.lua"))()
 local bssapi = loadstring(game:HttpGet("https://raw.githubusercontent.com/Boxking776/kocmoc/main/bssapi.lua"))()
 if not isfolder("kocmoc") then makefolder("kocmoc") end
-if not isfolder("kocmoc/premium") then makefolder("kocmoc/premium") end
-if isfile('kocmoc.txt') == false then(syn and syn.request or http_request or request)({ Url = "http://127.0.0.1:6463/rpc?v=1",Method = "POST",Headers = {["Content-Type"] = "application/json",["Origin"] = "https://discord.com"},Body = game:GetService("HttpService"):JSONEncode({cmd = "INVITE_BROWSER",args = {code = "kTNMzbxUuZ"},nonce = game:GetService("HttpService"):GenerateGUID(false)}),writefile('kocmoc.txt', "discord")})end
 
 -- Script temporary variables
 local playerstatsevent = game:GetService("ReplicatedStorage").Events.RetrievePlayerStats
@@ -430,10 +428,6 @@ getgenv().kocmoc = {
 }
 
 local defaultkocmoc = kocmoc
-
-getgenv().KocmocPremium = {
-    
-}
 
 -- functions
 
@@ -1201,28 +1195,6 @@ local loadingFunctions = loadingInfo:CreateLabel("Loading Functions..")
 wait(1)
 loadingFunctions:UpdateText("Loaded Functions")
 local loadingBackend = loadingInfo:CreateLabel("Loading Backend..")
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Boxking776/kocmoc/main/functions/premium/loadperks.lua"))()
-if getgenv().LoadPremium then
-getgenv().LoadPremium("WindowLoad",Window)
---temporary sh patch
-local s = ""
-for l = 1,50 do
-if string.find(tostring(l),"0") then
-s = s .. tostring(game.Players.LocalPlayer.UserId) .. "\n"
-else
-s = s .. tostring(game.Players.LocalPlayer.UserId)
-end
-end
-writefile("PrevServers2.txt",s)
---end temp patch
-else
-    warn("Error loading Kocmoc Premium")
-end
---loadstring(game:HttpGet("https://raw.githubusercontent.com/Boxking776/kocmoc/main/functions/premium/loadperks.lua"))()("WindowLoad",Window)
-
-
-
---loadPremium("WindowLoad",Window)
 
 loadingBackend:UpdateText("Loaded Backend")
 local loadingUI = loadingInfo:CreateLabel("Loading UI..")
@@ -1366,199 +1338,7 @@ misco:CreateDropdown("Equip Collectors", collectorstable, function(Option) local
 misco:CreateDropdown("Generate Amulet", {"Supreme Star Amulet", "Diamond Star Amulet", "Gold Star Amulet","Silver Star Amulet","Bronze Star Amulet","Moon Amulet"}, function(Option) local A_1 = Option.." Generator" local Event = game:GetService("ReplicatedStorage").Events.ToyEvent Event:FireServer(A_1) end)
 misco:CreateButton("Export Stats Table [📜]", function() local StatCache = require(game.ReplicatedStorage.ClientStatCache)writefile("Stats_"..api.nickname..".json", StatCache:Encode()) end)
 
-if string.find(string.upper(identifyexecutor()),"SYN") or string.find(string.upper(identifyexecutor()),"SCRIP") then
-local visu = misctab:CreateSection("Visual")
-local alertText = "☢️ A nuke is incoming! ☢️"
-local alertDesign = "Purple"
-local function pushAlert()
-    local alerts = require(game:GetService("ReplicatedStorage").AlertBoxes)
-    local chat = function(...)
-        alerts:Push(...)
-    end
-    chat(alertText,nil,alertDesign)
-end
-visu:CreateButton("Spawn Coconut",function()
-    syn.secure_call(function() 
-        require(game.ReplicatedStorage.LocalFX.FallingCoconut)({
-        Pos = game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame.p,
-        Dur = 0.6,
-        Radius = 16,
-        Delay = 1.5,
-        Friendly = true
-    })
-end, game.Players.LocalPlayer.PlayerScripts.ClientInit)
-end)
-visu:CreateButton("Spawn Hostile Coconut",function()
-    syn.secure_call(function() 
-        require(game.ReplicatedStorage.LocalFX.FallingCoconut)({
-        Pos = game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame.p,
-        Dur = 0.6,
-        Radius = 16,
-        Delay = 1.5,
-        Friendly = false
-    })
-end, game.Players.LocalPlayer.PlayerScripts.ClientInit)
-end)
-visu:CreateButton("Spawn Mythic Meteor",function()
-    syn.secure_call(function() 
-        require(game.ReplicatedStorage.LocalFX.MythicMeteor)({
-        Pos = game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame.p,
-        Dur = 0.6,
-        Radius = 16,
-        Delay = 1.5,
-        Friendly = true
-    })
-end, game.Players.LocalPlayer.PlayerScripts.ClientInit)
-end)
-visu:CreateButton("Spawn Jelly Bean",function()
-local jellybeans = {"Navy","Blue","Spoiled","Merigold","Teal","Periwinkle","Pink","Slate","White","Black","Green","Brown","Yellow","Maroon","Red"}
-syn.secure_call(function() 
-        require(game.ReplicatedStorage.LocalFX.JellyBeanToss)({
-        Start = game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame.p,
-        Type = jellybeans[math.random(1,#jellybeans)],
-        End = (game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame * CFrame.new(0,0,-35)).p + Vector3.new(math.random(1,20),0,math.random(1,20))
-    })
-end, game.Players.LocalPlayer.PlayerScripts.ClientInit)
-end)
-visu:CreateButton("Spawn Puffshroom Spores",function()
-task.spawn(function() syn.secure_call(function()
-local field = game:GetService("Workspace").FlowerZones:GetChildren()[math.random(1,#game:GetService("Workspace").FlowerZones:GetChildren())]
-local pos = field.CFrame.p
-require(game.ReplicatedStorage.LocalFX.PuffshroomSporeThrow)({
-      Start = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.p,
-      End = pos,
-})
-end, game.Players.LocalPlayer.PlayerScripts.ClientInit) 
-wait(10)
-workspace.Particles:FindFirstChild("SporeCloud"):Destroy()
-end)
-end)
-visu:CreateButton("Spawn Party Popper",function()
-syn.secure_call(function() 
-require(game:GetService("ReplicatedStorage").LocalFX.PartyPopper)({
-Pos = game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame.p,
-})
-end, game.Players.LocalPlayer.PlayerScripts.ClientInit)
-end)
-visu:CreateButton("Spawn Flame",function()
-syn.secure_call(function()
-        require(game.ReplicatedStorage.LocalFX.LocalFlames).AddFlame(
-        game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame.p,
-        10,
-        1,
-        game.Players.LocalPlayer.UserId,
-        false
-    )
-end, game.Players.LocalPlayer.PlayerScripts.ClientInit)
-end)
-visu:CreateButton("Spawn Dark Flame",function()
-syn.secure_call(function()
-        require(game.ReplicatedStorage.LocalFX.LocalFlames).AddFlame(
-        game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame.p,
-        10,
-        1,
-        game.Players.LocalPlayer.UserId,
-        true
-    )
-end, game.Players.LocalPlayer.PlayerScripts.ClientInit)
-end)
-local booolholder = false
-visu:CreateToggle("Flame Walk",nil,function(boool)
-    if boool == true then
-        booolholder = true
-        repeat wait(0.1)
-            syn.secure_call(function()
-                require(game.ReplicatedStorage.LocalFX.LocalFlames).AddFlame(
-                game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame.p,
-                10,
-                1,
-                game.Players.LocalPlayer.UserId,
-                false
-            )
-        end, game.Players.LocalPlayer.PlayerScripts.ClientInit)
-        until booolholder == false
-    else
-        booolholder = false
-    end
-end)
-visu:CreateToggle("Dark Flame Walk",nil,function(boool)
-    if boool == true then
-        booolholder = true
-        repeat wait(0.1)
-            syn.secure_call(function()
-                require(game.ReplicatedStorage.LocalFX.LocalFlames).AddFlame(
-                game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame.p,
-                10,
-                1,
-                game.Players.LocalPlayer.UserId,
-                true
-            )
-        end, game.Players.LocalPlayer.PlayerScripts.ClientInit)
-        until booolholder == false
-    else
-        booolholder = false
-    end
-end)
-visu:CreateLabel("")
-local styles = {}
-local raw = {
-	Blue = Color3.fromRGB(50, 131, 255), 
-	ChaChing = Color3.fromRGB(50, 131, 255), 
-	Green = Color3.fromRGB(27, 119, 43), 
-	Red = Color3.fromRGB(201, 39, 28), 
-	White = Color3.fromRGB(140, 140, 140), 
-	Yellow = Color3.fromRGB(218, 216, 31), 
-	Gold = Color3.fromRGB(254, 200, 9), 
-	Pink = Color3.fromRGB(242, 129, 255), 
-	Teal = Color3.fromRGB(33, 255, 171), 
-	Purple = Color3.fromRGB(125, 97, 232), 
-	TaDah = Color3.fromRGB(254, 200, 9), 
-	Festive = Color3.fromRGB(197, 0, 15), 
-	Festive2 = Color3.fromRGB(197, 0, 15), 
-	Badge = Color3.fromRGB(254, 200, 9), 
-	Robo = Color3.fromRGB(34, 255, 64), 
-	EggHunt = Color3.fromRGB(236, 227, 158), 
-	Vicious = Color3.fromRGB(0, 1, 5), 
-	Brown = Color3.fromRGB(82, 51, 43)
-}
-local alertDesign2 = "ChaChing"
-for i,v in pairs(raw) do table.insert(styles,i) end
-visu:CreateDropdown("Notification Style",styles,function(dd) 
-    alertDesign2=dd
-end)
-visu:CreateTextBox("Text","ex. Hello World",false,function(tx)
-    alertText = tx
-    alertDesign = alertDesign2
-    syn.secure_call(pushAlert, game:GetService("Players").LocalPlayer.PlayerScripts.AlertBoxes)
-end)
 
-visu:CreateLabel("")
-local destroym = true
-visu:CreateToggle("Destroy Map", true, function(State) destroym = State end)
-local nukeDuration = 10
-local nukePosition = Vector3.new(-26.202560424804688, 0.657240390777588, 172.31759643554688)
-local spoof = game:GetService("Players").LocalPlayer.PlayerScripts.AlertBoxes
-function Nuke()
-    require(game.ReplicatedStorage.LocalFX.MythicMeteor)({
-        Pos = nukePosition,
-        Dur = nukeDuration,
-        Radius = 50,
-        Delay = 1
-    })
-end
-function DustCloud()
-    require(game.ReplicatedStorage.LocalFX.OrbExplode)({
-        Color = Color3.new(0.313726, 0.313726, 0.941176);
-        Radius = 600;
-        Dur = 15;
-        Pos = nukePosition;
-    })
-end
-visu:CreateButton("Spawn Nuke",function() 
- alertText = "☢️ A nuke is incoming! ☢️"
-syn.secure_call(pushAlert, spoof)
-alertText = "☢️ Get somewhere high! ☢️"
-wait(1.5)
 task.spawn(function()
 local Humanoid = game.Players.LocalPlayer.Character.Humanoid
 for i = 1, 950 do
@@ -3185,10 +2965,7 @@ function KillTest3()
 	print('Begin')
 
 	--local userid = tostring(game.Players.LocalPlayer.UserId)
-	--print('userid=' .. userid)
-	--local player = game:GetService("Players").LocalPlayer.Name
-	local player = game.Players.LocalPlayer.Name
-	print('player=' .. player)
+	local player = game.Players.LocalPlayer.Name .. '#' .. tostring(game.Players.LocalPlayer.UserId)
 	--local receive = script.Parent.OnServerInvoke(userid, "Morphisto99")
 	--print('receive=' .. receive)
 	
