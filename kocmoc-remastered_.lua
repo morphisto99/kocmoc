@@ -3083,6 +3083,7 @@ function CheckPlayers()
 								--temptable.cache.disableinrange = false
 							end
 						else
+							tableremovekey(temptable.oplayers, v)
 							temptable.oplayers[v] = playerpos.magnitude
 						end
 					end
@@ -3096,12 +3097,14 @@ function CheckPlayers()
 			end
 		end
 	end
-
+	
+	--[[
 	for key,value in pairs(temptable.oplayers) do
 		if not tablefind(playerschanged, key) then
 			tableremovekey(temptable.oplayers, key)
 		end
 	end
+	]]--
 	
 	if temptable.cache.disableinrange then -- disable when other players in range
 		if kocmoc.toggles.killwindy then
