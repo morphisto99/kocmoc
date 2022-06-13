@@ -216,29 +216,6 @@ for i,v in pairs(AccessoryTypes) do
     end
 end
 
--- Morphisto
-npctable = {
-	["Black Bear"] = CFrame.new(-258.1, 5, 299.7),
-	["Brown Bear"] = CFrame.new(282, 46, 236),
-	["Bucko Bee"] = CFrame.new(302, 62, 105),
-	["Honey Bee"] = CFrame.new(-455.6, 103.8, -224.2),
-	["Panda Bear"] = CFrame.new(106.3, 35, 50.1),
-	["Polar Bear"] = CFrame.new(-106, 119, -77),
-	["Riley Bee"] = CFrame.new(-361, 74, 212),
-	["Science Bear"] = CFrame.new(267, 103, 20),
-	["Mother Bear"] = CFrame.new(-183.8, 4.6, 87.5),
-	["Sun Bear"] = CFrame.new(23.25, 14, 360.26),
-	["Spirit Bear"] = CFrame.new(-365, 99, 479),
-	["Stick Bug"] = CFrame.new(-128, 51, 147),
-	["Onett"] = CFrame.new(-8.4, 234, -517.9),
-	["Gummy Lair"] = CFrame.new(273, 25261, -745),
-	["Bubble Bee Man"] = CFrame.new(89, 312, -278),
-	["Meteor Shower"] = CFrame.new(160, 127, -160),
-	["Demon Mask"] = CFrame.new(300, 13, 272),
-	["Diamond Mask"] = CFrame.new(-336, 132, -385)
-}
--- Morphisto
-
 table.sort(fieldstable)
 table.sort(accesoriestable)
 table.sort(toystable)
@@ -402,39 +379,7 @@ function farm(trying)
 end
 
 function disableall()
-    if kocmoc.toggles.farmrares then -- Morphisto
-		temptable.cache.farmrares = true -- Morphisto
-		kocmoc.toggles.farmrares = false -- Morphisto
-	end
-	if kocmoc.toggles.farmpuffshrooms then -- Morphisto
-		temptable.cache.farmpuffshrooms = true -- Morphisto
-		kocmoc.toggles.farmpuffshrooms = false -- Morphisto
-	end
-	if kocmoc.toggles.killcrab and not temptable.started.crab then -- Morphisto
-		kocmoc.toggles.killcrab = false -- Morphisto
-		temptable.cache.killcrab = true -- Morphisto
-	end
-	if kocmoc.toggles.killtunnelbear and not temptable.started.tunnelbear then -- Morphisto
-		kocmoc.toggles.killtunnelbear = false -- Morphisto
-		temptable.cache.killtunnelbear = true -- Morphisto
-	end
-	if kocmoc.toggles.killkingbeetle and not temptable.started.kingbeetle then -- Morphisto
-		kocmoc.toggles.killkingbeetle = false -- Morphisto
-		temptable.cache.killkingbeetle = true -- Morphisto
-	end
-	if kocmoc.toggles.killstumpsnail and not temptable.started.stumpsnail then -- Morphisto
-		kocmoc.toggles.killstumpsnail = false -- Morphisto
-		temptable.cache.killstumpsnail = true -- Morphisto
-	end
-	if kocmoc.toggles.killstickbug and not temptable.started.stickbug then -- Morphisto
-		kocmoc.toggles.killstickbug = false -- Morphisto
-		temptable.cache.killstickbug = true -- Morphisto
-	end
-	if kocmoc.toggles.autoant and not temptable.started.ant then -- Morphisto
-		kocmoc.toggles.autoant = false -- Morphisto
-		temptable.cache.autoant = true -- Morphisto
-	end
-	if kocmoc.toggles.autofarm and not temptable.converting then
+    if kocmoc.toggles.autofarm and not temptable.converting then
         temptable.cache.autofarm = true
         kocmoc.toggles.autofarm = false
     end
@@ -453,39 +398,7 @@ function disableall()
 end
 
 function enableall()
-    if temptable.cache.farmrares then -- Morphisto
-		kocmoc.toggles.farmrares = true -- Morphisto
-		temptable.cache.farmrares = false -- Morphisto
-	end
-	if temptable.cache.farmpuffshrooms then -- Morphisto
-		kocmoc.toggles.farmpuffshrooms = true -- Morphisto
-		temptable.cache.farmpuffshrooms = false -- Morphisto
-	end
-	if temptable.cache.killcrab then -- Morphisto
-		kocmoc.toggles.killcrab = true -- Morphisto
-		temptable.cache.killcrab = false -- Morphisto
-	end
-	if temptable.cache.killtunnelbear then -- Morphisto
-		kocmoc.toggles.killtunnelbear = true -- Morphisto
-		temptable.cache.killtunnelbear = false -- Morphisto
-	end
-	if temptable.cache.killkingbeetle then -- Morphisto
-		kocmoc.toggles.killkingbeetle = true -- Morphisto
-		temptable.cache.killkingbeetle = false -- Morphisto
-	end
-	if temptable.cache.killstumpsnail then -- Morphisto
-		kocmoc.toggles.killstumpsnail = true -- Morphisto
-		temptable.cache.killstumpsnail = false -- Morphisto
-	end
-	if temptable.cache.killstickbug then -- Morphisto
-		kocmoc.toggles.killstickbug = true -- Morphisto
-		temptable.cache.killstickbug = false -- Morphisto
-	end
-	if temptable.cache.autoant then -- Morphisto
-		kocmoc.toggles.autoant = true -- Morphisto
-		temptable.cache.autoant = false -- Morphisto
-	end
-	if temptable.cache.autofarm then
+    if temptable.cache.autofarm then
         kocmoc.toggles.autofarm = true
         temptable.cache.autofarm = false
     end
@@ -607,7 +520,6 @@ end
 function farmant()
     antpart.CanCollide = true
     temptable.started.ant = true
-	disableall()
     anttable = {left = true, right = false}
     temptable.oldtool = rtsg()['EquippedCollector']
     game.ReplicatedStorage.Events.ItemPackageEvent:InvokeServer("Equip",{["Mute"] = true,["Type"] = "Spark Staff",["Category"] = "Collector"})
@@ -639,8 +551,6 @@ function farmant()
     game.ReplicatedStorage.Events.ItemPackageEvent:InvokeServer("Equip",{["Mute"] = true,["Type"] = temptable.oldtool,["Category"] = "Collector"})
     temptable.started.ant = false
     antpart.CanCollide = false
-	enableall()
-
 end
 
 function collectplanters()
@@ -952,9 +862,7 @@ local function useConvertors()
         converted=true
         end
     end
-    if GetItemListWithValue()["Micro-Converter"] > 0 and string.find(kocmoc.vars.autouseMode,"Micro") or string.find(kocmoc.vars.autouseMode,"All") then -- Morphisto
-		game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Micro-Converter"}) -- Morphisto
-	elseif GetItemListWithValue()["Snowflake"] > 0 and string.find(kocmoc.vars.autouseMode,"Snowflak") or string.find(kocmoc.vars.autouseMode,"All") then
+    if GetItemListWithValue()["Snowflake"] > 0 and string.find(kocmoc.vars.autouseMode,"Snowflak") or string.find(kocmoc.vars.autouseMode,"All") then
         game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Snowflake"})
     end
         if GetItemListWithValue()["Coconut"] > 0 and string.find(kocmoc.vars.autouseMode,"Coconut") or string.find(kocmoc.vars.autouseMode,"All") then
@@ -1068,7 +976,7 @@ farmo:CreateDropdown("Autodig Mode", {"Normal","Collector Steal"}, function(Opti
 local contt = farmtab:CreateSection("Container Tools")
 contt:CreateToggle("Don't Convert Pollen", nil, function(State) kocmoc.toggles.disableconversion = State end)
 contt:CreateToggle("Auto Bag Reduction",nil,function(Boole) kocmoc.toggles.autouseconvertors = Boole end)
-uiautouseMode = contt:CreateDropdown("Bag Reduction Mode",{"Micro Converters", "Tickets and Micros", "Ticket Converters","Just Snowflakes","Just Coconuts","Snowflakes and Coconuts","Tickets and Snowflakes","Tickets and Coconuts","All"},function(Select) kocmoc.vars.autouseMode = Select end) -- Morphisto
+contt:CreateDropdown("Bag Reduction Mode",{"Ticket Converters","Just Snowflakes","Just Coconuts","Snowflakes and Coconuts","Tickets and Snowflakes","Tickets and Coconuts","All"},function(Select) kocmoc.vars.autouseMode = Select end)
 contt:CreateSlider("Reduction Confirmation Time",3,20,10,false,function(tttttttt) kocmoc.vars.autoconvertWaitTime = tonumber(tttttttt) end)
 
 farmo:CreateToggle("Auto Sprinkler", nil, function(State) kocmoc.toggles.autosprinkler = State end)
@@ -1141,8 +1049,6 @@ wayp:CreateDropdown("Field Teleports", fieldstable, function(Option) game.Player
 wayp:CreateDropdown("Monster Teleports", spawnerstable, function(Option) d = game:GetService("Workspace").MonsterSpawners:FindFirstChild(Option) game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(d.Position.X, d.Position.Y+3, d.Position.Z) end)
 wayp:CreateDropdown("Toys Teleports", toystable, function(Option) d = game:GetService("Workspace").Toys:FindFirstChild(Option).Platform game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(d.Position.X, d.Position.Y+3, d.Position.Z) end)
 wayp:CreateButton("Teleport to hive", function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Players").LocalPlayer.SpawnPos.Value end)
-wayp:CreateButton("print location", function() print(game.Players.LocalPlayer.Character.HumanoidRootPart.Position) end) -- Morphisto
-wayp:CreateDropdown("NPC Teleports", {"Black Bear","Brown Bear","Bucko Bee","Honey Bee","Panda Bear","Polar Bear","Riley Bee","Science Bear","Spirit Bear","Science Bear","Mother Bear","Sun Bear","Stick Bug","Onett","Gummy Lair","Bubble Bee Man","Meteor Shower","Demon Mask","Diamond Mask"}, function(Option) game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = npctable[Option] end) -- Morphisto
 
 local useitems = itemstab:CreateSection("Use Items")
 
