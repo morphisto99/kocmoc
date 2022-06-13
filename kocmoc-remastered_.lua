@@ -1352,48 +1352,6 @@ end end)
 
 -- script
 
--- Morphisto
-local demontoggleouyfyt = false
-task.spawn(function()
-	while wait(1) do
-		if temptable.started.mondo or temptable.started.vicious or temptable.started.windy or temptable.started.ant or temptable.started.crab or temptable.started.tunnelbear or temptable.started.kingbeetle or temptable.started.stumpsnail or temptable.started.stickbug then
-			if demontoggleouyfyt == false then
-				demontoggleouyfyt = true
-				game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
-			end
-		else
-			if demontoggleouyfyt == true then
-				demontoggleouyfyt = false
-				game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"})
-			end
-		end
-	end
-end)
--- Morphisto
-
--- Morphisto
-currentField = ""
-currentMask = ""
-local function SwapMaskonField(ifield)
-	if kocmoc.toggles.swapmaskonfield and ifield ~= currentField then
-		if ifield == "Coconut Field" or ifield == "Spider Field" or ifield == "Pineapple Patch" or ifield == "Dandelion Field" or ifield == "Sunflower Field" or ifield == "Pumpkin Patch" then
-			game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Gummy Mask";Category="Accessory"})
-			currentMask = "Gummy Mask"
-		elseif ifield == "Rose Field" or ifield == "Pepper Patch" or ifield == "Mushroom Field" or ifield == "Strawberry Field" then
-			game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Demon Mask";Category="Accessory"})
-			currentMask = "Demon Mask"
-		elseif ifield == "Blue Flower Field" or ifield == "Pine Tree Forest" or ifield == "Stump Field" or ifield == "Bamboo Field" then
-			game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type="Diamond Mask";Category="Accessory"})
-			currentMask = "Diamond Mask"
-		else
-			game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"})
-			currentMask = kocmoc.vars.defmask
-		end
-		currentField = ifield
-	end
-end
--- Morphisto
-
 local honeytoggleouyfyt = false
 task.spawn(function()
     while wait(1) do
@@ -1491,25 +1449,17 @@ task.spawn(function() while task.wait() do
                         if api.returnvalue(fieldstable, text) and not string.find(v.Text, "Complete!") and not api.findvalue(kocmoc.blacklistedfields, api.returnvalue(fieldstable, text)) then
                             d = api.returnvalue(fieldstable, text)
                             fieldselected = game:GetService("Workspace").FlowerZones[d]
-							SwapMaskonField(d) -- Morphisto
-							farmfield = true -- Morphisto
                             break
                         elseif api.returnvalue(pollentypes, text) and not string.find(v.Text, 'Complete!') then
                             d = api.returnvalue(pollentypes, text)
                             if d == "Blue Flowers" or d == "Blue Pollen" then
                                 fieldselected = game:GetService("Workspace").FlowerZones[kocmoc.bestfields.blue]
-								SwapMaskonField(kocmoc.bestfields.blue) -- Morphisto
-								farmfield = true -- Morphisto
                                 break
                             elseif d == "White Flowers" or d == "White Pollen" then
                                 fieldselected = game:GetService("Workspace").FlowerZones[kocmoc.bestfields.white]
-								SwapMaskonField(kocmoc.bestfields.white) -- Morphisto
-								farmfield = true -- Morphisto
                                 break
                             elseif d == "Red Flowers" or d == "Red Pollen" then
                                 fieldselected = game:GetService("Workspace").FlowerZones[kocmoc.bestfields.red]
-								SwapMaskonField(kocmoc.bestfields.red) -- Morphisto
-								farmfield = true -- Morphisto
                                 break
                             end
                         end
