@@ -387,7 +387,7 @@ getgenv().kocmoc = {
         honeymaskconv = false,
 		killstickbug = false, -- Morphisto
 		farmboostedfield = false, -- Morphisto
-		disableinrange = false, -- Morphisto
+		smartautofarm = false, -- Morphisto
 		killstumpsnail = false, -- Morphisto
 		killkingbeetle = false, -- Morphisto
 		killtunnelbear = false, -- Morphisto
@@ -1705,106 +1705,6 @@ local function SwapMaskonField(ifield)
 			currentMask = kocmoc.vars.defmask
 		end
 		currentField = ifield
-	end
-end
--- Morphisto
-
--- Morphisto
-function CheckPlayers()
-	local count = 1
-	local newplayers = false
-	local playerschanged = {}
-	
-	for i,v in pairs(game.Players:GetChildren()) do
-		if not api.tablefind(temptable.players, v.Name) then
-			newplayers = true
-		end
-		table.insert(playerschanged, v.Name)
-	end
-	if newplayers or #temptable.players ~= #playerschanged then
-		temptable.players = playerschanged
-		for i,v in pairs(game:GetService("CoreGui"):GetDescendants()) do
-			if v:IsA("TextLabel") and string.find(v.Text,"Player" .. count) then
-				v.Parent:Destroy()
-				if count > 6 then
-					break
-				else
-					count += 1
-				end
-			end		
-		end
-		for i,v in next, temptable.players do
-			uiwlplayers:CreateButton('Player' .. i .. ': ' .. v, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v).HumanoidRootPart.CFrame end)
-		end
-	end
-
-	for j,k in pairs(game:GetService("CoreGui"):GetDescendants()) do
-		if k:IsA("TextLabel") and string.find(k.Text,"This player") then
-			k.Parent:Destroy()
-		end
-	end
-	for i,v in next, playerschanged do
-		if api.tablefind(kocmoc.wlplayers, v) then
-			temptable.cache.disableinrange = false
-		else
-			temptable.cache.disableinrange = true
-			local playerpos
-			for j,k in pairs(game:GetService("Workspace"):GetChildren()) do
-				if k.Name == v then
-					playerpos = game.Workspace:FindFirstChild(v).HumanoidRootPart.Position
-					if next(temptable.oplayers) == nil then
-						temptable.oplayers[v] = playerpos.magnitude
-					else
-						local oplayer = tablefind(temptable.oplayers, v)
-						if oplayer ~= nil and oplayer == v then
-							if temptable.oplayers[v] ~= playerpos.magnitude then
-								temptable.oplayers[v] = playerpos.magnitude
-								temptable.cache.disableinrange = true
-							end
-						else
-							tableremovekey(temptable.oplayers, v)
-							temptable.oplayers[v] = playerpos.magnitude
-						end
-					end
-					break
-				end
-			end
-			if playerpos ~= nil then
-				if (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 150 then
-					uiwlplayers:CreateButton('This player ' .. v .. ' is in range', function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v).HumanoidRootPart.CFrame end)
-				end
-			end
-		end
-	end
-	
-	if kocmoc.toggles.smartautofarm then
-		if temptable.cache.disableinrange then -- disable when other players in range
-			if kocmoc.toggles.killwindy then
-				uikillwindy:SetState(false)
-				kocmoc.toggles.killwindy = false
-			end
-			if kocmoc.toggles.farmsprouts then
-				uifarmsprouts:SetState(false) 
-				kocmoc.toggles.farmsprouts = false
-			end
-			if kocmoc.toggles.killstickbug then
-				uikillstickbug:SetState(false) 
-				kocmoc.toggles.killstickbug = false
-			end		
-		else
-			if not kocmoc.toggles.killwindy then
-				uikillwindy:SetState(true)
-				kocmoc.toggles.killwindy = true -- enable Windy Bee when no other players in game
-			end
-			if not kocmoc.toggles.farmsprouts then
-				uifarmsprouts:SetState(true) 
-				kocmoc.toggles.farmsprouts = true
-			end	
-			if not kocmoc.toggles.killstickbug then
-				uikillstickbug:SetState(true) 
-				kocmoc.toggles.killstickbug = true
-			end			
-		end
 	end
 end
 -- Morphisto
@@ -3152,6 +3052,106 @@ task.spawn(function()
 		end
 	end
 end)
+
+-- Morphisto
+function CheckPlayers()
+	local count = 1
+	local newplayers = false
+	local playerschanged = {}
+	
+	for i,v in pairs(game.Players:GetChildren()) do
+		if not api.tablefind(temptable.players, v.Name) then
+			newplayers = true
+		end
+		table.insert(playerschanged, v.Name)
+	end
+	if newplayers or #temptable.players ~= #playerschanged then
+		temptable.players = playerschanged
+		for i,v in pairs(game:GetService("CoreGui"):GetDescendants()) do
+			if v:IsA("TextLabel") and string.find(v.Text,"Player" .. count) then
+				v.Parent:Destroy()
+				if count > 6 then
+					break
+				else
+					count += 1
+				end
+			end		
+		end
+		for i,v in next, temptable.players do
+			uiwlplayers:CreateButton('Player' .. i .. ': ' .. v, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v).HumanoidRootPart.CFrame end)
+		end
+	end
+
+	for j,k in pairs(game:GetService("CoreGui"):GetDescendants()) do
+		if k:IsA("TextLabel") and string.find(k.Text,"This player") then
+			k.Parent:Destroy()
+		end
+	end
+	for i,v in next, playerschanged do
+		if api.tablefind(kocmoc.wlplayers, v) then
+			temptable.cache.disableinrange = false
+		else
+			temptable.cache.disableinrange = true
+			local playerpos
+			for j,k in pairs(game:GetService("Workspace"):GetChildren()) do
+				if k.Name == v then
+					playerpos = game.Workspace:FindFirstChild(v).HumanoidRootPart.Position
+					if next(temptable.oplayers) == nil then
+						temptable.oplayers[v] = playerpos.magnitude
+					else
+						local oplayer = tablefind(temptable.oplayers, v)
+						if oplayer ~= nil and oplayer == v then
+							if temptable.oplayers[v] ~= playerpos.magnitude then
+								temptable.oplayers[v] = playerpos.magnitude
+								temptable.cache.disableinrange = true
+							end
+						else
+							tableremovekey(temptable.oplayers, v)
+							temptable.oplayers[v] = playerpos.magnitude
+						end
+					end
+					break
+				end
+			end
+			if playerpos ~= nil then
+				if (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 150 then
+					uiwlplayers:CreateButton('This player ' .. v .. ' is in range', function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v).HumanoidRootPart.CFrame end)
+				end
+			end
+		end
+	end
+	
+	if kocmoc.toggles.smartautofarm then
+		if temptable.cache.disableinrange then -- disable when other players in range
+			if kocmoc.toggles.killwindy then
+				uikillwindy:SetState(false)
+				kocmoc.toggles.killwindy = false
+			end
+			if kocmoc.toggles.farmsprouts then
+				uifarmsprouts:SetState(false) 
+				kocmoc.toggles.farmsprouts = false
+			end
+			if kocmoc.toggles.killstickbug then
+				uikillstickbug:SetState(false) 
+				kocmoc.toggles.killstickbug = false
+			end		
+		else
+			if not kocmoc.toggles.killwindy then
+				uikillwindy:SetState(true)
+				kocmoc.toggles.killwindy = true -- enable Windy Bee when no other players in game
+			end
+			if not kocmoc.toggles.farmsprouts then
+				uifarmsprouts:SetState(true) 
+				kocmoc.toggles.farmsprouts = true
+			end	
+			if not kocmoc.toggles.killstickbug then
+				uikillstickbug:SetState(true) 
+				kocmoc.toggles.killstickbug = true
+			end			
+		end
+	end
+end
+-- Morphisto
 
 function KillTest4()
 	print(' ')
