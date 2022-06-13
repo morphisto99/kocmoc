@@ -3054,9 +3054,7 @@ task.spawn(function()
 end)
 
 -- Morphisto
-
 function CheckPlayers()
-	print('test123')
 	local count = 1
 	local newplayers = false
 	local playerschanged = {}
@@ -3067,8 +3065,6 @@ function CheckPlayers()
 		end
 		table.insert(playerschanged, v.Name)
 	end
-	
-	--[[
 	if newplayers or #temptable.players ~= #playerschanged then
 		temptable.players = playerschanged
 		for i,v in pairs(game:GetService("CoreGui"):GetDescendants()) do
@@ -3155,9 +3151,7 @@ function CheckPlayers()
 			end			
 		end
 	end
-	]]--
 end
-
 -- Morphisto
 
 function KillTest4()
