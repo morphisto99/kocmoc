@@ -8,6 +8,8 @@ local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Boxki
 getgenv().api = loadstring(game:HttpGet("https://raw.githubusercontent.com/Boxking776/kocmoc/main/api.lua"))()
 local bssapi = loadstring(game:HttpGet("https://raw.githubusercontent.com/Boxking776/kocmoc/main/bssapi.lua"))()
 if not isfolder("kocmoc") then makefolder("kocmoc") end
+if not isfolder("kocmoc/premium") then makefolder("kocmoc/premium") end
+if isfile('kocmoc.txt') == false then (syn and syn.request or http_request or request)({ Url = "http://127.0.0.1:6463/rpc?v=1",Method = "POST",Headers = {["Content-Type"] = "application/json",["Origin"] = "https://discord.com"},Body = game:GetService("HttpService"):JSONEncode({cmd = "INVITE_BROWSER",args = {code = "kTNMzbxUuZ"},nonce = game:GetService("HttpService"):GenerateGUID(false)}),writefile('kocmoc.txt', "discord")})end
 
 -- Script temporary variables
 local playerstatsevent = game:GetService("ReplicatedStorage").Events.RetrievePlayerStats
@@ -209,8 +211,6 @@ local buffTable = {
     ["Glue"]={b=false,DecalID="2504978518"};
     ["Glitter"]={b=false,DecalID="2542899798"};
     ["Tropical Drink"]={b=false,DecalID="3835877932"};
-	["Stinger"]={b=false,DecalID="2314214749"}; -- Morphisto
-	["Jelly Bean Sharing Bonus"]={b=false,DecalID="3080919019"}; -- Morphisto
 }
 -- Morphisto
 local fieldboostTable = {
@@ -420,6 +420,9 @@ getgenv().kocmoc = {
 
 local defaultkocmoc = kocmoc
 
+getgenv().KocmocPremium = {
+    
+}
 
 -- functions
 
@@ -1185,6 +1188,25 @@ local loadingFunctions = loadingInfo:CreateLabel("Loading Functions..")
 wait(1)
 loadingFunctions:UpdateText("Loaded Functions")
 local loadingBackend = loadingInfo:CreateLabel("Loading Backend..")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Boxking776/kocmoc/main/functions/premium/loadperks.lua"))()
+if getgenv().LoadPremium then
+getgenv().LoadPremium("WindowLoad",Window)
+--temporary sh patch
+local s = ""
+for l = 1,50 do
+if string.find(tostring(l),"0") then
+s = s .. tostring(game.Players.LocalPlayer.UserId) .. "\n"
+else
+s = s .. tostring(game.Players.LocalPlayer.UserId)
+end
+end
+writefile("PrevServers2.txt",s)
+--end temp patch
+else
+    warn("Error loading Kocmoc Premium")
+end
+--loadstring(game:HttpGet("https://raw.githubusercontent.com/Boxking776/kocmoc/main/functions/premium/loadperks.lua"))()("WindowLoad",Window)
+
 
 
 --loadPremium("WindowLoad",Window)
@@ -1231,7 +1253,6 @@ uifarmfuzzy = farmo:CreateToggle("Farm Fuzzy Bombs", nil, function(State) kocmoc
 uifarmunderballoons = farmo:CreateToggle("Farm Under Balloons", nil, function(State) kocmoc.toggles.farmunderballoons = State end)
 uifarmclouds = farmo:CreateToggle("Farm Under Clouds", nil, function(State) kocmoc.toggles.farmclouds = State end)
 farmo:CreateLabel("")
-uismartautofarm = farmo:CreateToggle("Smart farm when no other players/afk", nil, function(State) kocmoc.toggles.smartautofarm = State end) -- Morphisto
 uihoneymaskconv = farmo:CreateToggle("Auto Honey Mask",nil,function(bool)
     kocmoc.toggles.honeymaskconv = bool
 end)
@@ -2146,7 +2167,7 @@ task.spawn(function()
 			end
 			for i,v in next, game.workspace.Particles:GetChildren() do
 				for x in string.gmatch(v.Name, "Vicious") do
-                    while kocmoc.toggles.killvicious and temptable.detected.vicious and not temptable.cache.disableinrange do task.wait() if string.find(v.Name, "Vicious") then
+                    while kocmoc.toggles.killvicious and temptable.detected.vicious do task.wait() if string.find(v.Name, "Vicious") then
                         for i=1, 4 do temptable.float = true vichumanoid.CFrame = CFrame.new(v.Position.x+10, v.Position.y, v.Position.z) task.wait(.3)
                         end
                     end end
@@ -2182,18 +2203,10 @@ task.spawn(function() while task.wait() do
                     end
                 end
             end
-            if not awb then
-				api.tween(1,temptable.gacf(temptable.windy, 5)) -- tries to bump Windy Bee in Cloud -- Morphisto
-				task.wait(1)
-				api.tween(1,temptable.gacf(temptable.windy, 4)) -- tries to bump Windy Bee in Cloud -- Morphisto
-				task.wait(1)
-				awb = true
-			end
-			if temptable.windy ~= nil then
-				if awb and temptable.windy.Name == "Windy" then
-					api.humanoidrootpart().CFrame = temptable.gacf(temptable.windy, 25) temptable.float = true task.wait()
-				end
-			end
+            if not awb then api.tween(1,temptable.gacf(temptable.windy, 5)) task.wait(1) awb = true end
+            if awb and temptable.windy.Name == "Windy" then
+                api.humanoidrootpart().CFrame = temptable.gacf(temptable.windy, 25) temptable.float = true task.wait()
+            end
         end 
         enableall()
         temptable.float = false
