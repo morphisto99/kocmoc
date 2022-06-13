@@ -1772,7 +1772,7 @@ end)
 
 task.spawn(function() while task.wait() do
 		temptable.magnitude = 50
-		--CheckPlayers() -- Morphisto
+		CheckPlayers()
         if game.Players.LocalPlayer.Character:FindFirstChild("ProgressLabel",true) then
         local pollenprglbl = game.Players.LocalPlayer.Character:FindFirstChild("ProgressLabel",true)
         maxpollen = tonumber(pollenprglbl.Text:match("%d+$"))
@@ -3087,6 +3087,7 @@ function CheckPlayers()
 			k.Parent:Destroy()
 		end
 	end
+	--[[
 	for i,v in next, playerschanged do
 		if api.tablefind(kocmoc.wlplayers, v) then
 			temptable.cache.disableinrange = false
@@ -3150,6 +3151,7 @@ function CheckPlayers()
 			end			
 		end
 	end
+	]]--
 end
 -- Morphisto
 
