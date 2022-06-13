@@ -2661,7 +2661,7 @@ if kocmoc.toggles.killtunnelbear then uikilltunnelbear:SetState(true) end -- Mor
 if kocmoc.toggles.killkingbeetle then uikillkingbeetle:SetState(true) end -- Morphisto
 if kocmoc.toggles.killstumpsnail then uikillstumpsnail:SetState(true) end -- Morphisto
 if kocmoc.toggles.killstickbug then uikillstickbug:SetState(true) end -- Morphisto
-if kocmoc.toggles.disableinrange then uidisableinrange:SetState(true) end -- Morphisto
+if kocmoc.toggles.smartautofarm then uismartautofarm:SetState(true) end -- Morphisto
 if kocmoc.toggles.farmboostedfield then uifarmboostedfield:SetState(true) end -- Morphisto
 if kocmoc.vars.defmask ~= "" then game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"}) end -- Morphisto
 
