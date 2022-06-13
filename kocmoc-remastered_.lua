@@ -313,7 +313,6 @@ getgenv().kocmoc = {
         autodonate = false,
         autouseconvertors = false,
         honeymaskconv = false,
-		swapmaskonfield = false, -- Morphisto
         resetbeeenergy = false
     },
     vars = {
@@ -603,38 +602,6 @@ function converthoney()
         end
     end
 end
-
--- Morphisto
-function killquestmobs(mobsname)
-	for i,v in pairs(game:GetService("Workspace").MonsterSpawners:GetChildren()) do
-		if v:FindFirstChild("Territory") then
-			if v.Name:match(mobsname) and v.Name ~= "Commando Chick" and v.Name ~= "CoconutCrab" and v.Name ~= "StumpSnail" and v.Name ~= "TunnelBear" and v.Name ~= "King Beetle Cave" and not v.Name:match("CaveMonster") and not v:FindFirstChild("TimerLabel", true).Visible then
-				if v.Name:match("Werewolf") then
-					monsterpart = game:GetService("Workspace").Territories.WerewolfPlateau.w
-				else
-					monsterpart = v.Territory.Value
-				end
-				api.humanoidrootpart().CFrame = monsterpart.CFrame
-				local count = 0;
-				repeat
-					api.humanoidrootpart().CFrame = monsterpart.CFrame
-					avoidmob()
-					task.wait(1)
-					count = count + 1
-				until v:FindFirstChild("TimerLabel", true).Visible or not kocmoc.toggles.autofarm or count > 30
-				if count < 31 then
-					for i = 1, 4 do gettoken(monsterpart.Position) end
-				end
-				if count > 30 then
-					api.humanoidrootpart().CFrame = CFrame.new(243.895538, 4.3493037, 320.418457)
-					task.wait(15)
-					break
-				end
-			end
-		end
-	end
-end
--- Morphisto
 
 function closestleaf()
     for i,v in next, game.Workspace.Flowers:GetChildren() do
@@ -981,8 +948,6 @@ farmo:CreateDropdown("Default Mask",MasksTable,function(val)
     kocmoc.vars.defmask = val
 end)
 --farmo:CreateToggle("Farm Closest Leaves", nil, function(State) kocmoc.toggles.farmclosestleaf = State end)
-
-uimaskonfield = farmo:CreateToggle("Swap Mask on Field", nil, function(State) kocmoc.toggles.swapmaskonfield = State end)
 
 local farmt = farmtab:CreateSection("Farming")
 farmt:CreateToggle("Auto Dispenser [⚙]", nil, function(State) kocmoc.toggles.autodispense = State end)
@@ -1529,60 +1494,7 @@ task.spawn(function() while task.wait() do
 							SwapMaskonField(d) -- Morphisto
 							farmfield = true -- Morphisto
                             break
-                        -- Morphisto
-						elseif string.find(text, "Rhino") then
-							if not string.find(text, 'Complete!') then
-								killquestmobs("Rhino")
-								SwapMaskonField("Bamboo Field")
-							elseif string.find(text, 'Complete!') then
-								makequests()
-							end
-							break
-						elseif string.find(text, "Mantis") then
-							if not string.find(text, 'Complete!') then
-								killquestmobs("Mantis")
-								SwapMaskonField("Pine Tree Forest")
-							elseif string.find(text, 'Complete!') then
-								makequests()
-							end
-							break
-						elseif string.find(text, "Werewol") then
-							if not string.find(text, 'Complete!') then
-								killquestmobs("Werewolf")
-								SwapMaskonField("Pine Tree Forest")
-							elseif string.find(text, 'Complete!') then
-								makequests()
-							end
-							break
-						elseif string.find(text, "Spider") then
-							if not string.find(text, 'Complete!') then
-								killquestmobs("Spider")
-								SwapMaskonField("Spider Field")
-							elseif string.find(text, 'Complete!') then
-								makequests()
-							end
-							break
-						elseif string.find(text, "Scorpion") then
-							if not string.find(text, 'Complete!') then
-								killquestmobs("Scorpion")
-								SwapMaskonField("Rose Field")
-							elseif string.find(text, 'Complete!') then
-								makequests()
-							end
-							break
-						elseif string.find(text, "Lady") then
-							if not string.find(text, 'Complete!') then
-								killquestmobs("Ladybug")
-								SwapMaskonField("Strawberry Field")
-							elseif string.find(text, 'Complete!') then
-								makequests()
-							end
-							break
-						elseif string.find(text, "Ants") and not string.find(v.Text, "Complete!") then
-							if not game:GetService("Workspace").Toys["Ant Challenge"].Busy.Value and rtsg().Eggs.AntPass > 0 then farmant() end
-							break
-						-- Morphisto
-						elseif api.returnvalue(pollentypes, text) and not string.find(v.Text, 'Complete!') then
+                        elseif api.returnvalue(pollentypes, text) and not string.find(v.Text, 'Complete!') then
                             d = api.returnvalue(pollentypes, text)
                             if d == "Blue Flowers" or d == "Blue Pollen" then
                                 fieldselected = game:GetService("Workspace").FlowerZones[kocmoc.bestfields.blue]
@@ -1605,12 +1517,7 @@ task.spawn(function() while task.wait() do
                 end
             end
         else
-			fieldselected = game:GetService("Workspace").FlowerZones[kocmoc.vars.field] -- Autofarm field
-			-- Morphisto
-			if currentMask ~= kocmoc.vars.defmask and not farmfield then
-				game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"})
-			end
-			-- Morphisto
+			fieldselected = game:GetService("Workspace").FlowerZones[kocmoc.vars.field]
         end
         fieldpos = CFrame.new(fieldselected.Position.X, fieldselected.Position.Y+3, fieldselected.Position.Z)
         fieldposition = fieldselected.Position
