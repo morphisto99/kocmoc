@@ -3087,34 +3087,23 @@ function CheckPlayers()
 			k.Parent:Destroy()
 		end
 	end
-	--temptable.cache.disableinrange = false
 	for i,v in next, playerschanged do
-		--print('player=' .. v)
 		if api.tablefind(kocmoc.wlplayers, v) then
 			temptable.cache.disableinrange = false
 		else
 			temptable.cache.disableinrange = true
 			local playerpos
-			--print('oplayer=' .. v)
 			for j,k in pairs(game:GetService("Workspace"):GetChildren()) do
 				if k.Name == v then
-					--print(k.Name .. '=' .. v)
 					playerpos = game.Workspace:FindFirstChild(v).HumanoidRootPart.Position
 					if next(temptable.oplayers) == nil then
-						--print('Add oplayer first time')
 						temptable.oplayers[v] = playerpos.magnitude
 					else
 						local oplayer = tablefind(temptable.oplayers, v)
-						--print('oplayer=' .. oplayer .. '=' .. v)
 						if oplayer ~= nil and oplayer == v then
-							--print(temptable.oplayers[v] .. '~=' .. playerpos.magnitude)
 							if temptable.oplayers[v] ~= playerpos.magnitude then
-								--print('player ' .. v .. ' magnitude has changed!')
 								temptable.oplayers[v] = playerpos.magnitude
 								temptable.cache.disableinrange = true
-							else
-								--print('testing for magnitude2')
-								--temptable.cache.disableinrange = false
 							end
 						else
 							tableremovekey(temptable.oplayers, v)
@@ -3132,40 +3121,34 @@ function CheckPlayers()
 		end
 	end
 	
-	--[[
-	for key,value in pairs(temptable.oplayers) do
-		if not tablefind(playerschanged, key) then
-			tableremovekey(temptable.oplayers, key)
+	if kocmoc.toggles.smartautofarm then
+		if temptable.cache.disableinrange then -- disable when other players in range
+			if kocmoc.toggles.killwindy then
+				uikillwindy:SetState(false)
+				kocmoc.toggles.killwindy = false
+			end
+			if kocmoc.toggles.farmsprouts then
+				uifarmsprouts:SetState(false) 
+				kocmoc.toggles.farmsprouts = false
+			end
+			if kocmoc.toggles.killstickbug then
+				uikillstickbug:SetState(false) 
+				kocmoc.toggles.killstickbug = false
+			end		
+		else
+			if not kocmoc.toggles.killwindy then
+				uikillwindy:SetState(true)
+				kocmoc.toggles.killwindy = true -- enable Windy Bee when no other players in game
+			end
+			if not kocmoc.toggles.farmsprouts then
+				uifarmsprouts:SetState(true) 
+				kocmoc.toggles.farmsprouts = true
+			end	
+			if not kocmoc.toggles.killstickbug then
+				uikillstickbug:SetState(true) 
+				kocmoc.toggles.killstickbug = true
+			end			
 		end
-	end
-	]]--
-	
-	if temptable.cache.disableinrange then -- disable when other players in range
-		if kocmoc.toggles.killwindy then
-			uikillwindy:SetState(false)
-			kocmoc.toggles.killwindy = false
-		end
-		if kocmoc.toggles.farmsprouts then
-			uifarmsprouts:SetState(false) 
-			kocmoc.toggles.farmsprouts = false
-		end
-		if kocmoc.toggles.killstickbug then
-			uikillstickbug:SetState(false) 
-			kocmoc.toggles.killstickbug = false
-		end		
-	else
-		if not kocmoc.toggles.killwindy then
-			uikillwindy:SetState(true)
-			kocmoc.toggles.killwindy = true -- enable Windy Bee when no other players in game
-		end
-		if not kocmoc.toggles.farmsprouts then
-			uifarmsprouts:SetState(true) 
-			kocmoc.toggles.farmsprouts = true
-		end	
-		if not kocmoc.toggles.killstickbug then
-			uikillstickbug:SetState(true) 
-			kocmoc.toggles.killstickbug = true
-		end			
 	end
 end
 -- Morphisto
