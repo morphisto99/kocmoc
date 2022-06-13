@@ -1772,7 +1772,7 @@ end)
 
 task.spawn(function() while task.wait() do
 		temptable.magnitude = 50
-		CheckPlayers() -- Morphisto
+		--CheckPlayers() -- Morphisto
         if game.Players.LocalPlayer.Character:FindFirstChild("ProgressLabel",true) then
         local pollenprglbl = game.Players.LocalPlayer.Character:FindFirstChild("ProgressLabel",true)
         maxpollen = tonumber(pollenprglbl.Text:match("%d+$"))
