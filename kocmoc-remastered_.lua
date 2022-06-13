@@ -1439,7 +1439,7 @@ task.spawn(function() while task.wait() do
         
         if kocmoc.toggles.autofarm then
         if kocmoc.toggles.autoquest then checkquestcooldown() end -- Morphisto
-		if kocmoc.toggles.autodoquest and game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.Menus.Children.Quests.Content:FindFirstChild("Frame") and not kocmoc.toggles.farmboostedfield then then
+		if kocmoc.toggles.autodoquest and game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.Menus.Children.Quests.Content:FindFirstChild("Frame") and not kocmoc.toggles.farmboostedfield then
             for i,v in next, game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.Menus.Children.Quests:GetDescendants() do
                 if v.Name == "Description" then
                     if string.match(v.Parent.Parent.TitleBar.Text, kocmoc.vars.npcprefer) or kocmoc.vars.npcprefer == "All Quests" and not string.find(v.Text, "Puffshroom") then
