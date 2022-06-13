@@ -856,6 +856,17 @@ function checkquestcooldown()
 		quest_time = time()
 		makequests()
 		temptable.started.quests = false
+		if kocmoc.toggles.autoplanters then
+			disableall()
+			collectplanters()
+			enableall()
+		end
+		if kocmoc.toggles.honeystorm then
+			disableall()
+			game.ReplicatedStorage.Events.ToyEvent:FireServer("Honeystorm")
+			enableall()
+		end
+		checksbcooldown() -- Morphisto check Stick Bug cooldown
 	end
 end
 -- Morphisto
@@ -1872,6 +1883,7 @@ task.spawn(function() while task.wait() do
                         enableall() 
                         api.tween(2, fieldpos) 
                         temptable.started.mondo = false
+						boostaftermondo = true
                     end
                 end
                 if kocmoc.toggles.killcrab then KillCoconutCrab() end -- Morphisto
@@ -1881,6 +1893,16 @@ task.spawn(function() while task.wait() do
 				if (fieldposition-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
                     api.tween(2, fieldpos) -- Morphisto
                     if kocmoc.toggles.autosprinkler then makesprinklers() end
+					-- Morphisto
+					if currentMask ~= kocmoc.vars.defmask then
+						game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"})
+					end
+					if boostaftermondo and GetItemListWithValue()["LoadedDice"] == 25 then
+						print("Mondo Chick Killed. Activate Loaded Dice for boosting..")
+						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "LoadedDice"})
+						boostaftermondo = false
+					end
+					-- Morphisto
                 end
                 getprioritytokens()
                 if kocmoc.toggles.avoidmobs then avoidmob() end
@@ -1912,7 +1934,6 @@ task.spawn(function() while task.wait() do
             task.wait(6)
             if kocmoc.toggles.autoant and not game:GetService("Workspace").Toys["Ant Challenge"].Busy.Value and rtsg().Eggs.AntPass > 0 then farmant() end
             if kocmoc.toggles.autoquest then makequests() end
-            if kocmoc.toggles.autoplanters then collectplanters() end
             if kocmoc.toggles.autokillmobs then 
                 if temptable.act >= kocmoc.vars.monstertimer then
                     temptable.started.monsters = true
@@ -1928,10 +1949,10 @@ task.spawn(function() while task.wait() do
                 temptable.act2 = 0
                 repeat wait() until workspace:FindFirstChild(game.Players.LocalPlayer.Name) and workspace:FindFirstChild(game.Players.LocalPlayer.Name):FindFirstChild("Humanoid") and workspace:FindFirstChild(game.Players.LocalPlayer.Name):FindFirstChild("Humanoid").Health > 0
                 workspace:FindFirstChild(game.Players.LocalPlayer.Name):BreakJoints()
-                wait(6.5)
+                task.wait(6.5)
                 repeat wait() until workspace:FindFirstChild(game.Players.LocalPlayer.Name)
                 workspace:FindFirstChild(game.Players.LocalPlayer.Name):BreakJoints()
-                wait(6.5)
+                task.wait(6.5)
                 repeat wait() until workspace:FindFirstChild(game.Players.LocalPlayer.Name)
                 temptable.started.monsters = false
             end
@@ -2129,7 +2150,6 @@ end end)
 task.spawn(function() while task.wait(1) do
     temptable.runningfor = temptable.runningfor + 1
     temptable.honeycurrent = statsget().Totals.Honey
-    if kocmoc.toggles.honeystorm then game.ReplicatedStorage.Events.ToyEvent:FireServer("Honeystorm") end
     if kocmoc.toggles.collectgingerbreads then game:GetService("ReplicatedStorage").Events.ToyEvent:FireServer("Gingerbread House") end
     if kocmoc.toggles.autodispense then
         if kocmoc.dispensesettings.rj then local A_1 = "Free Royal Jelly Dispenser" local Event = game:GetService("ReplicatedStorage").Events.ToyEvent Event:FireServer(A_1) end
