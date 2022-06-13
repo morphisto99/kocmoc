@@ -38,6 +38,11 @@ end
 getgenv().temptable = {
     version = "3.2.9",
     blackfield = "Sunflower Field",
+	players = {}, -- Morphisto
+	oplayers = {}, -- Morphisto
+	boostedfield = "", -- Morphisto
+	sbready = false, -- Morphisto
+
     redfields = {},
     bluefields = {},
     whitefields = {},
@@ -284,6 +289,7 @@ stickbug_time = time() -- Morphisto
 
 getgenv().kocmoc = {
     rares = {},
+	wlplayers = {}, -- Morphisto
     priority = {},
     bestfields = {
         red = "Pepper Patch",
@@ -346,6 +352,8 @@ getgenv().kocmoc = {
         autodonate = false,
         autouseconvertors = false,
         honeymaskconv = false,
+		farmboostedfield = false, -- Morphisto
+		smartautofarm = false, -- Morphisto
 		killstumpsnail = false, -- Morphisto
 		killkingbeetle = false, -- Morphisto
 		killtunnelbear = false, -- Morphisto
@@ -966,6 +974,7 @@ local function useConvertors()
     end
     if GetItemListWithValue()["Micro-Converter"] > 0 and string.find(kocmoc.vars.autouseMode,"Micro") or string.find(kocmoc.vars.autouseMode,"All") then -- Morphisto
 		game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Micro-Converter"}) -- Morphisto
+		pollenpercentage = 0 -- Morphisto
 	elseif GetItemListWithValue()["Snowflake"] > 0 and string.find(kocmoc.vars.autouseMode,"Snowflak") or string.find(kocmoc.vars.autouseMode,"All") then
         game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Snowflake"})
     end
@@ -1095,7 +1104,9 @@ farmo:CreateLabel("")
 uihoneymaskconv = farmo:CreateToggle("Auto Honey Mask",nil,function(bool)
     kocmoc.toggles.honeymaskconv = bool
 end)
-farmo:CreateDropdown("Default Mask",MasksTable,function(val)
+uifarmboostedfield = farmo:CreateToggle("Farm Boosted field on Default Mask",nil,function(State) kocmoc.toggles.farmboostedfield = State end) -- Morphisto
+
+uidefmask = farmo:CreateDropdown("Default Mask",MasksTable,function(val)
     kocmoc.vars.defmask = val
 end)
 --farmo:CreateToggle("Farm Closest Leaves", nil, function(State) kocmoc.toggles.farmclosestleaf = State end)
@@ -1623,18 +1634,15 @@ task.spawn(function() while task.wait() do
         fieldselected = game:GetService("Workspace").FlowerZones[kocmoc.vars.field]
         
         if kocmoc.toggles.autouseconvertors == true then
-        if tonumber(pollenpercentage) >= (kocmoc.vars.convertat - (kocmoc.vars.autoconvertWaitTime)) then
-                if not temptable.consideringautoconverting then
-                temptable.consideringautoconverting = true
-                spawn(function()
-                    wait(kocmoc.vars.autoconvertWaitTime)
-                    if tonumber(pollenpercentage) >= (kocmoc.vars.convertat - (kocmoc.vars.autoconvertWaitTime)) then
-                        useConvertors()
-                    end
-                    temptable.consideringautoconverting = false
-                end)
-                end
-            end
+			-- Morphisto
+			if tonumber(pollenpercentage) >= (kocmoc.vars.convertat - (kocmoc.vars.autoconvertWaitTime)) then
+				if not temptable.consideringautoconverting then
+					temptable.consideringautoconverting = true
+					useConvertors()
+					temptable.consideringautoconverting = false
+				end
+			end
+			-- Morphisto
         end
         
         if kocmoc.toggles.autofarm then
@@ -2170,9 +2178,22 @@ task.spawn(function() while task.wait(1) do
 end end)
 
 game:GetService('RunService').Heartbeat:connect(function() 
-    if kocmoc.toggles.autoquest then firesignal(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.ButtonOverlay.MouseButton1Click) end
-    if kocmoc.toggles.loopspeed then game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = kocmoc.vars.walkspeed end
-    if kocmoc.toggles.loopjump then game.Players.LocalPlayer.Character.Humanoid.JumpPower = kocmoc.vars.jumppower end
+    if kocmoc.toggles.autoquest then
+		local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")
+		firesignal(ScreenGui.NPC.ButtonOverlay.MouseButton1Click)
+	end
+    if kocmoc.toggles.loopspeed then
+		local Humanoid = game.Players.LocalPlayer.Character:WaitForChild("Humanoid")
+		if Humanoid.WalkSpeed ~= kocmoc.vars.walkspeed then
+			Humanoid.WalkSpeed = kocmoc.vars.walkspeed
+		end
+	end
+    if kocmoc.toggles.loopjump then
+		local Humanoid = game.Players.LocalPlayer.Character:WaitForChild("Humanoid")
+		if Humanoid.JumpPower ~= kocmoc.vars.jumppower then
+			Humanoid.JumpPower = kocmoc.vars.jumppower
+		end
+	end
 end)
 
 game:GetService('RunService').Heartbeat:connect(function()
