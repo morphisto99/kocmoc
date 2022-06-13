@@ -372,7 +372,6 @@ getgenv().kocmoc = {
         autoconvertWaitTime = 10,
         defmask = "Bubble",
         resettimer = 3,
-		resetbeeenergy = false
     },
     dispensesettings = {
         blub = false,
@@ -1060,28 +1059,28 @@ information:CreateLabel("The script will continue to be updated")
 information:CreateLabel("under new ownership.")
 information:CreateLabel("")
 local farmo = farmtab:CreateSection("Farming")
-fielddropdown = farmo:CreateDropdown("Field", fieldstable, function(String) kocmoc.vars.field = String end) fielddropdown:SetOption(fieldstable[1])
+local fielddropdown = farmo:CreateDropdown("Field", fieldstable, function(String) kocmoc.vars.field = String end) fielddropdown:SetOption(fieldstable[1])
 convertatslider = farmo:CreateSlider("Convert At", 0, 100, 100, false, function(Value) kocmoc.vars.convertat = Value end)
-autofarmtoggle = farmo:CreateToggle("Autofarm [⚙]", nil, function(State) kocmoc.toggles.autofarm = State end) autofarmtoggle:CreateKeybind("U", function(Key) end)
-uiautodig = farmo:CreateToggle("Autodig", nil, function(State) kocmoc.toggles.autodig = State end)
-uiautodigmode = farmo:CreateDropdown("Autodig Mode", {"Normal","Collector Steal"}, function(Option)  kocmoc.vars.autodigmode = Option end)
+local autofarmtoggle = farmo:CreateToggle("Autofarm [⚙]", nil, function(State) kocmoc.toggles.autofarm = State end) autofarmtoggle:CreateKeybind("U", function(Key) end)
+farmo:CreateToggle("Autodig", nil, function(State) kocmoc.toggles.autodig = State end)
+farmo:CreateDropdown("Autodig Mode", {"Normal","Collector Steal"}, function(Option)  kocmoc.vars.autodigmode = Option end)
 
 local contt = farmtab:CreateSection("Container Tools")
-uidisableconvert = contt:CreateToggle("Don't Convert Pollen", nil, function(State) kocmoc.toggles.disableconversion = State end)
-uiautouseconverters = contt:CreateToggle("Auto Bag Reduction",nil,function(Boole) kocmoc.toggles.autouseconvertors = Boole end)
+contt:CreateToggle("Don't Convert Pollen", nil, function(State) kocmoc.toggles.disableconversion = State end)
+contt:CreateToggle("Auto Bag Reduction",nil,function(Boole) kocmoc.toggles.autouseconvertors = Boole end)
 uiautouseMode = contt:CreateDropdown("Bag Reduction Mode",{"Micro Converters", "Tickets and Micros", "Ticket Converters","Just Snowflakes","Just Coconuts","Snowflakes and Coconuts","Tickets and Snowflakes","Tickets and Coconuts","All"},function(Select) kocmoc.vars.autouseMode = Select end) -- Morphisto
 contt:CreateSlider("Reduction Confirmation Time",3,20,10,false,function(tttttttt) kocmoc.vars.autoconvertWaitTime = tonumber(tttttttt) end)
 
-uiautosprinkler = farmo:CreateToggle("Auto Sprinkler", nil, function(State) kocmoc.toggles.autosprinkler = State end)
-uifarmbubbles = farmo:CreateToggle("Farm Bubbles", nil, function(State) kocmoc.toggles.farmbubbles = State end)
-uifarmflame = farmo:CreateToggle("Farm Flames", nil, function(State) kocmoc.toggles.farmflame = State end)
-uifarmcoco = farmo:CreateToggle("Farm Coconuts & Shower", nil, function(State) kocmoc.toggles.farmcoco = State end)
-uicollectcrosshair = farmo:CreateToggle("Farm Precise Crosshairs", nil, function(State) kocmoc.toggles.collectcrosshairs = State end)
-uifarmfuzzy = farmo:CreateToggle("Farm Fuzzy Bombs", nil, function(State) kocmoc.toggles.farmfuzzy = State end)
-uifarmunderballoons = farmo:CreateToggle("Farm Under Balloons", nil, function(State) kocmoc.toggles.farmunderballoons = State end)
-uifarmclouds = farmo:CreateToggle("Farm Under Clouds", nil, function(State) kocmoc.toggles.farmclouds = State end)
+farmo:CreateToggle("Auto Sprinkler", nil, function(State) kocmoc.toggles.autosprinkler = State end)
+farmo:CreateToggle("Farm Bubbles", nil, function(State) kocmoc.toggles.farmbubbles = State end)
+farmo:CreateToggle("Farm Flames", nil, function(State) kocmoc.toggles.farmflame = State end)
+farmo:CreateToggle("Farm Coconuts & Shower", nil, function(State) kocmoc.toggles.farmcoco = State end)
+farmo:CreateToggle("Farm Precise Crosshairs", nil, function(State) kocmoc.toggles.collectcrosshairs = State end)
+farmo:CreateToggle("Farm Fuzzy Bombs", nil, function(State) kocmoc.toggles.farmfuzzy = State end)
+farmo:CreateToggle("Farm Under Balloons", nil, function(State) kocmoc.toggles.farmunderballoons = State end)
+farmo:CreateToggle("Farm Under Clouds", nil, function(State) kocmoc.toggles.farmclouds = State end)
 farmo:CreateLabel("")
-uihoneymaskconv = farmo:CreateToggle("Auto Honey Mask",nil,function(bool)
+farmo:CreateToggle("Auto Honey Mask",nil,function(bool)
     kocmoc.toggles.honeymaskconv = bool
 end)
 farmo:CreateDropdown("Default Mask",MasksTable,function(val)
@@ -1092,26 +1091,26 @@ end)
 uimaskonfield = farmo:CreateToggle("Swap Mask on Field", nil, function(State) kocmoc.toggles.swapmaskonfield = State end)
 
 local farmt = farmtab:CreateSection("Farming")
-uiautodispense = farmt:CreateToggle("Auto Dispenser [⚙]", nil, function(State) kocmoc.toggles.autodispense = State end)
-uiautoboosters = farmt:CreateToggle("Auto Field Boosters [⚙]", nil, function(State) kocmoc.toggles.autoboosters = State end)
-uiclock = farmt:CreateToggle("Auto Wealth Clock", nil, function(State) kocmoc.toggles.clock = State end)
+farmt:CreateToggle("Auto Dispenser [⚙]", nil, function(State) kocmoc.toggles.autodispense = State end)
+farmt:CreateToggle("Auto Field Boosters [⚙]", nil, function(State) kocmoc.toggles.autoboosters = State end)
+farmt:CreateToggle("Auto Wealth Clock", nil, function(State) kocmoc.toggles.clock = State end)
 -- BEESMAS MARKER farmt:CreateToggle("Auto Gingerbread Bears", nil, function(State) kocmoc.toggles.collectgingerbreads = State end)
 -- BEESMAS MARKER farmt:CreateToggle("Auto Samovar", nil, function(State) kocmoc.toggles.autosamovar = State end)
 -- BEESMAS MARKER farmt:CreateToggle("Auto Stockings", nil, function(State) kocmoc.toggles.autostockings = State end)
-uiautoplanters = farmt:CreateToggle("Auto Planters", nil, function(State) kocmoc.toggles.autoplanters = State end) -- Morphisto
+farmt:CreateToggle("Auto Planters", nil, function(State) kocmoc.toggles.autoplanters = State end):AddToolTip("Will re-plant your planters after converting, if they hit 100%")
 -- BEESMAS MARKER farmt:CreateToggle("Auto Honey Candles", nil, function(State) kocmoc.toggles.autocandles = State end)
 -- BEESMAS MARKER farmt:CreateToggle("Auto Beesmas Feast", nil, function(State) kocmoc.toggles.autofeast = State end)
 -- BEESMAS MARKER farmt:CreateToggle("Auto Onett's Lid Art", nil, function(State) kocmoc.toggles.autoonettart = State end)
-uifreeantpass = farmt:CreateToggle("Auto Free Antpasses", nil, function(State) kocmoc.toggles.freeantpass = State end)
-uifarmsprouts = farmt:CreateToggle("Farm Sprouts", nil, function(State) kocmoc.toggles.farmsprouts = State end)
-uifarmpuffshrooms = farmt:CreateToggle("Farm Puffshrooms", nil, function(State) kocmoc.toggles.farmpuffshrooms = State end)
+farmt:CreateToggle("Auto Free Antpasses", nil, function(State) kocmoc.toggles.freeantpass = State end)
+farmt:CreateToggle("Farm Sprouts", nil, function(State) kocmoc.toggles.farmsprouts = State end)
+farmt:CreateToggle("Farm Puffshrooms", nil, function(State) kocmoc.toggles.farmpuffshrooms = State end)
 -- BEESMAS MARKER farmt:CreateToggle("Farm Snowflakes [⚠️]", nil, function(State) kocmoc.toggles.farmsnowflakes = State end)
-uifarmrares = farmt:CreateToggle("Teleport To Rares [⚠️]", nil, function(State) kocmoc.toggles.farmrares = State end)
-uiautoquest = farmt:CreateToggle("Auto Accept/Confirm Quests [⚙]", nil, function(State) kocmoc.toggles.autoquest = State end)
-uiautodoquest = farmt:CreateToggle("Auto Do Quests [⚙]", nil, function(State) kocmoc.toggles.autodoquest = State end)
-uihoneystorm = farmt:CreateToggle("Auto Honeystorm", nil, function(State) kocmoc.toggles.honeystorm = State end)
+farmt:CreateToggle("Teleport To Rares [⚠️]", nil, function(State) kocmoc.toggles.farmrares = State end)
+farmt:CreateToggle("Auto Accept/Confirm Quests [⚙]", nil, function(State) kocmoc.toggles.autoquest = State end)
+farmt:CreateToggle("Auto Do Quests [⚙]", nil, function(State) kocmoc.toggles.autodoquest = State end)
+farmt:CreateToggle("Auto Honeystorm", nil, function(State) kocmoc.toggles.honeystorm = State end)
 farmt:CreateLabel(" ")
-uiresetbeeenergy = farmt:CreateToggle("Reset Bee Energy after X Conversions",nil,function(bool) kocmoc.vars.resetbeeenergy = bool end)
+farmt:CreateToggle("Reset Bee Energy after X Conversions",nil,function(bool) kocmoc.vars.resetbeeenergy = bool end)
 farmt:CreateTextBox("Conversion Amount", "default = 3", true, function(Value) kocmoc.vars.resettimer = tonumber(Value) end)
 
 local mobkill = combtab:CreateSection("Combat")
@@ -1120,12 +1119,12 @@ uikilltunnelbear = mobkill:CreateToggle("Kill Tunnel Bear", nil, function(State)
 uikillkingbeetle = mobkill:CreateToggle("Kill King Beetle", nil, function(State) kocmoc.toggles.killkingbeetle = State end) -- Morphisto
 uikillstumpsnail = mobkill:CreateToggle("Kill Stump Snail", nil, function(State) kocmoc.toggles.killstumpsnail = State end) -- Morphisto
 
-uikillmondo = mobkill:CreateToggle("Kill Mondo", nil, function(State) kocmoc.toggles.killmondo = State end)
-uikillvicious = mobkill:CreateToggle("Kill Vicious", nil, function(State) kocmoc.toggles.killvicious = State end)
-uikillwindy = mobkill:CreateToggle("Kill Windy", nil, function(State) kocmoc.toggles.killwindy = State end)
+mobkill:CreateToggle("Kill Mondo", nil, function(State) kocmoc.toggles.killmondo = State end)
+mobkill:CreateToggle("Kill Vicious", nil, function(State) kocmoc.toggles.killvicious = State end)
+mobkill:CreateToggle("Kill Windy", nil, function(State) kocmoc.toggles.killwindy = State end)
 mobkill:CreateToggle("Auto Kill Mobs", nil, function(State) kocmoc.toggles.autokillmobs = State end):AddToolTip("Kills mobs after x pollen converting")
 mobkill:CreateToggle("Avoid Mobs", nil, function(State) kocmoc.toggles.avoidmobs = State end)
-uiautoant = mobkill:CreateToggle("Auto Ant", nil, function(State) kocmoc.toggles.autoant = State end) -- Morphisto
+mobkill:CreateToggle("Auto Ant", nil, function(State) kocmoc.toggles.autoant = State end):AddToolTip("You Need Spark Stuff 😋; Goes to Ant Challenge after pollen converting")
 
 local serverhopkill = combtab:CreateSection("Serverhopping Combat")
 serverhopkill:CreateButton("Vicious Bee Serverhopper [⚠️][📜]",function() loadstring(game:HttpGet("https://raw.githubusercontent.com/Boxking776/kocmoc/main/functions/viciousbeeserverhop.lua"))() end):AddToolTip("Serverhops for rouge vicious bees")
@@ -1160,9 +1159,9 @@ end
 
 local miscc = misctab:CreateSection("Misc")
 miscc:CreateButton("Ant Challenge Semi-Godmode", function() api.tween(1, CFrame.new(93.4228, 32.3983, 553.128)) task.wait(1) game.ReplicatedStorage.Events.ToyEvent:FireServer("Ant Challenge") game.Players.LocalPlayer.Character.HumanoidRootPart.Position = Vector3.new(93.4228, 42.3983, 553.128) task.wait(2) game.Players.LocalPlayer.Character.Humanoid.Name = 1 local l = game.Players.LocalPlayer.Character["1"]:Clone() l.Parent = game.Players.LocalPlayer.Character l.Name = "Humanoid" task.wait() game.Players.LocalPlayer.Character["1"]:Destroy() api.tween(1, CFrame.new(93.4228, 32.3983, 553.128)) task.wait(8) api.tween(1, CFrame.new(93.4228, 32.3983, 553.128)) end)
-wstoggle = miscc:CreateToggle("Walk Speed", nil, function(State) kocmoc.toggles.loopspeed = State end) wstoggle:CreateKeybind("K", function(Key) end)
-jptoggle = miscc:CreateToggle("Jump Power", nil, function(State) kocmoc.toggles.loopjump = State end) jptoggle:CreateKeybind("L", function(Key) end)
-uigodmode = miscc:CreateToggle("Godmode", nil, function(State) kocmoc.toggles.godmode = State if State then bssapi:Godmode(true) else bssapi:Godmode(false) end end)
+local wstoggle = miscc:CreateToggle("Walk Speed", nil, function(State) kocmoc.toggles.loopspeed = State end) wstoggle:CreateKeybind("K", function(Key) end)
+local jptoggle = miscc:CreateToggle("Jump Power", nil, function(State) kocmoc.toggles.loopjump = State end) jptoggle:CreateKeybind("L", function(Key) end)
+miscc:CreateToggle("Godmode", nil, function(State) kocmoc.toggles.godmode = State if State then bssapi:Godmode(true) else bssapi:Godmode(false) end end)
 local misco = misctab:CreateSection("Other")
 misco:CreateDropdown("Equip Accesories", accesoriestable, function(Option) local ohString1 = "Equip" local ohTable2 = { ["Mute"] = false, ["Type"] = Option, ["Category"] = "Accessory" } game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer(ohString1, ohTable2) end)
 misco:CreateDropdown("Equip Masks", masktable, function(Option) local ohString1 = "Equip" local ohTable2 = { ["Mute"] = false, ["Type"] = Option, ["Category"] = "Accessory" } game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer(ohString1, ohTable2) end)
@@ -1422,7 +1421,7 @@ local farmsettings = setttab:CreateSection("Autofarm Settings")
 farmsettings:CreateTextBox("Autofarming Walkspeed", "Default Value = 60", true, function(Value) kocmoc.vars.farmspeed = Value end)
 farmsettings:CreateToggle("^ Loop Speed On Autofarming",nil, function(State) kocmoc.toggles.loopfarmspeed = State end)
 farmsettings:CreateToggle("Don't Walk In Field",nil, function(State) kocmoc.toggles.farmflower = State end)
-uiconvertballoons = farmsettings:CreateToggle("Convert Hive Balloon",nil, function(State) kocmoc.toggles.convertballoons = State end)
+farmsettings:CreateToggle("Convert Hive Balloon",nil, function(State) kocmoc.toggles.convertballoons = State end)
 farmsettings:CreateToggle("Don't Farm Tokens",nil, function(State) kocmoc.toggles.donotfarmtokens = State end)
 farmsettings:CreateToggle("Enable Token Blacklisting",nil, function(State) kocmoc.toggles.enabletokenblacklisting = State end)
 farmsettings:CreateSlider("Walk Speed", 0, 120, 70, false, function(Value) kocmoc.vars.walkspeed = Value end)
@@ -1452,15 +1451,15 @@ end)
 raresettings:CreateDropdown("Tokens Blacklist", kocmoc.bltokens, function(Option) end)
 raresettings:CreateDropdown("Rares List", kocmoc.rares, function(Option) end)
 local dispsettings = setttab:CreateSection("Auto Dispenser & Auto Boosters Settings")
-uirj = dispsettings:CreateToggle("Royal Jelly Dispenser", nil, function(State) kocmoc.dispensesettings.rj = State end)
-uiblub = dispsettings:CreateToggle("Blueberry Dispenser", nil,  function(State) kocmoc.dispensesettings.blub = State end)
-uistraw = dispsettings:CreateToggle("Strawberry Dispenser", nil,  function(State) kocmoc.dispensesettings.straw = State end)
-uitreat = dispsettings:CreateToggle("Treat Dispenser", nil,  function(State) kocmoc.dispensesettings.treat = State end)
-uicoconut = dispsettings:CreateToggle("Coconut Dispenser", nil,  function(State) kocmoc.dispensesettings.coconut = State end)
-uiglue = dispsettings:CreateToggle("Glue Dispenser", nil,  function(State) kocmoc.dispensesettings.glue = State end)
-uiwhite = dispsettings:CreateToggle("Mountain Top Booster", nil,  function(State) kocmoc.dispensesettings.white = State end)
-uiblue = dispsettings:CreateToggle("Blue Field Booster", nil,  function(State) kocmoc.dispensesettings.blue = State end)
-uired = dispsettings:CreateToggle("Red Field Booster", nil,  function(State) kocmoc.dispensesettings.red = State end)
+dispsettings:CreateToggle("Royal Jelly Dispenser", nil, function(State) kocmoc.dispensesettings.rj = not kocmoc.dispensesettings.rj end)
+dispsettings:CreateToggle("Blueberry Dispenser", nil,  function(State) kocmoc.dispensesettings.blub = not kocmoc.dispensesettings.blub end)
+dispsettings:CreateToggle("Strawberry Dispenser", nil,  function(State) kocmoc.dispensesettings.straw = not kocmoc.dispensesettings.straw end)
+dispsettings:CreateToggle("Treat Dispenser", nil,  function(State) kocmoc.dispensesettings.treat = not kocmoc.dispensesettings.treat end)
+dispsettings:CreateToggle("Coconut Dispenser", nil,  function(State) kocmoc.dispensesettings.coconut = not kocmoc.dispensesettings.coconut end)
+dispsettings:CreateToggle("Glue Dispenser", nil,  function(State) kocmoc.dispensesettings.glue = not kocmoc.dispensesettings.glue end)
+dispsettings:CreateToggle("Mountain Top Booster", nil,  function(State) kocmoc.dispensesettings.white = not kocmoc.dispensesettings.white end)
+dispsettings:CreateToggle("Blue Field Booster", nil,  function(State) kocmoc.dispensesettings.blue = not kocmoc.dispensesettings.blue end)
+dispsettings:CreateToggle("Red Field Booster", nil,  function(State) kocmoc.dispensesettings.red = not kocmoc.dispensesettings.red end)
 local guisettings = setttab:CreateSection("GUI Settings")
 local uitoggle = guisettings:CreateToggle("UI Toggle", nil, function(State) Window:Toggle(State) end) uitoggle:CreateKeybind(tostring(Config.Keybind):gsub("Enum.KeyCode.", ""), function(Key) Config.Keybind = Enum.KeyCode[Key] end) uitoggle:SetState(true)
 guisettings:CreateColorpicker("UI Color", function(Color) Window:ChangeColor(Color) end)
@@ -1471,16 +1470,16 @@ kocmocs:CreateButton("Load Config", function() kocmoc = game:service'HttpService
 kocmocs:CreateButton("Save Config", function() writefile("kocmoc/BSS_"..temptable.configname..".json",game:service'HttpService':JSONEncode(kocmoc)) end)
 kocmocs:CreateButton("Reset Config", function() kocmoc = defaultkocmoc end)
 local fieldsettings = setttab:CreateSection("Fields Settings")
-uibestwhite = fieldsettings:CreateDropdown("Best White Field", temptable.whitefields, function(Option) kocmoc.bestfields.white = Option end)
-uibestred = fieldsettings:CreateDropdown("Best Red Field", temptable.redfields, function(Option) kocmoc.bestfields.red = Option end)
-uibestblue = fieldsettings:CreateDropdown("Best Blue Field", temptable.bluefields, function(Option) kocmoc.bestfields.blue = Option end)
+fieldsettings:CreateDropdown("Best White Field", temptable.whitefields, function(Option) kocmoc.bestfields.white = Option end)
+fieldsettings:CreateDropdown("Best Red Field", temptable.redfields, function(Option) kocmoc.bestfields.red = Option end)
+fieldsettings:CreateDropdown("Best Blue Field", temptable.bluefields, function(Option) kocmoc.bestfields.blue = Option end)
 fieldsettings:CreateDropdown("Field", fieldstable, function(Option) temptable.blackfield = Option end)
 fieldsettings:CreateButton("Add Field To Blacklist", function() table.insert(kocmoc.blacklistedfields, temptable.blackfield) game:GetService("CoreGui"):FindFirstChild(_G.windowname).Main:FindFirstChild("Blacklisted Fields D",true):Destroy() fieldsettings:CreateDropdown("Blacklisted Fields", kocmoc.blacklistedfields, function(Option) end) end)
 fieldsettings:CreateButton("Remove Field From Blacklist", function() table.remove(kocmoc.blacklistedfields, api.tablefind(kocmoc.blacklistedfields, temptable.blackfield)) game:GetService("CoreGui"):FindFirstChild(_G.windowname).Main:FindFirstChild("Blacklisted Fields D",true):Destroy() fieldsettings:CreateDropdown("Blacklisted Fields", kocmoc.blacklistedfields, function(Option) end) end)
 fieldsettings:CreateDropdown("Blacklisted Fields", kocmoc.blacklistedfields, function(Option) end)
 local aqs = setttab:CreateSection("Auto Quest Settings")
-uinpcprefer = aqs:CreateDropdown("Do NPC Quests", {'All Quests', 'Bucko Bee', 'Brown Bear', 'Riley Bee', 'Polar Bear'}, function(Option) kocmoc.vars.npcprefer = Option end)
-uitptonpc = aqs:CreateToggle("Teleport To NPC", nil, function(State) kocmoc.toggles.tptonpc = State end)
+aqs:CreateDropdown("Do NPC Quests", {'All Quests', 'Bucko Bee', 'Brown Bear', 'Riley Bee', 'Polar Bear'}, function(Option) kocmoc.vars.npcprefer = Option end)
+aqs:CreateToggle("Teleport To NPC", nil, function(State) kocmoc.toggles.tptonpc = State end)
 local pts = setttab:CreateSection("Autofarm Priority Tokens")
 pts:CreateTextBox("Asset ID", 'rbxassetid', false, function(Value) rarename = Value end)
 pts:CreateButton("Add Token To Priority List", function() table.insert(kocmoc.priority, rarename) game:GetService("CoreGui"):FindFirstChild(_G.windowname).Main:FindFirstChild("Priority List D",true):Destroy() pts:CreateDropdown("Priority List", kocmoc.priority, function(Option) end) end)
@@ -1787,7 +1786,6 @@ task.spawn(function() while task.wait() do
 				if kocmoc.toggles.killstumpsnail then KillStumpSnail() end -- Morphisto
 				if (fieldposition-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
                     api.tween(2, fieldpos) -- Morphisto
-                    task.wait(2)
                     if kocmoc.toggles.autosprinkler then makesprinklers() end
                 end
                 getprioritytokens()
@@ -2280,67 +2278,6 @@ task.spawn(function()
 end)
 
 if _G.autoload then if isfile("kocmoc/BSS_".._G.autoload..".json") then kocmoc = game:service'HttpService':JSONDecode(readfile("kocmoc/BSS_".._G.autoload..".json")) end end
-if kocmoc.vars.field ~= "" then fielddropdown:SetOption(kocmoc.vars.field) end -- Morphisto
-if kocmoc.toggles.autofarm then autofarmtoggle:SetState(true) end -- Morphisto
-if kocmoc.toggles.autodig then uiautodig:SetState(true) end -- Morphisto
-if kocmoc.toggles.swapmaskonfield then uimaskonfield:SetState(true) end -- Morphisto
-if kocmoc.vars.autodigmode ~= "" then uiautodigmode:SetOption(kocmoc.vars.autodigmode) end -- Morphisto
-if kocmoc.toggles.disableconversion then uidisableconvert:SetState(true) end -- Morphisto
-if kocmoc.toggles.autouseconvertors then uiautouseconverters:SetState(true) end -- Morphisto
-if kocmoc.vars.autouseMode ~= "" then uiautouseMode:SetOption(kocmoc.vars.autouseMode) end -- Morphisto
-if kocmoc.toggles.autosprinkler then uiautosprinkler:SetState(true) end -- Morphisto
-if kocmoc.toggles.farmbubbles then uifarmbubbles:SetState(true) end -- Morphisto
-if kocmoc.toggles.farmflame then uifarmflame:SetState(true) end -- Morphisto
-if kocmoc.toggles.farmcoco then uifarmcoco:SetState(true) end -- Morphisto
-if kocmoc.toggles.collectcrosshairs then uicollectcrosshair:SetState(true) end -- Morphisto
-if kocmoc.toggles.farmfuzzy then uifarmfuzzy:SetState(true) end -- Morphisto
-if kocmoc.toggles.farmunderballoons then uifarmunderballoons:SetState(true) end -- Morphisto
-if kocmoc.toggles.farmclouds then uifarmclouds:SetState(true) end -- Morphisto
-if kocmoc.toggles.honeymaskconv then uihoneymaskconv:SetState(true) end -- Morphisto
-if kocmoc.vars.defmask ~= "" then uidefmask:SetOption(kocmoc.vars.defmask) end -- Morphisto
-if kocmoc.toggles.autodispense then uiautodispense:SetState(true) end -- Morphisto
-if kocmoc.toggles.autoboosters then uiautoboosters:SetState(true) end -- Morphisto
-if kocmoc.toggles.clock then uiclock:SetState(true) end -- Morphisto
-if kocmoc.toggles.autoplanters then uiautoplanters:SetState(true) end -- Morphisto
-if kocmoc.toggles.freeantpass then uifreeantpass:SetState(true) end -- Morphisto
-if kocmoc.toggles.farmsprouts then uifarmsprouts:SetState(true) end -- Morphisto
-if kocmoc.toggles.farmpuffshrooms then uifarmpuffshrooms:SetState(true) end -- Morphisto
-if kocmoc.toggles.farmrares then uifarmrares:SetState(true) end -- Morphisto
-if kocmoc.toggles.autoquest then uiautoquest:SetState(true) end -- Morphisto
-if kocmoc.toggles.autodoquest then uiautodoquest:SetState(true) end -- Morphisto
-if kocmoc.toggles.honeystorm then uihoneystorm:SetState(true) end -- Morphisto
-if kocmoc.vars.resetbeeenergy then uiresetbeeenergy:SetState(true) end -- Morphisto
-if kocmoc.toggles.killmondo then uikillmondo:SetState(true) end -- Morphisto
-if kocmoc.toggles.killvicious then uikillvicious:SetState(true) end -- Morphisto
-if kocmoc.toggles.killwindy then uikillwindy:SetState(true) end -- Morphisto
-if kocmoc.toggles.autoant then uiautoant:SetState(true) end -- Morphisto
-if kocmoc.toggles.loopspeed then wstoggle:SetState(true) end -- Morphisto
-if kocmoc.toggles.loopjump then jptoggle:SetState(true) end -- Morphisto
-if kocmoc.toggles.godmode then uigodmode:SetState(true) end -- Morphisto
-if kocmoc.toggles.convertballoons then uiconvertballoons:SetState(true) end -- Morphisto
-if kocmoc.dispensesettings.rj then uirj:SetState(true) end -- Morphisto
-if kocmoc.dispensesettings.blub then uiblub:SetState(true) end -- Morphisto
-if kocmoc.dispensesettings.straw then uistraw:SetState(true) end -- Morphisto
-if kocmoc.dispensesettings.treat then uitreat:SetState(true) end -- Morphisto
-if kocmoc.dispensesettings.coconut then uicoconut:SetState(true) end -- Morphisto
-if kocmoc.dispensesettings.glue then uiglue:SetState(true) end -- Morphisto
-if kocmoc.dispensesettings.white then uiwhite:SetState(true) end -- Morphisto
-if kocmoc.dispensesettings.blue then uiblue:SetState(true) end -- Morphisto
-if kocmoc.dispensesettings.red then uired:SetState(true) end -- Morphisto
-if kocmoc.bestfields.white ~= "" then uibestwhite:SetOption(kocmoc.bestfields.white) end -- Morphisto
-if kocmoc.bestfields.red ~= "" then uibestred:SetOption(kocmoc.bestfields.red) end -- Morphisto
-if kocmoc.bestfields.blue ~= "" then uibestblue:SetOption(kocmoc.bestfields.blue) end -- Morphisto
-if kocmoc.vars.npcprefer ~= "" then uinpcprefer:SetOption(kocmoc.vars.npcprefer) end -- Morphisto
-if kocmoc.toggles.tptonpc then uitptonpc:SetState(true) end -- Morphisto
-if kocmoc.toggles.killcrab then uikillcrab:SetState(true) end -- Morphisto
-if kocmoc.toggles.killtunnelbear then uikilltunnelbear:SetState(true) end -- Morphisto
-if kocmoc.toggles.killkingbeetle then uikillkingbeetle:SetState(true) end -- Morphisto
-if kocmoc.toggles.killstumpsnail then uikillstumpsnail:SetState(true) end -- Morphisto
-if kocmoc.toggles.killstickbug then uikillstickbug:SetState(true) end -- Morphisto
-if kocmoc.toggles.smartautofarm then uismartautofarm:SetState(true) end -- Morphisto
-if kocmoc.toggles.farmboostedfield then uifarmboostedfield:SetState(true) end -- Morphisto
-if kocmoc.vars.defmask ~= "" then game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"}) end -- Morphisto
-
 -- Morphisto
 function KillCoconutCrab()
 	local crabisready = false
