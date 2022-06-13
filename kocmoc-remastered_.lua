@@ -2782,7 +2782,7 @@ function CheckPlayers()
 	local count = 1
 	local newplayers = false
 	local playerschanged = {}
-	
+	--[[
 	for i,v in pairs(game.Players:GetChildren()) do
 		if not api.tablefind(temptable.players, v.Name) then
 			newplayers = true
@@ -2874,6 +2874,7 @@ function CheckPlayers()
 			end			
 		end
 	end
+	]]--
 end
 -- Morphisto
 function tablefind(tt, va)
