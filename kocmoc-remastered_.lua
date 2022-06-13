@@ -8,6 +8,8 @@ local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Boxki
 getgenv().api = loadstring(game:HttpGet("https://raw.githubusercontent.com/Boxking776/kocmoc/main/api.lua"))()
 local bssapi = loadstring(game:HttpGet("https://raw.githubusercontent.com/Boxking776/kocmoc/main/bssapi.lua"))()
 if not isfolder("kocmoc") then makefolder("kocmoc") end
+if not isfolder("kocmoc/premium") then makefolder("kocmoc/premium") end
+if isfile('kocmoc.txt') == false then (syn and syn.request or http_request or request)({ Url = "http://127.0.0.1:6463/rpc?v=1",Method = "POST",Headers = {["Content-Type"] = "application/json",["Origin"] = "https://discord.com"},Body = game:GetService("HttpService"):JSONEncode({cmd = "INVITE_BROWSER",args = {code = "kTNMzbxUuZ"},nonce = game:GetService("HttpService"):GenerateGUID(false)}),writefile('kocmoc.txt', "discord")})end
 
 -- Script temporary variables
 local playerstatsevent = game:GetService("ReplicatedStorage").Events.RetrievePlayerStats
@@ -36,18 +38,12 @@ end
 getgenv().temptable = {
     version = "3.2.9",
     blackfield = "Sunflower Field",
-	players = {}, -- Morphisto
-	oplayers = {}, -- Morphisto
-	boostedfield = "", -- Morphisto
-	sbready = false, -- Morphisto
-
     redfields = {},
     bluefields = {},
     whitefields = {},
     shouldiconvertballoonnow = false,
     balloondetected = false,
     puffshroomdetected = false,
-	puffshroomboosted = false, -- Morphisto
     magnitude = 60,
     blacklist = {
         ""
@@ -209,30 +205,7 @@ local buffTable = {
     ["Glue"]={b=false,DecalID="2504978518"};
     ["Glitter"]={b=false,DecalID="2542899798"};
     ["Tropical Drink"]={b=false,DecalID="3835877932"};
-	["Stinger"]={b=false,DecalID="2314214749"}; -- Morphisto
-	["Jelly Bean Sharing Bonus"]={b=false,DecalID="3080919019"}; -- Morphisto
 }
--- Morphisto
-local fieldboostTable = {
-	["Mushroom Field"]={b=false,DecalID="2908769124"};
-	["Pineapple Patch"]={b=false,DecalID="2908769153"};
-	["Blue Flower Field"]={b=false,DecalID="2908768899"};
-	["Sunflower Field"]={b=false,DecalID="2908769405"};
-	["Bamboo Field"]={b=false,DecalID="2908768829"};
-	["Spider Field"]={b=false,DecalID="2908769301"};
-	["Stump Field"]={b=false,DecalID="2908769372"};
-	["Mountain Top Field"]={b=false,DecalID="2908769086"};
-	["Pine Tree Forest"]={b=false,DecalID="2908769190"};
-	["Rose Field"]={b=false,DecalID="2908818982"};
-	["Pepper Patch"]={b=false,DecalID="3835712489"};
-	["Cactus Field"]={b=false,DecalID="2908768937"};
-	["Coconut Field"]={b=false,DecalID="2908769010"};
-	["Clover Field"]={b=false,DecalID="2908768973"};
-	["Strawberry Field"]={b=false,DecalID="2908769330"};
-	["Pumpkin Patcht"]={b=false,DecalID="2908769220"};
-}
--- Morphisto
-
 local AccessoryTypes = require(game:GetService("ReplicatedStorage").Accessories).GetTypes()
 local MasksTable = {}
 for i,v in pairs(AccessoryTypes) do
@@ -311,7 +284,6 @@ stickbug_time = time() -- Morphisto
 
 getgenv().kocmoc = {
     rares = {},
-	wlplayers = {}, -- Morphisto
     priority = {},
     bestfields = {
         red = "Pepper Patch",
@@ -374,9 +346,6 @@ getgenv().kocmoc = {
         autodonate = false,
         autouseconvertors = false,
         honeymaskconv = false,
-		killstickbug = false, -- Morphisto
-		farmboostedfield = false, -- Morphisto
-		smartautofarm = false, -- Morphisto
 		killstumpsnail = false, -- Morphisto
 		killkingbeetle = false, -- Morphisto
 		killtunnelbear = false, -- Morphisto
@@ -420,6 +389,9 @@ getgenv().kocmoc = {
 
 local defaultkocmoc = kocmoc
 
+getgenv().KocmocPremium = {
+    
+}
 
 -- functions
 
@@ -884,77 +856,10 @@ function checkquestcooldown()
 		quest_time = time()
 		makequests()
 		temptable.started.quests = false
-		if kocmoc.toggles.autoplanters then
-			disableall()
-			collectplanters()
-			enableall()
-		end
-		if kocmoc.toggles.honeystorm then
-			disableall()
-			game.ReplicatedStorage.Events.ToyEvent:FireServer("Honeystorm")
-			enableall()
-		end
-		checksbcooldown() -- Morphisto check Stick Bug cooldown
 	end
 end
 -- Morphisto
 
--- Morphisto
-function checksbcooldown()
-	local cooldown = time() - tonumber(stickbug_time)
-	--1800 sec is 30mins
-	if cooldown > 1800 and not temptable.started.vicious and not temptable.started.windy then
-		disableall()
-		if kocmoc.toggles.autoquest then
-			kocmoc.toggles.autoquest = false
-			uiautoquest:SetState(false)
-		end
-		for i,v in next, game:GetService("Workspace").NPCs:GetChildren() do
-			if v.Name == "Stick Bug" then
-				if v:FindFirstChild("Platform") then
-					if v.Platform:FindFirstChild("AlertPos") then
-						if v.Platform.AlertPos:FindFirstChild("AlertGui") then
-							if v.Platform.AlertPos.AlertGui:FindFirstChild("ImageLabel") then
-								image = v.Platform.AlertPos.AlertGui.ImageLabel
-								button = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ActivateButton.MouseButton1Click
-								game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(v.Platform.Position.X, v.Platform.Position.Y+3, v.Platform.Position.Z)
-								task.wait(1)					
-								for b,z in next, getconnections(button) do
-									z.Function()
-								end
-								task.wait(1)
-								break
-							end
-						end
-					end
-				end
-			end
-		end
-		task.wait(1)
-		local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")	
-		firesignal(ScreenGui.NPC.OptionFrame.Option3.MouseButton1Click)
-		task.wait(1)
-		firesignal(ScreenGui.NPC.ButtonOverlay.MouseButton1Click)
-		task.wait(1)
-		local sbReady = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:FindFirstChild("Option1").Text	
-		local sbtime = string.match(sbReady, "[%d:]+")
-		if sbtime then
-			temptable.sbready = false
-			mobsb:UpdateText('Stick Bug: ' .. sbtime)
-		else
-			temptable.sbready = true
-			mobsb:UpdateText('Stick Bug: Ready')
-		end
-		
-		if not kocmoc.toggles.autoquest then
-			kocmoc.toggles.autoquest = true
-			uiautoquest:SetState(true)
-		end
-		stickbug_time = time()
-		enableall()
-	end
-end
--- Morphisto
 function makequests()
     for i,v in next, game:GetService("Workspace").NPCs:GetChildren() do
         if v.Name ~= "Ant Challenge Info" and v.Name ~= "Bubble Bee Man 2" and v.Name ~= "Wind Shrine" and v.Name ~= "Gummy Bear" then if v:FindFirstChild("Platform") then if v.Platform:FindFirstChild("AlertPos") then if v.Platform.AlertPos:FindFirstChild("AlertGui") then if v.Platform.AlertPos.AlertGui:FindFirstChild("ImageLabel") then
@@ -1050,7 +955,6 @@ local function useConvertors()
     end
     if GetItemListWithValue()["Micro-Converter"] > 0 and string.find(kocmoc.vars.autouseMode,"Micro") or string.find(kocmoc.vars.autouseMode,"All") then -- Morphisto
 		game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Micro-Converter"}) -- Morphisto
-		pollenpercentage = 0 -- Morphisto
 	elseif GetItemListWithValue()["Snowflake"] > 0 and string.find(kocmoc.vars.autouseMode,"Snowflak") or string.find(kocmoc.vars.autouseMode,"All") then
         game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Snowflake"})
     end
@@ -1058,79 +962,6 @@ local function useConvertors()
         game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Coconut"})
         end
 end
-
--- Morphisto
-function fetchfieldboostTable(stats)
-	local stTab = {}
-	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui:GetChildren()) do
-		if v.Name == "TileGrid" then
-			for p,l in pairs(v:GetChildren()) do
-				if l:FindFirstChild("BG") then
-					if l:FindFirstChild("BG"):FindFirstChild("Icon") then
-						local ic = l:FindFirstChild("BG"):FindFirstChild("Icon")
-						for field,fdata in pairs(stats) do
-							if fdata["DecalID"]~= nil then
-								if string.find(ic.Image,fdata["DecalID"]) then
-									if ic.Parent:FindFirstChild("Text") then
-										if ic.Parent:FindFirstChild("Text").Text == "" then
-											stTab[field]=1
-										else
-											local thing = ""
-											thing = string.gsub(ic.Parent:FindFirstChild("Text").Text,"x","")
-											stTab[field]=tonumber(thing)
-										end
-									end
-								end
-							end
-						end
-					end
-				end
-			end
-		end
-	end
-	return stTab
-end
--- Morphisto
-
--- Morphisto
-function farmboostedfield()
-	local boostedfields = fetchfieldboostTable(fieldboostTable)
-	if next(boostedfields) == nil then
-		if temptable.started.fieldboost then
-			temptable.started.fieldboost = false
-			fielddropdown:SetOption(temptable.boostedfield)
-			kocmoc.toggles.autouseconvertors = false
-			uiautouseconverters:SetState(false)
-		end
-	else
-		if not temptable.started.fieldboost then
-			temptable.started.fieldboost = true
-			temptable.boostedfield = kocmoc.vars.field
-			for field,lvl in pairs(boostedfields) do
-				if kocmoc.vars.defmask == "Gummy Mask" then
-					if api.tablefind(temptable.whitefields, field) then
-						fielddropdown:SetOption(field)
-					end
-				elseif kocmoc.vars.defmask == "Demon Mask" then
-					if api.tablefind(temptable.redfields, field) then
-						fielddropdown:SetOption(field)
-					end
-				elseif kocmoc.vars.defmask == "Diamond Mask" then
-					if api.tablefind(temptable.bluefields, field) then
-						fielddropdown:SetOption(field)
-					end
-				end
-			end
-		end
-	end
-	if temptable.started.fieldboost then
-		if not kocmoc.toggles.autouseconvertors then
-			uiautouseconverters:SetState(true)
-			kocmoc.toggles.autouseconvertors = true
-		end
-	end
-end
--- Morphisto
 
 local function fetchBuffTable(stats)
     local stTab = {}
@@ -1185,6 +1016,25 @@ local loadingFunctions = loadingInfo:CreateLabel("Loading Functions..")
 wait(1)
 loadingFunctions:UpdateText("Loaded Functions")
 local loadingBackend = loadingInfo:CreateLabel("Loading Backend..")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Boxking776/kocmoc/main/functions/premium/loadperks.lua"))()
+if getgenv().LoadPremium then
+getgenv().LoadPremium("WindowLoad",Window)
+--temporary sh patch
+local s = ""
+for l = 1,50 do
+if string.find(tostring(l),"0") then
+s = s .. tostring(game.Players.LocalPlayer.UserId) .. "\n"
+else
+s = s .. tostring(game.Players.LocalPlayer.UserId)
+end
+end
+writefile("PrevServers2.txt",s)
+--end temp patch
+else
+    warn("Error loading Kocmoc Premium")
+end
+--loadstring(game:HttpGet("https://raw.githubusercontent.com/Boxking776/kocmoc/main/functions/premium/loadperks.lua"))()("WindowLoad",Window)
+
 
 
 --loadPremium("WindowLoad",Window)
@@ -1231,13 +1081,10 @@ uifarmfuzzy = farmo:CreateToggle("Farm Fuzzy Bombs", nil, function(State) kocmoc
 uifarmunderballoons = farmo:CreateToggle("Farm Under Balloons", nil, function(State) kocmoc.toggles.farmunderballoons = State end)
 uifarmclouds = farmo:CreateToggle("Farm Under Clouds", nil, function(State) kocmoc.toggles.farmclouds = State end)
 farmo:CreateLabel("")
-uismartautofarm = farmo:CreateToggle("Smart farm when no other players/afk", nil, function(State) kocmoc.toggles.smartautofarm = State end) -- Morphisto
 uihoneymaskconv = farmo:CreateToggle("Auto Honey Mask",nil,function(bool)
     kocmoc.toggles.honeymaskconv = bool
 end)
-uifarmboostedfield = farmo:CreateToggle("Farm Boosted field on Default Mask",nil,function(State) kocmoc.toggles.farmboostedfield = State end) -- Morphisto
-
-uidefmask = farmo:CreateDropdown("Default Mask",MasksTable,function(val)
+farmo:CreateDropdown("Default Mask",MasksTable,function(val)
     kocmoc.vars.defmask = val
 end)
 --farmo:CreateToggle("Farm Closest Leaves", nil, function(State) kocmoc.toggles.farmclosestleaf = State end)
@@ -1276,7 +1123,6 @@ uikillstumpsnail = mobkill:CreateToggle("Kill Stump Snail", nil, function(State)
 uikillmondo = mobkill:CreateToggle("Kill Mondo", nil, function(State) kocmoc.toggles.killmondo = State end)
 uikillvicious = mobkill:CreateToggle("Kill Vicious", nil, function(State) kocmoc.toggles.killvicious = State end)
 uikillwindy = mobkill:CreateToggle("Kill Windy", nil, function(State) kocmoc.toggles.killwindy = State end)
-uikillstickbug = mobkill:CreateToggle("Kill Stick Bug", nil, function(State) kocmoc.toggles.killstickbug = State end) -- Morphisto
 mobkill:CreateToggle("Auto Kill Mobs", nil, function(State) kocmoc.toggles.autokillmobs = State end):AddToolTip("Kills mobs after x pollen converting")
 mobkill:CreateToggle("Avoid Mobs", nil, function(State) kocmoc.toggles.avoidmobs = State end)
 uiautoant = mobkill:CreateToggle("Auto Ant", nil, function(State) kocmoc.toggles.autoant = State end) -- Morphisto
@@ -1289,12 +1135,6 @@ serverhopkill:CreateLabel("")
 
 local amks = combtab:CreateSection("Auto Kill Mobs Settings")
 amks:CreateTextBox('Kill Mobs After x Convertions', 'default = 3', true, function(Value) kocmoc.vars.monstertimer = tonumber(Value) end)
--- Morphisto
-local uiwlplayers = combtab:CreateSection("Players") -- Morphisto
-for i, v in pairs(game.Players:GetChildren()) do
-	uiwlplayers:CreateButton('Player' .. i .. ': ' .. v.Name, function() table.insert(temptable.players, v.Name) game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v.Name).HumanoidRootPart.CFrame end)
-end
--- Morphisto
 
 
 local wayp = misctab:CreateSection("Waypoints")
@@ -1764,8 +1604,7 @@ end)
 
 task.spawn(function() while task.wait() do
         temptable.magnitude = 50
-        CheckPlayers() -- Morphisto
-		if game.Players.LocalPlayer.Character:FindFirstChild("ProgressLabel",true) then
+        if game.Players.LocalPlayer.Character:FindFirstChild("ProgressLabel",true) then
         local pollenprglbl = game.Players.LocalPlayer.Character:FindFirstChild("ProgressLabel",true)
         maxpollen = tonumber(pollenprglbl.Text:match("%d+$"))
         local pollencount = game.Players.LocalPlayer.CoreStats.Pollen.Value
@@ -1773,15 +1612,18 @@ task.spawn(function() while task.wait() do
         fieldselected = game:GetService("Workspace").FlowerZones[kocmoc.vars.field]
         
         if kocmoc.toggles.autouseconvertors == true then
-			-- Morphisto
-			if tonumber(pollenpercentage) >= (kocmoc.vars.convertat - (kocmoc.vars.autoconvertWaitTime)) then
-				if not temptable.consideringautoconverting then
-					temptable.consideringautoconverting = true
-					useConvertors()
-					temptable.consideringautoconverting = false
-				end
-			end
-			-- Morphisto
+        if tonumber(pollenpercentage) >= (kocmoc.vars.convertat - (kocmoc.vars.autoconvertWaitTime)) then
+                if not temptable.consideringautoconverting then
+                temptable.consideringautoconverting = true
+                spawn(function()
+                    wait(kocmoc.vars.autoconvertWaitTime)
+                    if tonumber(pollenpercentage) >= (kocmoc.vars.convertat - (kocmoc.vars.autoconvertWaitTime)) then
+                        useConvertors()
+                    end
+                    temptable.consideringautoconverting = false
+                end)
+                end
+            end
         end
         
         if kocmoc.toggles.autofarm then
@@ -2003,13 +1845,10 @@ task.spawn(function() while task.wait() do
                 fieldpos = api.getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
                 fieldposition = fieldpos.Position
             end
-        elseif temptable.puffshroomdetected and temptable.puffshroomboosted then
-			temptable.puffshroomdetected = false
-			temptable.puffshroomboosted = false
-		end
-
-		if (tonumber(pollenpercentage) < tonumber(kocmoc.vars.convertat)) or (kocmoc.toggles.disableconversion == true) then
-		    if not temptable.tokensfarm then
+        end
+        
+        if (tonumber(pollenpercentage) < tonumber(kocmoc.vars.convertat)) or (kocmoc.toggles.disableconversion == true) then
+            if not temptable.tokensfarm then
                 api.tween(2, fieldpos)
                 task.wait(2)
                 temptable.tokensfarm = true
@@ -2018,20 +1857,8 @@ task.spawn(function() while task.wait() do
                 if kocmoc.toggles.killmondo then
                     while kocmoc.toggles.killmondo and game.Workspace.Monsters:FindFirstChild("Mondo Chick (Lvl 8)") and not temptable.started.vicious and not temptable.started.monsters do
                         temptable.started.mondo = true
-						disableall()
-						local buffs = fetchBuffTable(buffTable)
-						if not tablefind(buffs, "Oil") then
-							if GetItemListWithValue()["Oil"] > 0 then
-								game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Oil"})
-							end
-						end
                         while game.Workspace.Monsters:FindFirstChild("Mondo Chick (Lvl 8)") do
-							local buffs = fetchBuffTable(buffTable)
-							if not tablefind(buffs, "Stinger") then
-								if GetItemListWithValue()["Stinger"] > 0 then
-									game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Stinger"})
-								end
-							end
+                            disableall()
                             game:GetService("Workspace").Map.Ground.HighBlock.CanCollide = false 
                             mondopition = game.Workspace.Monsters["Mondo Chick (Lvl 8)"].Head.Position
                             api.tween(1, CFrame.new(mondopition.x, mondopition.y - 60, mondopition.z))
@@ -2045,34 +1872,15 @@ task.spawn(function() while task.wait() do
                         enableall() 
                         api.tween(2, fieldpos) 
                         temptable.started.mondo = false
-						boostaftermondo = true
                     end
                 end
                 if kocmoc.toggles.killcrab then KillCoconutCrab() end -- Morphisto
 				if kocmoc.toggles.killtunnelbear then KillTunnelBear() end -- Morphisto
 				if kocmoc.toggles.killkingbeetle then KillKingBeetle() end -- Morphisto
 				if kocmoc.toggles.killstumpsnail then KillStumpSnail() end -- Morphisto
-				if kocmoc.toggles.farmboostedfield then farmboostedfield() end -- Morphisto
-				if kocmoc.toggles.killstickbug and temptable.sbready then -- Morphisto
-					local event = game.ReplicatedStorage.Events:FindFirstChild("SelectNPCOption")
-					if event then
-						event:FireServer("StartFreeStickBugEvent")
-					end
-					temptable.sbready = false
-				end
 				if (fieldposition-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
                     api.tween(2, fieldpos) -- Morphisto
                     if kocmoc.toggles.autosprinkler then makesprinklers() end
-					-- Morphisto
-					if currentMask ~= kocmoc.vars.defmask then
-						game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer("Equip", {Mute=false;Type=kocmoc.vars.defmask;Category="Accessory"})
-					end
-					if boostaftermondo and GetItemListWithValue()["LoadedDice"] == 25 then
-						print("Mondo Chick Killed. Activate Loaded Dice for boosting..")
-						game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "LoadedDice"})
-						boostaftermondo = false
-					end
-					-- Morphisto
                 end
                 getprioritytokens()
                 if kocmoc.toggles.avoidmobs then avoidmob() end
@@ -2104,6 +1912,7 @@ task.spawn(function() while task.wait() do
             task.wait(6)
             if kocmoc.toggles.autoant and not game:GetService("Workspace").Toys["Ant Challenge"].Busy.Value and rtsg().Eggs.AntPass > 0 then farmant() end
             if kocmoc.toggles.autoquest then makequests() end
+            if kocmoc.toggles.autoplanters then collectplanters() end
             if kocmoc.toggles.autokillmobs then 
                 if temptable.act >= kocmoc.vars.monstertimer then
                     temptable.started.monsters = true
@@ -2119,10 +1928,10 @@ task.spawn(function() while task.wait() do
                 temptable.act2 = 0
                 repeat wait() until workspace:FindFirstChild(game.Players.LocalPlayer.Name) and workspace:FindFirstChild(game.Players.LocalPlayer.Name):FindFirstChild("Humanoid") and workspace:FindFirstChild(game.Players.LocalPlayer.Name):FindFirstChild("Humanoid").Health > 0
                 workspace:FindFirstChild(game.Players.LocalPlayer.Name):BreakJoints()
-                task.wait(6.5)
+                wait(6.5)
                 repeat wait() until workspace:FindFirstChild(game.Players.LocalPlayer.Name)
                 workspace:FindFirstChild(game.Players.LocalPlayer.Name):BreakJoints()
-                task.wait(6.5)
+                wait(6.5)
                 repeat wait() until workspace:FindFirstChild(game.Players.LocalPlayer.Name)
                 temptable.started.monsters = false
             end
@@ -2147,7 +1956,7 @@ task.spawn(function()
 			end
 			for i,v in next, game.workspace.Particles:GetChildren() do
 				for x in string.gmatch(v.Name, "Vicious") do
-                    while kocmoc.toggles.killvicious and temptable.detected.vicious and not temptable.cache.disableinrange do task.wait() if string.find(v.Name, "Vicious") then
+                    while kocmoc.toggles.killvicious and temptable.detected.vicious do task.wait() if string.find(v.Name, "Vicious") then
                         for i=1, 4 do temptable.float = true vichumanoid.CFrame = CFrame.new(v.Position.x+10, v.Position.y, v.Position.z) task.wait(.3)
                         end
                     end end
@@ -2183,18 +1992,10 @@ task.spawn(function() while task.wait() do
                     end
                 end
             end
-            if not awb then
-				api.tween(1,temptable.gacf(temptable.windy, 5)) -- tries to bump Windy Bee in Cloud -- Morphisto
-				task.wait(1)
-				api.tween(1,temptable.gacf(temptable.windy, 4)) -- tries to bump Windy Bee in Cloud -- Morphisto
-				task.wait(1)
-				awb = true
-			end
-			if temptable.windy ~= nil then
-				if awb and temptable.windy.Name == "Windy" then
-					api.humanoidrootpart().CFrame = temptable.gacf(temptable.windy, 25) temptable.float = true task.wait()
-				end
-			end
+            if not awb then api.tween(1,temptable.gacf(temptable.windy, 5)) task.wait(1) awb = true end
+            if awb and temptable.windy.Name == "Windy" then
+                api.humanoidrootpart().CFrame = temptable.gacf(temptable.windy, 25) temptable.float = true task.wait()
+            end
         end 
         enableall()
         temptable.float = false
@@ -2328,6 +2129,7 @@ end end)
 task.spawn(function() while task.wait(1) do
     temptable.runningfor = temptable.runningfor + 1
     temptable.honeycurrent = statsget().Totals.Honey
+    if kocmoc.toggles.honeystorm then game.ReplicatedStorage.Events.ToyEvent:FireServer("Honeystorm") end
     if kocmoc.toggles.collectgingerbreads then game:GetService("ReplicatedStorage").Events.ToyEvent:FireServer("Gingerbread House") end
     if kocmoc.toggles.autodispense then
         if kocmoc.dispensesettings.rj then local A_1 = "Free Royal Jelly Dispenser" local Event = game:GetService("ReplicatedStorage").Events.ToyEvent Event:FireServer(A_1) end
@@ -2348,22 +2150,9 @@ task.spawn(function() while task.wait(1) do
 end end)
 
 game:GetService('RunService').Heartbeat:connect(function() 
-    if kocmoc.toggles.autoquest then
-		local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")
-		firesignal(ScreenGui.NPC.ButtonOverlay.MouseButton1Click)
-	end
-    if kocmoc.toggles.loopspeed then
-		local Humanoid = game.Players.LocalPlayer.Character:WaitForChild("Humanoid")
-		if Humanoid.WalkSpeed ~= kocmoc.vars.walkspeed then
-			Humanoid.WalkSpeed = kocmoc.vars.walkspeed
-		end
-	end
-    if kocmoc.toggles.loopjump then
-		local Humanoid = game.Players.LocalPlayer.Character:WaitForChild("Humanoid")
-		if Humanoid.JumpPower ~= kocmoc.vars.jumppower then
-			Humanoid.JumpPower = kocmoc.vars.jumppower
-		end
-	end
+    if kocmoc.toggles.autoquest then firesignal(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.ButtonOverlay.MouseButton1Click) end
+    if kocmoc.toggles.loopspeed then game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = kocmoc.vars.walkspeed end
+    if kocmoc.toggles.loopjump then game.Players.LocalPlayer.Character.Humanoid.JumpPower = kocmoc.vars.jumppower end
 end)
 
 game:GetService('RunService').Heartbeat:connect(function()
@@ -2529,8 +2318,7 @@ task.spawn(function()
         end
     end
     local mob2 = panel:CreateButton("Mondo Chick: 00:00",function() api.tween(1,game:GetService("Workspace").FlowerZones["Mountain Top Field"].CFrame) end)
-    mobsb = panel:CreateButton("Stick Bug: 00:00",function() end) -- Morphisto
-	$sFind
+    local panel2 = hometab:CreateSection("Utility Panel")
     local windUpd = panel2:CreateButton("Wind Shrine: 00:00",function() api.tween(1,CFrame.new(game:GetService("Workspace").NPCs["Wind Shrine"].Circle.Position + Vector3.new(0,5,0))) end)
     local rfbUpd = panel2:CreateButton("Red Field Booster: 00:00",function() api.tween(1,CFrame.new(game:GetService("Workspace").Toys["Red Field Booster"].Platform.Position + Vector3.new(0,5,0))) end)
     local bfbUpd = panel2:CreateButton("Blue Field Booster: 00:00",function() api.tween(1,CFrame.new(game:GetService("Workspace").Toys["Blue Field Booster"].Platform.Position + Vector3.new(0,5,0))) end)
@@ -2829,278 +2617,6 @@ function KillStumpSnail()
 		temptable.started.stumpsnail = false
 	end
 end
--- Morphisto
--- Morphisto
-function CheckPlayers()
-	local count = 1
-	local newplayers = false
-	local playerschanged = {}
-	
-	for i,v in pairs(game.Players:GetChildren()) do
-		if not api.tablefind(temptable.players, v.Name) then
-			newplayers = true
-		end
-		table.insert(playerschanged, v.Name)
-	end
-	if newplayers or #temptable.players ~= #playerschanged then
-		temptable.players = playerschanged
-		for i,v in pairs(game:GetService("CoreGui"):GetDescendants()) do
-			if v:IsA("TextLabel") and string.find(v.Text,"Player" .. count) then
-				v.Parent:Destroy()
-				if count > 6 then
-					break
-				else
-					count += 1
-				end
-			end		
-		end
-		for i,v in next, temptable.players do
-			uiwlplayers:CreateButton('Player' .. i .. ': ' .. v, function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v).HumanoidRootPart.CFrame end)
-		end
-	end
-
-	for j,k in pairs(game:GetService("CoreGui"):GetDescendants()) do
-		if k:IsA("TextLabel") and string.find(k.Text,"This player") then
-			k.Parent:Destroy()
-		end
-	end
-	for i,v in next, playerschanged do
-		if api.tablefind(kocmoc.wlplayers, v) then
-			temptable.cache.disableinrange = false
-		else
-			temptable.cache.disableinrange = true
-			local playerpos
-			for j,k in pairs(game:GetService("Workspace"):GetChildren()) do
-				if k.Name == v then
-					playerpos = game.Workspace:FindFirstChild(v).HumanoidRootPart.Position
-					if next(temptable.oplayers) == nil then
-						temptable.oplayers[v] = playerpos.magnitude
-					else
-						local oplayer = tablefind(temptable.oplayers, v)
-						if oplayer ~= nil and oplayer == v then
-							if temptable.oplayers[v] ~= playerpos.magnitude then
-								temptable.oplayers[v] = playerpos.magnitude
-								temptable.cache.disableinrange = true
-							end
-						else
-							tableremovekey(temptable.oplayers, v)
-							temptable.oplayers[v] = playerpos.magnitude
-						end
-					end
-					break
-				end
-			end
-			if playerpos ~= nil then
-				if (playerpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 150 then
-					uiwlplayers:CreateButton('This player ' .. v .. ' is in range', function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild(v).HumanoidRootPart.CFrame end)
-				end
-			end
-		end
-	end
-
-	if kocmoc.toggles.smartautofarm then
-		if temptable.cache.disableinrange then -- disable when other players in range
-			if kocmoc.toggles.killwindy then
-				uikillwindy:SetState(false)
-				kocmoc.toggles.killwindy = false
-			end
-			if kocmoc.toggles.farmsprouts then
-				uifarmsprouts:SetState(false) 
-				kocmoc.toggles.farmsprouts = false
-			end
-			if kocmoc.toggles.killstickbug then
-				uikillstickbug:SetState(false) 
-				kocmoc.toggles.killstickbug = false
-			end		
-		else
-			if not kocmoc.toggles.killwindy then
-				uikillwindy:SetState(true)
-				kocmoc.toggles.killwindy = true -- enable Windy Bee when no other players in game
-			end
-			if not kocmoc.toggles.farmsprouts then
-				uifarmsprouts:SetState(true) 
-				kocmoc.toggles.farmsprouts = true
-			end	
-			if not kocmoc.toggles.killstickbug then
-				uikillstickbug:SetState(true) 
-				kocmoc.toggles.killstickbug = true
-			end			
-		end
-	end
-end
--- Morphisto
-function tablefind(tt, va)
-	for i,v in pairs(tt) do
-		if i == va then
-			return i
-		end
-	end
-end
--- Morphisto
-function tableremovekey(tbl, key)
-   local element = tbl[key]
-   tbl[key] = nil
-   return element
-end
--- Morphisto
--- Morphisto
-function DefenseTotemHP()
-	local dtHP = 0
-	for i,v in pairs(game:GetService("Workspace").Particles.StickBugTotem:GetChildren()) do
-		--print(v.Name)
-		if v:FindFirstChild("GuiPos") then
-			if v:FindFirstChild("GuiPos"):FindFirstChild("Gui") then
-				if v:FindFirstChild("GuiPos"):FindFirstChild("Gui"):FindFirstChild("Frame") then
-					if v:FindFirstChild("GuiPos"):FindFirstChild("Gui"):FindFirstChild("Frame"):FindFirstChild("TextLabel") then
-						local GuiText = v:FindFirstChild("GuiPos"):FindFirstChild("Gui"):FindFirstChild("Frame"):FindFirstChild("TextLabel")
-						print(GuiText.Text)
-						dtHP = tonumber(GuiText.Text)
-						return dtHP
-					end
-				end
-			end
-		end
-	end
-end
--- Morphisto
--- Morphisto - Auto Stick Bug
-task.spawn(function()
-    while task.wait(1) do
-		if kocmoc.toggles.killstickbug and not temptable.started.windy and not temptable.started.vicious and not temptable.started.mondo and not temptable.started.monsters and not temptable.started.fieldboost then
-			local sbTime = 99
-			local sbTimer = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("TimeValue").Text
-			--print('sbTimer=' .. sbTimer)
-			if string.find(sbTimer, "s") then
-				sbTime = string.gsub(sbTimer,"s","")
-			end
-			if tonumber(sbTime) < 15 then
-				print('Stick Bug Chellenge has finished ' .. sbTimer)
-				game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("TimeValue").Text = "10:00"
-				if temptable.started.stickbug then
-					enableall()
-					temptable.started.stickbug = false
-					print('Inside of sbTimer = 10:00')
-					if kocmoc.toggles.godmode then
-						print('disabling godmode')
-						kocmoc.toggles.godmode = false
-						uigodmode:SetState(false)
-						bssapi:Godmode(false)
-					end
-				end
-				
-			elseif sbTimer ~= "10:00" then
-				if not temptable.started.stickbug then
-					temptable.started.stickbug = true
-					disableall()
-					print("test stickbug1")
-					if not kocmoc.toggles.godmode then
-						print("test stickbug2")
-						kocmoc.toggles.godmode = true
-						bssapi:Godmode(true)
-						uigodmode:SetState(true)
-						--task.wait(2)
-						--api.humanoidrootpart().CFrame = CFrame.new(243.895538, 4.3493037, 320.418457)
-						--task.wait(1)
-					end
-					
-				end
-				
-				for i,v in pairs(workspace.Monsters:GetChildren()) do
-					if string.find(v.Name,"Stick Bug") then
-						print('Now attacking ' .. v.Name)
-						if game.Workspace.Particles:FindFirstChild("PollenHealthBar") then
-							local sbpollenpos = game.Workspace.Particles:FindFirstChild("PollenHealthBar").Position
-							game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(sbpollenpos.x,sbpollenpos.y,sbpollenpos.z)
-							task.wait(1)
-							temptable.magnitude = 25
-							while game.Workspace.Particles:FindFirstChild("PollenHealthBar") do
-								sbpollenpos = game.Workspace.Particles:FindFirstChild("PollenHealthBar").Position
-								if (sbpollenpos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
-									api.tween(1, CFrame.new(sbpollenpos.x, sbpollenpos.y, sbpollenpos.z))
-								end
-								gettoken(sbpollenpos)
-
-								--game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(sbpollenpos.x,sbpollenpos.y,sbpollenpos.z)
-								task.wait()					
-							end
-							for i = 1, 2 do gettoken(api.humanoidrootpart().Position) end
-						end
-						
-						if game.Workspace.Monsters:FindFirstChild(v.Name) then
-							local sbexists = game.Workspace.Monsters[v.Name]
-							local sbposition = game.Workspace.Monsters[v.Name].Head.Position
-							api.tween(1, CFrame.new(sbposition.x, sbposition.y - 5, sbposition.z))
-							task.wait(1)
-							if kocmoc.toggles.autosprinkler then makesprinklers() end
-							
-							local sblvl = v.Name:gsub("%D+", "")
-							if tonumber(sblvl) > 6 then 
-								local buffs = fetchBuffTable(buffTable)
-								if not tablefind(buffs, "Oil") then
-									if GetItemListWithValue()["Oil"] > 0 then
-										game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Oil"})
-									end					
-								end
-								if not tablefind(buffs, "Jelly Bean Sharing Bonus") then
-									if GetItemListWithValue()["JellyBeans"] > 0 then
-										game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Jelly Beans"})
-									end					
-								end
-							end							
-						end
-						
-						while game.Workspace.Monsters:FindFirstChild(v.Name) and not game.Workspace.Particles:FindFirstChild("StickBugTotem") do
-							sbposition = game.Workspace.Monsters[v.Name].Head.Position
-							if tonumber(sbposition.y) > 1000 then
-								break
-							end
-							if (sbposition-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
-								api.tween(1, CFrame.new(sbposition.x, sbposition.y - 5, sbposition.z))
-							end
-							gettoken(sbposition)
-							
-							local buffs = fetchBuffTable(buffTable)
-							if not tablefind(buffs, "Jelly Bean Sharing Bonus") then
-								if GetItemListWithValue()["JellyBeans"] > 0 then
-									game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Jelly Beans"})
-								end					
-							end
-							if not tablefind(buffs, "Stinger") then
-								if GetItemListWithValue()["Stinger"] > 0 then
-									game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Stinger"})
-								end					
-							end
-							task.wait()
-						end
-						temptable.float = false
-
-						if game.Workspace.Particles:FindFirstChild("StickBugTotem") then
-							for j,k in pairs(game:GetService("Workspace").Particles.StickBugTotem:GetChildren()) do
-								if k:FindFirstChild("NamePos") then
-									game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(k.Position.x,k.Position.y,k.Position.z)
-									--api.tween(2, CFrame.new(k.Position.x,k.Position.y,k.Position.z))
-									break
-								end				
-							end
-							task.wait(1)
-							if kocmoc.toggles.autosprinkler then makesprinklers() end
-							while game.Workspace.Particles:FindFirstChild("StickBugTotem") do
-								gettoken(api.humanoidrootpart().Position)
-								task.wait()
-							end				
-							for i = 1, 2 do gettoken(api.humanoidrootpart().Position) end
-						else
-							task.wait(1)
-							if kocmoc.toggles.autosprinkler then makesprinklers() end
-							for i =1, 3 do gettoken(api.humanoidrootpart().Position) end			
-						end
-						break
-					end
-				end
-			end
-		end
-	end
-end)
 -- Morphisto
 for _, part in next, workspace:FindFirstChild("FieldDecos"):GetDescendants() do if part:IsA("BasePart") then part.CanCollide = false part.Transparency = part.Transparency < 0.5 and 0.5 or part.Transparency task.wait() end end
 for _, part in next, workspace:FindFirstChild("Decorations"):GetDescendants() do if part:IsA("BasePart") and (part.Parent.Name == "Bush" or part.Parent.Name == "Blue Flower") then part.CanCollide = false part.Transparency = part.Transparency < 0.5 and 0.5 or part.Transparency task.wait() end end
