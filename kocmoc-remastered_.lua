@@ -49,6 +49,7 @@ getgenv().temptable = {
     shouldiconvertballoonnow = false,
     balloondetected = false,
     puffshroomdetected = false,
+	puffshroomboosted = false, -- Morphisto
     magnitude = 60,
     blacklist = {
         ""
@@ -211,6 +212,27 @@ local buffTable = {
     ["Glitter"]={b=false,DecalID="2542899798"};
     ["Tropical Drink"]={b=false,DecalID="3835877932"};
 }
+-- Morphisto
+local fieldboostTable = {
+	["Mushroom Field"]={b=false,DecalID="2908769124"};
+	["Pineapple Patch"]={b=false,DecalID="2908769153"};
+	["Blue Flower Field"]={b=false,DecalID="2908768899"};
+	["Sunflower Field"]={b=false,DecalID="2908769405"};
+	["Bamboo Field"]={b=false,DecalID="2908768829"};
+	["Spider Field"]={b=false,DecalID="2908769301"};
+	["Stump Field"]={b=false,DecalID="2908769372"};
+	["Mountain Top Field"]={b=false,DecalID="2908769086"};
+	["Pine Tree Forest"]={b=false,DecalID="2908769190"};
+	["Rose Field"]={b=false,DecalID="2908818982"};
+	["Pepper Patch"]={b=false,DecalID="3835712489"};
+	["Cactus Field"]={b=false,DecalID="2908768937"};
+	["Coconut Field"]={b=false,DecalID="2908769010"};
+	["Clover Field"]={b=false,DecalID="2908768973"};
+	["Strawberry Field"]={b=false,DecalID="2908769330"};
+	["Pumpkin Patcht"]={b=false,DecalID="2908769220"};
+}
+-- Morphisto
+
 local AccessoryTypes = require(game:GetService("ReplicatedStorage").Accessories).GetTypes()
 local MasksTable = {}
 for i,v in pairs(AccessoryTypes) do
@@ -982,6 +1004,79 @@ local function useConvertors()
         game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Coconut"})
         end
 end
+
+-- Morphisto
+function fetchfieldboostTable(stats)
+	local stTab = {}
+	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui:GetChildren()) do
+		if v.Name == "TileGrid" then
+			for p,l in pairs(v:GetChildren()) do
+				if l:FindFirstChild("BG") then
+					if l:FindFirstChild("BG"):FindFirstChild("Icon") then
+						local ic = l:FindFirstChild("BG"):FindFirstChild("Icon")
+						for field,fdata in pairs(stats) do
+							if fdata["DecalID"]~= nil then
+								if string.find(ic.Image,fdata["DecalID"]) then
+									if ic.Parent:FindFirstChild("Text") then
+										if ic.Parent:FindFirstChild("Text").Text == "" then
+											stTab[field]=1
+										else
+											local thing = ""
+											thing = string.gsub(ic.Parent:FindFirstChild("Text").Text,"x","")
+											stTab[field]=tonumber(thing)
+										end
+									end
+								end
+							end
+						end
+					end
+				end
+			end
+		end
+	end
+	return stTab
+end
+-- Morphisto
+
+-- Morphisto
+function farmboostedfield()
+	local boostedfields = fetchfieldboostTable(fieldboostTable)
+	if next(boostedfields) == nil then
+		if temptable.started.fieldboost then
+			temptable.started.fieldboost = false
+			fielddropdown:SetOption(temptable.boostedfield)
+			kocmoc.toggles.autouseconvertors = false
+			uiautouseconverters:SetState(false)
+		end
+	else
+		if not temptable.started.fieldboost then
+			temptable.started.fieldboost = true
+			temptable.boostedfield = kocmoc.vars.field
+			for field,lvl in pairs(boostedfields) do
+				if kocmoc.vars.defmask == "Gummy Mask" then
+					if api.tablefind(temptable.whitefields, field) then
+						fielddropdown:SetOption(field)
+					end
+				elseif kocmoc.vars.defmask == "Demon Mask" then
+					if api.tablefind(temptable.redfields, field) then
+						fielddropdown:SetOption(field)
+					end
+				elseif kocmoc.vars.defmask == "Diamond Mask" then
+					if api.tablefind(temptable.bluefields, field) then
+						fielddropdown:SetOption(field)
+					end
+				end
+			end
+		end
+	end
+	if temptable.started.fieldboost then
+		if not kocmoc.toggles.autouseconvertors then
+			uiautouseconverters:SetState(true)
+			kocmoc.toggles.autouseconvertors = true
+		end
+	end
+end
+-- Morphisto
 
 local function fetchBuffTable(stats)
     local stTab = {}
@@ -1864,10 +1959,13 @@ task.spawn(function() while task.wait() do
                 fieldpos = api.getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
                 fieldposition = fieldpos.Position
             end
-        end
-        
-        if (tonumber(pollenpercentage) < tonumber(kocmoc.vars.convertat)) or (kocmoc.toggles.disableconversion == true) then
-            if not temptable.tokensfarm then
+        elseif temptable.puffshroomdetected and temptable.puffshroomboosted then
+			temptable.puffshroomdetected = false
+			temptable.puffshroomboosted = false
+		end
+
+		if (tonumber(pollenpercentage) < tonumber(kocmoc.vars.convertat)) or (kocmoc.toggles.disableconversion == true) then
+		    if not temptable.tokensfarm then
                 api.tween(2, fieldpos)
                 task.wait(2)
                 temptable.tokensfarm = true
@@ -1876,8 +1974,20 @@ task.spawn(function() while task.wait() do
                 if kocmoc.toggles.killmondo then
                     while kocmoc.toggles.killmondo and game.Workspace.Monsters:FindFirstChild("Mondo Chick (Lvl 8)") and not temptable.started.vicious and not temptable.started.monsters do
                         temptable.started.mondo = true
+						disableall()
+						local buffs = fetchBuffTable(buffTable)
+						if not tablefind(buffs, "Oil") then
+							if GetItemListWithValue()["Oil"] > 0 then
+								game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Oil"})
+							end
+						end
                         while game.Workspace.Monsters:FindFirstChild("Mondo Chick (Lvl 8)") do
-                            disableall()
+							local buffs = fetchBuffTable(buffTable)
+							if not tablefind(buffs, "Stinger") then
+								if GetItemListWithValue()["Stinger"] > 0 then
+									game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer({["Name"] = "Stinger"})
+								end
+							end
                             game:GetService("Workspace").Map.Ground.HighBlock.CanCollide = false 
                             mondopition = game.Workspace.Monsters["Mondo Chick (Lvl 8)"].Head.Position
                             api.tween(1, CFrame.new(mondopition.x, mondopition.y - 60, mondopition.z))
@@ -1898,6 +2008,7 @@ task.spawn(function() while task.wait() do
 				if kocmoc.toggles.killtunnelbear then KillTunnelBear() end -- Morphisto
 				if kocmoc.toggles.killkingbeetle then KillKingBeetle() end -- Morphisto
 				if kocmoc.toggles.killstumpsnail then KillStumpSnail() end -- Morphisto
+				if kocmoc.toggles.farmboostedfield then farmboostedfield() end -- Morphisto
 				if (fieldposition-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
                     api.tween(2, fieldpos) -- Morphisto
                     if kocmoc.toggles.autosprinkler then makesprinklers() end
