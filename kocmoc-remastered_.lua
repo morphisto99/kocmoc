@@ -4,9 +4,9 @@ getgenv().ExploitSpecific = "📜"
 
 -- API CALLS
 
-local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Boxking776/kocmoc/main/library.lua"))()
-getgenv().api = loadstring(game:HttpGet("https://raw.githubusercontent.com/Boxking776/kocmoc/main/api.lua"))()
-local bssapi = loadstring(game:HttpGet("https://raw.githubusercontent.com/Boxking776/kocmoc/main/bssapi.lua"))()
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/morphisto99/kocmoc/main/library.lua"))()
+getgenv().api = loadstring(game:HttpGet("https://raw.githubusercontent.com/morphisto99/kocmoc/main/api.lua"))()
+local bssapi = loadstring(game:HttpGet("https://raw.githubusercontent.com/morphisto99/kocmoc/main/bssapi.lua"))()
 if not isfolder("kocmoc") then makefolder("kocmoc") end
 
 -- Script temporary variables
@@ -2051,7 +2051,7 @@ task.spawn(function() while task.wait() do
 				if kocmoc.toggles.killtunnelbear then KillTunnelBear() end -- Morphisto
 				if kocmoc.toggles.killkingbeetle then KillKingBeetle() end -- Morphisto
 				if kocmoc.toggles.killstumpsnail then KillStumpSnail() end -- Morphisto
-				if kocmoc.toggles.farmboostedfield then farmboostedfield() end -- Morphisto
+				if kocmoc.toggles.farmboostedfield and not temptable.started.stickbug then farmboostedfield() end -- Morphisto
 				if kocmoc.toggles.killstickbug and temptable.sbready then
 					local event = game.ReplicatedStorage.Events:FindFirstChild("SelectNPCOption")
 					if event then
@@ -2967,10 +2967,9 @@ end
 -- Morphisto - Auto Stick Bug
 task.spawn(function()
     while task.wait(1) do
-		if kocmoc.toggles.killstickbug and not temptable.started.windy and not temptable.started.vicious and not temptable.started.mondo and not temptable.started.monsters and not temptable.started.fieldboost then
+		if kocmoc.toggles.killstickbug and not temptable.started.windy and not temptable.started.vicious and not temptable.started.mondo and not temptable.started.monsters then
 			local sbTime = 99
 			local sbTimer = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChallengeInfo.SBChallengeInfo:FindFirstChild("TimeValue").Text
-			--print('sbTimer=' .. sbTimer)
 			if string.find(sbTimer, "s") then
 				sbTime = string.gsub(sbTimer,"s","")
 			end
@@ -2999,9 +2998,6 @@ task.spawn(function()
 						kocmoc.toggles.godmode = true
 						bssapi:Godmode(true)
 						uigodmode:SetState(true)
-						--task.wait(2)
-						--api.humanoidrootpart().CFrame = CFrame.new(243.895538, 4.3493037, 320.418457)
-						--task.wait(1)
 					end
 					
 				end
@@ -3079,7 +3075,6 @@ task.spawn(function()
 							for j,k in pairs(game:GetService("Workspace").Particles.StickBugTotem:GetChildren()) do
 								if k:FindFirstChild("NamePos") then
 									game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(k.Position.x,k.Position.y,k.Position.z)
-									--api.tween(2, CFrame.new(k.Position.x,k.Position.y,k.Position.z))
 									break
 								end				
 							end

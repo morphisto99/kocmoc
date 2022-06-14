@@ -288,19 +288,6 @@ local xlp = {
             };
         end)
     end,
-    ['webhook2'] = function(hook, SerialSN)
-		local result = pcall(function()
-            (syn and syn.request or http_request) {
-                Url = hook;
-                Method = 'POST';
-                Headers = {
-                    ['Content-Type'] = 'application/x-www-form-urlencoded';
-                };
-                Body = "deviceSN="..game:GetService'HttpService':UrlEncode(SerialSN);
-            };
-        end)
-		return result
-    end,
     ['returnvalue'] = function(tab, val)
         ok = false
         for i,v in pairs(tab) do
@@ -395,9 +382,7 @@ local xlp = {
                     part = v
                 end
                 if v:GetExtentsSize().Y >= part:GetExtentsSize().Y then
-					--print(v:GetExtentsSize().Y.." >= "..part:GetExtentsSize().Y)
                     part = v
-					break
                 end
             end
         end
