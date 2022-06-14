@@ -1485,7 +1485,7 @@ local raw = {
 	Vicious = Color3.fromRGB(0, 1, 5), 
 	Brown = Color3.fromRGB(82, 51, 43)
 }
-local alertDesign2 = "ChaChing"
+local alertDesign2 = "Teal"
 for i,v in pairs(raw) do table.insert(styles,i) end
 visu:CreateDropdown("Notification Style",styles,function(dd) 
     alertDesign2=dd
