@@ -938,7 +938,7 @@ function checksbcooldown()
 		task.wait(1)
 		local sbReady = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:FindFirstChild("Option1").Text	
 		local sbtime = string.match(sbReady, "[%d:]+")
-		if sbtime then
+		if sbtime ~= nil then
 			temptable.sbready = false
 			mobsb:UpdateText('Stick Bug: ' .. sbtime)
 		else
