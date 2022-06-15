@@ -940,7 +940,7 @@ function checksbcooldown()
 		local sbtime = string.match(sbReady, "[%d:]+")
 		if sbtime ~= nil then
 			temptable.sbready = false
-			mobsb:UpdateText('Stick Bug: ' .. sbtime)
+			mobsb:UpdateText('Stick Bug: ' .. tostring(sbtime))
 		else
 			temptable.sbready = true
 			mobsb:UpdateText('Stick Bug: Ready')
@@ -2816,7 +2816,7 @@ function KillStumpSnail()
 			api.humanoidrootpart().CFrame = CFrame.new(243.895538, 4.3493037, 320.418457)
 			task.wait(15)
 		else
-			while game.Workspace.Monsters:FindFirstChild("Stump Snail (Lvl 6)") and not temptable.started.vicious and not temptable.started.monsters do
+			while game.Workspace.Monsters:FindFirstChild("Stump Snail (Lvl 6)") and not temptable.started.windy and not temptable.started.vicious and not temptable.started.monsters do
 				game:GetService("Workspace").Map.Ground.HighBlock.CanCollide = false
 				task.wait(1)
 			end
@@ -3136,7 +3136,7 @@ function KillTest()
 	print('sbReady=' .. sbReady)
 	local sbtime = string.match(sbReady, "[%d:]+")
 	print('sbtime=' .. sbtime)
-	if sbtime then
+	if sbtime ~= nil then
 		temptable.sbready = false
 		mobsb:UpdateText('Stick Bug: ' .. sbtime)
 	else
