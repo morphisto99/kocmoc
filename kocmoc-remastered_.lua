@@ -2930,10 +2930,10 @@ function checksbcooldown()
 		local sbtime = string.match(sbReady, "[%d:]+")
 		if sbtime ~= nil then
 			temptable.sbready = false
-			mobsb:UpdateText('Stick Bug: ' .. tostring(sbtime))
+			mobsb:UpdateText("Stick Bug: "..tostring(sbtime))
 		else
 			temptable.sbready = true
-			mobsb:UpdateText('Stick Bug: Ready')
+			mobsb:UpdateText("Stick Bug: Ready")
 		end
 		
 		if not kocmoc.toggles.autoquest then
@@ -3138,7 +3138,7 @@ function KillTest()
 	print('sbtime=' .. sbtime)
 	if sbtime ~= nil then
 		temptable.sbready = false
-		mobsb:UpdateText('Stick Bug: ' .. tostring(sbtime))
+		mobsb:UpdateText('Stick Bug: '..tostring(sbtime))
 	else
 		temptable.sbready = true
 		mobsb:UpdateText('Stick Bug: Ready')
