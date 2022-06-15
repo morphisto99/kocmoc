@@ -122,7 +122,7 @@ function Library:CreateWindow(Config, Parent)
 	local function ChangeColor(Color)
 		Config.Color = Color
 		for i, v in pairs(Library.ColorTable) do
-			if v.BackgroundColor3 ~= Color3.fromRGB(50, 50, 50) then
+			if v.BackgroundColor3 ~= Color3.fromRGB(255, 0, 0) then
 				v.BackgroundColor3 = Color
 			end
 		end
@@ -261,11 +261,11 @@ function Library:CreateWindow(Config, Parent)
 				end)
 
 				Button.MouseButton1Up:Connect(function()
-					Button.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+					Button.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
 				end)
 
 				Button.MouseLeave:Connect(function()
-					Button.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+					Button.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
 				end)
 
 				Button.MouseButton1Click:Connect(function()
@@ -342,7 +342,7 @@ function Library:CreateWindow(Config, Parent)
 					if State then
 						Toggle.Toggle.BackgroundColor3 = Config.Color
 					elseif not State then
-						Toggle.Toggle.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+						Toggle.Toggle.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
 					end
 					ToggleState = State
 					Callback(State)
