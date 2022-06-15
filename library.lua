@@ -229,6 +229,7 @@ function Library:CreateWindow(Config, Parent)
 
 			Section.Title.Text = Name
 			Section.Title.Size = UDim2.new(0,Section.Title.TextBounds.X + 10,0,2)
+			Section.BackgroundColor3 = Color3.fromRGB(176, 224, 230)
 
 			Section.Container.ListLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
 				Section.Size = UDim2.new(1,0,0,Section.Container.ListLayout.AbsoluteContentSize.Y + 15)
@@ -241,6 +242,7 @@ function Library:CreateWindow(Config, Parent)
 				Label.Parent = Section.Container
 				Label.Text = Name
 				Label.Size = UDim2.new(1,-10,0,Label.TextBounds.Y)
+				Label.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
 				function LabelInit:UpdateText(Text)
 					Label.Text = Text
 					Label.Size = UDim2.new(1,-10,0,Label.TextBounds.Y)
