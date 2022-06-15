@@ -122,7 +122,7 @@ function Library:CreateWindow(Config, Parent)
 	local function ChangeColor(Color)
 		Config.Color = Color
 		for i, v in pairs(Library.ColorTable) do
-			if v.BackgroundColor3 ~= Color3.fromRGB(255, 0, 0) then
+			if v.BackgroundColor3 ~= Color3.fromRGB(50, 50, 50) then
 				v.BackgroundColor3 = Color
 			end
 		end
@@ -229,7 +229,6 @@ function Library:CreateWindow(Config, Parent)
 
 			Section.Title.Text = Name
 			Section.Title.Size = UDim2.new(0,Section.Title.TextBounds.X + 10,0,2)
-			Section.BackgroundColor3 = Color3.fromRGB(176, 224, 230)
 
 			Section.Container.ListLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
 				Section.Size = UDim2.new(1,0,0,Section.Container.ListLayout.AbsoluteContentSize.Y + 15)
@@ -242,7 +241,6 @@ function Library:CreateWindow(Config, Parent)
 				Label.Parent = Section.Container
 				Label.Text = Name
 				Label.Size = UDim2.new(1,-10,0,Label.TextBounds.Y)
-				Label.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
 				function LabelInit:UpdateText(Text)
 					Label.Text = Text
 					Label.Size = UDim2.new(1,-10,0,Label.TextBounds.Y)
@@ -256,6 +254,11 @@ function Library:CreateWindow(Config, Parent)
 				Button.Parent = Section.Container
 				Button.Title.Text = Name
 				Button.Size = UDim2.new(1,-10,0,Button.Title.TextBounds.Y + 5)
+				
+				function ButtonInit:UpdateText(Text)
+					Button.Title.Text = Text
+				end
+				
 				table.insert(Library.ColorTable, Button)
 
 				Button.MouseButton1Down:Connect(function()
@@ -263,11 +266,11 @@ function Library:CreateWindow(Config, Parent)
 				end)
 
 				Button.MouseButton1Up:Connect(function()
-					Button.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+					Button.BackgroundColor3 = Color3.fromRGB(50,50,50)
 				end)
 
 				Button.MouseLeave:Connect(function()
-					Button.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+					Button.BackgroundColor3 = Color3.fromRGB(50,50,50)
 				end)
 
 				Button.MouseButton1Click:Connect(function()
@@ -344,7 +347,7 @@ function Library:CreateWindow(Config, Parent)
 					if State then
 						Toggle.Toggle.BackgroundColor3 = Config.Color
 					elseif not State then
-						Toggle.Toggle.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+						Toggle.Toggle.BackgroundColor3 = Color3.fromRGB(50,50,50)
 					end
 					ToggleState = State
 					Callback(State)
