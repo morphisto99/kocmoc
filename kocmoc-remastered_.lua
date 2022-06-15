@@ -899,62 +899,6 @@ function checkquestcooldown()
 end
 -- Morphisto
 
--- Morphisto
-function checksbcooldown()
-	local cooldown = time() - tonumber(stickbug_time)
-	--1800 sec is 30mins
-	if cooldown > 1800 and not temptable.started.vicious and not temptable.started.windy then
-		disableall()
-		if kocmoc.toggles.autoquest then
-			kocmoc.toggles.autoquest = false
-			uiautoquest:SetState(false)
-		end
-		for i,v in next, game:GetService("Workspace").NPCs:GetChildren() do
-			if v.Name == "Stick Bug" then
-				if v:FindFirstChild("Platform") then
-					if v.Platform:FindFirstChild("AlertPos") then
-						if v.Platform.AlertPos:FindFirstChild("AlertGui") then
-							if v.Platform.AlertPos.AlertGui:FindFirstChild("ImageLabel") then
-								image = v.Platform.AlertPos.AlertGui.ImageLabel
-								button = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ActivateButton.MouseButton1Click
-								game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(v.Platform.Position.X, v.Platform.Position.Y+3, v.Platform.Position.Z)
-								task.wait(1)					
-								for b,z in next, getconnections(button) do
-									z.Function()
-								end
-								task.wait(1)
-								break
-							end
-						end
-					end
-				end
-			end
-		end
-		task.wait(1)
-		local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")	
-		firesignal(ScreenGui.NPC.OptionFrame.Option3.MouseButton1Click)
-		task.wait(1)
-		firesignal(ScreenGui.NPC.ButtonOverlay.MouseButton1Click)
-		task.wait(1)
-		local sbReady = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:FindFirstChild("Option1").Text	
-		local sbtime = string.match(sbReady, "[%d:]+")
-		if sbtime ~= nil then
-			temptable.sbready = false
-			mobsb:UpdateText('Stick Bug: ' .. tostring(sbtime))
-		else
-			temptable.sbready = true
-			mobsb:UpdateText('Stick Bug: Ready')
-		end
-		
-		if not kocmoc.toggles.autoquest then
-			kocmoc.toggles.autoquest = true
-			uiautoquest:SetState(true)
-		end
-		stickbug_time = time()
-		enableall()
-	end
-end
--- Morphisto
 function makequests()
     for i,v in next, game:GetService("Workspace").NPCs:GetChildren() do
         if v.Name ~= "Ant Challenge Info" and v.Name ~= "Bubble Bee Man 2" and v.Name ~= "Wind Shrine" and v.Name ~= "Gummy Bear" then if v:FindFirstChild("Platform") then if v.Platform:FindFirstChild("AlertPos") then if v.Platform.AlertPos:FindFirstChild("AlertGui") then if v.Platform.AlertPos.AlertGui:FindFirstChild("ImageLabel") then
@@ -2946,6 +2890,62 @@ function tableremovekey(tbl, key)
 end
 -- Morphisto
 -- Morphisto
+function checksbcooldown()
+	local cooldown = time() - tonumber(stickbug_time)
+	--1800 sec is 30mins
+	if cooldown > 1800 and not temptable.started.vicious and not temptable.started.windy then
+		disableall()
+		if kocmoc.toggles.autoquest then
+			kocmoc.toggles.autoquest = false
+			uiautoquest:SetState(false)
+		end
+		for i,v in next, game:GetService("Workspace").NPCs:GetChildren() do
+			if v.Name == "Stick Bug" then
+				if v:FindFirstChild("Platform") then
+					if v.Platform:FindFirstChild("AlertPos") then
+						if v.Platform.AlertPos:FindFirstChild("AlertGui") then
+							if v.Platform.AlertPos.AlertGui:FindFirstChild("ImageLabel") then
+								image = v.Platform.AlertPos.AlertGui.ImageLabel
+								button = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ActivateButton.MouseButton1Click
+								game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(v.Platform.Position.X, v.Platform.Position.Y+3, v.Platform.Position.Z)
+								task.wait(1)					
+								for b,z in next, getconnections(button) do
+									z.Function()
+								end
+								task.wait(1)
+								break
+							end
+						end
+					end
+				end
+			end
+		end
+		task.wait(1)
+		local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ScreenGui")	
+		firesignal(ScreenGui.NPC.OptionFrame.Option3.MouseButton1Click)
+		task.wait(1)
+		firesignal(ScreenGui.NPC.ButtonOverlay.MouseButton1Click)
+		task.wait(1)
+		local sbReady = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.OptionFrame:FindFirstChild("Option1").Text	
+		local sbtime = string.match(sbReady, "[%d:]+")
+		if sbtime ~= nil then
+			temptable.sbready = false
+			mobsb:UpdateText('Stick Bug: ' .. tostring(sbtime))
+		else
+			temptable.sbready = true
+			mobsb:UpdateText('Stick Bug: Ready')
+		end
+		
+		if not kocmoc.toggles.autoquest then
+			kocmoc.toggles.autoquest = true
+			uiautoquest:SetState(true)
+		end
+		stickbug_time = time()
+		enableall()
+	end
+end
+-- Morphisto
+-- Morphisto
 function DefenseTotemHP()
 	local dtHP = 0
 	for i,v in pairs(game:GetService("Workspace").Particles.StickBugTotem:GetChildren()) do
@@ -3138,7 +3138,7 @@ function KillTest()
 	print('sbtime=' .. sbtime)
 	if sbtime ~= nil then
 		temptable.sbready = false
-		mobsb:UpdateText('Stick Bug: ' .. tostring(sbtime))
+		mobsb:UpdateText('Stick Bug: ' .. sbtime)
 	else
 		temptable.sbready = true
 		mobsb:UpdateText('Stick Bug: Ready')
