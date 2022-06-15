@@ -2528,7 +2528,7 @@ task.spawn(function()
         end
     end
     local mob2 = panel:CreateButton("Mondo Chick: 00:00",function() api.tween(1,game:GetService("Workspace").FlowerZones["Mountain Top Field"].CFrame) end)
-    mobsb = panel:CreateButton("Stick Bug: 00:00",function() end) -- Morphisto
+    local mobsb = panel:CreateButton("Stick Bug: 00:00",function() end) -- Morphisto
 	local panel2 = hometab:CreateSection("Utility Panel")
     local windUpd = panel2:CreateButton("Wind Shrine: 00:00",function() api.tween(1,CFrame.new(game:GetService("Workspace").NPCs["Wind Shrine"].Circle.Position + Vector3.new(0,5,0))) end)
     local rfbUpd = panel2:CreateButton("Red Field Booster: 00:00",function() api.tween(1,CFrame.new(game:GetService("Workspace").Toys["Red Field Booster"].Platform.Position + Vector3.new(0,5,0))) end)
