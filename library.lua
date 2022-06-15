@@ -229,6 +229,7 @@ function Library:CreateWindow(Config, Parent)
 
 			Section.Title.Text = Name
 			Section.Title.Size = UDim2.new(0,Section.Title.TextBounds.X + 10,0,2)
+			Section.BackgroundColor3 = Color3.fromRGB(45,45,45)
 			
 			Section.Container.ListLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
 				Section.Size = UDim2.new(1,0,0,Section.Container.ListLayout.AbsoluteContentSize.Y + 15)
@@ -267,11 +268,11 @@ function Library:CreateWindow(Config, Parent)
 				end)
 
 				Button.MouseButton1Up:Connect(function()
-					Button.BackgroundColor3 = Color3.fromRGB(50,50,50)
+					Button.BackgroundColor3 = Color3.fromRGB(170,132,98)
 				end)
 
 				Button.MouseLeave:Connect(function()
-					Button.BackgroundColor3 = Color3.fromRGB(50,50,50)
+					Button.BackgroundColor3 = Color3.fromRGB(170,132,98)
 				end)
 
 				Button.MouseButton1Click:Connect(function()
