@@ -3138,7 +3138,7 @@ function KillTest()
 	print('sbtime=' .. sbtime)
 	if sbtime ~= nil then
 		temptable.sbready = false
-		mobsb:UpdateText('Stick Bug: ' .. sbtime)
+		mobsb:UpdateText('Stick Bug: ' .. tostring(sbtime))
 	else
 		temptable.sbready = true
 		mobsb:UpdateText('Stick Bug: Ready')
